@@ -2,20 +2,7 @@
 title: Certified
 categories: [CTF,Windows]
 tags: [certified,htb,adcs,esc9,powerview,certipy-ad,pkiinit,pywhisker]
-image:
-  path: https://labs.hackthebox.com/storage/avatars/28b71ec11bb839b5b58bdfc555006816.png
-  alt: Certified machine logo from hack the box
 ---
-
-
-| **Name**             | [Certified](https://app.hackthebox.com/machines/633)                                              |
-|----------------------|---------------------------------------------------------------------------------------------------|
-| **Logo**             | ![Logo](https://labs.hackthebox.com/storage/avatars/28b71ec11bb839b5b58bdfc555006816.png) |
-| **Release Date**     |                                                                                                   |
-| **Retire Date**      |                                                                                                   |
-| **OS**               | Windows                                                                                           |
-| **Difficulty Level** | Medium                                                                                            |
-| **Creator**          | [ruycr4ft](https://app.hackthebox.com/users/1253217)                                              |
 
 ## Reconnaissance
 
