@@ -1,0 +1,77 @@
+---
+---
+
+@import 'main'; 
+
+/* append your custom style below:
+
+- Here you can include custom scss. I keep some dark mode variables available to edit.
+- Use developer tools within browser to discover specific css.
+
+/* Editing some dark mode mixin variables */
+
+html[data-mode=dark] {
+    --heading-color: #ae81ff;
+    --label-color: #62ea00;
+    --site-title-color: #62ea00;
+    --site-subtitle-color: #868686;
+    --sidebar-muted-color: #ae81ff;
+    --sidebar-active-color: #62ea00;
+    --sidebar-btn-color: #ae81ff;
+    --avatar-border-color: rgb(206, 206, 206, 0.9);
+    --search-border-color: #ae81ff;
+    --search-icon-color: #62ea00;
+    --input-focus-border-color: #62ea00;
+    --toc-highlight: #62ea00;
+    --prompt-text-color: rgb(216, 212, 212, 0.75);
+    --prompt-tip-bg: rgb(22, 60, 36, 0.64);
+    --prompt-tip-icon-color: rgb(15, 164, 15, 0.81);
+    --prompt-info-bg: rgb(7, 59, 104, 0.8);
+    --prompt-info-icon-color: #0075d1;
+    --prompt-warning-bg: rgb(90, 69, 3, 0.88);
+    --prompt-warning-icon-color: rgb(255, 165, 0, 0.8);
+    --prompt-danger-bg: rgb(86, 28, 8, 0.8);
+    --prompt-danger-icon-color: #cd0202;
+    --tag-border: #ae81ff;
+    color-scheme: dark;
+}
+
+/* Change text for tags page only to green */
+#search-results a, #search-hints .post-tag, a {
+    color: #62ea00;
+}
+
+/* Change panel hover only text color to green and border hover to purple */
+.btn:hover {
+    color: #62ea00;
+    background-color: #302e31;
+    border-color: #ae81ff;
+}
+
+/* Change side panel only tag border to purple and text to green */
+.post-tag {
+    border: 1px solid #ae81ff;
+    color: #62ea00;
+}
+
+/* Change tag hover color on side panel only to purple */
+.btn.btn-outline-primary:not(.disabled):hover {
+    border-color: #ae81ff !important;
+}
+
+/* Change link colors to green hover and purple underline across all pages */
+#page-category a:hover, #page-tag a:hover, .post-tags .post-tag:hover, .post-tail-wrapper .license-wrapper>a:hover, #search-results a:hover, #topbar #breadcrumb a:hover, .content a:not(.img-link):hover, .post-meta a:not([class]):hover, #access-lastmod a:hover, footer a:hover {
+    color: #62ea00 !important;
+    border-bottom: 1px solid #ae81ff;
+}
+
+/* Change table of contents non-focus non-highlight items to purple */
+#toc-wrapper ul .toc-link {
+    color: #ae81ff;
+}
+
+/* Change end of post navigation to purple headings */
+.post-navigation .btn:not(:hover) {
+    color: #ae81ff;
+}
+
