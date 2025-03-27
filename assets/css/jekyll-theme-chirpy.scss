@@ -26,16 +26,28 @@ html, body {
     padding: 0;
 }
 
+
+html, table {
+    font-family: 'Inter', sans-serif; /* Clean, modern font optimized for digital screens */
+    #background-color: #121212; /* Dark background for a dark theme */
+    color: #E0E0E0; /* Light text for contrast against dark background */
+    line-height: 1.7; /* Improved line spacing for readability */
+    letter-spacing: 0.5px; /* Slightly increased letter spacing for clarity */
+    word-spacing: 0.0em; /* Adequate spacing between words */
+    margin: 0;
+    padding: 0;
+}
+
 html[data-mode=dark] {
-    --heading-color: #ae81ff;
+    --heading-color: #0eb1c0;
     --label-color: #62ea00;
     --site-title-color: #62ea00;
     --site-subtitle-color: #868686;
-    --sidebar-muted-color: #ae81ff;
+    --sidebar-muted-color: #0eb1c0;
     --sidebar-active-color: #62ea00;
-    --sidebar-btn-color: #ae81ff;
+    --sidebar-btn-color: #0eb1c0;
     --avatar-border-color: rgb(206, 206, 206, 0.9);
-    --search-border-color: #ae81ff;
+    --search-border-color: #0eb1c0;
     --search-icon-color: #62ea00;
     --input-focus-border-color: #62ea00;
     --toc-highlight: #62ea00;
@@ -48,7 +60,7 @@ html[data-mode=dark] {
     --prompt-warning-icon-color: rgb(255, 165, 0, 0.8);
     --prompt-danger-bg: rgb(86, 28, 8, 0.8);
     --prompt-danger-icon-color: #cd0202;
-    --tag-border: #ae81ff;
+    --tag-border: #0eb1c0;
     color-scheme: dark;
 }
 
@@ -61,34 +73,34 @@ html[data-mode=dark] {
 .btn:hover {
     color: #62ea00;
     background-color: #302e31;
-    border-color: #ae81ff;
+    border-color: #0eb1c0;
 }
 
 /* Change side panel only tag border to purple and text to green */
 .post-tag {
-    border: 1px solid #ae81ff;
+    border: 1px solid #0eb1c0;
     color: #62ea00;
 }
 
 /* Change tag hover color on side panel only to purple */
 .btn.btn-outline-primary:not(.disabled):hover {
-    border-color: #ae81ff !important;
+    border-color: #0eb1c0 !important;
 }
 
 /* Change link colors to green hover and purple underline across all pages */
 #page-category a:hover, #page-tag a:hover, .post-tags .post-tag:hover, .post-tail-wrapper .license-wrapper>a:hover, #search-results a:hover, #topbar #breadcrumb a:hover, .content a:not(.img-link):hover, .post-meta a:not([class]):hover, #access-lastmod a:hover, footer a:hover {
     color: #62ea00 !important;
-    border-bottom: 1px solid #ae81ff;
+    border-bottom: 1px solid #0eb1c0;
 }
 
 /* Change table of contents non-focus non-highlight items to purple */
 #toc-wrapper ul .toc-link {
-    color: #ae81ff;
+    color: #0eb1c0;
 }
 
 /* Change end of post navigation to purple headings */
 .post-navigation .btn:not(:hover) {
-    color: #ae81ff;
+    color: #0eb1c0;
 }
 
 
