@@ -6,6 +6,18 @@ tags: [adcs,esc9,powerview,certipy-ad,pkiinit,pywhisker]
 
 This writeup details the exploitation of an Active Directory environment leveraging AD CS vulnerabilities (ESC9) and privilege escalation through shadow credentials. The target domain controller certified.htb was compromised through a chain of misconfigurations involving group ownership, certificate template abuse, and UPN hijacking.
 
+## BOX INFO
+
+| **Name**                                            | [Certified](https://app.hackthebox.com/machines/633) |
+|-----------------------------------------------------|------------------------------------------------------|
+| **Release Date**                                    | 02 Nov 2024                                          |
+| **Retire Date**                                     |                                          15 Mar 2025 |
+| **OS**                                              |                                              Windows |
+| **Difficulty Level**                                |                                               Medium |
+| ![First Blood](/assets/icons/first-blood-user.webp) | <span class="blood-time">00:04:44</span>[NLTE](https://app.hackthebox.com/users/260094)      |
+| ![First Blood](/assets/icons/first-blood-root.webp) | [NLTE](https://app.hackthebox.com/users/260094)      |
+
+
 ## Reconnaissance
 
 ## Initial Enumeration

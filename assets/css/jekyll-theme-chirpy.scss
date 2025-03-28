@@ -7,6 +7,12 @@
 {%- endif -%}
 ';
 
+@font-face {
+    font-family: "DSEG14Classic-Regular";
+    src: url("/assets/fonts/DSEG14-Classic/DSEG14Classic-Regular.woff2") format("woff2"),
+         url("/assets/fonts/DSEG14-Classic/DSEG14Classic-Regular.woff") format("woff");
+}
+
 /* append your custom style below:
 
 - Here you can include custom scss. I keep some dark mode variables available to edit.
@@ -103,7 +109,6 @@ html[data-mode=dark] {
     color: #0eb1c0;
 }
 
-
 .table-info table {
     width: 100%;
     max-width: 1200px; /* Max width for better control */
@@ -113,30 +118,43 @@ html[data-mode=dark] {
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     overflow: hidden;
+    word-wrap: break-word; /* Ensures text wraps inside the cells */
+    table-layout: fixed; /* Ensures cells are evenly spaced */
 }
 
 /* Table header and table data styling */
 .table-info th, .table-info td {
-    padding: 25px 30px;
-    text-align: center;
+    padding: 20px 25px;
+    text-align: left;
     border-bottom: 1px solid #333;
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    word-wrap: break-word; /* Word wrapping */
 }
 
+/* Table header */
 .table-info th {
     background-color: #2C2C2C;
     color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
+    padding: 15px;
 }
 
+/* Table data */
 .table-info td {
-    font-size: 18px;
+    font-size: 16px;
     color: #CCCCCC;
     transition: background-color 0.3s ease;
 }
 
+/* Table row hover effect */
+.table-info tr:hover {
+    background-color: #333;
+}
+
+/* Image styling */
 .table-info td img {
     width: 80px;
     height: auto;
@@ -148,16 +166,12 @@ html[data-mode=dark] {
     transform: scale(1.1);
 }
 
-.table-info tr:hover {
-    background-color: #333;
-}
-
-/* Links */
+/* Links styling */
 .table-info .link {
     color: #42A5F5;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .table-info .link:hover {
@@ -165,4 +179,12 @@ html[data-mode=dark] {
     text-decoration: underline;
 }
 
-
+.blood-time {
+    /* font-family: 'Seven Segment', sans-serif; */
+    font-family: 'DSEG14Classic-Regular', sans-serif;
+    font-size: xx-large;
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+}
