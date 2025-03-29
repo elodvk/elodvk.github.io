@@ -2,6 +2,7 @@
 title: 'How to Connect PHP to MySQL: A Step-by-Step Guide'
 categories: [Homelab]
 tags: [ubuntu,linux,lamp,apache,nysql,php]
+author: bilash
 ---
 
 # How to Connect PHP to MySQL: A Step-by-Step Guide
