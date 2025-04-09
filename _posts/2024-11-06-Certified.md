@@ -82,8 +82,8 @@ Host script results:
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 125.09 seconds
-
 ```
+{: .nolineno }
 
 From the initial look itself, it is pretty clear that this is a domain controller. I can tell that by the presence of several ports which are typically associated with a domain controller. 
 
@@ -115,6 +115,8 @@ SMB         10.129.231.186  445    DC01             IPC$            READ        
 SMB         10.129.231.186  445    DC01             NETLOGON        READ            Logon server share 
 SMB         10.129.231.186  445    DC01             SYSVOL          READ            Logon server share 
 ```
+{: .nolineno }
+
 ### User Enumeration
 
 Even though there are no interesting shares on the server, I was able to at least get the list of users in the domain.
@@ -136,6 +138,7 @@ SMB         10.129.231.186  445    DC01             harry.wilson                
 SMB         10.129.231.186  445    DC01             gregory.cameron               2024-05-14 16:40:05 0        
 SMB         10.129.231.186  445    DC01             [*] Enumerated 9 local users: CERTIFIED
 ```
+{: .nolineno }
 
 ### Bloodhound
 
@@ -163,6 +166,9 @@ INFO: Querying computer: DC01.certified.htb
 INFO: Done in 00M 23S
 INFO: Compressing output into 20241112105018_bloodhound.zip
 ```
+{: .nolineno }
+
+
 ### Bloodhood Analysis
 1. Judith has **WriteOwner** privileges over **Management** security group.
 ![image](/assets/img/htb/certified/1.png)
@@ -187,8 +193,8 @@ distinguishedName     : CN=Management,CN=Users,DC=certified,DC=htb
 objectSid             : S-1-5-21-729746778-2675978091-3820388244-1104
 sAMAccountName        : Management
 Owner                 : CERTIFIED\Domain Admins (S-1-5-21-729746778-2675978091-3820388244-512)
-
 ```
+{: .nolineno }
 
 Let's change the owner to Judith
 
@@ -208,6 +214,7 @@ objectSid             : S-1-5-21-729746778-2675978091-3820388244-1104
 sAMAccountName        : Management
 Owner                 : CERTIFIED\judith.mader (S-1-5-21-729746778-2675978091-3820388244-1103)
 ```
+{: .nolineno }
 
 Since now Judith is the owner of the group, let's get full control of the group.
 

