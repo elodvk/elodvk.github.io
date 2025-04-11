@@ -7,212 +7,235 @@
 {%- endif -%}
 ';
 
-@font-face {
-    font-family: "DSEG14Classic-Regular";
-    src: url("/assets/fonts/DSEG14-Classic/DSEG14Classic-Regular.woff2") format("woff2"),
-         url("/assets/fonts/DSEG14-Classic/DSEG14Classic-Regular.woff") format("woff");
-}
-
-/* append your custom style below:
-
-- Here you can include custom scss. I keep some dark mode variables available to edit.
-- Use developer tools within browser to discover specific css.
-
-/* Editing some dark mode mixin variables */
-
 /* Global Styles */
 html, body {
-    font-family: 'Inter', sans-serif; /* Clean, modern font optimized for digital screens */
-    #background-color: #121212; /* Dark background for a dark theme */
-    color: #E0E0E0; /* Light text for contrast against dark background */
-    line-height: 1.7; /* Improved line spacing for readability */
-    letter-spacing: 0.5px; /* Slightly increased letter spacing for clarity */
-    word-spacing: 0.2em; /* Adequate spacing between words */
-    margin: 0;
-    padding: 0;
+  font-family: 'Inter', sans-serif; /* Clean, modern font optimized for digital screens */
+  line-height: 1.7; /* Improved line spacing for readability */
+  letter-spacing: 0.5px; /* Slightly increased letter spacing for clarity */
+  word-spacing: 0.2em; /* Adequate spacing between words */
+  margin: 0;
+  padding: 0;
+}
+
+html[data-mode="light"] {
+  --main-bg: rgb(255, 255, 255);
+  --mask-bg: #c1c3c5;
+  --main-border-color: #f3f3f3;
+  --text-color: #000000;
+  --text-muted-color: #757575;
+  --text-muted-highlight-color: inherit;
+  --heading-color: #006707;
+  --label-color: #006707;
+  --blockquote-border-color: #eeeeee;
+  --blockquote-text-color: #757575;
+  --link-color: #0056b2;
+  --link-underline-color: #dee2e6;
+  --button-bg: #ffffff;
+  --btn-border-color: #e9ecef;
+  --btn-backtotop-color: #686868;
+  --btn-backtotop-border-color: #f1f1f1;
+  --checkbox-color: #c5c5c5;
+  --checkbox-checked-color: #07a8f7;
+  --img-bg: radial-gradient( circle, rgb(255, 255, 255) 0%, rgb(239, 239, 239) 100% );
+  --shimmer-bg: linear-gradient( 90deg, rgba(250, 250, 250, 0) 0%, rgba(232, 230, 230, 1) 50%, rgba(250, 250, 250, 0) 100% );
+  --site-title-color: #006707;
+  --site-subtitle-color: #717171;
+  --sidebar-bg: #f6f8fa;
+  --sidebar-border-color: #efefef;
+  --sidebar-muted-color: #545454;
+  --sidebar-active-color: #1d1d1d;
+  --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
+  --sidebar-btn-bg: white;
+  --sidebar-btn-color: #8e8e8e;
+  --avatar-border-color: white;
+  --topbar-bg: rgb(255, 255, 255, 0.7);
+  --topbar-text-color: rgb(78, 78, 78);
+  --search-border-color: rgb(240, 240, 240);
+  --search-icon-color: #c2c6cc;
+  --input-focus-border-color: #b8b8b8;
+  --post-list-text-color: dimgray;
+  --btn-patinator-text-color: #555555;
+  --btn-paginator-hover-color: var(--sidebar-bg);
+  --toc-highlight: #0550ae;
+  --toc-popup-border-color: lightgray;
+  --btn-share-color: gray;
+  --btn-share-hover-color: #0d6efd;
+  --card-bg: white;
+  --card-hovor-bg: #e2e2e2;
+  --card-shadow: rgb(104, 104, 104, 0.05) 0 2px 6px 0, rgba(211, 209, 209, 0.15) 0 0 0 1px;
+  --footnote-target-bg: lightcyan;
+  --tb-odd-bg: #fbfcfd;
+  --tb-border-color: #eaeaea;
+  --dash-color: silver;
+  --kbd-wrap-color: #bdbdbd;
+  --kbd-text-color: var(--text-color);
+  --kbd-bg-color: white;
+  --prompt-text-color: rgb(46, 46, 46, 0.77);
+  --prompt-tip-bg: rgb(123, 247, 144, 0.2);
+  --prompt-tip-icon-color: #03b303;
+  --prompt-info-bg: #e1f5fe;
+  --prompt-info-icon-color: #0070cb;
+  --prompt-warning-bg: rgb(255, 243, 205);
+  --prompt-warning-icon-color: #ef9c03;
+  --prompt-danger-bg: rgb(248, 215, 218, 0.56);
+  --prompt-danger-icon-color: #df3c30;
+  --tag-border: #dee2e6;
+  --tag-shadow: var(--btn-border-color);
+  --tag-hover: rgb(222, 226, 230);
+  --search-tag-bg: #f8f9fa;
+  --categories-border: rgba(0, 0, 0, 0.125);
+  --categories-hover-bg: var(--btn-border-color);
+  --categories-icon-hover-color: darkslategray;
+  --timeline-color: rgba(0, 0, 0, 0.075);
+  --timeline-node-bg: #c2c6cc;
+  --timeline-year-dot-color: #ffffff;
+  --language-border-color: #2d2d2d;
+  --highlight-bg-color: #525148;
+  --highlighter-rouge-color: #383838;
+  --highlight-lineno-color: #808080;
+  --inline-code-bg: rgba(255, 253, 253, 0.05);
+  --code-color: #f4eeee;
+  --code-header-text-color: #dfd6d6;
+  --code-header-muted-color: #353535;
+  --code-header-icon-color: #dfd6d6;
+  --clipboard-checked-color: #2bcc2bf9;
+  --filepath-text-color: #cacaca;
 }
 
 
-html, table {
-    font-family: 'Inter', sans-serif; /* Clean, modern font optimized for digital screens */
-    background-color: #380024; /* Dark background for a dark theme */
-    color: #E0E0E0; /* Light text for contrast against dark background */
-    line-height: 1.7; /* Improved line spacing for readability */
-    letter-spacing: 0.5px; /* Slightly increased letter spacing for clarity */
-    word-spacing: 0.0em; /* Adequate spacing between words */
-    margin: 0;
-    padding: 0;
+html:not([data-mode]), html[data-mode=dark] {
+  color-scheme: dark;
+  --main-bg: rgb(27, 27, 30);
+  --mask-bg: rgb(68, 69, 70);
+  --main-border-color: rgb(44, 45, 45);
+  --text-color: rgb(255, 255, 255);
+  --text-muted-color: #868686;
+  --text-muted-highlight-color: #aeaeae;
+  --heading-color: #0eb1c0;
+  --label-color: #62ea00;
+  --blockquote-border-color: rgb(66, 66, 66);
+  --blockquote-text-color: #868686;
+  --link-color: rgb(138, 180, 248);
+  --link-underline-color: rgb(82, 108, 150);
+  --button-bg: #1e1e1e;
+  --btn-border-color: #2e2f31;
+  --btn-backtotop-color: var(--text-color);
+  --btn-backtotop-border-color: #212122;
+  --card-header-bg: #292929;
+  --checkbox-color: rgb(118, 120, 121);
+  --checkbox-checked-color: var(--link-color);
+  --img-bg: radial-gradient(circle, rgb(22, 22, 24) 0%, rgb(32, 32, 32) 100%);
+  --shimmer-bg: linear-gradient( 90deg, rgba(255, 255, 255, 0) 0%, rgba(58, 55, 55, 0.4) 50%, rgba(255, 255, 255, 0) 100% );
+  --site-title-color: #62ea00;
+  --site-subtitle-color: #868686;
+  --sidebar-bg: #1e1e1e;
+  --sidebar-border-color: #292929;
+  --sidebar-muted-color: #0eb1c0;
+  --sidebar-active-color: #62ea00;
+  --sidebar-hover-bg: #262626;
+  --sidebar-btn-bg: #232328;
+  --sidebar-btn-color: #0eb1c0;
+  --avatar-border-color: rgb(206, 206, 206, 0.9);
+  --topbar-bg: rgb(27, 27, 30, 0.64);
+  --topbar-text-color: var(--text-color);
+  --search-border-color: rgb(55, 55, 55);
+  --search-icon-color: #62ea00;
+  --input-focus-border-color: #62ea00;
+  --post-list-text-color: rgb(175, 176, 177);
+  --btn-patinator-text-color: var(--text-color);
+  --btn-paginator-hover-color: #2e2e2e;
+  --toc-highlight: #62ea00;
+  --toc-popup-border-color: #373737;
+  --tag-hover: rgb(43, 56, 62);
+  --tb-odd-bg: #252526;
+  --tb-even-bg: rgb(31, 31, 34);
+  --tb-border-color: var(--tb-odd-bg);
+  --footnote-target-bg: rgb(63, 81, 181);
+  --btn-share-color: #6c757d;
+  --btn-share-hover-color: #bfc1ca;
+  --card-bg: #1e1e1e;
+  --card-hovor-bg: #514c46;
+  --card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+  --kbd-wrap-color: #6a6a6a;
+  --kbd-text-color: #d3d3d3;
+  --kbd-bg-color: #242424;
+  --prompt-text-color: rgb(216, 212, 212, 0.75);
+  --prompt-tip-bg: rgb(22, 60, 36, 0.64);
+  --prompt-tip-icon-color: rgb(15, 164, 15, 0.81);
+  --prompt-info-bg: rgb(7, 59, 104, 0.8);
+  --prompt-info-icon-color: #0075d1;
+  --prompt-warning-bg: rgb(90, 69, 3, 0.88);
+  --prompt-warning-icon-color: rgb(255, 165, 0, 0.8);
+  --prompt-danger-bg: rgb(86, 28, 8, 0.8);
+  --prompt-danger-icon-color: #cd0202;
+  --tag-border: rgb(59, 79, 88);
+  --tag-shadow: rgb(32, 33, 33);
+  --dash-color: rgb(68, 64, 63);
+  --search-tag-bg: #0eb1c0;
+  --categories-border: rgba(69, 64, 64, 0.5);
+  --categories-hover-bg: rgb(73, 75, 76);
+  --categories-icon-hover-color: white;
+  --timeline-node-bg: rgb(150, 152, 156);
+  --timeline-color: rgb(68, 67, 63);
+  --timeline-year-dot-color: var(--timeline-color);
+  --language-border-color: #2d2d2d;
+  --highlight-bg-color: #525148;
+  --highlighter-rouge-color: #dee4e9;
+  --highlight-lineno-color: #808080;
+  --inline-code-bg: rgba(255, 255, 255, 0.05);
+  --code-color: #f4eeee;
+  --code-header-text-color: #dfd6d6;
+  --code-header-muted-color: #353535;
+  --code-header-icon-color: #dfd6d6;
+  --clipboard-checked-color: #2bcc2bf9;
+  --filepath-text-color: #cacaca;
 }
 
-html[data-mode=dark] .highlight, html[data-mode=dark] .highlight .w{
-    color: #d0d0d0;
-    background-color: #380024;
+html:not([data-mode]) .highlight, html:not([data-mode]) .highlight .w, html[data-mode=dark] .highlight, html[data-mode=dark] .highlight .w {
+  color: #d0d0d0;
+  background-color: #2c0822;
 }
 
-.code-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 2.25rem;
-    background-color: #120303;
-    margin-left: .75rem;
-    margin-right: .25rem;
-}
-
-div[class^=language-] .code-header::before {
-    content: "";
-    display: inline-block;
-    margin-left: 1rem;
-    width: .75rem;
-    height: .75rem;
-    border-radius: 50%;
-    background-color: #be2323;
-    box-shadow: 1.25rem 0 0 var(--code-header-muted-color),2.5rem 0 0 var(--code-header-muted-color);
-}
-
-html[data-mode=dark] {
-    --heading-color: #0eb1c0;
-    --label-color: #62ea00;
-    --site-title-color: #62ea00;
-    --site-subtitle-color: #868686;
-    --sidebar-muted-color: #0eb1c0;
-    --sidebar-active-color: #62ea00;
-    --sidebar-btn-color: #0eb1c0;
-    --avatar-border-color: rgb(206, 206, 206, 0.9);
-    --search-border-color: #0eb1c0;
-    --search-icon-color: #62ea00;
-    --input-focus-border-color: #62ea00;
-    --toc-highlight: #62ea00;
-    --prompt-text-color: rgb(216, 212, 212, 0.75);
-    --prompt-tip-bg: rgb(22, 60, 36, 0.64);
-    --prompt-tip-icon-color: rgb(15, 164, 15, 0.81);
-    --prompt-info-bg: rgb(7, 59, 104, 0.8);
-    --prompt-info-icon-color: #0075d1;
-    --prompt-warning-bg: rgb(90, 69, 3, 0.88);
-    --prompt-warning-icon-color: rgb(255, 165, 0, 0.8);
-    --prompt-danger-bg: rgb(86, 28, 8, 0.8);
-    --prompt-danger-icon-color: #cd0202;
-    --code-header-text-color: #d3d3d3;
-    --code-header-icon-color: #d3d3d3;
-    --tag-border: #0eb1c0;
-    color-scheme: dark;
+html[data-mode=light] .highlight, html[data-mode=light] .highlight .w {
+  color: #d0d0d0;
+  background-color: #2c0822;
 }
 
 /* Change text for tags page only to green */
 #search-results a, #search-hints .post-tag, a {
-    color: #62ea00;
+  color: #62ea00;
 }
 
 /* Change panel hover only text color to green and border hover to purple */
 .btn:hover {
-    color: #62ea00;
-    background-color: #302e31;
-    border-color: #0eb1c0;
+  color: #62ea00;
+  background-color: #302e31;
+  border-color: #0eb1c0;
 }
 
 /* Change side panel only tag border to purple and text to green */
 .post-tag {
-    border: 1px solid #0eb1c0;
-    color: #62ea00;
+  border: 1px solid #0eb1c0;
+  color: #62ea00;
 }
 
 /* Change tag hover color on side panel only to purple */
 .btn.btn-outline-primary:not(.disabled):hover {
-    border-color: #0eb1c0 !important;
+  border-color: #0eb1c0 !important;
 }
 
 /* Change link colors to green hover and purple underline across all pages */
 #page-category a:hover, #page-tag a:hover, .post-tags .post-tag:hover, .post-tail-wrapper .license-wrapper>a:hover, #search-results a:hover, #topbar #breadcrumb a:hover, .content a:not(.img-link):hover, .post-meta a:not([class]):hover, #access-lastmod a:hover, footer a:hover {
-    color: #62ea00 !important;
-    border-bottom: 1px solid #0eb1c0;
+  color: #62ea00 !important;
+  border-bottom: 1px solid #0eb1c0;
 }
 
 /* Change table of contents non-focus non-highlight items to purple */
 #toc-wrapper ul .toc-link {
-    color: #0eb1c0;
+  color: #0eb1c0;
 }
 
 /* Change end of post navigation to purple headings */
 .post-navigation .btn:not(:hover) {
-    color: #0eb1c0;
-}
-
-.table-info table {
-    width: 100%;
-    max-width: 1200px; /* Max width for better control */
-    margin: auto;
-    border-collapse: collapse;
-    background-color: #1F1F1F;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    overflow: hidden;
-    word-wrap: break-word; /* Ensures text wraps inside the cells */
-    table-layout: fixed; /* Ensures cells are evenly spaced */
-}
-
-/* Table header and table data styling */
-.table-info th, .table-info td {
-    padding: 20px 25px;
-    text-align: left;
-    border-bottom: 1px solid #333;
-    font-family: 'Roboto', sans-serif; /* Modern font */
-    word-wrap: break-word; /* Word wrapping */
-}
-
-/* Table header */
-.table-info th {
-    background-color: #2C2C2C;
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    padding: 15px;
-}
-
-/* Table data */
-.table-info td {
-    font-size: 16px;
-    color: #CCCCCC;
-    transition: background-color 0.3s ease;
-}
-
-/* Table row hover effect */
-.table-info tr:hover {
-    background-color: #333;
-}
-
-/* Image styling */
-.table-info td img {
-    width: 80px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.table-info td img:hover {
-    transform: scale(1.1);
-}
-
-/* Links styling */
-.table-info .link {
-    color: #42A5F5;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.table-info .link:hover {
-    color: #64B5F6;
-    text-decoration: underline;
-}
-
-.blood-time {
-    /* font-family: 'Seven Segment', sans-serif; */
-    font-family: 'DSEG14Classic-Regular', sans-serif;
-    font-size: xx-large;
-    display: inline-block;
-    vertical-align: middle;
-    padding-right: 10px;
-    padding-left: 10px;
+  color: #0eb1c0;
 }
