@@ -17,6 +17,7 @@ html, body {
   padding: 0;
 }
 
+
 html[data-mode="light"] {
   --main-bg: rgb(255, 255, 255);
   --mask-bg: #c1c3c5;
@@ -24,8 +25,8 @@ html[data-mode="light"] {
   --text-color: #000000;
   --text-muted-color: #757575;
   --text-muted-highlight-color: inherit;
-  --heading-color: #006707;
-  --label-color: #006707;
+  --heading-color: #a40404;
+  --label-color: #003b72;
   --blockquote-border-color: #eeeeee;
   --blockquote-text-color: #757575;
   --link-color: #0056b2;
@@ -38,12 +39,12 @@ html[data-mode="light"] {
   --checkbox-checked-color: #07a8f7;
   --img-bg: radial-gradient( circle, rgb(255, 255, 255) 0%, rgb(239, 239, 239) 100% );
   --shimmer-bg: linear-gradient( 90deg, rgba(250, 250, 250, 0) 0%, rgba(232, 230, 230, 1) 50%, rgba(250, 250, 250, 0) 100% );
-  --site-title-color: #006707;
+  --site-title-color: #003b72;
   --site-subtitle-color: #717171;
   --sidebar-bg: #f6f8fa;
   --sidebar-border-color: #efefef;
-  --sidebar-muted-color: #545454;
-  --sidebar-active-color: #1d1d1d;
+  --sidebar-muted-color: #db1010;
+  --sidebar-active-color: #003b72;
   --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
   --sidebar-btn-bg: white;
   --sidebar-btn-color: #8e8e8e;
@@ -72,7 +73,7 @@ html[data-mode="light"] {
   --kbd-bg-color: white;
   --prompt-text-color: rgb(46, 46, 46, 0.77);
   --prompt-tip-bg: rgb(123, 247, 144, 0.2);
-  --prompt-tip-icon-color: #03b303;
+  --prompt-tip-icon-color: #003b72;
   --prompt-info-bg: #e1f5fe;
   --prompt-info-icon-color: #0070cb;
   --prompt-warning-bg: rgb(255, 243, 205);
@@ -94,7 +95,7 @@ html[data-mode="light"] {
   --highlighter-rouge-color: #383838;
   --highlight-lineno-color: #808080;
   --inline-code-bg: rgba(255, 253, 253, 0.05);
-  --code-color: #f4eeee;
+  --code-color: #000000;
   --code-header-text-color: #dfd6d6;
   --code-header-muted-color: #353535;
   --code-header-icon-color: #dfd6d6;
@@ -192,50 +193,28 @@ html:not([data-mode]), html[data-mode=dark] {
 }
 
 html:not([data-mode]) .highlight, html:not([data-mode]) .highlight .w, html[data-mode=dark] .highlight, html[data-mode=dark] .highlight .w {
-  color: #d0d0d0;
-  background-color: #2c0822;
+  background-color: #250016;
+  word-spacing: 00em;
 }
 
 html[data-mode=light] .highlight, html[data-mode=light] .highlight .w {
-  color: #d0d0d0;
-  background-color: #2c0822;
+  background-color: #ffffff;
+  word-spacing: 00em;
 }
 
-/* Change text for tags page only to green */
-#search-results a, #search-hints .post-tag, a {
-  color: #62ea00;
-}
-
-/* Change panel hover only text color to green and border hover to purple */
-.btn:hover {
-  color: #62ea00;
-  background-color: #302e31;
-  border-color: #0eb1c0;
-}
-
-/* Change side panel only tag border to purple and text to green */
-.post-tag {
-  border: 1px solid #0eb1c0;
-  color: #62ea00;
-}
 
 /* Change tag hover color on side panel only to purple */
 .btn.btn-outline-primary:not(.disabled):hover {
   border-color: #0eb1c0 !important;
 }
 
-/* Change link colors to green hover and purple underline across all pages */
-#page-category a:hover, #page-tag a:hover, .post-tags .post-tag:hover, .post-tail-wrapper .license-wrapper>a:hover, #search-results a:hover, #topbar #breadcrumb a:hover, .content a:not(.img-link):hover, .post-meta a:not([class]):hover, #access-lastmod a:hover, footer a:hover {
-  color: #62ea00 !important;
-  border-bottom: 1px solid #0eb1c0;
-}
 
-/* Change table of contents non-focus non-highlight items to purple */
-#toc-wrapper ul .toc-link {
-  color: #0eb1c0;
-}
-
-/* Change end of post navigation to purple headings */
-.post-navigation .btn:not(:hover) {
-  color: #0eb1c0;
+img {
+  max-width: 100%;
+  height: auto;
+  transition: all .35s ease-in-out;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  border-width: thin;
 }
