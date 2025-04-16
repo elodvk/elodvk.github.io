@@ -17,7 +17,6 @@ html, body {
   padding: 0;
 }
 
-
 html[data-mode="light"] {
   --main-bg: rgb(255, 255, 255);
   --mask-bg: #c1c3c5;
@@ -25,7 +24,7 @@ html[data-mode="light"] {
   --text-color: #000000;
   --text-muted-color: #757575;
   --text-muted-highlight-color: inherit;
-  --heading-color: #a40404;
+  --heading-color: #003b72;
   --label-color: #003b72;
   --blockquote-border-color: #eeeeee;
   --blockquote-text-color: #757575;
@@ -40,14 +39,14 @@ html[data-mode="light"] {
   --img-bg: radial-gradient( circle, rgb(255, 255, 255) 0%, rgb(239, 239, 239) 100% );
   --shimmer-bg: linear-gradient( 90deg, rgba(250, 250, 250, 0) 0%, rgba(232, 230, 230, 1) 50%, rgba(250, 250, 250, 0) 100% );
   --site-title-color: #003b72;
-  --site-subtitle-color: #717171;
+  --site-subtitle-color: #003b72;
   --sidebar-bg: #f6f8fa;
   --sidebar-border-color: #efefef;
-  --sidebar-muted-color: #db1010;
+  --sidebar-muted-color: #a40404;
   --sidebar-active-color: #003b72;
   --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
   --sidebar-btn-bg: white;
-  --sidebar-btn-color: #8e8e8e;
+  --sidebar-btn-color: #003b72;
   --avatar-border-color: white;
   --topbar-bg: rgb(255, 255, 255, 0.7);
   --topbar-text-color: rgb(78, 78, 78);
