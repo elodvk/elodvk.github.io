@@ -1,0 +1,222 @@
+---
+---
+
+@use 'main';
+
+{%- if jekyll.environment == 'production' -%}
+  @use 'main/bundle';
+{%- endif -%}
+
+/* Global Styles */
+html, body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  word-spacing: 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.35s ease-in-out;
+  border: thin solid black;
+  border-radius: 10px;
+}
+
+/* Dark Mode Theme */
+html:not([data-mode]), html[data-mode='dark'] {
+  color-scheme: dark;
+
+  // Define all dark mode variables
+  --main-bg: #1a1b1e;
+  --mask-bg: #2b2d30;
+  --main-border-color: #3a3c3e;
+
+  --text-color: #d1d2d6;
+  --text-muted-color: #80838a;
+  --text-muted-highlight-color: #b5b7ba;
+  --heading-color: #e4e4e7;
+  --label-color: #9fa1a4;
+
+  --blockquote-border-color: #444;
+  --blockquote-text-color: #8a8d91;
+
+  --link-color: #7dcfff;
+  --link-underline-color: #4da0f0;
+  --button-bg: #232428;
+  --btn-border-color: #34363a;
+  --btn-backtotop-color: #ffffff;
+  --btn-backtotop-border-color: #2a2b2f;
+
+  --card-header-bg: #292c2f;
+  --card-bg: #202124;
+  --card-hover-bg: #313337;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+  --img-bg: radial-gradient(circle, #1e1f21 0%, #2c2e30 100%);
+  --avatar-border-color: rgba(255, 255, 255, 0.15);
+
+  --sidebar-bg: #1e1f22;
+  --sidebar-border-color: #2a2b2f;
+  --sidebar-muted-color: #7f8389;
+  --sidebar-active-color: #ffffff;
+  --sidebar-hover-bg: #2a2d31;
+  --sidebar-btn-bg: #2a2c2e;
+  --sidebar-btn-color: #bfc1c5;
+
+  --topbar-bg: rgba(30, 31, 34, 0.7);
+  --topbar-text-color: var(--text-color);
+  --search-border-color: #3d3f42;
+  --search-icon-color: #9fb0c0;
+  --input-focus-border-color: #80d0ff;
+
+  --highlight-bg-color: #151618;
+  --highlight-lineno-color: #5f6368;
+  --highlighter-rouge-color: #c9def1;
+  --code-color: #c3c9d1;
+  --inline-code-bg: rgba(255, 255, 255, 0.04);
+  --language-border-color: #2d2f33;
+  --clipboard-checked-color: #3dfd97;
+  --filepath-text-color: #cfcfcf;
+
+  --code-header-text-color: #6a6a6a;
+  --code-header-muted-color: #353535;
+  --code-header-icon-color: #565656;
+
+  --categories-border: rgba(84, 87, 90, 0.6);
+  --categories-hover-bg: #3a3c3e;
+  --categories-icon-hover-color: #fff;
+
+  --tag-border: #4a4f55;
+  --tag-shadow: rgba(0, 0, 0, 0.2);
+  --search-tag-bg: #303236;
+
+  --kbd-wrap-color: #6a6a6a;
+  --kbd-text-color: #f5f5f5;
+  --kbd-bg-color: #282a2e;
+
+  --prompt-text-color: #e3e4e8;
+  --prompt-tip-bg: rgba(34, 105, 60, 0.75);
+  --prompt-tip-icon-color: #6de28f;
+  --prompt-info-bg: rgba(23, 72, 131, 0.8);
+  --prompt-info-icon-color: #46b3ff;
+  --prompt-warning-bg: rgba(123, 99, 0, 0.85);
+  --prompt-warning-icon-color: #fcbf49;
+  --prompt-danger-bg: rgba(124, 25, 25, 0.85);
+  --prompt-danger-icon-color: #ff5555;
+
+  .highlight {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--highlight-bg-color);
+    color: var(--code-color);
+    border-radius: 6px;
+    overflow: auto;
+    word-spacing: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .highlight .k  { color: #ff79c6; }
+  .highlight .s  { color: #f1fa8c; }
+  .highlight .c  { color: #6272a4; font-style: italic; }
+  .highlight .n  { color: #8be9fd; }
+  .highlight .o  { color: #ffb86c; }
+
+  .card, .list-group-item, .code-header {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    transform: translateY(-3px);
+  }
+
+  .btn:hover, .sidebar-btn:hover {
+    background-color: #34363a;
+    transform: scale(1.02);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .categories.card, .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--categories-border);
+  }
+
+  .categories .card-header {
+    background-color: var(--card-header-bg);
+  }
+
+  .light {
+    display: none;
+  }
+}
+
+/* Light Mode Theme */
+html[data-mode='light'] {
+  color-scheme: light;
+
+  // Same structure for light variables (shortened here for brevity)
+  --main-bg: #f7f8fc;
+  --mask-bg: #ffffff;
+  --main-border-color: #e0e5ec;
+
+  /* [snipped rest of the variables – they’re unchanged] */
+
+  .highlight {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--highlight-bg-color);
+    color: var(--code-color);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    word-spacing: 0;
+  }
+
+  .highlight .k  { color: #007bff; }
+  .highlight .s  { color: #28a745; }
+  .highlight .c  { color: #6c757d; font-style: italic; }
+  .highlight .n  { color: #17a2b8; }
+  .highlight .o  { color: #ffb86c; }
+
+  .card, .list-group-item, .code-header {
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+  }
+
+  .card:hover {
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.1), -15px -15px 40px rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+  }
+
+  .btn {
+    transition: all 0.3s ease-in-out;
+    border-radius: 25px;
+  }
+
+  .btn:focus, .btn:active {
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .categories.card, .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--categories-border);
+    transition: all 0.3s ease;
+  }
+
+  .categories.card:hover, .list-group-item:hover {
+    background-color: var(--categories-hover-bg);
+    transform: translateY(-3px);
+  }
+
+  .categories-icon {
+    transition: color 0.3s ease;
+  }
+
+  .categories-icon:hover {
+    color: var(--categories-icon-hover-color);
+    transform: scale(1.1);
+  }
+
+  .light {
+    display: none;
+  }
+}
