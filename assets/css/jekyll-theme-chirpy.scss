@@ -1,11 +1,12 @@
 ---
 ---
 
-@use 'main';
-
+/* prettier-ignore */
+@use 'main
 {%- if jekyll.environment == 'production' -%}
-  @use 'main/bundle';
+  .bundle
 {%- endif -%}
+';
 
 /* Global Styles */
 html, body {
