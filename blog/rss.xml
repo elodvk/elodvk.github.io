@@ -4,10 +4,759 @@
         <title>elodvk Blog</title>
         <link>https://elodvk.github.io/blog</link>
         <description>elodvk Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 03 May 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[DirBuster – GUI Web Directory Brute Forcing Tool]]></title>
+            <link>https://elodvk.github.io/blog/2025/05/03/dirbuster</link>
+            <guid>https://elodvk.github.io/blog/2025/05/03/dirbuster</guid>
+            <pubDate>Sat, 03 May 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[DirBuster is a multi-threaded Java application designed to brute-force directories and file names on web/application servers. It’s particularly useful during penetration tests to uncover hidden paths and sensitive files.]]></description>
+            <content:encoded><![CDATA[<p><strong>DirBuster</strong> is a multi-threaded Java application designed to brute-force directories and file names on web/application servers. It’s particularly useful during penetration tests to uncover hidden paths and sensitive files.</p>
+<p>DirBuster is part of the <strong>OWASP</strong> project and comes pre-installed in distributions like <strong>Kali Linux</strong>.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-how-dirbuster-works">⚙️ How DirBuster Works<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#%EF%B8%8F-how-dirbuster-works" class="hash-link" aria-label="Direct link to ⚙️ How DirBuster Works" title="Direct link to ⚙️ How DirBuster Works">​</a></h2>
+<p>DirBuster works by using a <strong>wordlist</strong> to send HTTP requests to the target server, attempting to discover:</p>
+<ul>
+<li>Hidden directories (e.g., <code>/admin/</code>, <code>/backup/</code>)</li>
+<li>Sensitive files (e.g., <code>config.php</code>, <code>db.sql</code>)</li>
+<li>Access control misconfigurations</li>
+</ul>
+<p>It supports recursive brute-forcing and custom file extensions.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-how-to-launch-dirbuster">🖥️ How to Launch DirBuster<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#%EF%B8%8F-how-to-launch-dirbuster" class="hash-link" aria-label="Direct link to 🖥️ How to Launch DirBuster" title="Direct link to 🖥️ How to Launch DirBuster">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="from-terminal-kali-or-parrot-os">From Terminal (Kali or Parrot OS)<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#from-terminal-kali-or-parrot-os" class="hash-link" aria-label="Direct link to From Terminal (Kali or Parrot OS)" title="Direct link to From Terminal (Kali or Parrot OS)">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">dirbuster</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="manually-if-not-in-path">Manually (If not in PATH)<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#manually-if-not-in-path" class="hash-link" aria-label="Direct link to Manually (If not in PATH)" title="Direct link to Manually (If not in PATH)">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">java -jar /path/to/DirBuster.jar</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-basic-usage-steps">🪛 Basic Usage Steps<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-basic-usage-steps" class="hash-link" aria-label="Direct link to 🪛 Basic Usage Steps" title="Direct link to 🪛 Basic Usage Steps">​</a></h2>
+<ol>
+<li><strong>Target URL</strong>: Enter the base URL (e.g., <code>http://192.168.1.100</code>)</li>
+<li><strong>Wordlist</strong>: Choose a wordlist (e.g., from <code>/usr/share/wordlists/dirbuster/</code>)</li>
+<li><strong>File Extensions</strong>: Add common extensions (<code>.php</code>, <code>.html</code>, etc.)</li>
+<li><strong>Threads</strong>: Set the number of threads (10–50 is typical)</li>
+<li><strong>Start Scan</strong>: Click "Start" to begin brute-forcing</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-wordlist-options">📂 Wordlist Options<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-wordlist-options" class="hash-link" aria-label="Direct link to 📂 Wordlist Options" title="Direct link to 📂 Wordlist Options">​</a></h2>
+<p>Common wordlists for DirBuster:</p>
+<ul>
+<li><code>/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</code></li>
+<li><code>/usr/share/wordlists/dirb/common.txt</code></li>
+<li>SecLists: <code>/usr/share/seclists/Discovery/Web-Content/</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-features">📌 Features<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-features" class="hash-link" aria-label="Direct link to 📌 Features" title="Direct link to 📌 Features">​</a></h2>
+<table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody><tr><td>GUI-Based</td><td>User-friendly interface for real-time monitoring</td></tr><tr><td>Recursive Scanning</td><td>Automatically explores found directories</td></tr><tr><td>File Extension Support</td><td>Allows appending file extensions during brute force</td></tr><tr><td>Custom HTTP Headers</td><td>Supports custom headers for advanced testing</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-when-to-use-dirbuster">✅ When to Use DirBuster<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-when-to-use-dirbuster" class="hash-link" aria-label="Direct link to ✅ When to Use DirBuster" title="Direct link to ✅ When to Use DirBuster">​</a></h2>
+<ul>
+<li>During web application penetration tests</li>
+<li>When you want visual monitoring of brute-force attempts</li>
+<li>For recursive scanning of deeply nested directories</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-limitations">⚠️ Limitations<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#%EF%B8%8F-limitations" class="hash-link" aria-label="Direct link to ⚠️ Limitations" title="Direct link to ⚠️ Limitations">​</a></h2>
+<ul>
+<li><strong>Slower than command-line tools</strong> like Gobuster or ffuf</li>
+<li><strong>Noisy</strong> – can easily trigger IDS/WAF alerts</li>
+<li><strong>Java-based</strong> – can be less stable and more resource-intensive</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-tips--tricks">💡 Tips &amp; Tricks<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-tips--tricks" class="hash-link" aria-label="Direct link to 💡 Tips &amp; Tricks" title="Direct link to 💡 Tips &amp; Tricks">​</a></h2>
+<ul>
+<li>Use multiple wordlists (start small, then go deeper)</li>
+<li>Watch for response codes: <code>200</code>, <code>403</code>, <code>401</code>, <code>301</code></li>
+<li>Combine with Burp Suite to manually probe interesting results</li>
+<li>Look out for default directories like <code>/admin/</code>, <code>/login/</code>, <code>/test/</code>, <code>/old/</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-alternative-tools">🧠 Alternative Tools<a href="https://elodvk.github.io/blog/2025/05/03/dirbuster#-alternative-tools" class="hash-link" aria-label="Direct link to 🧠 Alternative Tools" title="Direct link to 🧠 Alternative Tools">​</a></h2>
+<p>If you prefer CLI tools over GUI:</p>
+<ul>
+<li><a href="https://github.com/OJ/gobuster" target="_blank" rel="noopener noreferrer"><code>gobuster</code></a></li>
+<li><a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener noreferrer"><code>ffuf</code></a></li>
+<li><a href="https://github.com/maurosoria/dirsearch" target="_blank" rel="noopener noreferrer"><code>dirsearch</code></a></li>
+</ul>
+<hr>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Google Dorks: The Art of Google Hacking]]></title>
+            <link>https://elodvk.github.io/blog/2025/04/25/google-dorks-guide</link>
+            <guid>https://elodvk.github.io/blog/2025/04/25/google-dorks-guide</guid>
+            <pubDate>Fri, 25 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Google Dorks are specially crafted search queries that leverage advanced Google search operators to uncover hidden or sensitive information publicly accessible on the web—but not meant to be easily found. Also known as Google Hacking, this technique can be used for both ethical and malicious purposes.]]></description>
+            <content:encoded><![CDATA[<p><strong>Google Dorks</strong> are specially crafted search queries that leverage advanced Google search operators to uncover hidden or sensitive information publicly accessible on the web—but not meant to be easily found. Also known as <strong>Google Hacking</strong>, this technique can be used for both <strong>ethical</strong> and <strong>malicious</strong> purposes.</p>
+<p>First popularized by security researcher <strong>Johnny Long</strong>, Google Dorking is a powerful <strong>OSINT (Open Source Intelligence)</strong> method used in:</p>
+<ul>
+<li>Penetration Testing</li>
+<li>Red Team Operations</li>
+<li>Bug Bounty Hunting</li>
+<li>Threat Intelligence</li>
+<li>Reconnaissance Phases of Hacking</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-how-google-dorks-work">📌 How Google Dorks Work<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-how-google-dorks-work" class="hash-link" aria-label="Direct link to 📌 How Google Dorks Work" title="Direct link to 📌 How Google Dorks Work">​</a></h2>
+<p>Google indexes millions of web pages, documents, and servers. By using <strong>advanced search operators</strong>, attackers (or defenders) can find:</p>
+<ul>
+<li>Misconfigured servers</li>
+<li>Exposed login portals</li>
+<li>Database files</li>
+<li>Internal documents</li>
+<li>Cameras and IoT devices</li>
+<li>Error messages revealing software versions</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-common-google-dork-operators">🔍 Common Google Dork Operators<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-common-google-dork-operators" class="hash-link" aria-label="Direct link to 🔍 Common Google Dork Operators" title="Direct link to 🔍 Common Google Dork Operators">​</a></h2>
+<table><thead><tr><th>Operator</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>intitle:</code></td><td>Finds pages with a specific word in the title</td><td><code>intitle:"index of"</code></td></tr><tr><td><code>inurl:</code></td><td>Searches for specific keywords in URLs</td><td><code>inurl:admin</code></td></tr><tr><td><code>filetype:</code></td><td>Finds specific file types</td><td><code>filetype:pdf</code></td></tr><tr><td><code>ext:</code></td><td>Same as <code>filetype:</code></td><td><code>ext:sql</code></td></tr><tr><td><code>site:</code></td><td>Limits search to a domain</td><td><code>site:gov</code></td></tr><tr><td><code>intext:</code></td><td>Search for words inside page content</td><td><code>intext:"confidential"</code></td></tr><tr><td><code>link:</code></td><td>Find pages that link to a URL</td><td><code>link:example.com</code></td></tr><tr><td><code>cache:</code></td><td>Shows the cached version of a page</td><td><code>cache:example.com</code></td></tr><tr><td><code>related:</code></td><td>Find sites related to a domain</td><td><code>related:example.com</code></td></tr><tr><td><code>allinurl:</code></td><td>All words must appear in URL</td><td><code>allinurl:admin login</code></td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-examples-of-dangerous-google-dorks">⚠️ Examples of Dangerous Google Dorks<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#%EF%B8%8F-examples-of-dangerous-google-dorks" class="hash-link" aria-label="Direct link to ⚠️ Examples of Dangerous Google Dorks" title="Direct link to ⚠️ Examples of Dangerous Google Dorks">​</a></h2>
+<blockquote>
+<p><strong>Note:</strong> These examples are for educational use in legal contexts only.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-finding-exposed-login-portals">1. Finding Exposed Login Portals<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#1-finding-exposed-login-portals" class="hash-link" aria-label="Direct link to 1. Finding Exposed Login Portals" title="Direct link to 1. Finding Exposed Login Portals">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">intitle:"Login" inurl:admin site:example.com</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-discovering-database-dumps">2. Discovering Database Dumps<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#2-discovering-database-dumps" class="hash-link" aria-label="Direct link to 2. Discovering Database Dumps" title="Direct link to 2. Discovering Database Dumps">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">filetype:sql intext:"password" intext:"INSERT INTO"</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-finding-publicly-available-webcams">3. Finding Publicly Available Webcams<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#3-finding-publicly-available-webcams" class="hash-link" aria-label="Direct link to 3. Finding Publicly Available Webcams" title="Direct link to 3. Finding Publicly Available Webcams">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">inurl:"/view.shtml" OR inurl:"/webcam.html"</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-exposed-env-files-with-secrets">4. Exposed .env Files (with secrets)<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#4-exposed-env-files-with-secrets" class="hash-link" aria-label="Direct link to 4. Exposed .env Files (with secrets)" title="Direct link to 4. Exposed .env Files (with secrets)">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">filetype:env "DB_PASSWORD" OR "APP_SECRET"</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-exposed-git-repositories">5. Exposed Git Repositories<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#5-exposed-git-repositories" class="hash-link" aria-label="Direct link to 5. Exposed Git Repositories" title="Direct link to 5. Exposed Git Repositories">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">intitle:"index of" ".git"</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-real-world-cases">🧠 Real-World Cases<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-real-world-cases" class="hash-link" aria-label="Direct link to 🧠 Real-World Cases" title="Direct link to 🧠 Real-World Cases">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-1-att-vendor-exposure">🔓 1. AT&amp;T Vendor Exposure<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-1-att-vendor-exposure" class="hash-link" aria-label="Direct link to 🔓 1. AT&amp;T Vendor Exposure" title="Direct link to 🔓 1. AT&amp;T Vendor Exposure">​</a></h3>
+<p>A misconfigured site indexed via Google Dork exposed internal vendor portals and firmware update files due to lack of <code>robots.txt</code> exclusion.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-2-healthcare-leak">🏥 2. Healthcare Leak<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-2-healthcare-leak" class="hash-link" aria-label="Direct link to 🏥 2. Healthcare Leak" title="Direct link to 🏥 2. Healthcare Leak">​</a></h3>
+<p>Dorks like <code>filetype:xls intext:SSN site:edu</code> led to leaked spreadsheets containing <strong>social security numbers</strong> and <strong>medical records</strong> of university patients.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-3-iot-camera-surveillance">🏠 3. IoT Camera Surveillance<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-3-iot-camera-surveillance" class="hash-link" aria-label="Direct link to 🏠 3. IoT Camera Surveillance" title="Direct link to 🏠 3. IoT Camera Surveillance">​</a></h3>
+<p>Thousands of unsecured IP cameras were discoverable using:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">inurl:view/view.shtml</span><br></span></code></pre></div></div>
+<p>This allowed anyone to view live feeds of homes, offices, and even daycares until vendors patched them.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-tools-that-use-google-dorks">🧰 Tools that Use Google Dorks<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-tools-that-use-google-dorks" class="hash-link" aria-label="Direct link to 🧰 Tools that Use Google Dorks" title="Direct link to 🧰 Tools that Use Google Dorks">​</a></h2>
+<ul>
+<li><a href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer"><strong>GHDB</strong> - Google Hacking Database</a></li>
+<li><strong>Recon-ng</strong> and <strong>theHarvester</strong>: OSINT frameworks that automate dork-based scanning.</li>
+<li><strong>GoogD0rker</strong>: A Python tool to automate dorking with search engines.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-how-to-protect-against-google-dorking">🛡️ How to Protect Against Google Dorking<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#%EF%B8%8F-how-to-protect-against-google-dorking" class="hash-link" aria-label="Direct link to 🛡️ How to Protect Against Google Dorking" title="Direct link to 🛡️ How to Protect Against Google Dorking">​</a></h2>
+<ol>
+<li><strong>Use <code>robots.txt</code></strong> to exclude sensitive directories from search engines.</li>
+<li><strong>Restrict directory listing</strong> to prevent open folder views.</li>
+<li><strong>Implement access control</strong> (IP whitelisting, VPN requirements).</li>
+<li><strong>Use noindex headers</strong> on sensitive pages.</li>
+<li><strong>Perform self-audits</strong> using known dorks on your own domain.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-ethical-and-legal-considerations">⚖️ Ethical and Legal Considerations<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#%EF%B8%8F-ethical-and-legal-considerations" class="hash-link" aria-label="Direct link to ⚖️ Ethical and Legal Considerations" title="Direct link to ⚖️ Ethical and Legal Considerations">​</a></h2>
+<blockquote>
+<p>Google Dorking is legal <strong>only when used on systems you own or have permission to audit.</strong></p>
+</blockquote>
+<ul>
+<li>Unauthorized access through dorking can be treated as a breach of the <strong>Computer Fraud and Abuse Act (CFAA)</strong>.</li>
+<li>Always get <strong>written authorization</strong> during penetration tests or red-team ops.</li>
+<li>Avoid downloading or exploiting sensitive data you discover unless it’s part of a legal engagement.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-conclusion">🏁 Conclusion<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-conclusion" class="hash-link" aria-label="Direct link to 🏁 Conclusion" title="Direct link to 🏁 Conclusion">​</a></h2>
+<p>Google Dorking is a double-edged sword—a tool that can help <strong>harden your defenses</strong> or expose major vulnerabilities. Understanding how it works equips cybersecurity professionals to better protect digital assets and identify risks before attackers do.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-references">📚 References<a href="https://elodvk.github.io/blog/2025/04/25/google-dorks-guide#-references" class="hash-link" aria-label="Direct link to 📚 References" title="Direct link to 📚 References">​</a></h2>
+<ul>
+<li><a href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer">GHDB - Google Hacking Database</a></li>
+<li><a href="https://www.amazon.com/dp/0123748999" target="_blank" rel="noopener noreferrer">Johnny Long's "Google Hacking for Penetration Testers"</a></li>
+<li><a href="https://support.google.com/websearch/answer/2466433" target="_blank" rel="noopener noreferrer">Google Search Operators Documentation</a></li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[sock puppets]]></title>
+            <link>https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide</link>
+            <guid>https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide</guid>
+            <pubDate>Fri, 25 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[In red-teaming and penetration testing, sock puppets are fictitious online personae used to mask the tester’s real identity and simulate adversary social-engineering tactics. By blending seamlessly into target environments—social media platforms, internal forums, or industry-specific networks—they provide access to information and human responses that purely technical means cannot reach.]]></description>
+            <content:encoded><![CDATA[<p>In red-teaming and penetration testing, <strong>sock puppets</strong> are fictitious online personae used to mask the tester’s real identity and simulate adversary social-engineering tactics. By blending seamlessly into target environments—social media platforms, internal forums, or industry-specific networks—they provide access to information and human responses that purely technical means cannot reach.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h2>
+<ul>
+<li><strong>Assess Human Vulnerabilities</strong> through tailored phishing or pretexting campaigns.</li>
+<li><strong>Test Security Controls</strong> such as email filters, monitoring, and identity verification.</li>
+<li><strong>Gather Covert Intelligence</strong> from closed groups or restricted channels.</li>
+<li><strong>Simulate Real-World Attacks</strong> like targeted spear-phishing or multi-persona impersonation.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="planning--scoping">Planning &amp; Scoping<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#planning--scoping" class="hash-link" aria-label="Direct link to Planning &amp; Scoping" title="Direct link to Planning &amp; Scoping">​</a></h2>
+<p>Before building any sock puppet, define clear <strong>engagement parameters</strong> and obtain written authorization outlining allowed tactics and targets. Determine which platforms (LinkedIn, Facebook, Slack workspaces, etc.) your personas must infiltrate based on the target’s digital footprint. Establish success criteria—for example, click-through rates on phishing links or depth of forum information extracted.</p>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">flowchart TD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  A[Define Objectives] --&gt; B[Select Platforms]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  B --&gt; C[Scope &amp; Authorization]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  C --&gt; D[Plan Persona Types]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  D --&gt; E[Allocate Resources]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  E --&gt; F[Execute Setup]</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="persona-crafting">Persona Crafting<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#persona-crafting" class="hash-link" aria-label="Direct link to Persona Crafting" title="Direct link to Persona Crafting">​</a></h2>
+<ol>
+<li>
+<p><strong>Identity Blueprint</strong></p>
+<ul>
+<li>Generate realistic names and demographics using tools like Fake Name Generator.</li>
+<li>Align age, occupation, and interests to the platform’s typical user base.</li>
+</ul>
+</li>
+<li>
+<p><strong>Profile Imagery</strong></p>
+<ul>
+<li>Use AI-generated faces from ThisPersonDoesNotExist.com to avoid reverse-image detection.</li>
+<li>Scrub image metadata before upload.</li>
+</ul>
+</li>
+<li>
+<p><strong>Backstory &amp; Consistency</strong></p>
+<ul>
+<li>Draft a multi-paragraph bio outlining education, career history, and hobbies.</li>
+<li>Seed early posts or interactions that reflect those interests (forum comments, retweets).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="account-setup--enrichment">Account Setup &amp; Enrichment<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#account-setup--enrichment" class="hash-link" aria-label="Direct link to Account Setup &amp; Enrichment" title="Direct link to Account Setup &amp; Enrichment">​</a></h2>
+<ul>
+<li><strong>Email Addresses</strong>: Register through privacy-focused providers (ProtonMail, Tutanota) without phone verification.</li>
+<li><strong>Phone Verification</strong>: Obtain burner SIMs (e.g., Mint Mobile trial) with a VPN-spoofed location.</li>
+<li><strong>Social Graph Building</strong>:<!-- -->
+<ul>
+<li>Connect with peripheral users first (industry alumni groups, open forums).</li>
+<li>Gradually add high-value targets once the account appears seasoned.</li>
+</ul>
+</li>
+<li><strong>Cross-Platform Consistency</strong>: Use the same backstory across LinkedIn, Twitter, and GitHub for cohesion.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="operational-security-opsec">Operational Security (OPSEC)<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#operational-security-opsec" class="hash-link" aria-label="Direct link to Operational Security (OPSEC)" title="Direct link to Operational Security (OPSEC)">​</a></h2>
+<ul>
+<li><strong>Isolated Environments</strong>: Run all sock-puppet work inside dedicated VMs or separate hardware to prevent bleed-over.</li>
+<li><strong>Network Anonymity</strong>: Always use reputable VPNs or proxy chains matching your persona’s claimed locale.</li>
+<li><strong>Artifact Sanitization</strong>: Regularly clear cookies, local storage, and cached credentials.</li>
+<li><strong>Logging &amp; Documentation</strong>: Keep encrypted logs of interactions, credentials, and IP rotations for post-engagement review.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="deployment--infiltration-techniques">Deployment &amp; Infiltration Techniques<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#deployment--infiltration-techniques" class="hash-link" aria-label="Direct link to Deployment &amp; Infiltration Techniques" title="Direct link to Deployment &amp; Infiltration Techniques">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="spear-phishing-via-trusted-persona">Spear-Phishing via Trusted Persona<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#spear-phishing-via-trusted-persona" class="hash-link" aria-label="Direct link to Spear-Phishing via Trusted Persona" title="Direct link to Spear-Phishing via Trusted Persona">​</a></h3>
+<p>Use a puppet posing as a recruiter or partner to send personalized invitations and follow-ups, leveraging prior reconnaissance to reference shared connections or projects.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="closed-group-recon">Closed-Group Recon<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#closed-group-recon" class="hash-link" aria-label="Direct link to Closed-Group Recon" title="Direct link to Closed-Group Recon">​</a></h3>
+<p>After joining invite-only forums, observe discussion threads for keywords, then chime in with helpful commentary to build rapport.</p>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">sequenceDiagram</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  actor Operator</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  participant PersonaA</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  participant PersonaB</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  participant Target</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  Operator-&gt;&gt;PersonaA: Send connection request</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  PersonaA-&gt;&gt;Target: Endorse for a skill (engagement)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  Operator-&gt;&gt;PersonaB: Introduce via DM</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  PersonaB-&gt;&gt;Target: Share 'relevant' resource link</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="advanced-multi-persona-attacks">Advanced Multi-Persona Attacks<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#advanced-multi-persona-attacks" class="hash-link" aria-label="Direct link to Advanced Multi-Persona Attacks" title="Direct link to Advanced Multi-Persona Attacks">​</a></h2>
+<p>In <strong>Multi-Persona Impersonation (MPI)</strong>, multiple sock puppets interact publicly to simulate an organic conversation, increasing credibility before a final malicious action (e.g., payload delivery). Rotate each persona’s IP and device fingerprint via proxy pools to reduce correlation risk. Stagger login times and activity patterns to mimic realistic behavior across time zones.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="real-world-examples">Real-World Examples<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#real-world-examples" class="hash-link" aria-label="Direct link to Real-World Examples" title="Direct link to Real-World Examples">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-1-ta453-multi-persona-impersonation-september2022">Example 1: TA453 Multi-Persona Impersonation (September&nbsp;2022)<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#example-1-ta453-multi-persona-impersonation-september2022" class="hash-link" aria-label="Direct link to Example 1: TA453 Multi-Persona Impersonation (September&nbsp;2022)" title="Direct link to Example 1: TA453 Multi-Persona Impersonation (September&nbsp;2022)">​</a></h3>
+<p>In mid-2022, the Iran-aligned group TA453 deployed <strong>Multi-Persona Impersonation</strong> on email threads, CC’ing multiple fake personas to exploit social proof and lure targets into malicious OneDrive links containing credential-harvesting macros citeturn0search0 citeturn0search3.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-2-xz-utils-supply-chain-tampering-april2022">Example 2: XZ Utils Supply-Chain Tampering (April&nbsp;2022)<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#example-2-xz-utils-supply-chain-tampering-april2022" class="hash-link" aria-label="Direct link to Example 2: XZ Utils Supply-Chain Tampering (April&nbsp;2022)" title="Direct link to Example 2: XZ Utils Supply-Chain Tampering (April&nbsp;2022)">​</a></h3>
+<p>Attackers used sock-puppet developer accounts on GitHub to submit benign-looking code updates to <strong>XZ Utils</strong>, later embedding a backdoor (“XZ Trojan”) that executed on Linux systems relying on the library citeturn0search4 citeturn0search6.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-3-facebook-catfishing-campaign-20212022">Example 3: Facebook Catfishing Campaign (2021–2022)<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#example-3-facebook-catfishing-campaign-20212022" class="hash-link" aria-label="Direct link to Example 3: Facebook Catfishing Campaign (2021–2022)" title="Direct link to Example 3: Facebook Catfishing Campaign (2021–2022)">​</a></h3>
+<p>Multiple sock-puppet profiles on Facebook posed as industry professionals to befriend U.S. military and defense personnel, sharing malware-laden links before Facebook’s takedown, illustrating long-term credential theft efforts citeturn0search1 citeturn0search3.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-4-lazarus-group-linkedin-recruiting-scam-february2025">Example 4: Lazarus Group LinkedIn Recruiting Scam (February&nbsp;2025)<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#example-4-lazarus-group-linkedin-recruiting-scam-february2025" class="hash-link" aria-label="Direct link to Example 4: Lazarus Group LinkedIn Recruiting Scam (February&nbsp;2025)" title="Direct link to Example 4: Lazarus Group LinkedIn Recruiting Scam (February&nbsp;2025)">​</a></h3>
+<p>North Korea’s Lazarus Group crafted fake LinkedIn recruiter profiles offering crypto-related job roles, harvesting CVs or GitHub links, then delivering obfuscated scripts that dynamically loaded info-stealing malware targeting developer environments citeturn1search0 citeturn1search3.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-5-ghost-network-inflating-github-repository-popularity">Example 5: Ghost Network Inflating GitHub Repository Popularity<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#example-5-ghost-network-inflating-github-repository-popularity" class="hash-link" aria-label="Direct link to Example 5: Ghost Network Inflating GitHub Repository Popularity" title="Direct link to Example 5: Ghost Network Inflating GitHub Repository Popularity">​</a></h3>
+<p>A clandestine network of over 3,000 sock-puppet GitHub accounts (“Stargazer Goblin”) automated stars and forks to boost malicious repositories’ visibility, distributing Windows malware through community trust mechanisms citeturn0news75 citeturn1search6.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="detection--mitigation">Detection &amp; Mitigation<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#detection--mitigation" class="hash-link" aria-label="Direct link to Detection &amp; Mitigation" title="Direct link to Detection &amp; Mitigation">​</a></h2>
+<p>Blue teams can flag sock puppets by correlating:</p>
+<ul>
+<li><strong>Writing Patterns</strong>: Stylometry and writing inconsistencies.</li>
+<li><strong>Behavioral Anomalies</strong>: Unrealistic activity bursts or connection patterns.</li>
+<li><strong>Technical Indicators</strong>: Shared IPs, OS fingerprints, or reused profile images.</li>
+</ul>
+<p>Implement AI-driven detection tools to cluster suspicious accounts by behavioral similarity and alert on potential sock-puppet networks.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ethical--legal-considerations">Ethical &amp; Legal Considerations<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#ethical--legal-considerations" class="hash-link" aria-label="Direct link to Ethical &amp; Legal Considerations" title="Direct link to Ethical &amp; Legal Considerations">​</a></h2>
+<ul>
+<li><strong>Written Consent</strong>: Always operate under signed agreements detailing scope and methods.</li>
+<li><strong>Privacy Compliance</strong>: Avoid harvesting personal data beyond engagement parameters.</li>
+<li><strong>Transparency &amp; Reporting</strong>: Document each step so findings can be independently verified.</li>
+<li><strong>Scope Adherence</strong>: Do not extend personas beyond the engagement or for real-world fraud.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="https://elodvk.github.io/blog/2025/04/25/sock-puppet-guide#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h2>
+<p>By meticulously planning, crafting authentic personae, maintaining strict OPSEC, employing layered infiltration tactics, and learning from real-world breaches, red teams can simulate sophisticated adversaries, expose human-centric vulnerabilities, and strengthen organizational security postures.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Nmap Cheat Sheet]]></title>
+            <link>https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp</link>
+            <guid>https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp</guid>
+            <pubDate>Thu, 24 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[This comprehensive guide covers every major Nmap option, scan type, output format, NSE scripting, timing, and evasion technique — complete with practical examples.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p>This comprehensive guide covers every major Nmap option, scan type, output format, NSE scripting, timing, and evasion technique — complete with practical examples.</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-basic-syntax">🛠 Basic Syntax<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-basic-syntax" class="hash-link" aria-label="Direct link to 🛠 Basic Syntax" title="Direct link to 🛠 Basic Syntax">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap [Scan Type(s)] [Options] {target specification}</span><br></span></code></pre></div></div>
+<p><strong>Example:</strong></p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sS -p 1-1000 10.10.10.10</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-target-specification">🎯 Target Specification<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-target-specification" class="hash-link" aria-label="Direct link to 🎯 Target Specification" title="Direct link to 🎯 Target Specification">​</a></h2>
+<ul>
+<li><strong>Single Host</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap 192.168.1.1</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Multiple Hosts</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap 192.168.1.1 10.0.0.5</span><br></span></code></pre></div></div>
+</li>
+<li><strong>IP Range</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap 192.168.1.1-50</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Subnet (CIDR)</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap 10.0.0.0/24</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Octet Range</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap 192.168.0-255.1-254</span><br></span></code></pre></div></div>
+</li>
+<li><strong>From File</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -iL targets.txt</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Hostname</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap scanme.nmap.org</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-host-discovery">🌐 Host Discovery<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-host-discovery" class="hash-link" aria-label="Direct link to 🌐 Host Discovery" title="Direct link to 🌐 Host Discovery">​</a></h2>
+<ul>
+<li><strong>Ping Scan (Skip port scan)</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sn 10.10.10.0/24</span><br></span></code></pre></div></div>
+</li>
+<li><strong>ARP Ping (Local LAN)</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -PR 192.168.1.0/24</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Disable Ping (Assume hosts are up)</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -Pn 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-scan-types">🚀 Scan Types<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-scan-types" class="hash-link" aria-label="Direct link to 🚀 Scan Types" title="Direct link to 🚀 Scan Types">​</a></h2>
+<table><thead><tr><th>Type</th><th>Flag</th><th>Description</th></tr></thead><tbody><tr><td>TCP Connect</td><td><code>-sT</code></td><td>Full handshake; no root required</td></tr><tr><td>SYN (Half-open)</td><td><code>-sS</code></td><td>Stealthy; default for root</td></tr><tr><td>UDP Scan</td><td><code>-sU</code></td><td>Scans UDP ports</td></tr><tr><td>Null Scan</td><td><code>-sN</code></td><td>No flags set</td></tr><tr><td>FIN Scan</td><td><code>-sF</code></td><td>FIN flag only</td></tr><tr><td>Xmas Scan</td><td><code>-sX</code></td><td>FIN, PSH, URG flags</td></tr><tr><td>ACK Scan</td><td><code>-sA</code></td><td>Firewall rule discovery</td></tr><tr><td>Window Scan</td><td><code>-sW</code></td><td>Window size analysis</td></tr><tr><td>Maimon Scan</td><td><code>-sM</code></td><td>FIN/ACK exception</td></tr><tr><td>Protocol Scan</td><td><code>-sO</code></td><td>IP protocol scan</td></tr></tbody></table>
+<p><strong>Example SYN + UDP Scan</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sS -sU -p T:1-1000,U:1-100 10.10.10.10</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-port-specification">📍 Port Specification<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-port-specification" class="hash-link" aria-label="Direct link to 📍 Port Specification" title="Direct link to 📍 Port Specification">​</a></h2>
+<ul>
+<li><strong>Single Port</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 22 192.168.1.5</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Port Range</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 1-1024 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Multiple Ports</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 80,443,8080 192.168.1.5</span><br></span></code></pre></div></div>
+</li>
+<li><strong>All Ports</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p- 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-service--version-detection">🧠 Service &amp; Version Detection<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-service--version-detection" class="hash-link" aria-label="Direct link to 🧠 Service &amp; Version Detection" title="Direct link to 🧠 Service &amp; Version Detection">​</a></h2>
+<ul>
+<li><strong>Basic Version Scan</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sV 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Aggressive Version Scan</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sV --version-all 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-os-detection">🖥 OS Detection<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-os-detection" class="hash-link" aria-label="Direct link to 🖥 OS Detection" title="Direct link to 🖥 OS Detection">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -O 10.10.10.10</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sS -sV -O 10.10.10.10</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-output-formats">📄 Output Formats<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-output-formats" class="hash-link" aria-label="Direct link to 📄 Output Formats" title="Direct link to 📄 Output Formats">​</a></h2>
+<ul>
+<li><strong>Normal</strong>: <code>-oN</code>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -oN scan.txt 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>XML</strong>: <code>-oX</code>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -oX scan.xml 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Grepable</strong>: <code>-oG</code>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -oG scan.gnmap 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>All Formats</strong>: <code>-oA</code>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -oA full_scan 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-aggressive-scan">⚙️ Aggressive Scan<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#%EF%B8%8F-aggressive-scan" class="hash-link" aria-label="Direct link to ⚙️ Aggressive Scan" title="Direct link to ⚙️ Aggressive Scan">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -A 10.10.10.10</span><br></span></code></pre></div></div>
+<p><em>Includes: OS &amp; version detection, default scripts, traceroute (noisy).</em></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-nmap-scripting-engine-nse">🧪 Nmap Scripting Engine (NSE)<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-nmap-scripting-engine-nse" class="hash-link" aria-label="Direct link to 🧪 Nmap Scripting Engine (NSE)" title="Direct link to 🧪 Nmap Scripting Engine (NSE)">​</a></h2>
+<ul>
+<li><strong>Run Default Scripts</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sC 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Specify Scripts</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap --script=http-title,smb-enum-shares 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Category Scan</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap --script=vuln 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Script Arguments</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap --script=http-brute --script-args http-brute.path=/admin 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="nse-script-categories">NSE Script Categories<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#nse-script-categories" class="hash-link" aria-label="Direct link to NSE Script Categories" title="Direct link to NSE Script Categories">​</a></h3>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">graph TB</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A[NSE Categories] --&gt; B[auth]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A --&gt; C[default]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A --&gt; D[discovery]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A --&gt; E[exploit]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A --&gt; F[vuln]</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-timing-templates">⏱ Timing Templates<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-timing-templates" class="hash-link" aria-label="Direct link to ⏱ Timing Templates" title="Direct link to ⏱ Timing Templates">​</a></h2>
+<table><thead><tr><th>Template</th><th>Usage</th></tr></thead><tbody><tr><td>T0 (Paranoid)</td><td><code>-T0</code></td></tr><tr><td>T1 (Sneaky)</td><td><code>-T1</code></td></tr><tr><td>T2 (Polite)</td><td><code>-T2</code></td></tr><tr><td>T3 (Normal)</td><td><code>-T3</code></td></tr><tr><td>T4 (Aggressive)</td><td><code>-T4</code></td></tr><tr><td>T5 (Insane)</td><td><code>-T5</code></td></tr></tbody></table>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sS -T4 10.10.10.10</span><br></span></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-firewall--ids-evasion">🔐 Firewall &amp; IDS Evasion<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-firewall--ids-evasion" class="hash-link" aria-label="Direct link to 🔐 Firewall &amp; IDS Evasion" title="Direct link to 🔐 Firewall &amp; IDS Evasion">​</a></h2>
+<table><thead><tr><th>Technique</th><th>Command</th></tr></thead><tbody><tr><td>Fragment Packets</td><td><code>-f</code></td></tr><tr><td>Decoy Scan</td><td><code>-D RND:10</code></td></tr><tr><td>Source Port Set</td><td><code>--source-port 53</code></td></tr><tr><td>MAC Spoofing</td><td><code>--spoof-mac 0A:1B:2C:3D:4E:5F</code></td></tr><tr><td>Idle (Zombie) Scan</td><td><code>-sI zombie_host</code></td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-real-world-oscp-examples">🧰 Real-World OSCP Examples<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-real-world-oscp-examples" class="hash-link" aria-label="Direct link to 🧰 Real-World OSCP Examples" title="Direct link to 🧰 Real-World OSCP Examples">​</a></h2>
+<ul>
+<li><strong>Full TCP Scan + Scripts + Detection</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -sS -sV -sC -O -T4 -p- -oA full_scan 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>Web Enumeration</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 80,443 --script=http-enum,http-title,http-methods 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>SMB Enumeration</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 139,445 --script=smb-enum-shares,smb-os-discovery 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+<li><strong>DNS Zone Transfer</strong>:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">nmap -p 53 --script=dns-zone-transfer --script-args dns-zone-transfer.domain=example.com 10.10.10.10</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>Tip:</strong> Combine Nmap findings with tools like Gobuster, Nikto, and enum4linux for deeper enumeration.</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-further-reading">📚 Further Reading<a href="https://elodvk.github.io/blog/2025/04/24/nmap_cheatsheet_oscp#-further-reading" class="hash-link" aria-label="Direct link to 📚 Further Reading" title="Direct link to 📚 Further Reading">​</a></h2>
+<ul>
+<li><a href="https://nmap.org/book/man.html" target="_blank" rel="noopener noreferrer">Nmap Official Manual</a></li>
+<li><a href="https://nmap.org/book/nse.html" target="_blank" rel="noopener noreferrer">Nmap NSE Documentation</a></li>
+<li><a href="https://nmap.org/book/man-briefoptions.html" target="_blank" rel="noopener noreferrer">Nmap Usage Summary</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/nmap-switches-scan-types" target="_blank" rel="noopener noreferrer">DigitalOcean: Nmap Switches and Scan Types</a></li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[The OSI Model]]></title>
+            <link>https://elodvk.github.io/blog/2025/04/24/osi-model</link>
+            <guid>https://elodvk.github.io/blog/2025/04/24/osi-model</guid>
+            <pubDate>Thu, 24 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[The OSI (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a computer network into seven distinct layers. Developed by the International Organization for Standardization (ISO), the OSI model is essential for understanding how different networking protocols and systems collaborate to enable communication across networks.]]></description>
+            <content:encoded><![CDATA[<p>The <strong>OSI (Open Systems Interconnection)</strong> model is a conceptual framework that standardizes the functions of a computer network into seven distinct layers. Developed by the International Organization for Standardization (ISO), the OSI model is essential for understanding how different networking protocols and systems collaborate to enable communication across networks.</p>
+<p>Whether you're new to networking or looking for a solid refresher, this post will simplify the OSI model and walk you through each of its seven critical layers.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-what-is-the-osi-model">❓ What is the OSI Model?<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-what-is-the-osi-model" class="hash-link" aria-label="Direct link to ❓ What is the OSI Model?" title="Direct link to ❓ What is the OSI Model?">​</a></h2>
+<p>The OSI model divides network communication into <strong>seven hierarchical layers</strong>, each with a specific role. Think of these layers like a relay team: each one passes the baton (data) to the next to ensure successful delivery from source to destination.</p>
+<p>Here’s a quick breakdown of the seven layers from bottom (hardware) to top (user interaction):</p>
+<ol>
+<li><strong>Physical Layer</strong></li>
+<li><strong>Data Link Layer</strong></li>
+<li><strong>Network Layer</strong></li>
+<li><strong>Transport Layer</strong></li>
+<li><strong>Session Layer</strong></li>
+<li><strong>Presentation Layer</strong></li>
+<li><strong>Application Layer</strong></li>
+</ol>
+<p>Understanding these layers is key to diagnosing network issues and designing resilient systems. Let’s dive deeper!</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1-physical-layer-the-hardware-backbone">⚡ 1. Physical Layer: The Hardware Backbone<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-1-physical-layer-the-hardware-backbone" class="hash-link" aria-label="Direct link to ⚡ 1. Physical Layer: The Hardware Backbone" title="Direct link to ⚡ 1. Physical Layer: The Hardware Backbone">​</a></h2>
+<p>The <strong>Physical Layer</strong> is the foundation of network communication. It focuses on the <strong>physical connection</strong> between devices and the <strong>transmission of raw binary data</strong> (0s and 1s) over various mediums.</p>
+<p><strong>Key components</strong>:</p>
+<ul>
+<li><strong>Cabling</strong>: Ethernet cables, coaxial cables, fiber optics</li>
+<li><strong>Network Interface Cards (NICs)</strong></li>
+<li><strong>Repeaters, Hubs, and Switches</strong></li>
+</ul>
+<p><strong>Functions</strong>:</p>
+<ul>
+<li>Converts digital bits into electrical, radio, or optical signals.</li>
+<li>Defines hardware specifications like voltage levels and pin layout.</li>
+</ul>
+<p>🔍 <strong>Example</strong>: Faulty cables or broken NICs impact this layer directly.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2-data-link-layer-reliable-local-transmission">🧬 2. Data Link Layer: Reliable Local Transmission<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-2-data-link-layer-reliable-local-transmission" class="hash-link" aria-label="Direct link to 🧬 2. Data Link Layer: Reliable Local Transmission" title="Direct link to 🧬 2. Data Link Layer: Reliable Local Transmission">​</a></h2>
+<p>The <strong>Data Link Layer</strong> ensures <strong>error-free and reliable communication</strong> between devices on the same network segment.</p>
+<p>It is split into two sublayers:</p>
+<ul>
+<li><strong>Logical Link Control (LLC)</strong>: Handles error checking and frame synchronization.</li>
+<li><strong>Media Access Control (MAC)</strong>: Manages protocol access to the physical network medium.</li>
+</ul>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Frames data packets for transmission.</li>
+<li>Handles <strong>error detection</strong> and <strong>collision management</strong>.</li>
+</ul>
+<p>🔍 <strong>Example</strong>: MAC addresses operate at this layer, and Ethernet works here too.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3-network-layer-smart-routing-across-networks">🌐 3. Network Layer: Smart Routing Across Networks<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-3-network-layer-smart-routing-across-networks" class="hash-link" aria-label="Direct link to 🌐 3. Network Layer: Smart Routing Across Networks" title="Direct link to 🌐 3. Network Layer: Smart Routing Across Networks">​</a></h2>
+<p>The <strong>Network Layer</strong> handles the delivery of packets between different networks, ensuring that data finds the most efficient path from source to destination.</p>
+<p><strong>Key responsibilities</strong>:</p>
+<ul>
+<li><strong>Routing</strong>: Determining the optimal path for data.</li>
+<li><strong>IP Addressing</strong>: Assigning and managing IP addresses.</li>
+<li><strong>Packet Forwarding</strong>: Moving packets across networks.</li>
+</ul>
+<p><strong>Protocols</strong>:</p>
+<ul>
+<li><strong>IP (Internet Protocol)</strong></li>
+<li><strong>ICMP (Internet Control Message Protocol)</strong></li>
+</ul>
+<p>🔍 <strong>Example</strong>: Routers work at the Network Layer by making routing decisions.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-4-transport-layer-end-to-end-connection-and-reliability">🚛 4. Transport Layer: End-to-End Connection and Reliability<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-4-transport-layer-end-to-end-connection-and-reliability" class="hash-link" aria-label="Direct link to 🚛 4. Transport Layer: End-to-End Connection and Reliability" title="Direct link to 🚛 4. Transport Layer: End-to-End Connection and Reliability">​</a></h2>
+<p>The <strong>Transport Layer</strong> manages <strong>end-to-end communication</strong>, ensuring that data is delivered accurately, reliably, and in sequence.</p>
+<p><strong>Key protocols</strong>:</p>
+<ul>
+<li><strong>TCP (Transmission Control Protocol)</strong>: Guarantees reliable delivery with acknowledgments and retransmissions.</li>
+<li><strong>UDP (User Datagram Protocol)</strong>: Provides faster, connectionless communication without guarantees.</li>
+</ul>
+<p><strong>Functions</strong>:</p>
+<ul>
+<li>Flow control</li>
+<li>Error detection and correction</li>
+<li>Segmentation and reassembly of data</li>
+</ul>
+<p>🔍 <strong>Example</strong>: Downloading a file uses TCP for reliability; video streaming often uses UDP for speed.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-5-session-layer-managing-conversations">🛣️ 5. Session Layer: Managing Conversations<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#%EF%B8%8F-5-session-layer-managing-conversations" class="hash-link" aria-label="Direct link to 🛣️ 5. Session Layer: Managing Conversations" title="Direct link to 🛣️ 5. Session Layer: Managing Conversations">​</a></h2>
+<p>The <strong>Session Layer</strong> is responsible for <strong>establishing, maintaining, and terminating sessions</strong> between two communicating hosts.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Setting up, managing, and tearing down sessions.</li>
+<li>Synchronization and dialog control.</li>
+<li>Session recovery after interruption.</li>
+</ul>
+<p>🔍 <strong>Example</strong>: When you're logged into a remote server and your connection drops, the Session Layer tries to maintain or recover the session.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-6-presentation-layer-translating-and-encrypting-data">🎨 6. Presentation Layer: Translating and Encrypting Data<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-6-presentation-layer-translating-and-encrypting-data" class="hash-link" aria-label="Direct link to 🎨 6. Presentation Layer: Translating and Encrypting Data" title="Direct link to 🎨 6. Presentation Layer: Translating and Encrypting Data">​</a></h2>
+<p>The <strong>Presentation Layer</strong> acts as a <strong>translator</strong> and <strong>formatter</strong> between the application and network.</p>
+<p><strong>Main tasks</strong>:</p>
+<ul>
+<li><strong>Data Encoding/Decoding</strong>: Ensuring consistent data formatting (e.g., JSON, XML, JPEG).</li>
+<li><strong>Data Compression</strong>: Reducing data size for faster transmission.</li>
+<li><strong>Encryption/Decryption</strong>: Securing communication for privacy and integrity.</li>
+</ul>
+<p>🔍 <strong>Example</strong>: HTTPS encrypts your browser data at this layer before sending it over the internet.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-7-application-layer-where-users-interact">🖥️ 7. Application Layer: Where Users Interact<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#%EF%B8%8F-7-application-layer-where-users-interact" class="hash-link" aria-label="Direct link to 🖥️ 7. Application Layer: Where Users Interact" title="Direct link to 🖥️ 7. Application Layer: Where Users Interact">​</a></h2>
+<p>The <strong>Application Layer</strong> provides <strong>services directly to user applications</strong> to enable network communication.</p>
+<p><strong>Common protocols</strong>:</p>
+<ul>
+<li><strong>HTTP/HTTPS</strong>: Web browsing</li>
+<li><strong>FTP</strong>: File transfers</li>
+<li><strong>SMTP/POP3/IMAP</strong>: Email communications</li>
+<li><strong>DNS</strong>: Domain name resolution</li>
+</ul>
+<p>🔍 <strong>Example</strong>: When you visit a website, your browser uses HTTP/HTTPS at the Application Layer to communicate with the server.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-how-do-the-layers-work-together">🔗 How Do the Layers Work Together?<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-how-do-the-layers-work-together" class="hash-link" aria-label="Direct link to 🔗 How Do the Layers Work Together?" title="Direct link to 🔗 How Do the Layers Work Together?">​</a></h3>
+<p>When you send data, it moves <strong>down the OSI model</strong>:</p>
+<ul>
+<li><strong>Application</strong> → <strong>Presentation</strong> → <strong>Session</strong> → <strong>Transport</strong> → <strong>Network</strong> → <strong>Data Link</strong> → <strong>Physical</strong></li>
+</ul>
+<p>At the receiving end, the data travels <strong>up the OSI model</strong>, where each layer processes its relevant information before handing it off to the next.</p>
+<p>✅ Each layer <strong>adds headers (encapsulation)</strong> on the sender’s side<br>
+<!-- -->✅ Each layer <strong>strips headers (decapsulation)</strong> on the receiver’s side</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-why-is-the-osi-model-important">📚 Why is the OSI Model Important?<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-why-is-the-osi-model-important" class="hash-link" aria-label="Direct link to 📚 Why is the OSI Model Important?" title="Direct link to 📚 Why is the OSI Model Important?">​</a></h3>
+<p>Understanding the OSI model is crucial because:</p>
+<ol>
+<li><strong>Standardization</strong>: Offers a universal standard for networking equipment and protocols.</li>
+<li><strong>Troubleshooting</strong>: Helps pinpoint network issues by isolating which layer is failing.</li>
+<li><strong>Simplification</strong>: Makes complex systems understandable and modular.</li>
+</ol>
+<p>Whether you're fixing a broken network connection or designing a new architecture, using the OSI model gives you a logical, layered approach.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-conclusion">🧑‍🏫 Conclusion<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-conclusion" class="hash-link" aria-label="Direct link to 🧑‍🏫 Conclusion" title="Direct link to 🧑‍🏫 Conclusion">​</a></h3>
+<p>The <strong>OSI model</strong> is more than just a theory; it’s a <strong>practical tool</strong> for anyone working with networking technologies. It breaks down the communication process into manageable parts, making it easier to understand, design, and troubleshoot systems.</p>
+<p>Mastering the OSI model strengthens your foundation in networking and prepares you for real-world scenarios, from basic troubleshooting to advanced system architecture.</p>
+<p>🛠️ <strong>Tip</strong>: When facing a network issue, think: <em>Which OSI layer is causing the problem?</em> It’s your secret weapon!</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-visualizing-the-osi-model">📊 Visualizing the OSI Model<a href="https://elodvk.github.io/blog/2025/04/24/osi-model#-visualizing-the-osi-model" class="hash-link" aria-label="Direct link to 📊 Visualizing the OSI Model" title="Direct link to 📊 Visualizing the OSI Model">​</a></h3>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">flowchart TD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    A[Application Layer 🖥️] --&gt; B[Presentation Layer 🎨]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    B --&gt; C[Session Layer 🛣️]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    C --&gt; D[Transport Layer 🚛]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    D --&gt; E[Network Layer 🌐]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    E --&gt; F[Data Link Layer 🧬]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    F --&gt; G[Physical Layer ⚡]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style A fill:#dbeafe,stroke:#1e40af,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style B fill:#e0f2fe,stroke:#0284c7,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style C fill:#ede9fe,stroke:#7c3aed,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style D fill:#dcfce7,stroke:#22c55e,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style E fill:#fef9c3,stroke:#eab308,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style F fill:#fee2e2,stroke:#ef4444,stroke-width:2px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    style G fill:#f3e8ff,stroke:#a855f7,stroke-width:2px</span><br></span></code></pre></div></div>]]></content:encoded>
+            <category>OSI Model</category>
+            <category>Networking Basics</category>
+            <category>OSCP Study</category>
+        </item>
+        <item>
+            <title><![CDATA[Subnetting Explained: Divide and Conquer Your Network]]></title>
+            <link>https://elodvk.github.io/blog/2025/04/24/subnetting</link>
+            <guid>https://elodvk.github.io/blog/2025/04/24/subnetting</guid>
+            <pubDate>Thu, 24 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Subnetting is the process of dividing a large IP network into smaller, more efficient segments known as subnets. This segmentation helps improve routing performance, enhances network security, and simplifies IP address management. It works by applying a 32-bit subnet mask to an IPv4 address, splitting it into network and host portions. Modern networks use CIDR (Classless Inter-Domain Routing) notation (e.g., /24, /26) to flexibly define subnet sizes, moving beyond the limitations of the traditional class A/B/C system.]]></description>
+            <content:encoded><![CDATA[<p><strong>Subnetting</strong> is the process of dividing a large IP network into smaller, more efficient segments known as <em>subnets</em>. This segmentation helps improve routing performance, enhances network security, and simplifies IP address management. It works by applying a <strong>32-bit subnet mask</strong> to an IPv4 address, splitting it into <em>network</em> and <em>host</em> portions. Modern networks use <strong>CIDR (Classless Inter-Domain Routing)</strong> notation (e.g., <code>/24</code>, <code>/26</code>) to flexibly define subnet sizes, moving beyond the limitations of the traditional class A/B/C system.</p>
+<p>Subnetting calculations rely on powers of two. Borrowing <code>n</code> bits creates <code>2ⁿ</code> subnets, while each subnet supports <code>2ʰ – 2</code> usable hosts (subtracting the network and broadcast addresses).</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-subnetting">What Is Subnetting?<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#what-is-subnetting" class="hash-link" aria-label="Direct link to What Is Subnetting?" title="Direct link to What Is Subnetting?">​</a></h2>
+<p>Subnetting allows you to divide one large network into multiple smaller networks. Each subnet functions independently with its own address range and broadcast domain. This makes routing tables smaller and traffic more manageable—boosting efficiency and minimizing unnecessary broadcast traffic.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ipv4-address--subnet-mask-breakdown">IPv4 Address &amp; Subnet Mask Breakdown<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#ipv4-address--subnet-mask-breakdown" class="hash-link" aria-label="Direct link to IPv4 Address &amp; Subnet Mask Breakdown" title="Direct link to IPv4 Address &amp; Subnet Mask Breakdown">​</a></h2>
+<ul>
+<li><strong>IPv4 Address</strong>: A 32-bit number split into four decimal octets (e.g., <code>192.168.1.0</code>).</li>
+<li><strong>Binary Format</strong>: That same address is <code>11000000.10101000.00000001.00000000</code>.</li>
+<li><strong>Subnet Mask</strong>: Also 32 bits, it uses a sequence of 1s to denote the network portion, and 0s for the host portion. For example:<!-- -->
+<ul>
+<li><code>255.255.255.0</code> → <code>11111111.11111111.11111111.00000000</code></li>
+</ul>
+</li>
+</ul>
+<p>A <strong>bitwise AND</strong> operation between the IP address and the subnet mask reveals the <strong>network address</strong>. The remaining bits define the possible <strong>hosts</strong> in that subnet.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cidr-notation">CIDR Notation<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#cidr-notation" class="hash-link" aria-label="Direct link to CIDR Notation" title="Direct link to CIDR Notation">​</a></h2>
+<p>CIDR (Classless Inter-Domain Routing) describes subnets using a suffix like <code>/24</code> to indicate how many bits are used for the network portion:</p>
+<ul>
+<li><code>10.0.0.0/8</code>: 8 bits for the network, 24 for hosts</li>
+<li><code>192.168.1.0/26</code>: 26 bits for the network, 6 for hosts</li>
+</ul>
+<p>This eliminates the rigid structure of class A/B/C networks, enabling flexible and optimized subnetting.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="calculating-subnets--hosts">Calculating Subnets &amp; Hosts<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#calculating-subnets--hosts" class="hash-link" aria-label="Direct link to Calculating Subnets &amp; Hosts" title="Direct link to Calculating Subnets &amp; Hosts">​</a></h2>
+<ul>
+<li><strong>Number of subnets</strong>: <code>2ⁿ</code> (where <code>n</code> is the number of borrowed host bits)</li>
+<li><strong>Usable hosts per subnet</strong>: <code>2ʰ – 2</code> (subtracting the network and broadcast addresses)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-splitting-a-24-into-26">Example: Splitting a <code>/24</code> into <code>/26</code><a href="https://elodvk.github.io/blog/2025/04/24/subnetting#example-splitting-a-24-into-26" class="hash-link" aria-label="Direct link to example-splitting-a-24-into-26" title="Direct link to example-splitting-a-24-into-26">​</a></h3>
+<p>Borrowing 2 bits from a <code>/24</code> (i.e., using <code>/26</code>) gives:</p>
+<ul>
+<li><code>2² = 4 subnets</code></li>
+<li>Each subnet has <code>2⁶ – 2 = 62 usable hosts</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="vlsm-variable-length-subnet-masking">VLSM: Variable-Length Subnet Masking<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#vlsm-variable-length-subnet-masking" class="hash-link" aria-label="Direct link to VLSM: Variable-Length Subnet Masking" title="Direct link to VLSM: Variable-Length Subnet Masking">​</a></h2>
+<p><strong>VLSM</strong> lets you use subnets of different sizes within the same network. It’s especially useful when different segments of your network require different numbers of IP addresses.</p>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">flowchart LR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  A[/24: 192.168.1.0/24/] --&gt; B[/25: 192.168.1.0/25/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  A --&gt; C[/25: 192.168.1.128/25/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  B --&gt; D[/26: 192.168.1.0/26/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  B --&gt; E[/26: 192.168.1.64/26/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  C --&gt; F[/26: 192.168.1.128/26/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  C --&gt; G[/26: 192.168.1.192/26/]</span><br></span></code></pre></div></div>
+<p>With VLSM, you only allocate what each subnet needs, reducing IP waste.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="practical-examples">Practical Examples<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#practical-examples" class="hash-link" aria-label="Direct link to Practical Examples" title="Direct link to Practical Examples">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-1-dividing-a-24-into-four-26-subnets">Example 1: Dividing a <code>/24</code> into Four <code>/26</code> Subnets<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#example-1-dividing-a-24-into-four-26-subnets" class="hash-link" aria-label="Direct link to example-1-dividing-a-24-into-four-26-subnets" title="Direct link to example-1-dividing-a-24-into-four-26-subnets">​</a></h3>
+<table><thead><tr><th>Subnet</th><th>Netmask</th><th>Host Range</th><th>Broadcast</th></tr></thead><tbody><tr><td><code>192.168.1.0/26</code></td><td><code>255.255.255.192</code></td><td><code>192.168.1.1 – 192.168.1.62</code></td><td><code>192.168.1.63</code></td></tr><tr><td><code>192.168.1.64/26</code></td><td><code>255.255.255.192</code></td><td><code>192.168.1.65 – 192.168.1.126</code></td><td><code>192.168.1.127</code></td></tr><tr><td><code>192.168.1.128/26</code></td><td><code>255.255.255.192</code></td><td><code>192.168.1.129 – 192.168.1.190</code></td><td><code>192.168.1.191</code></td></tr><tr><td><code>192.168.1.192/26</code></td><td><code>255.255.255.192</code></td><td><code>192.168.1.193 – 192.168.1.254</code></td><td><code>192.168.1.255</code></td></tr></tbody></table>
+<p>Each <code>/26</code> supports 62 usable hosts.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-2-dividing-a-16-into-20-subnets">Example 2: Dividing a <code>/16</code> into <code>/20</code> Subnets<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#example-2-dividing-a-16-into-20-subnets" class="hash-link" aria-label="Direct link to example-2-dividing-a-16-into-20-subnets" title="Direct link to example-2-dividing-a-16-into-20-subnets">​</a></h3>
+<div class="language-mermaid codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-mermaid codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">flowchart LR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  M[/16: 10.0.0.0/16/] --&gt; N[/20: 10.0.0.0/20/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  M --&gt; O[/20: 10.0.16.0/20/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  M --&gt; P[/20: 10.0.32.0/20/]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  M --&gt; Q[/20: 10.0.48.0/20/]</span><br></span></code></pre></div></div>
+<ul>
+<li>Borrowed bits: 4</li>
+<li>Subnets: <code>2⁴ = 16</code></li>
+<li>Usable hosts per subnet: <code>2¹² – 2 = 4094</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="private-vs-public-ip-address-ranges">Private vs. Public IP Address Ranges<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#private-vs-public-ip-address-ranges" class="hash-link" aria-label="Direct link to Private vs. Public IP Address Ranges" title="Direct link to Private vs. Public IP Address Ranges">​</a></h2>
+<p>Per <strong>RFC 1918</strong>, these ranges are reserved for private networks:</p>
+<table><thead><tr><th>Range</th><th>Address Space</th><th>Approx. Hosts</th></tr></thead><tbody><tr><td><code>10.0.0.0/8</code></td><td>10.0.0.0 – 10.255.255.255</td><td>~16.7 million</td></tr><tr><td><code>172.16.0.0/12</code></td><td>172.16.0.0 – 172.31.255.255</td><td>~1 million</td></tr><tr><td><code>192.168.0.0/16</code></td><td>192.168.0.0 – 192.168.255.255</td><td>~65,000</td></tr></tbody></table>
+<p>Private IPs require <strong>NAT</strong> (Network Address Translation) to access public Internet resources.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="further-reading">Further Reading<a href="https://elodvk.github.io/blog/2025/04/24/subnetting#further-reading" class="hash-link" aria-label="Direct link to Further Reading" title="Direct link to Further Reading">​</a></h2>
+<ul>
+<li><a href="https://www.cloudflare.com/learning/network-layer/what-is-a-subnet/" target="_blank" rel="noopener noreferrer">Cloudflare: What is a Subnet Mask?</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking" target="_blank" rel="noopener noreferrer">DigitalOcean: IP Addresses, Subnets &amp; CIDR</a></li>
+<li><a href="https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html" target="_blank" rel="noopener noreferrer">Cisco: Configure IP Addresses &amp; Subnetting</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Subnet" target="_blank" rel="noopener noreferrer">Wikipedia: Subnet</a></li>
+<li><a href="https://www.geeksforgeeks.org/introduction-to-subnetting/" target="_blank" rel="noopener noreferrer">GeeksforGeeks: Introduction to Subnetting</a></li>
+<li><a href="https://www.tutorialspoint.com/ipv4/ipv4_subnetting.htm" target="_blank" rel="noopener noreferrer">TutorialsPoint: IPv4 Subnetting</a></li>
+<li><a href="https://www.techtarget.com/whatis/definition/RFC-1918" target="_blank" rel="noopener noreferrer">TechTarget: RFC 1918 Definition</a></li>
+</ul>]]></content:encoded>
+            <category>subnetting</category>
+            <category>networking</category>
+            <category>CIDR</category>
+            <category>VLSM</category>
+            <category>IPv4</category>
+        </item>
+        <item>
+            <title><![CDATA[How to Connect PHP to MySQL: A Step-by-Step Guide]]></title>
+            <link>https://elodvk.github.io/blog/2025/03/29/php_mysql_integration</link>
+            <guid>https://elodvk.github.io/blog/2025/03/29/php_mysql_integration</guid>
+            <pubDate>Sat, 29 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[In this guide, we'll walk through how to connect your PHP script to a MySQL database. Whether you're building a simple website or a dynamic web application, connecting to a MySQL database is an essential step. Let's dive in!]]></description>
+            <content:encoded><![CDATA[<p>In this guide, we'll walk through how to connect your PHP script to a MySQL database. Whether you're building a simple website or a dynamic web application, connecting to a MySQL database is an essential step. Let's dive in!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-install-mysql-and-php">Step 1: Install MySQL and PHP<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-1-install-mysql-and-php" class="hash-link" aria-label="Direct link to Step 1: Install MySQL and PHP" title="Direct link to Step 1: Install MySQL and PHP">​</a></h2>
+<p>Before starting, ensure that both <strong>MySQL</strong> and <strong>PHP</strong> are installed on your system.</p>
+<ul>
+<li>If you are working locally, you can install software bundles like <a href="https://www.apachefriends.org/index.html" target="_blank" rel="noopener noreferrer">XAMPP</a> or <a href="https://www.wampserver.com/en/" target="_blank" rel="noopener noreferrer">WAMP</a> that come with both MySQL and PHP pre-installed.</li>
+<li>If you're working on a live server, make sure both are properly configured.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-create-a-mysql-database">Step 2: Create a MySQL Database<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-2-create-a-mysql-database" class="hash-link" aria-label="Direct link to Step 2: Create a MySQL Database" title="Direct link to Step 2: Create a MySQL Database">​</a></h2>
+<p>To interact with a MySQL database, you need to have one created first.</p>
+<ol>
+<li>
+<p><strong>Access MySQL</strong>: Log into your MySQL server. You can do this via the MySQL command line or use a tool like <a href="https://www.phpmyadmin.net/" target="_blank" rel="noopener noreferrer">phpMyAdmin</a>.</p>
+</li>
+<li>
+<p><strong>Create a database</strong>:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DATABASE</span><span class="token plain"> mydatabase</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre></div></div>
+<p>Replace <code>mydatabase</code> with the name of your database.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-create-a-mysql-user-and-grant-permissions">Step 3: Create a MySQL User and Grant Permissions<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-3-create-a-mysql-user-and-grant-permissions" class="hash-link" aria-label="Direct link to Step 3: Create a MySQL User and Grant Permissions" title="Direct link to Step 3: Create a MySQL User and Grant Permissions">​</a></h2>
+<p>Next, you need to create a MySQL user who will be allowed to interact with the database.</p>
+<ol>
+<li>
+<p><strong>Create a user</strong>:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">USER</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'username'</span><span class="token variable" style="color:#36acaa">@'localhost'</span><span class="token plain"> IDENTIFIED </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'password'</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre></div></div>
+<p>Replace <code>'username'</code> and <code>'password'</code> with your desired MySQL username and password.</p>
+</li>
+<li>
+<p><strong>Grant privileges</strong>:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">GRANT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">ALL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIVILEGES</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> mydatabase</span><span class="token punctuation" style="color:#393A34">.</span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TO</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'username'</span><span class="token variable" style="color:#36acaa">@'localhost'</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre></div></div>
+</li>
+<li>
+<p><strong>Flush privileges</strong>:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">FLUSH </span><span class="token keyword" style="color:#00009f">PRIVILEGES</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre></div></div>
+</li>
+<li>
+<p>If you want to verify the current privileges of the user 'bilbo', you can run the following command inside MySQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SHOW</span><span class="token plain"> GRANTS </span><span class="token keyword" style="color:#00009f">FOR</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'username'</span><span class="token variable" style="color:#36acaa">@'localhost'</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre></div></div>
+<p>This will display the current permissions granted to the user. If you see that the user does not have the necessary permissions, you can grant them as described earlier.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-4-write-php-code-to-connect-to-mysql">Step 4: Write PHP Code to Connect to MySQL<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-4-write-php-code-to-connect-to-mysql" class="hash-link" aria-label="Direct link to Step 4: Write PHP Code to Connect to MySQL" title="Direct link to Step 4: Write PHP Code to Connect to MySQL">​</a></h2>
+<p>Now that we have the database and user set up, it's time to write some PHP code to connect to MySQL. There are two common methods to do this: <strong>mysqli</strong> and <strong>PDO</strong>. Below are examples of both.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="method-1-using-mysqli">Method 1: Using <code>mysqli</code><a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#method-1-using-mysqli" class="hash-link" aria-label="Direct link to method-1-using-mysqli" title="Direct link to method-1-using-mysqli">​</a></h3>
+<ol>
+<li>
+<p><strong>Create a PHP file</strong> (e.g., <code>db_connect.php</code>).</p>
+</li>
+<li>
+<p><strong>Write the connection code</strong>:</p>
+<div class="language-php codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-php codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">&lt;?php</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">// Database configuration</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$servername = "localhost";  // or the IP address of your MySQL server</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$username = "username";     // replace with your MySQL username</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$password = "password";     // replace with your MySQL password</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$dbname = "mydatabase";     // replace with your database name</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">// Create connection</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$conn = new mysqli($servername, $username, $password, $dbname);</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">// Check connection</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">if ($conn-&gt;connect_error) {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    die("Connection failed: " . $conn-&gt;connect_error);</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">echo "Connected successfully";</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">?&gt;</span><br></span></code></pre></div></div>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="method-2-using-pdo">Method 2: Using <code>PDO</code><a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#method-2-using-pdo" class="hash-link" aria-label="Direct link to method-2-using-pdo" title="Direct link to method-2-using-pdo">​</a></h3>
+<ol>
+<li>
+<p><strong>Create a PHP file</strong> (e.g., <code>db_connect_pdo.php</code>).</p>
+</li>
+<li>
+<p><strong>Write the connection code</strong>:</p>
+<div class="language-php codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-php codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">&lt;?php</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">// Database configuration</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$servername = "localhost";  // or the IP address of your MySQL server</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$username = "username";     // replace with your MySQL username</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$password = "password";     // replace with your MySQL password</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$dbname = "mydatabase";     // replace with your database name</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">try {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    // Create a PDO connection</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    // Set the PDO error mode to exception</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    echo "Connected successfully";</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">catch(PDOException $e) {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    echo "Connection failed: " . $e-&gt;getMessage();</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">?&gt;</span><br></span></code></pre></div></div>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="whats-the-difference-between-mysqli-and-pdo">What's the Difference Between <code>mysqli</code> and <code>PDO</code>?<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#whats-the-difference-between-mysqli-and-pdo" class="hash-link" aria-label="Direct link to whats-the-difference-between-mysqli-and-pdo" title="Direct link to whats-the-difference-between-mysqli-and-pdo">​</a></h3>
+<ul>
+<li><strong><code>mysqli</code></strong> is a procedural and object-oriented interface. It's MySQL-specific and easy to use for beginners.</li>
+<li><strong><code>PDO</code></strong> is a database-agnostic interface that supports multiple databases. It’s better for projects that might switch databases or need more flexibility.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-5-test-your-connection">Step 5: Test Your Connection<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-5-test-your-connection" class="hash-link" aria-label="Direct link to Step 5: Test Your Connection" title="Direct link to Step 5: Test Your Connection">​</a></h2>
+<p>Upload your PHP script to your server or run it locally (if using XAMPP or WAMP). If the connection is successful, you will see the message <strong>"Connected successfully"</strong>.</p>
+<p>If there's an issue with the connection, you will see an error message indicating what went wrong.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-6-close-the-connection">Step 6: Close the Connection<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#step-6-close-the-connection" class="hash-link" aria-label="Direct link to Step 6: Close the Connection" title="Direct link to Step 6: Close the Connection">​</a></h2>
+<p>It's always a good practice to close your database connection once you're done interacting with the database.</p>
+<ul>
+<li>
+<p><strong>For <code>mysqli</code></strong>:</p>
+<div class="language-php codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-php codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$conn-&gt;close();</span><br></span></code></pre></div></div>
+</li>
+<li>
+<p><strong>For <code>PDO</code></strong>:</p>
+<div class="language-php codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-php codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$conn = null;</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="https://elodvk.github.io/blog/2025/03/29/php_mysql_integration#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h2>
+<p>In this guide, we covered the steps to connect PHP to a MySQL database using both the <code>mysqli</code> and <code>PDO</code> extensions. Now you can begin interacting with your database by querying and manipulating data in your PHP scripts!</p>
+<p>Happy coding!</p>]]></content:encoded>
+            <category>ubuntu</category>
+            <category>linux</category>
+            <category>lamp</category>
+            <category>apache</category>
+            <category>nysql</category>
+            <category>php</category>
+        </item>
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://elodvk.github.io/blog/welcome</link>
