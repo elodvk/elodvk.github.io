@@ -1,0 +1,8 @@
+{
+  "label": "AD CS",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "AD CS attacks in-depth"
+  }
+}
