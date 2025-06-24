@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"OffSec Blog","authorsListPath":"/blog/authors"}')}}]);

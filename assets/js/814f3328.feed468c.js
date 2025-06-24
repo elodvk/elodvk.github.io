@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"All posts","items":[{"title":"The OSI Model","permalink":"/blog/2025/04/24/osi-model","unlisted":false,"date":"2025-04-24T00:00:00.000Z"}]}')}}]);

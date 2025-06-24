@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[3424],{3424:(e,c,i)=>{i.d(c,{createArchitectureServices:()=>t.S});var t=i(4318);i(1028)}}]);
