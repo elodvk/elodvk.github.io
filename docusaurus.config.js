@@ -119,8 +119,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Active Directory',
+                to: '/docs/category/active-directory',
               },
             ],
           },

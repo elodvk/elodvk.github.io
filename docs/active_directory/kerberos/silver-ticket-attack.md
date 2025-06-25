@@ -1,9 +1,5 @@
 ---
 title: "Silver Ticket"
-categories: []
-tags: []
-author: bilash
-mermaid: true
 ---
 
 A **silver ticket attack** is a post-exploitation technique that allows an attacker to gain unauthorized access to a specific service on a particular machine within a Windows Active Directory domain. Unlike the more powerful golden ticket attack which targets the Kerberos Ticket Granting Ticket (TGT) for domain-wide compromise, the silver ticket attack focuses on forging a **Kerberos Ticket Granting Service (TGS)** ticket for a single service (like CIFS for file sharing, HTTP for web services, or MSSQL for databases) running on a specific server. This forged ticket enables the attacker to authenticate directly to that service, bypassing the need for a legitimate Kerberos authentication flow involving the Domain Controller (DC).

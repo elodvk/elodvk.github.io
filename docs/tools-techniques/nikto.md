@@ -1,9 +1,5 @@
 ---
 title: Nikto Web Vulnerability Scanner 
-categories: [Tools]
-tags: []
-author: bilash
-mermaid: true
 ---
 
 **Nikto** is an open-source web server scanner written in Perl. It is designed to identify potential vulnerabilities, misconfigurations, outdated software, and insecure files or scripts on web servers.

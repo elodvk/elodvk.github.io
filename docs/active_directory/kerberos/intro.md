@@ -1,10 +1,5 @@
 ---
 title: "Introduction"
-categories: [Active Directory, PNPT, Security]
-tags: [Kerberos, Active Directory, Attacks, Defenses]
-author: [bilash]
-mermaid: true
-sidebar_position: 1
 ---
 
 # 🛡️ Introduction to Kerberos

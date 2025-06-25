@@ -1,9 +1,5 @@
 ---
 title: Gobuster – Directory and Resource Brute Forcing Tool
-categories: [Tools]
-tags: []
-author: bilash
-mermaid: true
 ---
 
 **Gobuster** is a fast and flexible command-line tool written in Go, used to brute-force:

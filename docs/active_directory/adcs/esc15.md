@@ -1,10 +1,5 @@
 ---
 title: "ESC15"
-categories: []
-tags: []
-author: [bilash]
-mermaid: true
-sidebar_position: 1
 ---
 
 This vulnerability has been patched. https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-49019

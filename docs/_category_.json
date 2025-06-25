@@ -1,0 +1,8 @@
+{
+  "label": "Kerberos",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Kerberos attacks in-depth"
+  }
+}
