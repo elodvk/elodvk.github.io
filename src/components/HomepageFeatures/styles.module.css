@@ -1,11 +1,59 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.featureColumn {
+  margin-bottom: 2rem;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.featureCard {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  height: 100%; /* Ensure cards are the same height */
+}
+
+.featureCard:hover {
+  transform: translateY(-10px);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+.featureHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1.5;
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  color: #fff;
+  margin-bottom: 0; /* Override default h3 margin */
+}
+
+
+/* --- Light Mode Specific Styles --- */
+[data-theme='light'] .featureCard {
+  background: #ffffff;
+  border: 1px solid #dee2e6; /* A standard light mode border color */
+  box-shadow: var(--ifm-card-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+[data-theme='light'] .featureCard:hover {
+   border-color: var(--ifm-color-primary);
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .featureTitle {
+  color: var(--ifm-font-color-base);
 }

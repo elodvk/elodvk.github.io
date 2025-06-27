@@ -1,46 +1,47 @@
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
+import React from 'react';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Explore Ethical Hacking',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Active Directory',
+    icon: 'network',
+    color: 'var(--ifm-color-primary)',
     description: (
       <>
-        Dive into the mindset of an attacker. Learn offensive security techniques, from reconnaissance to exploitation, to find and fix vulnerabilities before they are exploited.
-
+        Deep dives into Active Directory exploitation, defense, and my notes for the CRTP certification.
       </>
     ),
   },
   {
-    title: 'Master Defensive Strategies',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Windows Internals',
+    icon: 'laptop',
+    color: 'var(--ifm-color-success)',
     description: (
       <>
-        Strengthen your defenses with blue team tactics. We cover everything from threat intelligence and incident response to hardening systems and securing networks.
+        Exploring the core of Windows for offensive and defensive security insights.
       </>
     ),
   },
   {
-    title: 'Access Tools & Resources',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'CTF Writeups',
+    icon: 'flag',
+    color: 'var(--ifm-color-danger)',
     description: (
       <>
-        Get hands-on with a curated library of cybersecurity tools, guides, and cheat sheets. Go ahead and explore our resources on <code>Nmap</code>, <code>Wireshark</code>, <code>Metasploit</code>, and more.
+        Detailed walkthroughs and solutions for Capture The Flag challenges, primarily from Hack The Box.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({title, icon, color, description}) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+    <div className={`col col--4 ${styles.featureColumn}`}>
+      <div className={styles.featureCard}>
+        <div className={styles.featureHeader}>
+          <i data-lucide={icon} className={styles.featureIcon} style={{color: color}}></i>
+          <h3 className={styles.featureTitle}>{title}</h3>
+        </div>
         <p>{description}</p>
       </div>
     </div>
@@ -49,8 +50,9 @@ function Feature({Svg, title, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
+    <section className="content-section">
       <div className="container">
+        <h2 className="section-title">Key Focus Areas</h2>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />

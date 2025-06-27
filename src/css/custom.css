@@ -1,30 +1,307 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Global Stylesheet
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+ :root {
+  --ifm-color-primary: #0ea5e9; /* sky-500 */
+  --ifm-color-success: #22c55e; /* green-500 */
+  --ifm-color-danger: #ef4444;  /* red-500 */
+  --ifm-color-warning: #f59e0b; /* amber-500 */
+  --ifm-font-family-base: 'Roboto Mono', monospace;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ------------------- */
+/* --- DARK MODE --- */
+/* ------------------- */
+
+html[data-theme='dark'] {
+  --ifm-background-color: #0b1120;
+}
+
+[data-theme='dark'] body {
+  background-color: #0b1120;
+}
+
+[data-theme='dark'] .navbar {
+  background-color: #0f172a; /* A solid, slightly lighter dark slate */
+}
+
+[data-theme='dark'] .footer {
+  background-color: #0f172a; /* A solid, slightly lighter dark slate */
+}
+
+
+[data-theme='dark'] .hero.hero--primary {
+  color: white;
+  background: linear-gradient(-45deg, #0b1120, #0f172a, #1e3a8a, #0369a1);
+  background-size: 400% 400%;
+  animation: gradient-animation 20s ease infinite;
+}
+
+[data-theme='dark'] .hero.hero--primary .button.button--secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+[data-theme='dark'] .hero.hero--primary .button.button--secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+[data-theme='dark'] .glitch::before {
+  text-shadow: -2px 0 #ff00c1;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+[data-theme='dark'] .glitch::after {
+  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+[data-theme='dark'] .arsenal-tool {
+  color: var(--ifm-color-secondary-darkest);
+}
+
+[data-theme='dark'] .arsenal-tool:hover {
+  color: white;
+}
+
+[data-theme='dark'] .cta-section {
+  background-color: rgba(14, 165, 233, 0.1);
+  color: white;
+}
+
+[data-theme='dark'] .cta-subtitle {
+  color: rgba(207, 250, 254, 0.8);
+}
+
+[data-theme='dark'] blockquote {
+  background-color: rgba(14, 165, 233, 0.1);
+  color: var(--ifm-color-secondary-lightest);
+}
+
+[data-theme='dark'] .admonition {
+  background-color: rgba(15, 23, 42, 0.5); /* bg-slate-900/50 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+[data-theme='dark'] .card {
+  background-color: rgba(15, 23, 42, 0.5);
+  border-color: rgba(56, 189, 248, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+
+/* ------------------- */
+/* --- LIGHT MODE --- */
+/* ------------------- */
+
+[data-theme='light'] body {
+  background-color: #f4f7f9; /* Softer off-white for less glare */
+}
+
+[data-theme='light'] .navbar {
+  background-color: #ffffff;
+  box-shadow: var(--ifm-navbar-shadow);
+}
+
+[data-theme='light'] .footer {
+  background-color: #ffffff; /* Use a clean white footer */
+  border-top: 1px solid #dee2e6; /* Add separation from content */
+  color: #495057; /* Darker text color for footer content */
+}
+
+[data-theme='light'] .footer .footer__title {
+  color: #1c1e21; /* Make footer titles darker for better hierarchy */
+}
+
+[data-theme='light'] .footer .footer__link-item {
+  color: #495057; /* Ensure footer links are readable */
+}
+
+[data-theme='light'] .footer .footer__link-item:hover {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='light'] .hero.hero--primary {
+  color: var(--ifm-color-emphasis-800);
+  background: linear-gradient(-45deg, #ffffff, #e3f2fd, #ffffff, #d1eaff);
+  background-size: 400% 400%;
+  animation: gradient-animation 25s ease infinite;
+}
+
+[data-theme='light'] .hero.hero--primary .button.button--secondary {
+    background-color: rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.2);
+}
+
+[data-theme='light'] .glitch {
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='light'] .glitch::before,
+[data-theme='light'] .glitch::after {
+  display: none; /* Glitch effect is best on dark backgrounds */
+}
+
+[data-theme='light'] .arsenal-tool {
+  color: var(--ifm-color-emphasis-600);
+}
+[data-theme='light'] .arsenal-tool:hover {
+  color: var(--ifm-color-emphasis-800);
+}
+
+[data-theme='light'] .cta-section {
+  background-color: #e3f2fd; /* A very light, muted blue */
+}
+
+[data-theme='light'] .cta-title,
+[data-theme='light'] .cta-subtitle {
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='light'] blockquote {
+  background-color: #e9ecef;
+  color: var(--ifm-font-color-secondary);
+  border-color: #ced4da;
+}
+
+[data-theme='light'] .card {
+  background-color: #ffffff; /* Cards pop on the light grey background */
+  border: 1px solid #dee2e6;
+  box-shadow: none;
+}
+
+[data-theme='light'] .card:hover {
+   border-color: var(--ifm-color-primary);
+   box-shadow: var(--ifm-card-shadow-lw);
+}
+
+
+/* --- GLOBAL STYLES (Apply to both modes) --- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Styling for default Docusaurus Hero */
+.hero.hero--primary {
+  padding: 6rem 0;
+  border: none;
+}
+
+.hero.hero--primary .hero__title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.hero.hero--primary .hero__subtitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.25rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.content-section {
+  padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+div[class*='codeBlockContainer'] {
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--ifm-card-border-radius);
+}
+
+blockquote {
+  border-left: 5px solid var(--ifm-color-primary);
+}
+
+.admonition {
+  border-left-width: 5px;
+  border-radius: var(--ifm-card-border-radius);
+}
+
+.admonition-heading {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+}
+
+.admonition-note {
+  border-color: var(--ifm-color-primary);
+}
+.admonition-note .admonition-heading {
+  color: var(--ifm-color-primary);
+}
+
+.admonition-tip {
+  border-color: var(--ifm-color-success);
+}
+.admonition-tip .admonition-heading {
+  color: var(--ifm-color-success);
+}
+
+.admonition-danger {
+  border-color: var(--ifm-color-danger);
+}
+.admonition-danger .admonition-heading {
+  color: var(--ifm-color-danger);
+}
+
+.admonition-info {
+  border-color: #a7a7a7;
+}
+.admonition-info .admonition-heading {
+  color: #a7a7a7;
+}
+
+.admonition-caution {
+  border-color: var(--ifm-color-warning);
+}
+.admonition-caution .admonition-heading {
+  color: var(--ifm-color-warning);
+}
+
+/* --- Card Styling (for Blog/Doc lists) --- */
+.card {
+  border-radius: var(--ifm-card-border-radius);
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent; /* Start with a transparent border */
+  height: 100%; /* Make sure cards in a row have the same height */
+}
+
+.card:hover {
+  transform: translateY(-8px);
 }
