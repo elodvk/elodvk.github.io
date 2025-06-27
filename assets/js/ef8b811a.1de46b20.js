@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[8947],{6600:e=>{e.exports=JSON.parse('{"authors":[{"name":"Bilash J. Shahi","title":"Author","key":"bilash","page":null,"count":2}]}')}}]);
