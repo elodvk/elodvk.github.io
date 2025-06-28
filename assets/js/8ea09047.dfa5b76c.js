@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[9385],{600:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/blog/page/2","page":2,"postsPerPage":1,"totalPages":2,"totalCount":2,"previousPage":"/blog","blogDescription":"A blog about everything cybersecurity","blogTitle":"OffSec Blog"}}')}}]);

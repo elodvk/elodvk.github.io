@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[8121],{8070:e=>{e.exports=JSON.parse('{"tags":[{"label":"OSI Model","permalink":"/blog/tags/osi-model","count":1},{"label":"Networking Basics","permalink":"/blog/tags/networking-basics","count":1},{"label":"OSCP Study","permalink":"/blog/tags/oscp-study","count":1}]}')}}]);
