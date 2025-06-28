@@ -7,8 +7,8 @@ const config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
   // No need for the 'stylesheets' array here, we'll use headTags
-  title: 'My Cybersecurity Journey',
-  tagline: "Documenting my path through OSCP, CRTP, and beyond. Notes, writeups, and resources for aspiring security professionals.",
+  title: 'Zero to Shell',
+  tagline: "Deconstructing threats, sharing knowledge. A practical collection of notes and techniques for the modern security professional.",
   favicon: 'img/favicon.ico',
   future: {
     v4: true,
@@ -126,6 +126,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['powershell', 'bash', 'shell-session', 'json', 'python'],
       },
     }),
 };

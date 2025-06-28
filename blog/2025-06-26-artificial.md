@@ -1,5 +1,5 @@
 ---
-title: Artificial
+title: Hack the box - Artificial
 authors: bilash
 ---
 

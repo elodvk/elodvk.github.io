@@ -23,19 +23,36 @@ html[data-theme='dark'] {
 }
 
 [data-theme='dark'] .navbar {
-  background-color: #0f172a; /* A solid, slightly lighter dark slate */
+  background-color: #0f172a;
 }
 
 [data-theme='dark'] .footer {
-  background-color: #0f172a; /* A solid, slightly lighter dark slate */
+  background-color: #0f172a;
 }
-
 
 [data-theme='dark'] .hero.hero--primary {
   color: white;
   background: linear-gradient(-45deg, #0b1120, #0f172a, #1e3a8a, #0369a1);
   background-size: 400% 400%;
   animation: gradient-animation 20s ease infinite;
+  border: none;
+  position: relative;
+}
+
+/* NEW: Added grid overlay for a more technical look */
+[data-theme='dark'] .hero.hero--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 [data-theme='dark'] .hero.hero--primary .button.button--secondary {
@@ -65,6 +82,7 @@ html[data-theme='dark'] {
 
 [data-theme='dark'] .arsenal-tool:hover {
   color: white;
+  transform: translateY(-5px);
 }
 
 [data-theme='dark'] .cta-section {
@@ -82,14 +100,14 @@ html[data-theme='dark'] {
 }
 
 [data-theme='dark'] .admonition {
-  background-color: rgba(15, 23, 42, 0.5); /* bg-slate-900/50 */
+  background-color: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
 [data-theme='dark'] .card {
   background-color: rgba(15, 23, 42, 0.5);
-  border-color: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.2);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -105,7 +123,7 @@ html[data-theme='dark'] {
 /* ------------------- */
 
 [data-theme='light'] body {
-  background-color: #f4f7f9; /* Softer off-white for less glare */
+  background-color: #f4f7f9;
 }
 
 [data-theme='light'] .navbar {
@@ -114,17 +132,17 @@ html[data-theme='dark'] {
 }
 
 [data-theme='light'] .footer {
-  background-color: #ffffff; /* Use a clean white footer */
-  border-top: 1px solid #dee2e6; /* Add separation from content */
-  color: #495057; /* Darker text color for footer content */
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+  color: #495057;
 }
 
 [data-theme='light'] .footer .footer__title {
-  color: #1c1e21; /* Make footer titles darker for better hierarchy */
+  color: #1c1e21;
 }
 
 [data-theme='light'] .footer .footer__link-item {
-  color: #495057; /* Ensure footer links are readable */
+  color: #495057;
 }
 
 [data-theme='light'] .footer .footer__link-item:hover {
@@ -149,7 +167,7 @@ html[data-theme='dark'] {
 
 [data-theme='light'] .glitch::before,
 [data-theme='light'] .glitch::after {
-  display: none; /* Glitch effect is best on dark backgrounds */
+  display: none;
 }
 
 [data-theme='light'] .arsenal-tool {
@@ -160,7 +178,7 @@ html[data-theme='dark'] {
 }
 
 [data-theme='light'] .cta-section {
-  background-color: #e3f2fd; /* A very light, muted blue */
+  background-color: #e3f2fd;
 }
 
 [data-theme='light'] .cta-title,
@@ -175,7 +193,7 @@ html[data-theme='dark'] {
 }
 
 [data-theme='light'] .card {
-  background-color: #ffffff; /* Cards pop on the light grey background */
+  background-color: #ffffff;
   border: 1px solid #dee2e6;
   box-shadow: none;
 }
@@ -192,26 +210,85 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Exo 2', sans-serif;
 }
 
-/* Styling for default Docusaurus Hero */
+/* --- HERO BANNER STYLES --- */
 .hero.hero--primary {
-  padding: 6rem 0;
+  padding: 4rem 1rem;
   border: none;
+  text-align: center;
 }
 
-.hero.hero--primary .hero__title {
+@media (min-width: 996px) {
+  .hero.hero--primary {
+    padding: 6rem 0;
+    text-align: left;
+  }
+}
+
+.hero__title.glitch {
   font-family: 'Exo 2', sans-serif;
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  animation: glitch-skew 1s infinite linear alternate-reverse;
 }
 
-.hero.hero--primary .hero__subtitle {
+.hero__subtitle {
   font-family: 'Roboto Mono', monospace;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 2rem auto;
 }
 
+@media (min-width: 996px) {
+  .hero__title.glitch {
+    font-size: 4rem;
+  }
+  .hero__subtitle {
+    font-size: 1.25rem;
+    margin: 0 0 2rem 0;
+  }
+}
+
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: transparent;
+  clip: rect(0, 900px, 0, 0);
+}
+
+@keyframes glitch-anim-1 { 0%, 100% { clip: rect(44px, 9999px, 44px, 0); } 50% { clip: rect(8px, 9999px, 78px, 0); } }
+@keyframes glitch-anim-2 { 0%, 100% { clip: rect(12px, 9999px, 99px, 0); } 50% { clip: rect(90px, 9999px, 33px, 0); } }
+@keyframes glitch-skew { 0% { transform: skew(0deg); } 100% { transform: skew(-1deg); } }
+
+.hero-visual-container {
+  display: none; /* Hide icon on mobile */
+}
+
+@media (min-width: 996px) {
+  .hero-visual-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+.hero-shield-icon {
+  width: 208px;
+  height: 208px;
+  color: var(--ifm-color-primary);
+  animation: pulse-shield 4s ease-in-out infinite;
+}
+
+@keyframes pulse-shield {
+  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(14, 165, 233, 0.8)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4)); }
+}
+
+/* --- Other Sections --- */
 @keyframes gradient-animation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -219,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-section {
-  padding: 4rem 0;
+  padding: 4rem 1rem;
 }
 
 .section-title {
@@ -294,14 +371,37 @@ blockquote {
   color: var(--ifm-color-warning);
 }
 
-/* --- Card Styling (for Blog/Doc lists) --- */
 .card {
   border-radius: var(--ifm-card-border-radius);
   transition: all 0.3s ease-in-out;
-  border: 1px solid transparent; /* Start with a transparent border */
-  height: 100%; /* Make sure cards in a row have the same height */
+  border: 1px solid transparent;
+  height: 100%;
 }
 
 .card:hover {
   transform: translateY(-8px);
+}
+
+.arsenal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .arsenal-container {
+    gap: 3rem;
+  }
+}
+
+.arsenal-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
