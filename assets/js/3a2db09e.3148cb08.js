@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[8121],{8070:e=>{e.exports=JSON.parse('{"tags":[{"label":"easy","permalink":"/blog/tags/easy","count":1}]}')}}]);
