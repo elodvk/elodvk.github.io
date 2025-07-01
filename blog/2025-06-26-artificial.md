@@ -1,6 +1,7 @@
 ---
 title: Hack the box - Artificial
 authors: bilash
+draft: true
 ---
 
 
