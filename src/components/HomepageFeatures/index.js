@@ -7,7 +7,7 @@ const FeatureList = [
     title: 'Active Directory',
     icon: 'network',
     color: 'var(--ifm-color-primary)',
-    link: '/docs/category/active-directory',
+    link: '',
     description: (
       <>
         Deep dives into Active Directory exploitation, defense, and my notes for the CRTP certification.

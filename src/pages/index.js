@@ -19,7 +19,7 @@ function HomepageHeader() {
             <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
               <Link
                 className="button button--primary button--lg"
-                to="/docs/category/active-directory">
+                to="/docs/intro">
                 Explore Notes 🚀
               </Link>
                <Link

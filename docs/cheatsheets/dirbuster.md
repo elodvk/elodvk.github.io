@@ -1,5 +1,5 @@
 ---
-title: DirBuster – GUI Web Directory Brute Forcing Tool
+title: DirBuster
 ---
 
 **DirBuster** is a multi-threaded Java application designed to brute-force directories and file names on web/application servers. It’s particularly useful during penetration tests to uncover hidden paths and sensitive files.

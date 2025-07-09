@@ -26,7 +26,6 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        // We now configure docs here, as we are using a single docs instance
         docs: {
           sidebarPath: './sidebars.js',
         }, 
@@ -35,6 +34,7 @@ const config = {
           blogDescription: 'A blog about everything cybersecurity',
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
+          postsPerPage: 1, // This will show only the latest post on the main blog page
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -54,33 +54,37 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          // This item links to the 'pnptSidebar' defined in sidebars.js
+          // This is the new dropdown menu for your certifications
           {
-            type: 'docSidebar',
-            sidebarId: 'pnptSidebar',
+            type: 'dropdown',
+            label: 'Certifications',
             position: 'left',
-            label: 'PNPT Prep',
+            items: [
+              {
+                label: 'PNPT Prep',
+                // This links to the 'pnptSidebar' defined in sidebars.js
+                type: 'docSidebar',
+                sidebarId: 'pnptSidebar',
+              },
+              {
+                label: 'OSCP Prep',
+                // This links to the 'oscpSidebar'
+                type: 'docSidebar',
+                sidebarId: 'oscpSidebar',
+              },
+            ],
           },
-          // This item links to the 'oscpSidebar'
           {
-            type: 'docSidebar',
-            sidebarId: 'oscpSidebar',
-            position: 'left',
-            label: 'OSCP Prep',
-          },
-          // This item links to the 'adSidebar'
-          {
+            label: 'Active Directory',
             type: 'docSidebar',
             sidebarId: 'adSidebar',
             position: 'left',
-            label: 'Active Directory',
           },
-          // This item links to the 'cheatsheetsSidebar'
           {
+            label: 'Cheatsheets',
             type: 'docSidebar',
             sidebarId: 'cheatsheetsSidebar',
             position: 'left',
-            label: 'Cheatsheets',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/about_me', label: 'About Me', position: 'left'},
@@ -92,7 +96,35 @@ const config = {
         ],
       },
       footer: {
-        // Your footer config remains the same
+        style: 'dark',
+        links: [
+          {
+            title: 'Navigate',
+            items: [
+              { label: 'Docs', to: '/docs/intro', icon: 'fa-solid fa-book' },
+              { label: 'Blog', to: '/blog', icon: 'fa-solid fa-pen-to-square' },
+              { label: 'About Me', to: '/about_me', icon: 'fa-solid fa-user' },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              { label: 'Discord', href: '#', icon: 'fa-brands fa-discord' },
+              { label: 'YouTube', href: '#', icon: 'fa-brands fa-youtube' },
+              { label: 'Facebook', href: '#', icon: 'fa-brands fa-facebook' },
+            ],
+          },
+          {
+            title: 'Connect',
+            items: [
+              { label: 'GitHub', href: 'https://github.com/elodvk', icon: 'fa-brands fa-github' },
+              { label: 'LinkedIn', href: '#', icon: 'fa-brands fa-linkedin' },
+              { label: 'Twitter', href: '#', icon: 'fa-brands fa-x-twitter' },
+              { label: 'Email', href: 'mailto:youremail@example.com', icon: 'fa-solid fa-envelope' },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} elodvk`,
       },
       prism: {
         theme: prismThemes.github,
