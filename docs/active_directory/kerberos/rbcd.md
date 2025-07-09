@@ -2,27 +2,25 @@
 title: Resource Based Constrained Delegation
 ---
 
-
-Resource-Based Constrained Delegation is an interesting attack, in the right conditions it allows users to take control of computers and domains through the simple use of the very mechanics of the kerberos authentication protocol.
-
-This blog focuses on demonstrating the practical exploitation of resource-based constrained delegation (RBCD) under different scenarios, both from Linux and Windows. No matter how hard I could try I wouldn’t be able to describe the theory behind it better than Elad Shamir did, so I’m just going to redirect you to his excellent blog if you don’t know how it works. If you are already familiar with it and only need a refresher just reading the description of the attacks here may be enough.
-
 ## Here is a scenarios
 
-1. In our lab, there is 1 domain: alpha.lab
-2. 1 domain controller: dc01.alpha.lab
-3. 1 file server: srv1.alpha.lab
-4. This machine was joined to the domain by Jenny Rice using her own account "j.rice@alpha.lab"
-5. She was able to join machine to the domain using her own account because of the default configuration in Active Directory which allows any user to domain join up to 10 devices.
+1. In our lab, there are 2 domains: `alpha.lab` and `beta.lab`
+2. There is a 1 way external trust between these domains. `alpha.lab` is the trusted domain and `beta.lab` is the trusing domaon, so users in `alpha.lab` (Trusted Domain) can authenticate in `beta.lab` (Trusting Domain).
+2. Each domain has 1 domain controller: `dc01.alpha.lab` & `bdc01.beta.lab`
+3. 1 file server: `filesrv.beta.lab`. This server contains critical data which we (as the attacker) are going to steal.
+4. This machine was joined to the `beta.lab` domain by Jenny Rice using her own account "j.rice@alpha.lab". Note: Jenny is in `alpha.lab` domain but because of the trust, she is able to join machines in the trusing domain.
+5. Also being a regular user, she was able to do this because of the default configuration in Active Directory which allows any user to domain join up to 10 devices. Note: here the user does not need any special privileges / permissions.
 
     ```powershell
-    C:\Windows\system32> Get-ADDomain | Select-Object -ExpandProperty DistinguishedName | Get-ADObject -Properties 'ms-DS-MachineAccountQuota'                                          
+    PS C:\Users\Administrator> Get-ADDomain | Select-Object -ExpandProperty DistinguishedName | Get-ADObject -Properties 'ms-DS-MachineAccountQuota'
 
-    DistinguishedName         : DC=alpha,DC=lab
+
+    DistinguishedName         : DC=beta,DC=lab
     ms-DS-MachineAccountQuota : 10
-    Name                      : alpha
+    Name                      : beta
     ObjectClass               : domainDNS
-    ObjectGUID                : 0db21467-cfd1-4699-acd6-618fcf9c3d4d
+    ObjectGUID                : 6c5fb45c-4842-46af-ab2a-0db3e7621bcd
+
     ```
 
     ```shell
