@@ -37,7 +37,7 @@ flowchart TD
    - Align age, occupation, and interests to the platform’s typical user base.
 
 2. **Profile Imagery**  
-   - Use AI-generated faces from [ThisPersonDoesNotExist.com](ThisPersonDoesNotExist.com) to avoid reverse-image detection.  
+   - Use AI-generated faces from [ThisPersonDoesNotExist.com](https://thispersondoesnotexist.com) to avoid reverse-image detection.  
    - Scrub image metadata before upload.
 
 3. **Backstory & Consistency**  
