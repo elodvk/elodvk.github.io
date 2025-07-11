@@ -2,7 +2,9 @@
 title: "Golden Ticket"
 ---
 
-**Disclaimer:** This information is provided for educational purposes only. Attempting these techniques on systems you do not have explicit, authorized permission to test is illegal and unethical. Always operate within legal and ethical boundaries.
+:::note[**Disclaimer:** This information is provided for educational purposes only.]
+  Attempting these techniques on systems you do not have explicit, authorized permission to test is illegal and unethical. Always operate within legal and ethical boundaries.
+:::
 
 ## 1. Introduction
 

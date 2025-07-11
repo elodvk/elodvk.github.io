@@ -21,6 +21,13 @@ const config = {
     locales: ['en'],
   },
 
+  // --- 1. Enable Mermaid in Markdown ---
+  markdown: {
+    mermaid: true,
+  },
+  // --- 2. Add the Mermaid theme ---
+  themes: ['@docusaurus/theme-mermaid'],
+
   presets: [
     [
       'classic',
