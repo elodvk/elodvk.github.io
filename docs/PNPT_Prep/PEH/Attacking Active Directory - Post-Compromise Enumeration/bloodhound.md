@@ -47,7 +47,7 @@ Let's break that down:
  - `-u 'j.rice'`: The username.
  - `-p 'Welcome@123'`: The user's password.
  - `-d alpha.lab`: The target domain name.
- - `-ns 192.168.1.10`: The IP address of a Name Server / Domain Controller.
+ - `-ns 172.17.1.100`: The IP address of a Name Server / Domain Controller.
  - `-c All`: The collection method. All is recommended to get the most complete picture.
  - `--zip`: Zip the collected data. if this flag is not set, `bloodhound-python` will produce a set of JSON files (e.g., users.json, groups.json, computers.json, sessions.json).
 
