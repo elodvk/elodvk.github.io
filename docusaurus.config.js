@@ -64,20 +64,20 @@ const config = {
           // This is the new dropdown menu for your certifications
           {
             type: 'dropdown',
-            label: 'Certifications',
+            label: 'OffSec',
             position: 'left',
             items: [
               {
-                label: 'PNPT Prep',
+                label: 'OSINT',
                 // This links to the 'pnptSidebar' defined in sidebars.js
                 type: 'docSidebar',
-                sidebarId: 'pnptSidebar',
+                sidebarId: 'osintSidebar',
               },
-              {
-                label: 'OSCP Prep',
-                // This links to the 'oscpSidebar'
+               {
+                label: 'Active Directory',
+                // This links to the 'pnptSidebar' defined in sidebars.js
                 type: 'docSidebar',
-                sidebarId: 'oscpSidebar',
+                sidebarId: 'activedirectorySidebar',
               },
             ],
           },

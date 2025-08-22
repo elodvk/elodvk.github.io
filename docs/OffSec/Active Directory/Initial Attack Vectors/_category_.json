@@ -1,0 +1,8 @@
+{
+  "label": "01 - Initial Attack Vectors",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "This section iincludes the common initial attack vectors in Active Directory environments."
+  }
+}

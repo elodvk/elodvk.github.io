@@ -1,0 +1,8 @@
+{
+  "label": "04 - We've Compromised the Domain - Now What?",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "This section is all about maintaining persistance after the domain is Compromised."
+  }
+}
