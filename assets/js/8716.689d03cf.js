@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelodvk_github_io=self.webpackChunkelodvk_github_io||[]).push([[8716],{8716:(e,k,c)=>{c.d(k,{createPacketServices:()=>i.$});var i=c(9811);c(8198)}}]);
