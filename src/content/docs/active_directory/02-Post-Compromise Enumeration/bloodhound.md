@@ -23,10 +23,10 @@ BloodHound has two parts: the collector that grabs the data, and the GUI that vi
 
 ### **Step 1: Install `bloodhound-python`**
 
-On your attacker machine (e.g., Kali Linux), install the collector via pip.
+On your attacker machine (e.g., Kali Linux), install the community edition collector.
 
 ```bash
-sudo pip3 install bloodhound
+sudo apt install bloodhound-ce-python
 ```
 
 ### Step 2: Run The Collector
@@ -39,7 +39,7 @@ mkdir bloodhound_loot
 cd bloodhound_loot
 
 # Run the collector
-bloodhound-python -u 'j.rice' -p 'Welcome@123' -d alpha.lab -ns 172.17.1.100 -c All --zip
+bloodhound-ce-python -u 'j.rice' -p 'Welcome@123' -d alpha.lab -ns 172.17.1.100 -c All --zip
 ```
 
 Let's break that down:

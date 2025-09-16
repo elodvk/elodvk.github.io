@@ -30,10 +30,10 @@ LDAP (Lightweight Directory Access Protocol) is the protocol that applications u
 Using `ldapdomaindump` is incredibly straightforward.
 
 #### **Step 1: Installation**
-If it's not already on your attacker machine (like Kali Linux), you can install it easily via `pip`.
+If it's not already on your attacker machine (like Kali Linux), you can install it easily.
 
 ```bash
-sudo pip3 install ldapdomaindump
+sudo install ldapdomaindump
 ```
 
 ### Step 2: The Dump
