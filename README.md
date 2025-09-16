@@ -1,49 +1,8 @@
-# Starlight Starter Kit: Basics
+Welcome to my corner of the internet! I’m a cybersecurity enthusiast with a passion for tackling challenges and unraveling complex puzzles. My journey into the world of cybersecurity began with a fascination for technology and a desire to understand how things work beneath the surface.
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Currently, I’m diving deep into Capture The Flag (CTF) challenges on platforms like Hack The Box. These hands-on experiences not only sharpen my skills but also fuel my excitement for the field. Every challenge is an opportunity to learn, adapt, and think critically, and I thrive on the adrenaline that comes from solving tough problems.
 
-```
-npm create astro@latest -- --template starlight
-```
+This blog is primarily focused on my preparation for the Offensive Security Certified Professional (OSCP) certification. I’ll be sharing my insights, study strategies, and resources that I find helpful along the way. Whether you’re a fellow aspiring OSCP candidate, a seasoned professional, or just curious about cybersecurity, I hope you find something valuable here.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Join me on this journey as I explore the intricacies of penetration testing, share tips for navigating CTFs, and document my progress toward achieving the OSCP. Let’s connect, learn, and grow together in this ever-evolving field!
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
-
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
-
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
