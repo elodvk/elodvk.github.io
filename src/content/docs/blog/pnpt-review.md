@@ -21,7 +21,7 @@ Add to that my year-long obsession with Hack The Box (HTB) machines—many at *I
 
 I did, however, binge YouTube and Medium reviews the day before my first attempt. Every single one screamed: **ENUMERATE, ENUMERATE, ENUMERATE!** Some folks couldn’t even get a foothold, which sent my overconfident brain into a mild panic spiral. 
 
-:::tip
+:::tip[Pro Tip]
 Make sure your Kali Linux is fresher than a morning smoothie—fully updated with all your favorite tools. A stale Kali is like showing up to a duel with a rusty sword.
 :::
 

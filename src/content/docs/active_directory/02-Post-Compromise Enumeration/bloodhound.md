@@ -13,7 +13,7 @@ This guide focuses on using the Python-based collector for the **BloodHound Comm
 
 BloodHound has two parts: the collector that grabs the data, and the GUI that visualizes it.
 
-1.  **The Collector (`bloodhound-python`):** This is your reconnaissance drone. It's a Python-based tool that uses your compromised credentials to query the Domain Controller over LDAP and other protocols. It gathers a massive amount of data on users, groups, computers, sessions, and permissions, then saves it as a set of JSON files.
+1.  **The Collector (`bloodhound-ce-python`):** This is your reconnaissance drone. It's a Python-based tool that uses your compromised credentials to query the Domain Controller over LDAP and other protocols. It gathers a massive amount of data on users, groups, computers, sessions, and permissions, then saves it as a set of JSON files.
 
 2.  **The BloodHound GUI (Community Edition):** This is your command center. Powered by a Neo4j graph database, you import the JSON files from the collector into the GUI. It then builds an interactive map of the entire domain, allowing you to visually trace privilege relationships.
 
@@ -21,7 +21,7 @@ BloodHound has two parts: the collector that grabs the data, and the GUI that vi
 
 ## Let's Go Hunting: The Practical Steps
 
-### **Step 1: Install `bloodhound-python`**
+### **Step 1: Install `bloodhound-ce-python`**
 
 On your attacker machine (e.g., Kali Linux), install the community edition collector.
 
