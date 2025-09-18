@@ -27,7 +27,7 @@ export default defineConfig({
 							link: '/osint/email-discovery',
 							icon: 'seti:firefox',
 							items: [
-								{ label: 'OSINT', autogenerate: { directory: '/osint' } },
+								{ label: 'Opensource Intelligence', autogenerate: { directory: '/osint' } },
 							],
 						},
 						{
