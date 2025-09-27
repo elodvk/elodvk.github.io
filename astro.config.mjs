@@ -1,27 +1,15 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from 'astro/config'
+import starlight from '@astrojs/starlight'
 import starlightBlog from 'starlight-blog'
-import starlightImageZoom from 'starlight-image-zoom'
 import starlightSidebarTopics from 'starlight-sidebar-topics'
-import starlightCodeblockFullscreen from 'starlight-codeblock-fullscreen'
-//import starlightScrollToTop from 'starlight-scroll-to-top';
-//import starlightContextualMenu from "starlight-contextual-menu";
-import starlightFullViewMode from 'starlight-fullview-mode'
 
-
-// https://astro.build/config
 export default defineConfig({
 	site: 'https://elodvk.github.io',
 	integrations: [
 		starlight({
 			plugins: [
 				starlightBlog(),
-				starlightImageZoom(),
-				starlightCodeblockFullscreen({}),
-				//starlightScrollToTop({}),
-				//starlightContextualMenu({ actions: ["copy", "view", "chatgpt", "claude"] }),
-				starlightFullViewMode({leftSidebarEnabled: false}),
 				starlightSidebarTopics(
 					[
 						{
@@ -41,7 +29,7 @@ export default defineConfig({
 						{
 							label: 'Active Directory',
 							link: '/active_directory/getting-started',
-							icon: 'seti:windows',
+							icon: 'seti:default',
 							items: [
 								{ label: 'Getting Started', items: ['active_directory/getting-started'] },
 								{ label: 'Initial Attack Vectors', autogenerate: { directory: '/active_directory/01-Initial Attack Vectors' } },
@@ -56,7 +44,14 @@ export default defineConfig({
 							icon: 'seti:windows',
 							items: [
 								{ label: 'Getting Started', items: ['win-priv-esc/getting-started'] },
-								{ label: 'Getting the Lay of the Land', autogenerate: { directory: '/win-priv-esc/Getting the Lay of the Land' } },
+							],
+						},
+						{
+							label: 'Linux Privilege Escalation',
+							link: '/linux-priv-esc/getting-started',
+							icon: 'linux',
+							items: [
+								{ label: 'Getting Started', items: ['win-priv-esc/getting-started'] },
 							],
 						},
 						{
