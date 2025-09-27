@@ -105,11 +105,11 @@ As responsible pentesters, we must tell our clients how to fix this mess.
 
 1. **DISABLE, DISABLE, DISABLE**: This is the big one. These protocols are relics. For 99% of modern corporate networks with a functioning DNS, they are completely unnecessary.
 
- - **Disable LLMNR**: This can be done easily via Group Policy (GPO):
-`Computer Configuration > Administrative Templates > Network > DNS Client > Turn off multicast name resolution` -> Set to Enabled.
+  - **Disable LLMNR**: This can be done easily via Group Policy (GPO):
+  `Computer Configuration > Administrative Templates > Network > DNS Client > Turn off multicast name resolution` -> Set to Enabled.
 
- - **Disable NBT-NS**: This is a bit trickier as it's a network adapter setting. It can be done via DHCP or manually, but the easiest way is to push a script to set the registry key. The setting is found under:
-`Network Adapter Properties > IPv4 > Advanced > WINS > Disable NetBIOS over TCP/IP`.
+  - **Disable NBT-NS**: This is a bit trickier as it's a network adapter setting. It can be done via DHCP or manually, but the easiest way is to push a script to set the registry key. The setting is found under:
+  `Network Adapter Properties > IPv4 > Advanced > WINS > Disable NetBIOS over TCP/IP`.
 
 2. **Network Segmentation**: Don't let workstations and servers live on the same flat network. If a user on the guest Wi-Fi can poison requests for a domain controller, you have bigger problems. Segmenting the network limits the "blast radius" of these broadcast/multicast requests.
 

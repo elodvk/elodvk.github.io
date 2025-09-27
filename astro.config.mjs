@@ -73,6 +73,7 @@ export default defineConfig({
 				),
 			],
 			title: 'pentestpath',
+			customCss: ['./src/styles/styles.css'],
 			social: [{
 				icon: 'github',
 				label: 'GitHub',
