@@ -1,0 +1,96 @@
+site_name: PENTESTPATH
+site_url: https://pentestpath.com
+theme:
+  name: material
+  features:
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tracking
+    - search.suggest
+    - search.share
+  font:
+    text: 'Fira Code'
+    code: Red Hat Mono
+  palette:
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: red
+      accent: deep purple
+
+    # Light Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: blue grey
+      accent: deep orange
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+nav:
+  - Home: index.md
+  - "Active Directory":
+      - active_directory/getting-started.md
+      - "Initial Attack Vectors":
+          - active_directory/01-Initial Attack Vectors/01-llmnr-poisioning.md
+          - active_directory/01-Initial Attack Vectors/02-smb-relay.md
+          - active_directory/01-Initial Attack Vectors/03-mitm6.md
+      - "Post Compromise Enumeration":
+          - active_directory/02-Post-Compromise Enumeration/bloodhound.md
+          - active_directory/02-Post-Compromise Enumeration/ldapdomaindump.md
+          - active_directory/02-Post-Compromise Enumeration/pingcastle.md
+      - "Post Compromise Attacks":
+          - active_directory/03-Post Compromise Attacks/dumping & cracking hashes.md
+          - active_directory/03-Post Compromise Attacks/gpp.md
+          - active_directory/03-Post Compromise Attacks/kerberoasting.md
+          - active_directory/03-Post Compromise Attacks/lnk-file-attacks.md
+          - active_directory/03-Post Compromise Attacks/mimikatz-cred-dumping.md
+          - active_directory/03-Post Compromise Attacks/token-impersonation.md
+          - active_directory/04-Post Domain Compromise/dump-ntds.dit.md
+      - Post Domain Compromise:
+          -  active_directory/04-Post Domain Compromise/golden-ticket.md
+  - OSINT:
+          - osint/Google Fu.md
+          - osint/Identifying Website Technologies.md
+          - osint/email-discovery.md
+          - osint/passive-recon.md
+          - osint/search-engine-operators.md
+          - osint/sock-puppet.md
+  - Cheatsheets:
+      - cheatsheets/nmap.md
+      - cheatsheets/dirbuster.md
+      - cheatsheets/gobuster.md
+      - cheatsheets/nikto.md
+      - cheatsheets/revshell-cheatsheet.md
+             
+  - Tags: tags.md
+  - Blog:
+      - blog/index.md
+plugins:
+  - blog
+  - social
+  - search
+  - tags
