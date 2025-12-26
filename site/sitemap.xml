@@ -4,45 +4,48 @@
         <loc>https://elodvk.github.io/active_directory/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/01-Initial%20Attack%20Vectors/01-llmnr-poisioning/</loc>
+        <loc>https://elodvk.github.io/active_directory/Initial%20Attack%20Vectors/llmnr-poisioning/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/01-Initial%20Attack%20Vectors/02-smb-relay/</loc>
+        <loc>https://elodvk.github.io/active_directory/Initial%20Attack%20Vectors/smb-relay/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/01-Initial%20Attack%20Vectors/03-mitm6/</loc>
+        <loc>https://elodvk.github.io/active_directory/Initial%20Attack%20Vectors/mitm6/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/02-Post-Compromise%20Enumeration/bloodhound/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post-Compromise%20Enumeration/bloodhound/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/02-Post-Compromise%20Enumeration/ldapdomaindump/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post-Compromise%20Enumeration/ldapdomaindump/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/02-Post-Compromise%20Enumeration/pingcastle/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post-Compromise%20Enumeration/pingcastle/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/dumping%20&%20cracking%20hashes/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/dumping%20&%20cracking%20hashes/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/gpp/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/gpp/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/kerberoasting/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/kerberoasting/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/lnk-file-attacks/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/lnk-file-attacks/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/mimikatz-cred-dumping/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/mimikatz-cred-dumping/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/03-Post%20Compromise%20Attacks/token-impersonation/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Compromise%20Attacks/token-impersonation/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/04-Post%20Domain%20Compromise/dump-ntds.dit/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Domain%20Compromise/dump-ntds.dit/</loc>
       </url>
       <url>
-        <loc>https://elodvk.github.io/active_directory/04-Post%20Domain%20Compromise/golden-ticket/</loc>
+        <loc>https://elodvk.github.io/active_directory/Post%20Domain%20Compromise/golden-ticket/</loc>
+      </url>
+      <url>
+        <loc>https://elodvk.github.io/blog/posts/2025-10-22-pnpt-review/</loc>
       </url>
 </urlset>

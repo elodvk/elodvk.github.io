@@ -1,8 +1,8 @@
 ---
-title: Welcome
+title: Home
 social:
   cards_layout_options:
-    title: Documentation that simply works
+    title: Welcome to my corner of the internet!
 ---
 
 Welcome to my corner of the internet! I’m a cybersecurity enthusiast with a passion for tackling challenges and unraveling complex puzzles. My journey into the world of cybersecurity began with a fascination for technology and a desire to understand how things work beneath the surface.

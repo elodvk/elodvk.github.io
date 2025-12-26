@@ -1,14 +1,13 @@
 ---
 title: 'How I Conquered the PNPT: A Wild Ride Through Cyber Shenanigans'
 date: 2025-10-22
-cover:
-  alt: PNPT Cert
-  image: ../../../assets/pnpt-cert.png
 authors:
   - elodvk
 ---
 
 On **September 3, 2025**, I finally tamed the beast known as the Practical Network Penetration Tester (PNPT) exam. This blog is my victory lap, a chance to share the highs, lows, and downright facepalm moments of my journey. It’s also a love letter to my future self as I gear up for the OSCP (fingers crossed). So, grab a coffee—or an energy drink if you’re feeling my late-night hacking vibes—and let’s dive into how I survived this cyber rollercoaster.
+
+![Practical Network Penetration Tester](https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/159871898)
 
 ## My Prep: Overconfidence Meets Lazy Town
 

