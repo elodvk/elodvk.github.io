@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  icon?: string;
+  class?: string;
+}
+
+const { title, icon, class: className } = Astro.props;
+---
+
+<div class={`ps-window bento-card ${className}`}>
+  <div class="ps-window-header">
+    <div class="ps-window-title">{title}</div>
+    <div class="ps-window-controls">
+      <div class="ps-dot red"></div>
+      <div class="ps-dot yellow"></div>
+      <div class="ps-dot green"></div>
+    </div>
+  </div>
+  <div class="bento-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .bento-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bento-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+  }
+
+  .bento-card:hover .bento-body {
+    color: #ffffff;
+  }
+</style>

@@ -1,0 +1,205 @@
+---
+interface Props {
+  title?: string;
+  tagline?: string;
+}
+
+const { 
+  title = "ZERODAY THREAT SECURITY",
+  tagline = "Providing bespoke cyber security solutions since 2016. Specializing in advanced persistent threat simulation and cyber preparedness. Elite security for organizations that demand the highest level of protection."
+} = Astro.props;
+---
+
+<div class="terminal-hero-container not-content">
+  <div class="ps-window terminal-window">
+    <div class="ps-window-header">
+      <div class="ps-window-controls">
+        <div class="ps-dot red"></div>
+        <div class="ps-dot yellow"></div>
+        <div class="ps-dot green"></div>
+      </div>
+      <div class="ps-window-title">TERMINAL - PURPLESEC v1.0.4</div>
+      <div class="ps-window-actions">
+        <span class="action-dot">_</span>
+        <span class="action-dot">□</span>
+        <span class="action-dot">×</span>
+      </div>
+    </div>
+    
+    <div class="terminal-body">
+      <div class="terminal-overlay"></div>
+      
+      <div class="terminal-content">
+        <div class="terminal-prompt">
+          <span class="user">[user@purplesec</span> <span class="path">~]$</span> <span class="command">./initialize-hero</span>
+        </div>
+        
+        <div class="hero-main">
+          <h1 class="hero-title">{title}</h1>
+          <p class="hero-tagline">{tagline}</p>
+          
+          <div class="hero-actions">
+            <a href="/active_directory" class="btn btn-primary">Our Services</a>
+            <a href="/contact" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+        
+        <div class="terminal-footer">
+          <div class="terminal-prompt">
+            <span class="user">[root@purplesec</span> <span class="path">~]#</span> <span class="command">id</span>
+          </div>
+          <div class="terminal-output">
+            uid=0(root) gid=0(root) groups=0(root)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</div>
+
+<style>
+  .terminal-hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    z-index: 10;
+  }
+
+  .terminal-window {
+    background: rgba(5, 5, 7, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(34, 211, 238, 0.05);
+  }
+
+  .ps-window-actions {
+    display: flex;
+    gap: 12px;
+    color: #4b5563;
+    font-family: monospace;
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .action-dot {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .action-dot:hover { color: #22d3ee; }
+
+  .terminal-body {
+    position: relative;
+    padding: 5rem 2rem;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #050507;
+    background-image: url('/cyber_terminal_mask_bg.png');
+    background-size: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+  }
+
+  .terminal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.5;
+  }
+
+  .terminal-content {
+    position: relative;
+    z-index: 2;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .terminal-prompt {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .terminal-prompt .user { color: #22c55e; }
+  .terminal-prompt .path { color: #ffffff; }
+  .terminal-prompt .command { color: #ffffff; }
+
+  .hero-main {
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .hero-title {
+    color: #22c55e !important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 1.5rem !important;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+
+  .hero-tagline {
+    color: #cbd5e1 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    max-width: 700px;
+    margin: 0 auto 2.5rem !important;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+
+  .terminal-footer {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+  }
+
+  .terminal-output {
+    color: #22c55e;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #22c55e;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-10px) translateX(-50%); }
+    60% { transform: translateY(-5px) translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-actions {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .btn { width: 100%; }
+    .terminal-body { padding: 2rem 1rem; }
+  }
+</style>

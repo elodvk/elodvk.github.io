@@ -1,0 +1,101 @@
+<canvas id="matrix-canvas" class="not-content"></canvas>
+
+<script>
+  const canvas = document.getElementById('matrix-canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Authentic Matrix characters: Katakana + Latin + Numbers
+  const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const nums = '0123456789';
+  const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+  const characters = latin + nums + katakana;
+
+  const fontSize = 16;
+  const columns = Math.ceil(canvas.width / fontSize);
+
+  const drops = [];
+  const speeds = [];
+  
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -100; // Randomize start positions
+    speeds[i] = Math.random() * 0.5 + 0.5; // Individual column speeds
+  }
+
+  function draw() {
+    // Semi-transparent black rectangle to create trailing effect
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = characters.charAt(Math.floor(Math.random() * characters.length));
+      
+      // Calculate opacity based on position (fades near the top of the screen)
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      // Glow effect for the "head" of the drop
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#22c55e';
+      
+      // Randomly highlight some characters to make them look like the leading "head"
+      if (Math.random() > 0.95) {
+        ctx.fillStyle = '#fff'; // Bright leading character
+      } else {
+        ctx.fillStyle = '#22c55e'; // Classic Matrix green
+      }
+
+      ctx.fillText(text, x, y);
+
+      // Reset shadow for next characters to keep performance up
+      ctx.shadowBlur = 0;
+
+      // Move drop down by its specific speed
+      drops[i] += speeds[i];
+
+      // Reset drop to top randomly after it leaves screen
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+        speeds[i] = Math.random() * 0.5 + 0.5; // Re-randomize speed
+      }
+    }
+  }
+
+  function animate() {
+    draw();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Recalculate columns if screen grows
+    const newColumns = Math.ceil(canvas.width / fontSize);
+    if (newColumns > drops.length) {
+      for (let i = drops.length; i < newColumns; i++) {
+        drops[i] = Math.random() * -100;
+        speeds[i] = Math.random() * 0.5 + 0.5;
+      }
+    }
+  });
+</script>
+
+<style>
+  #matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.25; /* Slightly higher opacity for the rich video effect */
+    pointer-events: none;
+    background: #000;
+  }
+</style>

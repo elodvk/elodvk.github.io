@@ -1,17 +1,70 @@
 ---
-title: Welcome to PurpleSec
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
-hero:
-  tagline: A documentation site focused on offensive and defensive security tactics and techniques.
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Active Directory Lab
-      link: /active_directory/
-      icon: right-arrow
-    - text: Read the Blog
-      link: /blog/
-      icon: open-book
-      variant: minimal
+title: ""
+description: Advanced Cybersecurity Documentation, Lab Research, and Offensive/Defensive Tactics.
+template: splash
 ---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import TerminalHero from '../../components/TerminalHero.astro';
+import HackerText from '../../components/HackerText.astro';
+import SolutionsHeader from '../../components/SolutionsHeader.astro';
+import HackerCard from '../../components/HackerCard.astro';
+
+import NewsFeed from '../../components/NewsFeed.astro';
+import TestimonialSlider from '../../components/TestimonialSlider.astro';
+
+import MatrixBackground from '../../components/MatrixBackground.astro';
+
+<MatrixBackground />
+
+<TerminalHero />
+
+<SolutionsHeader />
+
+<CardGrid>
+    <HackerCard 
+        title="Penetration Testing" 
+        description="Advanced security testing using custom tools and zero-day research." 
+        icon="shield"
+        href="/active_directory"
+    />
+    <HackerCard 
+        title="Red Team Operations" 
+        description="Elite adversary simulation using advanced persistent threat techniques." 
+        icon="skull"
+        href="/active_directory/initial-attack-vectors"
+    />
+    <HackerCard 
+        title="Application Security" 
+        description="Deep security analysis of applications and infrastructure." 
+        icon="code"
+        href="/active_directory/post-compromise-enumeration"
+    />
+    <HackerCard 
+        title="Security Assessments" 
+        description="Expert guidance from industry-leading security professionals." 
+        icon="server"
+        href="/active_directory/post-compromise-attacks"
+    />
+</CardGrid>
+
+<div class="not-content" style="margin-top: 4rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+        <NewsFeed />
+        <TestimonialSlider />
+    </div>
+</div>
+
+<div class="not-content" style="margin-top: 6rem; padding-bottom: 4rem; text-align: center;">
+    <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent); width: 100%; margin-bottom: 4rem;"></div>
+    
+    <h3 style="margin-bottom: 1.5rem; font-size: 2.5rem; letter-spacing: 4px; font-weight: 800;">
+        <HackerText text="STATUS: LATEST_INTEL" tagName="span" />
+    </h3>
+    
+    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+        Synchronizing with the latest research findings from the PurpleSec lab archives.
+    </p>
+    
+    <a href="/blog/" class="btn btn-outline" style="display: inline-block; padding: 0.75rem 3rem;">OPEN_ARCHIVES</a>
+</div>

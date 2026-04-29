@@ -1,51 +1,191 @@
 :root {
-	/* Dark mode colors (default) */
-	--sl-color-accent-low: #0c4a6e;
-	--sl-color-accent: #0ea5e9;
-	--sl-color-accent-high: #bae6fd;
+	/* PurpleSec High-Contrast Hacker Theme */
+	--sl-color-accent-low: #1e1b4b;
+	--sl-color-accent: #a855f7;
+	--sl-color-accent-high: #f472b6;
 	
-	--sl-color-bg: #020617;
-	--sl-color-bg-nav: #020617;
-	--sl-color-bg-sidebar: #020617;
-	--sl-color-bg-inline-code: #1e293b;
+	--sl-color-bg: #000000;
+	--sl-color-bg-nav: #000000;
+	--sl-color-bg-sidebar: #000000;
+	--sl-color-bg-inline-code: #0f172a;
 	
-	--sl-color-text: #f1f5f9;
-	--sl-color-text-accent: #38bdf8;
-	--sl-color-text-invert: #020617;
+	--sl-color-text: #ffffff;
+	--sl-color-text-accent: #22d3ee;
+	--sl-color-text-invert: #000000;
 
-	/* Override Starlight blue grays with Slate */
-	--sl-color-gray-1: #f8fafc;
-	--sl-color-gray-2: #e2e8f0;
-	--sl-color-gray-3: #94a3b8;
-	--sl-color-gray-4: #475569;
-	--sl-color-gray-5: #1e293b;
-	--sl-color-gray-6: #0f172a;
+	/* Monospace Overrides */
+	--sl-font-mono: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+	--sl-font-system: var(--sl-font-mono);
 }
 
-:root[data-theme='light'] {
-	/* Light mode colors */
-	--sl-color-accent-low: #e0f2fe;
-	--sl-color-accent: #0284c7;
-	--sl-color-accent-high: #0c4a6e;
-	
-	--sl-color-bg: #ffffff;
-	--sl-color-bg-nav: #ffffff;
-	--sl-color-bg-sidebar: #ffffff;
-	--sl-color-bg-inline-code: #f1f5f9;
-	
-	--sl-color-text: #0f172a;
-	--sl-color-text-accent: #0369a1;
-	--sl-color-text-invert: #ffffff;
-
-	--sl-color-gray-1: #0f172a;
-	--sl-color-gray-2: #1e293b;
-	--sl-color-gray-3: #475569;
-	--sl-color-gray-4: #94a3b8;
-	--sl-color-gray-5: #e2e8f0;
-	--sl-color-gray-6: #f8fafc;
+body {
+	font-family: var(--sl-font-mono) !important;
+	background-color: #000000 !important;
 }
 
-/* Disable glitchy view transitions on titles */
-h1, .hero h1 {
-	view-transition-name: none !important;
+/* Global Monospace Force */
+h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, div {
+	font-family: var(--sl-font-mono) !important;
+}
+
+/* Binary Rain Background */
+.ps-binary-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: -1;
+	opacity: 0.15;
+	background-image: 
+		linear-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(34, 197, 94, 0.15) 1px, transparent 1px);
+	background-size: 30px 30px;
+	mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* Button System */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 2rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.9rem;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn-primary {
+	background: #22c55e;
+	color: #000 !important;
+	border: none;
+	box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.btn-primary:hover {
+	background: #4ade80;
+	transform: translateY(-2px);
+	box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+}
+
+.btn-outline {
+	background: transparent;
+	color: #22c55e !important;
+	border: 1px solid #22c55e;
+}
+
+.btn-outline:hover {
+	background: rgba(34, 197, 94, 0.1);
+	transform: translateY(-2px);
+	border-color: #4ade80;
+	box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+/* GUI Window Style */
+.ps-window {
+	background: #0d0d0d;
+	border: 1px solid #1e1b4b;
+	border-radius: 4px;
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ps-window-header {
+	background: #1a1a1a;
+	padding: 8px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #1e1b4b;
+}
+
+.ps-window-title {
+	font-size: 0.75rem;
+	color: #94a3b8;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ps-window-controls {
+	display: flex;
+	gap: 6px;
+}
+
+.ps-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.ps-dot.red { background: #ff5f56; }
+.ps-dot.yellow { background: #ffbd2e; }
+.ps-dot.green { background: #27c93f; }
+
+/* Hide default Starlight hero and title completely on splash pages */
+[data-template="splash"] .main-frame {
+	padding-top: 0 !important;
+}
+
+[data-template="splash"] .content-panel:first-of-type,
+[data-template="splash"] .content-panel:has(h1) {
+	display: none !important;
+}
+
+[data-template="splash"] .main-frame {
+	padding-top: 0 !important;
+}
+
+[data-template="splash"] .content-panel:first-of-type,
+[data-template="splash"] .content-panel:has(h1) {
+	display: none !important;
+}
+
+[data-template="splash"] h1 {
+	display: none !important;
+}
+
+[data-template="splash"] .sl-container {
+	max-width: 100% !important;
+	padding: 0 !important;
+}
+
+[data-template="splash"] .content-panel {
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+}
+
+/* Header/Nav Adjustments */
+header.header {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid #1e1b4b !important;
+}
+
+/* Buttons */
+.sl-button {
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.sl-button.primary {
+	background: #a855f7 !important;
+	color: #000000 !important;
+}
+
+.sl-button.minimal {
+	border: 1px solid #1e1b4b !important;
+	color: #ffffff !important;
+}
+
+.sl-button.minimal:hover {
+	border-color: #a855f7 !important;
 }

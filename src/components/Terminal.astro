@@ -1,0 +1,98 @@
+---
+interface Props {
+  lines?: string[];
+  title?: string;
+}
+
+const { 
+  title = "TERMINAL - PURPLESEC v1.0.4",
+  lines = [
+    "INITIALIZING PURPLESEC CORE...",
+    "LOADING OFFENSIVE MODULES...",
+    "DEFENSIVE SHIELDS: ONLINE",
+    "TARGET: RESEARCH LABS",
+    "STATUS: ACCESSING ENCRYPTED ARCHIVES...",
+    "SUCCESS: KNOWLEDGE BASE SYNCHRONIZED."
+  ] 
+} = Astro.props;
+---
+
+<div class="ps-window not-content terminal-hero">
+  <div class="ps-window-header">
+    <div class="ps-window-controls">
+      <div class="ps-dot red"></div>
+      <div class="ps-dot yellow"></div>
+      <div class="ps-dot green"></div>
+    </div>
+    <div class="ps-window-title">{title}</div>
+    <div style="width: 42px;"></div> <!-- Spacer to center title -->
+  </div>
+  
+  <div class="terminal-body">
+    <div class="terminal-content">
+      {lines.map((line, i) => (
+        <div class="terminal-line" style={`animation-delay: ${i * 0.8}s`}>
+          <span class="prompt">></span> {line}
+        </div>
+      ))}
+      <div class="cursor-line">
+        <span class="prompt">></span> <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .terminal-hero {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    background: #050507;
+    min-height: 250px;
+  }
+
+  .terminal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #22d3ee;
+  }
+
+  .terminal-line {
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    white-space: pre-wrap;
+  }
+
+  .prompt {
+    color: #a855f7;
+    font-weight: bold;
+    margin-right: 0.75rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: #a855f7;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
