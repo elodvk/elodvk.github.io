@@ -6,7 +6,7 @@ import starlightBlog from 'starlight-blog';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://elodvk.github.io',
+	site: 'https://purplesc.org',
 	integrations: [
 		starlight({
 			title: 'PurpleSec',
