@@ -1,0 +1,51 @@
+:root {
+	/* Dark mode colors (default) */
+	--sl-color-accent-low: #0c4a6e;
+	--sl-color-accent: #0ea5e9;
+	--sl-color-accent-high: #bae6fd;
+	
+	--sl-color-bg: #020617;
+	--sl-color-bg-nav: #020617;
+	--sl-color-bg-sidebar: #020617;
+	--sl-color-bg-inline-code: #1e293b;
+	
+	--sl-color-text: #f1f5f9;
+	--sl-color-text-accent: #38bdf8;
+	--sl-color-text-invert: #020617;
+
+	/* Override Starlight blue grays with Slate */
+	--sl-color-gray-1: #f8fafc;
+	--sl-color-gray-2: #e2e8f0;
+	--sl-color-gray-3: #94a3b8;
+	--sl-color-gray-4: #475569;
+	--sl-color-gray-5: #1e293b;
+	--sl-color-gray-6: #0f172a;
+}
+
+:root[data-theme='light'] {
+	/* Light mode colors */
+	--sl-color-accent-low: #e0f2fe;
+	--sl-color-accent: #0284c7;
+	--sl-color-accent-high: #0c4a6e;
+	
+	--sl-color-bg: #ffffff;
+	--sl-color-bg-nav: #ffffff;
+	--sl-color-bg-sidebar: #ffffff;
+	--sl-color-bg-inline-code: #f1f5f9;
+	
+	--sl-color-text: #0f172a;
+	--sl-color-text-accent: #0369a1;
+	--sl-color-text-invert: #ffffff;
+
+	--sl-color-gray-1: #0f172a;
+	--sl-color-gray-2: #1e293b;
+	--sl-color-gray-3: #475569;
+	--sl-color-gray-4: #94a3b8;
+	--sl-color-gray-5: #e2e8f0;
+	--sl-color-gray-6: #f8fafc;
+}
+
+/* Disable glitchy view transitions on titles */
+h1, .hero h1 {
+	view-transition-name: none !important;
+}
