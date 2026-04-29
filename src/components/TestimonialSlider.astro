@@ -1,9 +1,21 @@
 ---
 const testimonials = [
   {
-    quote: "Their zero-day research helped us identify and fix critical vulnerabilities before exploitation.",
-    author: "Privacy Technology Company"
-  }
+    quote:
+      "If you think technology can solve your security problems, then you don't understand the problems and you don't understand the technology.",
+    author:
+      "Bruce Schneier (renowned cryptographer, security technologist, and author",
+  },
+  {
+    quote:
+      "You can never protect yourself 100%. What you do is protect yourself as much as possible and mitigate risk to an acceptable degree.",
+    author: "Kevin Mitnick",
+  },
+  {
+    quote:
+      "Zero Trust is not a technology; it’s a security philosophy that rewires how we think about access.",
+    author: "John Kindervag",
+  },
 ];
 ---
 
@@ -15,20 +27,46 @@ const testimonials = [
       <span class="control">×</span>
     </div>
   </div>
-  
+
   <div class="window-body">
     <div class="quote-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c1.054 0 1.25.513 1.25 1.587V15c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-quote"
+        ><path
+          d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
+        ></path><path
+          d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c1.054 0 1.25.513 1.25 1.587V15c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
+        ></path></svg
+      >
     </div>
-    
+
     <div class="testimonial-content">
       <p class="quote">"{testimonials[0].quote}"</p>
       <p class="author">{testimonials[0].author}</p>
     </div>
-    
+
     <div class="slider-controls">
       <div class="nav-arrow prev">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+        >
       </div>
       <div class="dots">
         <span class="dot active"></span>
@@ -36,7 +74,17 @@ const testimonials = [
         <span class="dot"></span>
       </div>
       <div class="nav-arrow next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg
+        >
       </div>
     </div>
   </div>
@@ -90,7 +138,7 @@ const testimonials = [
     font-style: italic;
     margin-bottom: 1.5rem;
     max-width: 500px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
   }
 
   .author {

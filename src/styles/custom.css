@@ -3,14 +3,14 @@
 	--sl-color-accent-low: #1e1b4b;
 	--sl-color-accent: #a855f7;
 	--sl-color-accent-high: #f472b6;
-	
+
 	--sl-color-bg: #000000;
 	--sl-color-bg-nav: #000000;
 	--sl-color-bg-sidebar: #000000;
 	--sl-color-bg-inline-code: #0f172a;
-	
+
 	--sl-color-text: #ffffff;
-	--sl-color-text-accent: #22d3ee;
+	--sl-color-text-accent: #20B95B;
 	--sl-color-text-invert: #000000;
 
 	/* Monospace Overrides */
@@ -24,7 +24,19 @@ body {
 }
 
 /* Global Monospace Force */
-h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, div {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+button,
+input,
+div {
 	font-family: var(--sl-font-mono) !important;
 }
 
@@ -38,7 +50,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, div {
 	pointer-events: none;
 	z-index: -1;
 	opacity: 0.15;
-	background-image: 
+	background-image:
 		linear-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px),
 		linear-gradient(90deg, rgba(34, 197, 94, 0.15) 1px, transparent 1px);
 	background-size: 30px 30px;
@@ -124,9 +136,17 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, div {
 	border-radius: 50%;
 }
 
-.ps-dot.red { background: #ff5f56; }
-.ps-dot.yellow { background: #ffbd2e; }
-.ps-dot.green { background: #27c93f; }
+.ps-dot.red {
+	background: #ff5f56;
+}
+
+.ps-dot.yellow {
+	background: #ffbd2e;
+}
+
+.ps-dot.green {
+	background: #27c93f;
+}
 
 /* Hide default Starlight hero and title completely on splash pages */
 [data-template="splash"] .main-frame {

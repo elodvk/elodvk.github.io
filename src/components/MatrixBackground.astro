@@ -1,24 +1,25 @@
 <canvas id="matrix-canvas" class="not-content"></canvas>
 
 <script>
-  const canvas = document.getElementById('matrix-canvas');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("matrix-canvas");
+  const ctx = canvas.getContext("2d");
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
   // Authentic Matrix characters: Katakana + Latin + Numbers
-  const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const nums = '0123456789';
-  const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+  const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const nums = "0123456789";
+  const katakana =
+    "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
   const characters = latin + nums + katakana;
 
-  const fontSize = 16;
+  const fontSize = 15;
   const columns = Math.ceil(canvas.width / fontSize);
 
   const drops = [];
   const speeds = [];
-  
+
   for (let i = 0; i < columns; i++) {
     drops[i] = Math.random() * -100; // Randomize start positions
     speeds[i] = Math.random() * 0.5 + 0.5; // Individual column speeds
@@ -26,27 +27,29 @@
 
   function draw() {
     // Semi-transparent black rectangle to create trailing effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.font = fontSize + 'px monospace';
+    ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
-      const text = characters.charAt(Math.floor(Math.random() * characters.length));
-      
+      const text = characters.charAt(
+        Math.floor(Math.random() * characters.length),
+      );
+
       // Calculate opacity based on position (fades near the top of the screen)
       const x = i * fontSize;
       const y = drops[i] * fontSize;
 
       // Glow effect for the "head" of the drop
       ctx.shadowBlur = 15;
-      ctx.shadowColor = '#22c55e';
-      
+      ctx.shadowColor = "#22c55e";
+
       // Randomly highlight some characters to make them look like the leading "head"
       if (Math.random() > 0.95) {
-        ctx.fillStyle = '#fff'; // Bright leading character
+        ctx.fillStyle = "#fff"; // Bright leading character
       } else {
-        ctx.fillStyle = '#22c55e'; // Classic Matrix green
+        ctx.fillStyle = "#22c55e"; // Classic Matrix green
       }
 
       ctx.fillText(text, x, y);
@@ -72,7 +75,7 @@
 
   animate();
 
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     // Recalculate columns if screen grows

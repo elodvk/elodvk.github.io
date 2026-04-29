@@ -10,7 +10,11 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'PurpleSec',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://avatars.githubusercontent.com/elodvk' }],
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://avatars.githubusercontent.com/elodvk' },
+				{ icon: 'youtube', label: 'Twitter', href: 'https://www.youtube.com/@elodvk' },
+				{ icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/bilash-j-shahi/' },
+			],
 			plugins: [
 				starlightBlog({
 					authors: {
@@ -27,6 +31,7 @@ export default defineConfig({
 			customCss: ['./src/styles/custom.css'],
 
 			sidebar: [
+				{ label: 'About', link: '/about/' },
 				{
 					label: 'Active Directory',
 					items: [

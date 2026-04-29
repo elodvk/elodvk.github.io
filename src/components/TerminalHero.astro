@@ -4,9 +4,9 @@ interface Props {
   tagline?: string;
 }
 
-const { 
-  title = "ZERODAY THREAT SECURITY",
-  tagline = "Providing bespoke cyber security solutions since 2016. Specializing in advanced persistent threat simulation and cyber preparedness. Elite security for organizations that demand the highest level of protection."
+const {
+  title = "PurpleSec",
+  tagline = "Demystifying the technical hurdles of the cybersecurity landscape through transparent documentation, shared research, and the constant pursuit of a more secure future.",
 } = Astro.props;
 ---
 
@@ -25,28 +25,32 @@ const {
         <span class="action-dot">×</span>
       </div>
     </div>
-    
+
     <div class="terminal-body">
       <div class="terminal-overlay"></div>
-      
+
       <div class="terminal-content">
         <div class="terminal-prompt">
-          <span class="user">[user@purplesec</span> <span class="path">~]$</span> <span class="command">./initialize-hero</span>
+          <span class="user">[user@purplesec</span>
+          <span class="path">~]$</span>
+          <span class="command">./exploit.py</span>
         </div>
-        
+
         <div class="hero-main">
           <h1 class="hero-title">{title}</h1>
           <p class="hero-tagline">{tagline}</p>
-          
+
           <div class="hero-actions">
-            <a href="/active_directory" class="btn btn-primary">Our Services</a>
-            <a href="/contact" class="btn btn-outline">Contact Us</a>
+            <a href="/active_directory" class="btn btn-primary">Get Started</a>
+            <a href="/blog" class="btn btn-outline">Blog</a>
           </div>
         </div>
-        
+
         <div class="terminal-footer">
           <div class="terminal-prompt">
-            <span class="user">[root@purplesec</span> <span class="path">~]#</span> <span class="command">id</span>
+            <span class="user">[root@purplesec</span>
+            <span class="path">~]#</span>
+            <span class="command">id</span>
           </div>
           <div class="terminal-output">
             uid=0(root) gid=0(root) groups=0(root)
@@ -55,9 +59,19 @@ const {
       </div>
     </div>
   </div>
-  
+
   <div class="scroll-indicator">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+    >
   </div>
 </div>
 
@@ -75,7 +89,9 @@ const {
     background: rgba(5, 5, 7, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(34, 211, 238, 0.2);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(34, 211, 238, 0.05);
+    box-shadow:
+      0 0 50px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(34, 211, 238, 0.05);
   }
 
   .ps-window-actions {
@@ -91,7 +107,9 @@ const {
     cursor: pointer;
     transition: color 0.2s;
   }
-  .action-dot:hover { color: #22d3ee; }
+  .action-dot:hover {
+    color: #22d3ee;
+  }
 
   .terminal-body {
     position: relative;
@@ -101,7 +119,7 @@ const {
     flex-direction: column;
     justify-content: center;
     background-color: #050507;
-    background-image: url('/cyber_terminal_mask_bg.png');
+    background-image: url("/cyber_terminal_mask_bg.png");
     background-size: 600px;
     background-position: center;
     background-repeat: no-repeat;
@@ -114,8 +132,17 @@ const {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    background-size: 100% 2px, 3px 100%;
+    background:
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%),
+      linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03)
+      );
+    background-size:
+      100% 2px,
+      3px 100%;
     pointer-events: none;
     z-index: 5;
     opacity: 0.5;
@@ -124,7 +151,7 @@ const {
   .terminal-content {
     position: relative;
     z-index: 2;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
   }
 
   .terminal-prompt {
@@ -132,9 +159,15 @@ const {
     margin-bottom: 1.5rem;
   }
 
-  .terminal-prompt .user { color: #22c55e; }
-  .terminal-prompt .path { color: #ffffff; }
-  .terminal-prompt .command { color: #ffffff; }
+  .terminal-prompt .user {
+    color: #22c55e;
+  }
+  .terminal-prompt .path {
+    color: #ffffff;
+  }
+  .terminal-prompt .command {
+    color: #ffffff;
+  }
 
   .hero-main {
     text-align: center;
@@ -166,7 +199,6 @@ const {
     margin-bottom: 2rem;
   }
 
-
   .terminal-footer {
     margin-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -189,9 +221,19 @@ const {
   }
 
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-    40% { transform: translateY(-10px) translateX(-50%); }
-    60% { transform: translateY(-5px) translateX(-50%); }
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    40% {
+      transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+      transform: translateY(-5px) translateX(-50%);
+    }
   }
 
   @media (max-width: 768px) {
@@ -199,7 +241,11 @@ const {
       flex-direction: column;
       gap: 1rem;
     }
-    .btn { width: 100%; }
-    .terminal-body { padding: 2rem 1rem; }
+    .btn {
+      width: 100%;
+    }
+    .terminal-body {
+      padding: 2rem 1rem;
+    }
   }
 </style>
