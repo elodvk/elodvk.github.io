@@ -10,7 +10,7 @@ export default defineConfig({
 	site: 'https://purplesc.org',
 	integrations: [
 		starlight({
-			title: 'purplesec.org',
+			title: 'PURPLESEC',
 			logo: {
 				src: './src/assets/logo.png',
 			},
@@ -20,6 +20,10 @@ export default defineConfig({
 				{ icon: 'youtube', label: 'Twitter', href: 'https://www.youtube.com/@elodvk' },
 				{ icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/bilash-j-shahi/' },
 			],
+			components: {
+				Header: './src/components/Header.astro',
+				Head: './src/components/Head.astro',
+			},
 			plugins: [
 				starlightBlog({
 					authors: {
@@ -36,6 +40,7 @@ export default defineConfig({
 			customCss: ['./src/styles/custom.css'],
 
 			sidebar: [
+				{ label: 'Home', link: '/' },
 				{ label: 'About', link: '/about/' },
 				{
 					label: 'Active Directory',

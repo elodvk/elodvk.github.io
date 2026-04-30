@@ -9,13 +9,10 @@
   canvas.width = width;
   canvas.height = height;
 
-  // Authentic Matrix characters: Katakana + Latin + Numbers
-  const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const nums = "0123456789";
-  const katakana = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
-  const characters = latin + nums + katakana;
+  // Authentic hacker.house style: Binary only
+  const characters = "01";
 
-  const fontSize = 12; // Reduced size for a more subtle look
+  const fontSize = 18; // Larger size for better readability of binary
   let columns = Math.ceil(width / fontSize);
 
   let drops = [];
@@ -27,7 +24,7 @@
     speeds = [];
     for (let i = 0; i < columns; i++) {
       drops[i] = Math.random() * -100; // Randomize start positions above screen
-      speeds[i] = Math.random() * 0.5 + 0.2; // Slower, more varied speeds
+      speeds[i] = Math.random() * 0.8 + 0.5; // Fast rain speeds
     }
   }
 
@@ -43,11 +40,17 @@
     lastTime = timeStamp;
 
     if (timer > nextFrame) {
-      // Semi-transparent black to create trailing effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      // Fetch dynamic colors from theme variables
+      const style = getComputedStyle(document.documentElement);
+      const matrixColor = style.getPropertyValue('--ps-matrix-color').trim() || "#00ff00";
+      const matrixHead = style.getPropertyValue('--ps-matrix-head').trim() || "rgba(255, 255, 255, 0.8)";
+      const matrixBg = style.getPropertyValue('--ps-matrix-bg').trim() || "rgba(0, 0, 0, 0.05)";
+
+      // Semi-transparent background to create trailing effect
+      ctx.fillStyle = matrixBg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = fontSize + "px monospace";
+      ctx.font = fontSize + "px 'JetBrains Mono', Courier, monospace";
 
       for (let i = 0; i < drops.length; i++) {
         const text = characters.charAt(Math.floor(Math.random() * characters.length));
@@ -56,11 +59,11 @@
 
         // Head of the drop
         if (Math.random() > 0.98) {
-          ctx.fillStyle = "#fff"; // Bright leading character
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = "#fff";
+          ctx.fillStyle = matrixHead;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = matrixHead;
         } else {
-          ctx.fillStyle = "#0f0"; // Classic Matrix green
+          ctx.fillStyle = matrixColor;
           ctx.shadowBlur = 0;
         }
 
@@ -102,8 +105,8 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    opacity: 0.15; /* Reduced opacity for a more professional, subtle look */
+    opacity: 0.15;
     pointer-events: none;
-    background: #000;
+    background: var(--sl-color-bg);
   }
 </style>

@@ -1,0 +1,151 @@
+---
+import config from 'virtual:starlight/user-config';
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+import MobileMenuToggle from 'virtual:starlight/components/MobileMenuToggle';
+
+const shouldRenderSearch = config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/index.html';
+const isAbout = pathname.startsWith('/about');
+const isBlog = pathname.includes('/blog');
+const isDocs = pathname.includes('/active_directory') || (pathname !== '/' && !isAbout && !isBlog);
+---
+
+<div class="header sl-flex">
+	<div class="title-wrapper sl-flex">
+        <div class="site-title-container">
+            <SiteTitle />
+        </div>
+	</div>
+
+	<div class="sl-flex middle-group">
+        <nav class="top-nav sl-hidden md:sl-flex">
+            <a href="/" class={`nav-link ${isHome ? 'active' : ''}`}>Home</a>
+            <a href="/active_directory" class={`nav-link ${isDocs ? 'active' : ''}`}>Docs</a>
+            <a href="/blog" class={`nav-link ${isBlog ? 'active' : ''}`}>Blog</a>
+            <a href="/about" class={`nav-link ${isAbout ? 'active' : ''}`}>About</a>
+        </nav>
+	</div>
+
+	<div class="sl-flex right-group print:hidden">
+		<div class="sl-flex search-container">
+			{shouldRenderSearch && <Search />}
+		</div>
+		<div class="sl-hidden md:sl-flex social-icons">
+			<SocialIcons />
+		</div>
+		<ThemeSelect />
+        <MobileMenuToggle />
+	</div>
+</div>
+
+<style>
+	.header {
+		display: grid;
+        grid-template-columns: auto 1fr auto;
+		align-items: center;
+		height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+        gap: 1rem;
+	}
+
+	.title-wrapper {
+		min-width: 0;
+        z-index: 2;
+	}
+
+    .middle-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .top-nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-link {
+        color: var(--sl-color-text);
+        text-decoration: none;
+        font-family: var(--sl-font-mono);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+        padding: 0.5rem 0.5rem;
+        white-space: nowrap;
+    }
+
+    .nav-link.active {
+        color: var(--ps-accent) !important;
+    }
+
+    .nav-link:hover {
+        color: var(--ps-accent);
+    }
+
+    .right-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 2;
+    }
+
+    .search-container {
+        min-width: 300px;
+    }
+
+	.social-icons {
+		gap: 1rem;
+		align-items: center;
+	}
+    
+	.social-icons::after {
+		content: '';
+		height: 2rem;
+		border-inline-end: 1px solid var(--sl-color-gray-5);
+	}
+
+    /* Hide redundant blog link in the right group */
+    .right-group :global(a[href*="/blog"]) {
+        display: none !important;
+    }
+
+    @media (max-width: 50rem) {
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.5rem;
+        }
+        .middle-group {
+            display: none;
+        }
+        .search-container {
+            min-width: auto;
+            flex: 0;
+        }
+        .right-group {
+            gap: 0.5rem;
+        }
+        .social-icons {
+            display: none;
+        }
+    }
+
+    @media (min-width: 50rem) {
+        :global(.mobile-menu-button) {
+            display: none;
+        }
+    }
+</style>

@@ -23,17 +23,16 @@ const { title = "Deffensive & Offensive Security" } = Astro.props;
 
   .solutions-banner {
     position: relative;
-    height: 180px;
+    height: 120px;
     background-image: url("/solutions_header_bg.png");
     background-size: cover;
     background-position: center;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+    box-shadow: 0 0 30px var(--ps-accent-dim);
   }
 
   .banner-overlay {
@@ -42,20 +41,20 @@ const { title = "Deffensive & Offensive Security" } = Astro.props;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(2px);
   }
 
   .banner-title {
     position: relative;
     z-index: 2;
-    color: #22c55e !important;
+    color: var(--ps-accent) !important;
     font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
     font-weight: 800 !important;
     letter-spacing: 4px !important;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+    text-shadow: none;
     margin: 0 !important;
   }
 

@@ -51,8 +51,8 @@ const formatDate = (post) => {
 
 <style>
   .news-feed-window {
-    background: #000000;
-    border: 1px solid rgba(34, 197, 94, 0.2);
+    background: var(--ps-window-bg);
+    border: 1px solid var(--ps-window-border);
     border-radius: 8px;
     height: 100%;
     display: flex;
@@ -61,18 +61,29 @@ const formatDate = (post) => {
   }
 
   .window-header {
-    background: rgba(34, 197, 94, 0.05);
-    padding: 8px 12px;
+    background: transparent;
+    padding: 1.5rem 1.5rem 0;
     display: flex;
     justify-content: flex-end;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+    border-bottom: none;
   }
 
   .header-controls {
     display: flex;
-    gap: 8px;
-    color: rgba(34, 197, 94, 0.4);
-    font-size: 12px;
+    gap: 6px;
+    color: var(--ps-accent);
+  }
+
+  .control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--ps-accent);
+    font-size: 10px;
+    font-family: monospace;
+    opacity: 0.8;
   }
 
   .window-body {
@@ -86,13 +97,13 @@ const formatDate = (post) => {
   .terminal-prompt {
     font-size: 0.85rem;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+    border-bottom: 1px solid var(--ps-window-border);
     padding-bottom: 0.5rem;
   }
 
-  .terminal-prompt .user { color: #22c55e; }
-  .terminal-prompt .path { color: #ffffff; }
-  .terminal-prompt .command { color: #ffffff; }
+  .terminal-prompt .user { color: var(--ps-accent); }
+  .terminal-prompt .path { color: var(--ps-text); }
+  .terminal-prompt .command { color: var(--ps-text); }
 
   .news-items {
     display: flex;
@@ -114,18 +125,19 @@ const formatDate = (post) => {
   }
 
   .news-item .date {
-    color: #22c55e;
+    color: var(--ps-accent);
     flex-shrink: 0;
   }
 
   .news-item .title {
-    color: #ffffff;
+    color: var(--ps-text);
     opacity: 0.9;
   }
 
   .news-item:hover .title {
     opacity: 1;
-    color: #22c55e;
+    color: var(--sl-color-accent-high);
+    text-shadow: 0 0 8px var(--ps-accent-dim);
   }
 
   .scroll-indicators {
@@ -136,7 +148,7 @@ const formatDate = (post) => {
     display: flex;
     flex-direction: column;
     gap: 10rem;
-    color: #22c55e;
+    color: var(--ps-accent);
     font-size: 0.7rem;
     opacity: 0.5;
   }
