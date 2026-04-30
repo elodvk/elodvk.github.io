@@ -19,34 +19,37 @@ import MatrixBackground from '../../components/MatrixBackground.astro';
 
 <MatrixBackground />
 
-<TerminalHero />
+<TerminalHero 
+    title="PurpleSec" 
+    tagline="Bridging the gap between offensive tactics and defensive strategy. Detailed cybersecurity documentation, lab research, and technical blogs designed to empower your security journey." 
+/>
 
 <SolutionsHeader />
 
 <CardGrid>
     <HackerCard 
-        title="Penetration Testing" 
-        description="Advanced security testing using custom tools and zero-day research." 
-        icon="shield"
+        title="Offensive Security" 
+        description="Deep dives into penetration testing, red teaming, and exploit research to understand the adversary." 
+        icon="skull"
         href="/active_directory"
     />
     <HackerCard 
-        title="Red Team Operations" 
-        description="Elite adversary simulation using advanced persistent threat techniques." 
-        icon="skull"
-        href="/active_directory/initial-attack-vectors"
-    />
-    <HackerCard 
-        title="Application Security" 
-        description="Deep security analysis of applications and infrastructure." 
-        icon="code"
+        title="Defensive Strategy" 
+        description="Blue team methodologies, threat hunting, and infrastructure hardening to protect what matters." 
+        icon="shield"
         href="/active_directory/post-compromise-enumeration"
     />
     <HackerCard 
-        title="Security Assessments" 
-        description="Expert guidance from industry-leading security professionals." 
-        icon="server"
-        href="/active_directory/post-compromise-attacks"
+        title="Lab Archives" 
+        description="Documentation of home lab setups, tool development, and hands-on skill building." 
+        icon="code"
+        href="/active_directory/initial-attack-vectors"
+    />
+    <HackerCard 
+        title="Personal Journey" 
+        description="Blogging my path through the cybersecurity landscape, documenting every hurdle and breakthrough." 
+        icon="rocket"
+        href="/blog"
     />
 </CardGrid>
 

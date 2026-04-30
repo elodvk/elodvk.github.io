@@ -1,15 +1,20 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
 
+// @ts-ignore
+import logo from './src/assets/logo.png';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://purplesc.org',
 	integrations: [
 		starlight({
-			title: 'PurpleSec',
+			title: 'purplesec.org',
+			logo: {
+				src: './src/assets/logo.png',
+			},
+			favicon: './src/assets/logo.png',
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://avatars.githubusercontent.com/elodvk' },
 				{ icon: 'youtube', label: 'Twitter', href: 'https://www.youtube.com/@elodvk' },
