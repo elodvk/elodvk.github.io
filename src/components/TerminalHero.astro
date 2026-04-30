@@ -361,8 +361,8 @@ const {
       padding-top: 2rem;
     }
     .terminal-body {
-      padding: 1.5rem 1rem;
-      min-height: 400px;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 2vw, 1rem);
+      min-height: clamp(300px, 50vh, 450px);
       height: auto;
     }
     .hero-title {

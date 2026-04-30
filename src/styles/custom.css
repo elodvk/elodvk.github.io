@@ -138,13 +138,13 @@ div {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0.75rem 2rem;
+	padding: clamp(0.6rem, 2vh, 0.75rem) clamp(1.2rem, 4vw, 2rem);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	font-family: 'JetBrains Mono', monospace;
-	font-size: 0.9rem;
+	font-size: clamp(0.8rem, 2vw, 0.9rem);
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -238,19 +238,7 @@ div {
 }
 
 [data-template="splash"] .content-panel:first-of-type,
-[data-template="splash"] .content-panel:has(h1) {
-	display: none !important;
-}
-
-[data-template="splash"] .main-frame {
-	padding-top: 0 !important;
-}
-
-[data-template="splash"] .content-panel:first-of-type,
-[data-template="splash"] .content-panel:has(h1) {
-	display: none !important;
-}
-
+[data-template="splash"] .content-panel:has(h1),
 [data-template="splash"] h1 {
 	display: none !important;
 }
@@ -265,10 +253,28 @@ div {
 	margin-top: 0 !important;
 }
 
-/* Hide sidebar on splash pages */
+/* Hide sidebar and mobile menu button on splash pages */
 [data-template="splash"] .sidebar-pane,
-[data-template="splash"] aside#starlight__sidebar {
+[data-template="splash"] aside#starlight__sidebar,
+[data-template="splash"] .mobile-menu-button,
+[data-template="splash"] button[aria-label="Menu"] {
 	display: none !important;
+}
+
+/* Ensure theme toggle and social icons are hidden in the mobile header globally */
+@media (max-width: 50rem) {
+	.header starlight-theme-select,
+	.header .theme-select-wrapper,
+	.header .social-icons {
+		display: none !important;
+	}
+	
+	/* Hide scroll indicators in terminal-style windows on mobile to save space */
+	.terminal-hero-container .scroll-indicator,
+	.news-feed-window .scroll-indicators,
+	.testimonial-window .slider-controls .nav-arrow {
+		display: none !important;
+	}
 }
 
 [data-template="splash"] .main-frame {

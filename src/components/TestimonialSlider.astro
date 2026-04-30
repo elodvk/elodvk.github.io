@@ -206,7 +206,8 @@ const testimonials = [
   }
 
   .quote-area {
-    height: 140px;
+    min-height: 120px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,25 +217,27 @@ const testimonials = [
 
   .quote {
     color: var(--ps-text);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     line-height: 1.6;
     font-style: italic;
-    max-width: 500px;
+    max-width: 550px;
     font-family: "JetBrains Mono", monospace;
     text-align: center;
   }
 
   .author-area {
-    height: 40px; /* Fixed height for author to accommodate wrap if needed */
+    min-height: 40px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    padding: 0.5rem 0;
   }
 
   .author {
     color: var(--ps-text-muted);
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
@@ -243,10 +246,12 @@ const testimonials = [
   .slider-controls {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    height: 60px; /* Fixed height for controls */
+    gap: clamp(1rem, 5vw, 2rem);
+    min-height: 60px;
+    height: auto;
     margin-top: auto;
     flex-shrink: 0;
+    padding: 1rem 0;
   }
 
   .nav-arrow {
@@ -301,10 +306,8 @@ const testimonials = [
 
   @media (max-width: 480px) {
     .testimonial-window {
-      height: 550px;
-    }
-    .window-body {
-        flex: 1;
+      min-height: 450px;
+      height: auto;
     }
   }
 </style>
