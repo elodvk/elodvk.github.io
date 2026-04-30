@@ -32,17 +32,34 @@ const isDocs = pathname.includes('/active_directory') || (pathname !== '/' && !i
         </nav>
 	</div>
 
-	<div class="sl-flex right-group print:hidden">
-		<div class="sl-flex search-container">
+	<div class="right-group print:hidden">
+		<div class="search-container">
 			{shouldRenderSearch && <Search />}
 		</div>
-		<div class="sl-hidden md:sl-flex social-icons">
+		<div class="social-icons">
 			<SocialIcons />
 		</div>
-		<ThemeSelect />
+		<div class="theme-select-wrapper">
+			<ThemeSelect />
+		</div>
         <MobileMenuToggle />
 	</div>
 </div>
+
+<style is:global>
+    @media (max-width: 50rem) {
+        .header .theme-select-wrapper,
+        .header .social-icons,
+        .header starlight-theme-select {
+            display: none !important;
+        }
+        .header .search-container {
+            display: flex !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+    }
+</style>
 
 <style>
 	.header {
@@ -122,24 +139,38 @@ const isDocs = pathname.includes('/active_directory') || (pathname !== '/' && !i
         display: none !important;
     }
 
+    @media (min-width: 50rem) {
+        .theme-select-wrapper,
+        .social-icons {
+            display: flex !important;
+        }
+    }
+
     @media (max-width: 50rem) {
         .header {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 0.5rem;
+            display: flex !important;
+            justify-content: space-between !important;
+            padding: 0 0.5rem !important;
         }
         .middle-group {
-            display: none;
+            display: none !important;
         }
         .search-container {
-            min-width: auto;
-            flex: 0;
+            min-width: auto !important;
+            flex: 1 !important;
+            display: flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+        }
+        :global(.search-container button),
+        :global(.search-container starlight-search) {
+            display: flex !important;
         }
         .right-group {
-            gap: 0.5rem;
-        }
-        .social-icons {
-            display: none;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+            display: flex !important;
         }
     }
 

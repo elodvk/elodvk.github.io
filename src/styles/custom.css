@@ -265,6 +265,17 @@ div {
 	margin-top: 0 !important;
 }
 
+/* Hide sidebar on splash pages */
+[data-template="splash"] .sidebar-pane,
+[data-template="splash"] aside#starlight__sidebar {
+	display: none !important;
+}
+
+[data-template="splash"] .main-frame {
+	width: 100% !important;
+}
+
+
 /* Globally hide content-panels that only contain an empty title */
 .content-panel:has(h1#_top:empty) {
 	display: none !important;
@@ -309,9 +320,9 @@ header.header {
 /* About Page Specific Styles */
 .about-hero-container {
 	width: 100%;
-	max-width: 850px;
-	margin: 4rem auto;
-	padding: 0 1rem;
+	max-width: clamp(320px, 95vw, 900px);
+	margin: clamp(2rem, 8vh, 5rem) auto;
+	padding: 0 clamp(0.5rem, 3vw, 1.5rem);
 	z-index: 10;
 	position: relative;
 }
