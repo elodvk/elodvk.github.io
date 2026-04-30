@@ -42,7 +42,7 @@ const isDocs = pathname.includes('/active_directory') || (pathname !== '/' && !i
 		<div class="theme-select-wrapper">
 			<ThemeSelect />
 		</div>
-        <MobileMenuToggle />
+        {Astro.locals.starlightRoute.entry.data.template !== 'splash' && <MobileMenuToggle />}
 	</div>
 </div>
 
