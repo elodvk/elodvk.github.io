@@ -1072,12 +1072,21 @@ body, .md-typeset {
 }
 
 @media (max-width: 480px) {
+  .ps-hero-title {
+    font-size: 1.8rem !important;
+  }
+
   .ps-hero-tagline {
     font-size: 0.9rem;
   }
 
-  .ps-cert-grid {
+  .ps-stats {
     grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .ps-cert-grid {
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 
@@ -1136,7 +1145,7 @@ html {
  * -------------------------------------------------------------------------- */
 .ps-blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
   margin-top: 1.5rem;
 }
