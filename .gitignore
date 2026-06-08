@@ -1,0 +1,14 @@
+# Ignore built site directory
+site/
+
+# Ignore python cache
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+.venv/
+venv/
+env/
+
+# Ignore cache directories
+.cache/
