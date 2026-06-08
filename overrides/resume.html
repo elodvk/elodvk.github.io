@@ -1,0 +1,191 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="ps-resume-wrapper">
+  <!-- Terminal Header -->
+  <div class="ps-resume-terminal ps-reveal-scale">
+    <div class="ps-terminal-header">
+      <div class="ps-terminal-buttons">
+        <span class="ps-term-btn ps-term-close"></span>
+        <span class="ps-term-btn ps-term-min"></span>
+        <span class="ps-term-btn ps-term-max"></span>
+      </div>
+      <div class="ps-terminal-header-title">root@purplesec:~</div>
+    </div>
+    <div class="ps-terminal-window">
+      <div class="ps-terminal-line">
+        <span class="ps-prompt-user">root</span><span class="ps-prompt-at">@</span><span class="ps-prompt-host">purplesec</span>:<span class="ps-prompt-path">~</span>$ <span style="color: var(--md-code-fg-color);">cat resume.json | jq</span>
+      </div>
+      <div class="ps-terminal-output" style="color: var(--md-default-fg-color--light); padding-top: 1rem;">
+        {<br>
+        &nbsp;&nbsp;<span style="color: var(--ps-accent);">"name"</span>: <span style="color: var(--ps-neon-green);">"Bilash J. Shahi"</span>,<br>
+        &nbsp;&nbsp;<span style="color: var(--ps-accent);">"role"</span>: <span style="color: var(--ps-neon-green);">"Senior Cybersecurity Engineer"</span>,<br>
+        &nbsp;&nbsp;<span style="color: var(--ps-accent);">"status"</span>: <span style="color: var(--ps-neon-green);">"Active"</span>,<br>
+        &nbsp;&nbsp;<span style="color: var(--ps-accent);">"location"</span>: <span style="color: var(--ps-neon-green);">"Greater Bengaluru Area"</span><br>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile summary -->
+  <div class="ps-resume-summary ps-reveal" style="margin-top: 3rem; margin-bottom: 3rem; text-align: center;">
+    <div class="ps-glitch-wrap" data-text="PROFILE" style="font-size: 2.5rem; font-weight: 800; color: var(--ps-accent); margin-bottom: 1rem;">PROFILE</div>
+    <p style="font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto; color: var(--md-default-fg-color--light);">
+      I am a dedicated Cybersecurity Engineer with a deep passion for offensive security. 
+      I firmly believe that understanding exactly how an attack works is the key to becoming an elite defender. 
+      Combining extensive experience in cloud infrastructure with a relentless drive to master Red Team tactics, 
+      I strive to be an invaluable, defense-first asset to any forward-thinking cybersecurity team.
+    </p>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="ps-resume-grid">
+    
+    <!-- Left Column: Timeline -->
+    <div class="ps-resume-timeline-col ps-reveal-left">
+      <h2 style="color: var(--ps-accent); display: flex; align-items: center; gap: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Experience
+      </h2>
+      
+      <div class="ps-timeline">
+        <!-- Convera -->
+        <div class="ps-timeline-item">
+          <div class="ps-timeline-dot"></div>
+          <div class="ps-timeline-content">
+            <h3>Senior Cybersecurity Engineer</h3>
+            <h4>Convera</h4>
+            <span class="ps-timeline-date">March 2024 — Present</span>
+            <p>Focusing on enterprise defense, Identity Protection, SIEM orchestration (Sumo Logic), endpoint security (Crowdstrike), and proactive threat mitigation.</p>
+          </div>
+        </div>
+
+        <!-- LTIMindtree -->
+        <div class="ps-timeline-item">
+          <div class="ps-timeline-dot"></div>
+          <div class="ps-timeline-content">
+            <h3>Specialist - Cloud &amp; Infra Management</h3>
+            <h4>LTIMindtree</h4>
+            <span class="ps-timeline-date">July 2021 — March 2024</span>
+            <p>Led a 20+ member team managing sprawling Azure IaaS architectures, PKI, complex server migrations, and automated security patch management via PowerShell.</p>
+          </div>
+        </div>
+
+        <!-- Mindtree -->
+        <div class="ps-timeline-item">
+          <div class="ps-timeline-dot"></div>
+          <div class="ps-timeline-content">
+            <h3>Senior Engineer</h3>
+            <h4>Mindtree</h4>
+            <span class="ps-timeline-date">September 2019 — July 2021</span>
+            <p>Managed critical infrastructure services and drove operational efficiency.</p>
+          </div>
+        </div>
+
+        <!-- Unisys -->
+        <div class="ps-timeline-item">
+          <div class="ps-timeline-dot"></div>
+          <div class="ps-timeline-content">
+            <h3>O365 Administrator</h3>
+            <h4>Unisys India</h4>
+            <span class="ps-timeline-date">August 2016 — August 2019</span>
+            <p>Solved complex issues related to O365, Azure AD, Exchange Hybrid, SharePoint Online, and Power BI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Skills & Certs -->
+    <div class="ps-resume-skills-col ps-reveal-right">
+      <h2 style="color: var(--ps-accent); display: flex; align-items: center; gap: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+        Top Skills
+      </h2>
+      
+      <div class="ps-skill-list">
+        <div class="ps-skill">
+          <div class="ps-skill-header">
+            <span>Azure IaaS &amp; Cloud Infra</span>
+            <span>95%</span>
+          </div>
+          <div class="ps-skill-bar-bg"><div class="ps-skill-bar-fill" style="width: 95%;"></div></div>
+        </div>
+        
+        <div class="ps-skill">
+          <div class="ps-skill-header">
+            <span>Active Directory Security</span>
+            <span>90%</span>
+          </div>
+          <div class="ps-skill-bar-bg"><div class="ps-skill-bar-fill" style="width: 90%;"></div></div>
+        </div>
+
+        <div class="ps-skill">
+          <div class="ps-skill-header">
+            <span>Crowdstrike / Sumo Logic (SIEM)</span>
+            <span>90%</span>
+          </div>
+          <div class="ps-skill-bar-bg"><div class="ps-skill-bar-fill" style="width: 90%;"></div></div>
+        </div>
+
+        <div class="ps-skill">
+          <div class="ps-skill-header">
+            <span>PowerShell Automation</span>
+            <span>85%</span>
+          </div>
+          <div class="ps-skill-bar-bg"><div class="ps-skill-bar-fill" style="width: 85%;"></div></div>
+        </div>
+
+        <div class="ps-skill">
+          <div class="ps-skill-header">
+            <span>Offensive Security / Pentesting</span>
+            <span>80%</span>
+          </div>
+          <div class="ps-skill-bar-bg"><div class="ps-skill-bar-fill" style="width: 80%;"></div></div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--ps-accent); display: flex; align-items: center; gap: 0.5rem; margin-top: 3rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Certifications
+      </h2>
+      
+      <div class="ps-resume-certs">
+        <div class="ps-cert-badge">
+          <span class="ps-cert-icon">🏆</span>
+          <span class="ps-cert-title">PNPT</span>
+        </div>
+        <div class="ps-cert-badge">
+          <span class="ps-cert-icon">🚩</span>
+          <span class="ps-cert-title">HTB: Dante</span>
+        </div>
+        <div class="ps-cert-badge">
+          <span class="ps-cert-icon">☁️</span>
+          <span class="ps-cert-title">Azure Fundamentals</span>
+        </div>
+        <div class="ps-cert-badge ps-cert-progress">
+          <span class="ps-cert-icon">🔄</span>
+          <span class="ps-cert-title">OSCP (In Progress)</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Contact Footer -->
+  <div class="ps-resume-contact ps-reveal" style="margin-top: 4rem; padding: 2rem; background: rgba(0,0,0,0.2); border: 1px solid var(--ps-card-border); border-radius: 8px; text-align: center;">
+    <h3 style="margin-top: 0; color: var(--ps-accent);">Initialize Handshake</h3>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+      <a href="https://www.linkedin.com/in/bilash-j-shahi" target="_blank" class="md-button md-button--primary">
+        LinkedIn
+      </a>
+      <a href="mailto:bilashshahi@gmail.com" class="md-button">
+        bilashshahi@gmail.com
+      </a>
+      <a href="tel:+917411250223" class="md-button">
+        +91 7411250223
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

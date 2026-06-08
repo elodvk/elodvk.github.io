@@ -68,10 +68,7 @@ nav = [
     { "PNPT" = "certifications/pnpt/index.md" },
     { "CISSP" = "certifications/cissp/index.md" },
   ]},
-  { "Blog" = [
-    { "Overview" = "blog/index.md" },
-    { "How I Conquered the PNPT" = "blog/2025-10-22-pnpt-review.md" },
-  ]},
+  { "Blog" = "blog/index.md" },
   { "About" = "about/index.md" },
 ]
 
@@ -83,7 +80,7 @@ nav = [
 #
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
-#extra_css = ["stylesheets/extra.css"]
+extra_css = ["stylesheets/extra.css", "stylesheets/resume.css"]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -91,7 +88,7 @@ nav = [
 # The path provided should be relative to the "docs_dir".
 #
 # Read more: https://zensical.org/docs/customization/#additional-javascript
-#extra_javascript = ["javascripts/extra.js"]
+extra_javascript = ["javascripts/extra.js"]
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
@@ -109,7 +106,7 @@ nav = [
 # Read more:
 # - https://zensical.org/docs/customization/#extending-the-theme
 #
-#custom_dir = "overrides"
+custom_dir = "overrides"
 
 # With the "favicon" option you can set your own image to use as the icon
 # browsers will use in the browser title bar or tab bar. The path provided
@@ -190,6 +187,7 @@ logo = "lucide/shield"
 # ----------------------------------------------------------------------------
 [project.theme.font]
 text = "Roboto"
+code = "JetBrains Mono"
 
 # ----------------------------------------------------------------------------
 # In the "palette" subsection you can configure options for the color scheme.
@@ -201,18 +199,9 @@ text = "Roboto"
 # - https://zensical.org/docs/setup/colors/
 # ----------------------------------------------------------------------------
 [[project.theme.palette]]
-scheme = "default"
-primary = "deep purple"
-accent = "purple"
-toggle.icon = "lucide/moon"
-toggle.name = "Switch to dark mode"
-
-[[project.theme.palette]]
 scheme = "slate"
 primary = "deep purple"
 accent = "purple"
-toggle.icon = "lucide/sun"
-toggle.name = "Switch to light mode"
 
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.
@@ -240,6 +229,9 @@ name = "LinkedIn"
 # Read more:
 # - https://zensical.org/docs/setup/extensions/
 # ----------------------------------------------------------------------------
+[project.plugins.macros]
+module_name = "main"
+
 [project.markdown_extensions.abbr]
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.attr_list]
@@ -275,3 +267,4 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
+[project.plugins.blog]

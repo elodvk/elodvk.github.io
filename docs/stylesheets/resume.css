@@ -1,0 +1,152 @@
+/* --------------------------------------------------------------------------
+ * Custom Resume Template Styles
+ * -------------------------------------------------------------------------- */
+.ps-resume-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.ps-resume-terminal {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(10, 14, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ps-card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4), var(--ps-glow-sm);
+  font-family: var(--md-code-font-family), "JetBrains Mono", monospace;
+}
+
+.ps-resume-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .ps-resume-grid {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+/* Timeline */
+.ps-timeline {
+  position: relative;
+  margin-top: 2rem;
+  padding-left: 2rem;
+}
+.ps-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ps-accent), transparent);
+}
+
+.ps-timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+.ps-timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ps-neon-green);
+  box-shadow: 0 0 10px var(--ps-neon-green);
+  z-index: 2;
+}
+
+.ps-timeline-content h3 {
+  margin: 0;
+  color: var(--md-default-fg-color);
+  font-size: 1.25rem;
+}
+.ps-timeline-content h4 {
+  margin: 0.2rem 0 0.5rem;
+  color: var(--ps-accent);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.ps-timeline-date {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+  font-family: var(--md-code-font-family);
+}
+
+/* Skill Bars */
+.ps-skill-list {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.ps-skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.ps-skill-header span:last-child {
+  color: var(--ps-neon-green);
+  font-family: var(--md-code-font-family);
+}
+.ps-skill-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ps-skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ps-accent), var(--ps-neon-green));
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+
+/* Cert Badges */
+.ps-resume-certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.ps-cert-badge {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--ps-card-border);
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.ps-cert-badge:hover {
+  border-color: var(--ps-accent);
+  box-shadow: var(--ps-glow-sm);
+  transform: translateY(-2px);
+}
+.ps-cert-badge.ps-cert-progress {
+  border-style: dashed;
+  opacity: 0.7;
+}
+.ps-cert-icon {
+  font-size: 1.5rem;
+}
+.ps-cert-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
