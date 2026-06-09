@@ -1100,8 +1100,8 @@ body, .md-typeset {
  * -------------------------------------------------------------------------- */
 
 /* Hide the page title since the hero handles it */
-.ps-home .md-typeset h1:first-child {
-  display: none;
+.ps-home h1#__skip {
+  display: none !important;
 }
 
 /* Remove default content padding to allow full-bleed sections */

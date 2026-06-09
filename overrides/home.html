@@ -21,30 +21,18 @@
           <span class="ps-prompt-user">root</span><span class="ps-prompt-at">@</span><span class="ps-prompt-host">purplesec</span>:<span class="ps-prompt-path">~</span>$ <span id="ps-hero-cmd"></span><span class="ps-cursor"></span>
         </div>
         <div class="ps-terminal-output" id="ps-hero-output" style="opacity: 0; transition: opacity 0.5s ease;">
-          <div style="text-align: left; margin-bottom: 3rem;">
-            <span class="ps-term-info">[*]</span> Initializing PurpleSec framework v2.0...<br>
+          <div style="text-align: left; margin-bottom: 2rem;">
+            <span class="ps-term-info">[*]</span> Initializing PurpleSec framework v2.0... OK<br>
             <span class="ps-term-success">[+]</span> Loading knowledge base... OK<br>
             <span class="ps-term-success">[+]</span> Bootstrapping offensive security modules... OK<br>
             <br>
-            <span class="ps-term-warning">[!]</span> FETCHING CORE DIRECTIVE: <span style="color: var(--ps-accent);">./vision.md</span><br>
-            <span style="color: rgba(255, 255, 255, 0.75); display: block; padding-left: 1.25rem; margin-top: 0.75rem; margin-bottom: 1.25rem; border-left: 2px solid var(--ps-accent);">
-              "To demystify offensive security and bridge the gap between theory and practical execution.<br>
-              Empowering the next generation of ethical hackers through detailed walkthroughs, deep dives, and raw experience."
-            </span>
-            <span class="ps-term-info">[*]</span> What to expect:<br>
-            <span style="color: var(--ps-neon-green); padding-left: 1rem;">├──</span> <span style="color: #fff;">Detailed Hack The Box machine writeups (Easy to Insane)</span><br>
-            <span style="color: var(--ps-neon-green); padding-left: 1rem;">├──</span> <span style="color: #fff;">Comprehensive AD attack paths & exploit techniques</span><br>
-            <span style="color: var(--ps-neon-green); padding-left: 1rem;">└──</span> <span style="color: #fff;">Exam prep strategies for PNPT, OSCP, and CPTS</span><br>
+            <span class="ps-term-warning">[!]</span> FETCHING CORE DIRECTIVE: <span style="color: var(--ps-accent);">"Demystify offensive security and bridge the gap between theory and execution."</span><br>
             <br>
-            <span class="ps-term-warning">[!]</span> Establishing secure connection... Done.<br>
-            <br>
-            <span class="ps-term-success" style="font-weight: 700; font-size: 1.05rem;">System ready. Welcome to PurpleSec, Bilash J. Shahi.</span>
+            <span class="ps-term-success" style="font-weight: 700; font-size: 1.05rem;">System ready. Welcome to PurpleSec.</span>
           </div>
           
           <div style="text-align: center;">
-            <div class="ps-hero-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
-            
-            <div class="ps-hero-actions">
+            <div class="ps-hero-actions" style="margin-top: 1rem;">
               <a href="writeups/" class="ps-btn ps-btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>&nbsp;Explore Writeups</a>
               <a href="certifications/" class="ps-btn ps-btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>&nbsp;View Certifications</a>
             </div>
@@ -57,7 +45,7 @@
 
   <style>
     /* Ensure the default injected title from markdown is hidden completely */
-    .md-content__inner > h1:first-child { display: none !important; }
+    .ps-home h1#__skip { display: none !important; }
   </style>
 
   <!-- The markdown content (stats, cards, etc.) from index.md is rendered here -->

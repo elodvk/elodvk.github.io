@@ -14,49 +14,66 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!canvas) return;
 
     var ctx = canvas.getContext("2d");
+    var fontSize = 16;
+    var columns = 0;
+    var drops = [];
+
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      columns = Math.floor(canvas.width / fontSize) + 1;
+      
+      // Preserve existing drops to prevent flashing on resize
+      while (drops.length < columns) {
+        drops.push(Math.floor(Math.random() * -100)); // Start off-screen
+      }
     }
     resize();
     window.addEventListener("resize", resize);
 
-    var chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン><{}[]|/\\=+-_:;!@#$%^&*ABCDEF";
+    // Authentic mix of Katakana, Latin, and Numerals
+    var chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ=+-*/";
     var charArr = chars.split("");
-    var fontSize = 13;
-    var columns = Math.floor(canvas.width / fontSize);
-    var drops = [];
-
-    for (var i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100;
-    }
 
     function draw() {
-      ctx.fillStyle = "rgba(5, 8, 13, 0.06)";
+      // Semi-transparent deep dark purple/black to create the fading trail
+      ctx.fillStyle = "rgba(10, 8, 18, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "rgba(187, 134, 252, 0.35)";
-      ctx.font = fontSize + "px JetBrains Mono, monospace";
+      ctx.font = fontSize + "px 'JetBrains Mono', monospace";
+      ctx.textAlign = "center";
 
-      for (var i = 0; i < drops.length; i++) {
+      for (var i = 0; i < columns; i++) {
         var text = charArr[Math.floor(Math.random() * charArr.length)];
 
-        // Randomly make some chars green for variety
-        if (Math.random() > 0.92) {
-          ctx.fillStyle = "rgba(0, 255, 102, 0.5)";
+        var rand = Math.random();
+        if (rand > 0.98) {
+          // Occasional bright white 'head' or glitch character
+          ctx.fillStyle = "#ffffff";
+        } else if (rand > 0.88) {
+          // Hacker neon green highlights
+          ctx.fillStyle = "#00ff66";
         } else {
-          ctx.fillStyle = "rgba(187, 134, 252, 0.25)";
+          // Primary base color is a vibrant PurpleSec purple
+          ctx.fillStyle = "#bb86fc"; 
         }
 
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        var x = i * fontSize + (fontSize/2);
+        var y = drops[i] * fontSize;
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        ctx.fillText(text, x, y);
+
+        // Reset drop to the top randomly after crossing the screen
+        if (y > canvas.height && Math.random() > 0.95) {
           drops[i] = 0;
         }
-        drops[i] += 0.4 + Math.random() * 0.3;
+
+        // Discrete increment for the authentic blocky Matrix look
+        drops[i]++;
       }
     }
 
+    // 50ms interval gives a perfect pace
     setInterval(draw, 50);
   }
 
@@ -203,6 +220,38 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* --------------------------------------------------------------------------
+   * Scroll Indicator Click Handler
+   * Prevent instant navigation bug and smoothly scroll to next section
+   * -------------------------------------------------------------------------- */
+  function initScrollIndicator() {
+    var indicator = document.querySelector(".ps-scroll-indicator");
+    if (indicator) {
+      // Remove any existing listeners if this runs multiple times
+      var newIndicator = indicator.cloneNode(true);
+      indicator.parentNode.replaceChild(newIndicator, indicator);
+      
+      newIndicator.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        var target = document.getElementById("ps-stats-section");
+        if (target) {
+          // Adjust scroll position for fixed header
+          var headerOffset = 60;
+          var elementPosition = target.getBoundingClientRect().top;
+          var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      });
+    }
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -210,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initMatrixRain();
     initHeroTerminal();
     initTypingEffect();
+    initScrollIndicator();
   }
 
   // Global scripts (run on all pages including About/Resume)
