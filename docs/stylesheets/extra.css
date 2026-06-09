@@ -1345,6 +1345,14 @@ body, .md-typeset {
   .ps-dashboard-terminal-content {
     padding: 1rem;
   }
+
+  .ps-hero-content {
+    padding: 2rem 0.75rem 3rem;
+  }
+
+  .ps-terminal-window {
+    padding: 1rem;
+  }
 }
 
 /* --------------------------------------------------------------------------
