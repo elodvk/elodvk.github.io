@@ -7,6 +7,7 @@ hide:
   - toc
   - path
   - title
+  - footer
 ---
 
 
@@ -86,60 +87,35 @@ hide:
 
 </div>
 
-<!-- ===== FEATURED POST ===== -->
+<!-- ===== TERMINAL DASHBOARD (BLOG & QUOTES) ===== -->
 
-<div class="ps-reveal" markdown>
-
-## Latest from the Blog { .ps-section-title }
-
-<div class="ps-section-divider"></div>
-
+<div class="ps-terminal-dashboard ps-reveal">
+<!-- Left Terminal: Blog Feed -->
+<div class="ps-dashboard-terminal">
+<div class="ps-card-terminal-header">
+<span class="ps-card-term-btn"></span>
+<span class="ps-card-term-btn"></span>
+<span class="ps-card-term-btn"></span>
 </div>
-
+<div class="ps-dashboard-terminal-content">
+<div class="ps-term-cmd">[root@purplesec ~]# tail -f /var/log/latest.log</div>
 {% set posts = get_blog_posts() %}
 {% if posts %}
-<div class="ps-blog-grid">
-{% for post in posts[:3] %}
-<a href="blog/{{ post.url }}" class="ps-blog-card ps-reveal ps-stagger-{{ loop.index }}">
-<div class="ps-card-terminal-header">
-  <span class="ps-card-term-btn"></span>
-  <span class="ps-card-term-btn"></span>
-  <span class="ps-card-term-btn"></span>
-</div>
-<div class="ps-blog-card-content">
-<div class="ps-blog-card-title">{{ post.title }}</div>
-<div class="ps-blog-card-summary">{{ post.summary }}</div>
-<div class="ps-blog-card-footer">
-<div class="ps-blog-card-author">
-{% set author = post.authors[0] if post.authors else none %}
-{% if author %}
-{% if author.picture %}
-<img src="{{ author.picture }}" alt="{{ author.name | default('Author') }}">
-{% else %}
-<div class="ps-blog-card-author-initial">{{ (author.name | default('A'))[0] }}</div>
-{% endif %}
-<div class="ps-blog-card-author-info">
-<span class="ps-blog-card-author-name">{{ author.name | default('Author') }}</span>
-<span class="ps-blog-card-date">{{ post.date_str }}</span>
-</div>
-{% else %}
-<div class="ps-blog-card-author-info">
-<span class="ps-blog-card-date">{{ post.date_str }}</span>
-</div>
-{% endif %}
-</div>
-<div class="ps-blog-card-read-more">
-Read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-</div>
-</div>
-</div>
+<div class="ps-term-feed">
+{% for post in posts %}
+<a href="blog/{{ post.url }}" class="ps-term-feed-item">
+<span class="ps-term-feed-date">[{{ post.date.strftime('%b %d, %Y') }}]</span>
+<span class="ps-term-feed-title">{{ post.title }}</span>
 </a>
 {% endfor %}
 </div>
-<div style="text-align: center; margin-top: 2rem;" class="ps-reveal">
-<a href="blog/" class="md-button md-button--primary">View All Posts</a>
-</div>
 {% endif %}
+<div class="ps-term-cursor">_</div>
+</div>
+</div>
+
+
+</div>
 
 <!-- ===== CERTIFICATION PROGRESS ===== -->
 
@@ -213,18 +189,61 @@ Read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" 
 
 </div>
 
-<!-- Attack matrix removed -->
-
-<!-- ===== QUOTE SECTION ===== -->
-
+<!-- ===== QUOTES SECTION ===== -->
+<div class="ps-terminal-dashboard ps-reveal">
+<!-- Right Terminal: Quote Carousel -->
+<div class="ps-dashboard-terminal">
+<div class="ps-card-terminal-header">
+<span class="ps-card-term-btn"></span>
+<span class="ps-card-term-btn"></span>
+<span class="ps-card-term-btn"></span>
 </div>
-
-<div class="ps-quote ps-reveal-scale" markdown>
+<div class="ps-dashboard-terminal-content ps-quote-terminal">
+<div class="ps-quote ps-reveal-scale" id="ps-quote-carousel">
+<div class="ps-quote-slides">
+<div class="ps-quote-slide active" markdown>
 
 > *"The quieter you become, the more you are able to hear."*
 
 <div class="ps-quote-attr">— BackTrack Linux</div>
 
 </div>
+<div class="ps-quote-slide" markdown>
+
+> *"Given enough eyeballs, all bugs are shallow."*
+
+<div class="ps-quote-attr">— Linus Torvalds</div>
+
+</div>
+<div class="ps-quote-slide" markdown>
+
+> *"Amateurs hack systems, professionals hack people."*
+
+<div class="ps-quote-attr">— Bruce Schneier</div>
+
+</div>
+</div>
+
+<div class="ps-quote-controls">
+<button class="ps-quote-btn" id="ps-quote-prev" aria-label="Previous quote">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+</button>
+<div class="ps-quote-indicators" id="ps-quote-dots">
+<span class="ps-quote-dot active" data-index="0"></span>
+<span class="ps-quote-dot" data-index="1"></span>
+<span class="ps-quote-dot" data-index="2"></span>
+</div>
+<button class="ps-quote-btn" id="ps-quote-next" aria-label="Next quote">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Attack matrix removed -->
+
+
 
 </div>

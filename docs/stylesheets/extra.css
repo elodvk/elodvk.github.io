@@ -41,6 +41,7 @@
 
   --ps-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --ps-transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 /* --------------------------------------------------------------------------
@@ -518,7 +519,7 @@ body, .md-typeset {
   gap: 1.25rem;
   padding: 2.5rem 0;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 100%;
 }
 
 .ps-stat-card {
@@ -899,7 +900,140 @@ body, .md-typeset {
 }
 
 /* --------------------------------------------------------------------------
- * Philosophy / Quote
+ * Terminal Dashboard (Blog & Quotes)
+ * -------------------------------------------------------------------------- */
+.ps-terminal-dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.ps-dashboard-terminal {
+  background: rgba(10, 14, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(187, 134, 252, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-dashboard-terminal-content {
+  padding: 1.5rem 2rem;
+  font-family: "JetBrains Mono", monospace;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Terminal Feed Styles */
+.ps-term-cmd {
+  color: var(--ps-accent);
+  margin-bottom: 1.25rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.ps-term-feed {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.ps-term-feed::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ps-term-feed::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.ps-term-feed::-webkit-scrollbar-thumb {
+  background: rgba(187, 134, 252, 0.3);
+  border-radius: 3px;
+}
+
+.ps-term-feed::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 134, 252, 0.6);
+}
+
+.ps-term-feed-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.ps-term-feed-item:last-child {
+  border-bottom: none !important;
+}
+
+.ps-term-feed-item:hover {
+  background: rgba(187, 134, 252, 0.03);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.ps-term-feed-date {
+  color: var(--ps-green);
+  min-width: 130px;
+  font-weight: 500;
+  text-decoration: none !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ps-term-feed-title {
+  color: #e0e0e0;
+  line-height: 1.4;
+  text-decoration: none !important;
+}
+
+.ps-term-feed-item:hover .ps-term-feed-title {
+  color: #ffffff;
+  text-decoration: none !important;
+}
+
+.ps-term-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--ps-green);
+  animation: ps-blink 1s step-end infinite;
+  margin-top: 1rem;
+}
+
+/* Adjusting Quote inside Terminal */
+.ps-quote-terminal .ps-quote {
+  padding: 1rem 0;
+  margin: 0;
+  background: transparent;
+  border-top: none;
+  box-shadow: none;
+}
+.ps-quote-terminal .ps-quote::before {
+  display: none;
+}
+.ps-quote-terminal .ps-quote blockquote {
+  font-size: 1.2rem;
+  color: var(--ps-green);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+ * Philosophy / Quote (Legacy overrides)
  * -------------------------------------------------------------------------- */
 .ps-quote {
   position: relative;
@@ -946,6 +1080,87 @@ body, .md-typeset {
   letter-spacing: 0.05em;
   position: relative;
   z-index: 1;
+}
+
+.ps-quote-slides {
+  position: relative;
+  min-height: 120px;
+}
+
+.ps-quote-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+  transform: translateY(10px);
+}
+
+.ps-quote-slide.active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  transform: translateY(0);
+}
+
+.ps-quote-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.ps-quote-btn {
+  background: rgba(187, 134, 252, 0.1);
+  border: 1px solid rgba(187, 134, 252, 0.2);
+  color: var(--ps-accent);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ps-quote-btn:hover {
+  background: rgba(187, 134, 252, 0.2);
+  border-color: rgba(187, 134, 252, 0.4);
+  transform: scale(1.1);
+}
+
+.ps-quote-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ps-quote-indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ps-quote-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ps-quote-dot.active {
+  background: var(--ps-accent);
+  transform: scale(1.3);
+}
+
+.ps-quote-dot:hover {
+  background: rgba(187, 134, 252, 0.6);
 }
 
 /* --------------------------------------------------------------------------
@@ -1113,7 +1328,7 @@ body, .md-typeset {
 
 /* Re-add padding for content between full-bleed sections */
 .ps-home .ps-content-wrap {
-  max-width: 960px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -1267,3 +1482,25 @@ html {
 .ps-blog-card:hover .ps-blog-card-read-more {
   gap: 0.6rem;
 }
+
+/* ============================================================================
+ * TOC, Sidebar, & Scrollbar Refinements
+ * ============================================================================ */
+
+/* Global Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ps-dark-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ps-purple-700);
+  border-radius: 4px;
+  border: 1px solid var(--ps-dark-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ps-accent);
+}
+

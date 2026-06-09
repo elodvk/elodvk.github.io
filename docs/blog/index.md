@@ -73,14 +73,27 @@ Welcome to my cybersecurity blog where I share deep dives, exam reviews, and off
   {% set _ = archive[post.year].append(post) %}
 {% endfor %}
 
-{% for year, year_posts in archive.items() | sort(reverse=True) %}
-### {{ year }}
-<ul style="list-style: none; padding-left: 0;">
-{% for post in year_posts %}
-  <li style="margin-bottom: 0.5rem;">
-    <span style="display: inline-block; width: 120px; color: var(--md-default-fg-color--light);">{{ post.date_str }}</span>
-    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
-  </li>
-{% endfor %}
-</ul>
-{% endfor %}
+<div class="ps-terminal-dashboard ps-reveal">
+  <div class="ps-dashboard-terminal">
+    <div class="ps-card-terminal-header">
+      <span class="ps-card-term-btn"></span>
+      <span class="ps-card-term-btn"></span>
+      <span class="ps-card-term-btn"></span>
+    </div>
+    <div class="ps-dashboard-terminal-content">
+      <div class="ps-term-cmd">[root@purplesec ~]# ls -l /var/log/archive/</div>
+      <div class="ps-term-feed" style="max-height: none; overflow-y: visible;">
+      {% for year, year_posts in archive.items() | sort(reverse=True) %}
+        <div style="color: var(--ps-accent); font-weight: bold; margin: 1.5rem 0 0.5rem; font-family: 'JetBrains Mono', monospace;">drwxr-xr-x {{ year }}</div>
+        {% for post in year_posts %}
+          <a href="{{ post.url }}" class="ps-term-feed-item" style="padding-left: 1rem;">
+            <span class="ps-term-feed-date">[{{ post.date.strftime('%b %d') }}]</span>
+            <span class="ps-term-feed-title">{{ post.title }}</span>
+          </a>
+        {% endfor %}
+      {% endfor %}
+      </div>
+      <div class="ps-term-cursor" style="margin-top: 1.5rem;">_</div>
+    </div>
+  </div>
+</div>

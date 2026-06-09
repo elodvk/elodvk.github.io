@@ -252,6 +252,74 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* --------------------------------------------------------------------------
+   * Quote Carousel
+   * Handles the rotating quote logic
+   * -------------------------------------------------------------------------- */
+  function initQuoteCarousel() {
+    var carousel = document.getElementById("ps-quote-carousel");
+    if (!carousel) return;
+
+    var slides = carousel.querySelectorAll(".ps-quote-slide");
+    var dots = carousel.querySelectorAll(".ps-quote-dot");
+    var prevBtn = document.getElementById("ps-quote-prev");
+    var nextBtn = document.getElementById("ps-quote-next");
+    var currentIndex = 0;
+    var intervalId;
+
+    if (slides.length === 0) return;
+
+    function showSlide(index) {
+      slides.forEach(function(s) { s.classList.remove("active"); });
+      dots.forEach(function(d) { d.classList.remove("active"); });
+
+      slides[index].classList.add("active");
+      if (dots[index]) dots[index].classList.add("active");
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      var next = (currentIndex + 1) % slides.length;
+      showSlide(next);
+    }
+
+    function prevSlide() {
+      var prev = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    function resetTimer() {
+      clearInterval(intervalId);
+      intervalId = setInterval(nextSlide, 8000); // rotate every 8s
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function() {
+        prevSlide();
+        resetTimer();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function() {
+        nextSlide();
+        resetTimer();
+      });
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener("click", function() {
+        var idx = parseInt(this.getAttribute("data-index"));
+        showSlide(idx);
+        resetTimer();
+      });
+    });
+
+    // Initial setup
+    showSlide(0);
+    resetTimer();
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -260,6 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initHeroTerminal();
     initTypingEffect();
     initScrollIndicator();
+    initQuoteCarousel();
   }
 
   // Global scripts (run on all pages including About/Resume)

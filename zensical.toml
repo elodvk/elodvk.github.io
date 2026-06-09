@@ -208,7 +208,7 @@ accent = "purple"
 # ----------------------------------------------------------------------------
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/bilash"
+link = "https://github.com/elodvk"
 name = "GitHub"
 
 [[project.extra.social]]
