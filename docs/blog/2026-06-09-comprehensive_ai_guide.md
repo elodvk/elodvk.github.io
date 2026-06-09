@@ -12,6 +12,7 @@ tags:
   - Large Language Models
   - RAG
   - Local AI
+description: "A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks."
 ---
 
 The landscape of Artificial Intelligence has shifted rapidly from academic research to practical, everyday applications. If you are trying to navigate the current AI ecosystem, the sheer volume of technical terminology can be overwhelming. 
