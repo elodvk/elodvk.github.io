@@ -297,7 +297,7 @@ blog_dir = "blog"
 
 [project.extra.analytics]
 provider = "google"
-property = "G-XXXXXXXXXX"
+property = "G-5S46532J99"
 
 [project.extra.consent]
 title = "Cookie consent"
