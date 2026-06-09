@@ -3,7 +3,7 @@
  * Matrix rain, typing effect, scroll reveals, animated counters
  * ============================================================================ */
 
-document.addEventListener("DOMContentLoaded", function () {
+function initPurpleSecJS() {
 
   /* --------------------------------------------------------------------------
    * Matrix Rain Canvas
@@ -337,4 +337,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);
-});
+}
+
+// Support for MkDocs Material Instant Navigation
+if (typeof document$ !== "undefined") {
+  document$.subscribe(function() {
+    initPurpleSecJS();
+  });
+} else {
+  document.addEventListener("DOMContentLoaded", function () {
+    initPurpleSecJS();
+  });
+}
