@@ -1,5 +1,5 @@
 ---
-title: "Dumping the NTDS.dit"
+title: '"Dumping the NTDS.dit"'
 sidebar_position: 1
 tags:
     - ntds

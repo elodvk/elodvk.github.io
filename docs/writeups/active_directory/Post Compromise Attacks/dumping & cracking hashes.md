@@ -1,5 +1,5 @@
 ---
-title: "Dumping & Cracking Hashes 🔐"
+title: '"Dumping & Cracking Hashes 🔐"'
 sidebar_position: 1
 ---
 

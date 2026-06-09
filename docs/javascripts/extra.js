@@ -82,27 +82,13 @@ function initPurpleSecJS() {
    * Types out a command and reveals output in the realistic terminal
    * -------------------------------------------------------------------------- */
   function initHeroTerminal() {
-    var cmdEl = document.getElementById("ps-hero-cmd");
     var outputEl = document.getElementById("ps-hero-output");
-    if (!cmdEl || !outputEl) return;
+    if (!outputEl) return;
 
-    var cmd = "./launch_purplesec.sh";
-    var i = 0;
-
-    function typeCmd() {
-      if (i < cmd.length) {
-        cmdEl.textContent += cmd.charAt(i);
-        i++;
-        setTimeout(typeCmd, 50 + Math.random() * 50);
-      } else {
-        setTimeout(function() {
-          outputEl.style.opacity = "1";
-        }, 500);
-      }
-    }
-
-    // Start typing after a short delay
-    setTimeout(typeCmd, 800);
+    // Fade in the welcome message smoothly
+    setTimeout(function() {
+      outputEl.style.opacity = "1";
+    }, 300);
   }
 
   /* --------------------------------------------------------------------------

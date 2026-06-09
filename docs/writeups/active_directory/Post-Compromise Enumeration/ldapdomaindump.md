@@ -1,5 +1,5 @@
 ---
-title: "Domain Enumeration with ldapdomaindump"
+title: '"Domain Enumeration with ldapdomaindump"'
 sidebar_position: 1
 ---
 

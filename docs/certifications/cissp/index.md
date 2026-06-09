@@ -1,7 +1,7 @@
 ---
 icon: lucide/book-open-check
-title: CISSP Preparation
-description: Study notes and resources for the Certified Information Systems Security Professional certification.
+title: 'CISSP Preparation'
+description: 'Study notes and resources for the Certified Information Systems Security Professional certification.'
 tags:
   - CISSP
   - Defensive

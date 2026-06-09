@@ -1,7 +1,7 @@
 ---
 icon: lucide/target
-title: CPTS Preparation
-description: Study notes and resources for the Hack The Box Certified Penetration Testing Specialist certification.
+title: 'CPTS Preparation'
+description: 'Study notes and resources for the Hack The Box Certified Penetration Testing Specialist certification.'
 tags:
   - CPTS
   - Offensive

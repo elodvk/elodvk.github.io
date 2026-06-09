@@ -1,5 +1,5 @@
 ---
-title: "Kerberoasting 🔥"
+title: '"Kerberoasting 🔥"'
 sidebar_position: 2
 ---
 

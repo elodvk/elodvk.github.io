@@ -1,5 +1,5 @@
 ---
-title: "Golden Ticket"
+title: '"Golden Ticket"'
 sidebar_position: 2
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Domain Enumeration with PingCastle"
+title: '"Domain Enumeration with PingCastle"'
 sidebar_position: 4
 ---
 

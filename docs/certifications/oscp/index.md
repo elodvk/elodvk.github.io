@@ -1,7 +1,7 @@
 ---
 icon: lucide/swords
-title: OSCP Preparation
-description: Study notes, resources, and practice labs for the Offensive Security Certified Professional certification.
+title: 'OSCP Preparation'
+description: 'Study notes, resources, and practice labs for the Offensive Security Certified Professional certification.'
 tags:
   - OSCP
   - Offensive

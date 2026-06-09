@@ -1,5 +1,5 @@
 ---
-title: "Credential Dumping with Mimikatz"
+title: '"Credential Dumping with Mimikatz"'
 sidebar_position: 6
 ---
 

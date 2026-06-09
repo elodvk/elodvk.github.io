@@ -1,5 +1,5 @@
 ---
-title: SMB Relay Attack
+title: 'SMB Relay Attack'
 sidebar_position: 3
 ---
 

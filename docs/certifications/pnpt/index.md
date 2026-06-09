@@ -1,7 +1,7 @@
 ---
 icon: lucide/shield-check
-title: PNPT
-description: Practical Network Penetration Tester certification notes and experience by Bilash J. Shahi.
+title: 'PNPT'
+description: 'Practical Network Penetration Tester certification notes and experience by Bilash J. Shahi.'
 tags:
   - PNPT
   - Offensive

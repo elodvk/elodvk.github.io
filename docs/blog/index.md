@@ -1,6 +1,6 @@
 ---
-title: The PurpleSec Blog
-description: Thoughts on cybersecurity, tool reviews, exam experiences, and updates on my learning journey.
+title: 'The PurpleSec Blog'
+description: 'Thoughts on cybersecurity, tool reviews, exam experiences, and updates on my learning journey.'
 hide:
   - navigation
   - toc

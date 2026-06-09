@@ -1,5 +1,5 @@
 ---
-title: IPv6 DNS Takeover via mitm6
+title: 'IPv6 DNS Takeover via mitm6'
 sidebar_position: 4
 ---
 

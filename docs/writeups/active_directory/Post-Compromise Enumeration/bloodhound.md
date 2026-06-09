@@ -1,5 +1,5 @@
 ---
-title: "Domain Enumeration with Bloodhound"
+title: '"Domain Enumeration with Bloodhound"'
 sidebar_position: 2
 ---
 

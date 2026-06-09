@@ -1,7 +1,7 @@
 ---
 icon: lucide/user
-title: About
-description: About Bilash J. Shahi — Senior Cybersecurity Engineer, PNPT, and Cloud Infrastructure Specialist.
+title: 'About'
+description: 'About Bilash J. Shahi — Senior Cybersecurity Engineer, PNPT, and Cloud Infrastructure Specialist.'
 template: resume.html
 hide:
   - toc

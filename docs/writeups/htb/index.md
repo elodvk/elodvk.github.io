@@ -1,7 +1,7 @@
 ---
 icon: lucide/monitor
-title: Hack The Box Writeups
-description: Detailed walkthroughs of Hack The Box machines.
+title: 'Hack The Box Writeups'
+description: 'Detailed walkthroughs of Hack The Box machines.'
 tags:
   - HTB
   - Writeup

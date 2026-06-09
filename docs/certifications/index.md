@@ -1,7 +1,7 @@
 ---
 icon: lucide/award
-title: Certifications
-description: Cybersecurity certification preparation notes, study guides, and resources.
+title: 'Certifications'
+description: 'Cybersecurity certification preparation notes, study guides, and resources.'
 ---
 
 # :lucide-award: Certifications

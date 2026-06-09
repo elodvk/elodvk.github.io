@@ -343,6 +343,7 @@ body, .md-typeset {
   overflow: hidden;
   text-align: left;
   box-shadow: 0 15px 35px rgba(0,0,0,0.4), var(--ps-glow-sm);
+  flex-shrink: 0;
 }
 
 .ps-terminal-header {

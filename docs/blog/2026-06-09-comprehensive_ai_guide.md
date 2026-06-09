@@ -1,5 +1,5 @@
 ---
-title: "A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local Deployment"
+title: '"A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local Deployment"'
 date: 2026-06-09
 authors:
   name: Bilash J. Shahi
@@ -12,7 +12,7 @@ tags:
   - Large Language Models
   - RAG
   - Local AI
-description: "A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks."
+description: '"A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks."'
 ---
 
 The landscape of Artificial Intelligence has shifted rapidly from academic research to practical, everyday applications. If you are trying to navigate the current AI ecosystem, the sheer volume of technical terminology can be overwhelming. 

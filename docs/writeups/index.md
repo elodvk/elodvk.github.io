@@ -1,7 +1,7 @@
 ---
 icon: lucide/book-open
-title: Writeups
-description: Security writeups, walkthroughs, and technical documentation.
+title: 'Writeups'
+description: 'Security writeups, walkthroughs, and technical documentation.'
 ---
 
 # :lucide-book-open: Writeups

@@ -1,6 +1,6 @@
 ---
-title: Pass-the-Hash (PtH) attack
-description: Pass-the-Hash (PtH) attack
+title: 'Pass-the-Hash (PtH) attack'
+description: 'Pass-the-Hash (PtH) attack'
 ---
 
 In the world of Windows network security, one of the most powerful and dangerous lateral
