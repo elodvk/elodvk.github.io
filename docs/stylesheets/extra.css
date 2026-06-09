@@ -1562,3 +1562,77 @@ html {
   background: var(--ps-accent);
 }
 
+/* ============================================================================
+ * Blog Pagination & Archive
+ * ============================================================================ */
+
+.is-hidden {
+  display: none !important;
+}
+
+#ps-load-more-btn {
+  background: rgba(187, 134, 252, 0.1);
+  border: 1px solid var(--ps-accent);
+  color: var(--ps-accent);
+  padding: 0.75rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  transition: var(--ps-transition);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#ps-load-more-btn:hover {
+  background: rgba(187, 134, 252, 0.2);
+  box-shadow: var(--ps-glow-md);
+}
+
+.ps-archive-year-header {
+  user-select: none;
+  transition: var(--ps-transition);
+}
+
+.ps-archive-year-header:hover {
+  color: #fff !important;
+}
+
+.ps-archive-toggle {
+  user-select: none;
+  color: var(--ps-dark-text);
+}
+
+/* ============================================================================
+ * Blog Tag Filtering UI
+ * ============================================================================ */
+
+.ps-tag-filter {
+  background: rgba(187, 134, 252, 0.05);
+  border: 1px solid var(--ps-card-border);
+  color: var(--ps-dark-text);
+  padding: 0.3rem 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--ps-transition);
+}
+
+.ps-tag-filter:hover {
+  background: rgba(187, 134, 252, 0.15);
+  color: #fff;
+  border-color: var(--ps-accent);
+}
+
+.ps-tag-active {
+  background: var(--ps-accent);
+  color: #000 !important;
+  border-color: var(--ps-accent);
+  box-shadow: var(--ps-glow-sm);
+}
+
+.ps-blog-card-tag {
+  background: rgba(187, 134, 252, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}

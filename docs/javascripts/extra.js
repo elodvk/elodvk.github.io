@@ -384,10 +384,123 @@ function initPurpleSecJS() {
     initQuoteCarousel();
   }
 
+  /* --------------------------------------------------------------------------
+   * Blog Pagination
+   * Handles "Load More" logic for the blog index grid
+   * -------------------------------------------------------------------------- */
+  function initBlogPagination() {
+    var loadMoreBtn = document.getElementById("ps-load-more-btn");
+    var loadMoreContainer = document.querySelector(".ps-blog-load-more-container");
+    
+    if (!loadMoreBtn) return;
+    
+    loadMoreBtn.addEventListener("click", function() {
+      // Find all currently hidden posts
+      var hiddenPosts = document.querySelectorAll(".ps-blog-card.is-hidden");
+      
+      // Reveal the next 9
+      var limit = Math.min(hiddenPosts.length, 9);
+      for (var i = 0; i < limit; i++) {
+        hiddenPosts[i].classList.remove("is-hidden");
+      }
+      
+      // If no more hidden posts remain, hide the container
+      if (hiddenPosts.length <= 9) {
+        if (loadMoreContainer) {
+          loadMoreContainer.style.display = "none";
+        }
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+   * Archive Toggle
+   * Handles expanding/collapsing the blog archive years
+   * -------------------------------------------------------------------------- */
+  function initArchiveToggle() {
+    var headers = document.querySelectorAll(".ps-archive-year-header");
+    if (!headers.length) return;
+
+    headers.forEach(function(header) {
+      header.addEventListener("click", function() {
+        var year = this.getAttribute("data-year");
+        var content = document.getElementById("archive-" + year);
+        var toggleSpan = this.querySelector(".ps-archive-toggle");
+        
+        if (content) {
+          if (content.classList.contains("is-hidden")) {
+            content.classList.remove("is-hidden");
+            if (toggleSpan) toggleSpan.textContent = "[-]";
+          } else {
+            content.classList.add("is-hidden");
+            if (toggleSpan) toggleSpan.textContent = "[+]";
+          }
+        }
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+   * Tag Filtering
+   * Handles filtering the blog index by tags
+   * -------------------------------------------------------------------------- */
+  function initTagFilter() {
+    var filterBtns = document.querySelectorAll(".ps-tag-filter");
+    var cards = document.querySelectorAll(".ps-blog-card");
+    var loadMoreContainer = document.querySelector(".ps-blog-load-more-container");
+    
+    if (!filterBtns.length || !cards.length) return;
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        // Remove active class from all
+        filterBtns.forEach(function(b) { b.classList.remove("ps-tag-active"); });
+        // Add active class to clicked
+        this.classList.add("ps-tag-active");
+        
+        var selectedTag = this.getAttribute("data-tag");
+        var visibleCount = 0;
+
+        cards.forEach(function(card) {
+          var cardTags = card.getAttribute("data-tags");
+          if (!cardTags) cardTags = "";
+          var tagsArray = cardTags.split(",");
+
+          // Reset pagination hidden class
+          card.classList.remove("is-hidden");
+
+          if (selectedTag === "all" || tagsArray.includes(selectedTag)) {
+            if (visibleCount < 9) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+              card.classList.add("is-hidden"); // Re-apply for load more
+            }
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        // Hide/Show load more container
+        if (loadMoreContainer) {
+          if (visibleCount > 9) {
+            loadMoreContainer.style.display = "block";
+          } else {
+            loadMoreContainer.style.display = "none";
+          }
+        }
+      });
+    });
+  }
+
   // Global scripts (run on all pages including About/Resume)
   initGlitchEffect();
   initCardGlow();
   initInteractiveTerminal();
+  initBlogPagination();
+  initArchiveToggle();
+  initTagFilter();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

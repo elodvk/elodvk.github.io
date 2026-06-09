@@ -1,5 +1,7 @@
 import os
 import yaml
+import html
+from email.utils import format_datetime
 from datetime import datetime, date
 
 def define_env(env):
@@ -32,19 +34,29 @@ def define_env(env):
                         except Exception:
                             pass
                 
-                # Extract a simple text summary from the first valid paragraph
-                lines = markdown_content.split('\n')
-                summary = ""
-                for line in lines:
-                    line = line.strip()
-                    if line and not line.startswith(('#', '<', '![', '>')):
-                        summary += line + " "
-                        if len(summary) > 200:
-                            break
-                        
-                summary = summary.replace('**', '').replace('*', '').replace('__', '').replace('_', '').strip()
-                if len(summary) > 200:
-                    summary = summary[:197] + "..."
+                # Skip draft posts
+                if meta.get('draft') is True:
+                    continue
+
+                # Prioritize explicit description or summary from frontmatter
+                explicit_summary = meta.get('description') or meta.get('summary')
+                
+                if explicit_summary:
+                    summary = str(explicit_summary)
+                else:
+                    # Extract a simple text summary from the first valid paragraph
+                    lines = markdown_content.split('\n')
+                    summary = ""
+                    for line in lines:
+                        line = line.strip()
+                        if line and not line.startswith(('#', '<', '![', '>')):
+                            summary += line + " "
+                            if len(summary) > 200:
+                                break
+                            
+                    summary = summary.replace('**', '').replace('*', '').replace('__', '').replace('_', '').strip()
+                    if len(summary) > 200:
+                        summary = summary[:197] + "..."
 
                 # Parse Date robustly
                 date_val = meta.get('date', '1970-01-01')
@@ -73,6 +85,16 @@ def define_env(env):
                 else:
                     meta['authors'] = [{'name': str(authors)}]
 
+                # Tags
+                tags = meta.get('tags', [])
+                if isinstance(tags, str):
+                    tags = [tags]
+                meta['tags'] = [str(t) for t in tags]
+
+                # Reading time
+                word_count = len(markdown_content.split())
+                meta['read_time'] = max(1, round(word_count / 200))
+
                 # URL logic for MkDocs Material (creates directory and index.html)
                 meta['url'] = f"{filename[:-3]}/"
                 meta['summary'] = summary
@@ -85,4 +107,50 @@ def define_env(env):
 
         # Sort by newest first
         posts.sort(key=lambda x: x['date_obj'], reverse=True)
+        # Generate RSS Feed right here since mkdocs-macros hooks are ignored
+        try:
+            site_url = 'https://purplesec.org/'
+            site_name = 'PurpleSec'
+            site_desc = 'Cybersecurity Blog'
+            
+            # site_dir might not be accessible from env.variables directly, use a relative path
+            rss_path = os.path.abspath('site/feed.xml')
+            
+            now = datetime.utcnow()
+            pub_date = format_datetime(now)
+            
+            xml = [
+                '<?xml version="1.0" encoding="utf-8"?>',
+                '<rss version="2.0">',
+                '<channel>',
+                f'<title>{site_name}</title>',
+                f'<link>{site_url}</link>',
+                f'<description>{site_desc}</description>',
+                f'<lastBuildDate>{pub_date}</lastBuildDate>',
+                '<generator>PurpleSec Custom RSS</generator>'
+            ]
+            
+            for post in posts[:50]:
+                title = html.escape(post.get('title', ''))
+                url = site_url + post.get('url', '')
+                desc = html.escape(post.get('summary', ''))
+                date_str = format_datetime(post['date_obj'])
+                
+                xml.append('<item>')
+                xml.append(f'<title>{title}</title>')
+                xml.append(f'<link>{url}</link>')
+                xml.append(f'<description>{desc}</description>')
+                xml.append(f'<pubDate>{date_str}</pubDate>')
+                xml.append(f'<guid>{url}</guid>')
+                xml.append('</item>')
+                
+            xml.append('</channel>')
+            xml.append('</rss>')
+            
+            os.makedirs(os.path.dirname(rss_path), exist_ok=True)
+            with open(rss_path, 'w', encoding='utf-8') as f:
+                f.write('\n'.join(xml))
+        except Exception as e:
+            print("Failed to generate RSS:", e)
+
         return posts
