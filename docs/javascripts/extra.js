@@ -306,6 +306,73 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Interactive Terminal for About Page
+   * Handles commands like whoami, cat, etc.
+   * -------------------------------------------------------------------------- */
+  function initInteractiveTerminal() {
+    var inputEl = document.getElementById("terminal-input");
+    var historyEl = document.getElementById("terminal-history");
+    var terminalWindow = document.getElementById("interactive-terminal");
+
+    if (!inputEl || !historyEl || !terminalWindow) return;
+
+    var commands = {
+      "help": "Available commands:<br>&nbsp;&nbsp;<span style='color: var(--ps-accent);'>whoami</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display current user info<br>&nbsp;&nbsp;<span style='color: var(--ps-accent);'>cat profile.txt</span>&nbsp;&nbsp;Print profile summary<br>&nbsp;&nbsp;<span style='color: var(--ps-accent);'>cat experience.txt</span>&nbsp;Print work experience<br>&nbsp;&nbsp;<span style='color: var(--ps-accent);'>cat skills.txt</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print top skills<br>&nbsp;&nbsp;<span style='color: var(--ps-accent);'>clear</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear terminal output",
+      "whoami": "bilash-j-shahi<br>role: Senior Cybersecurity Engineer<br>status: Active<br>location: Greater Bengaluru Area",
+      "cat profile.txt": "I am a dedicated Cybersecurity Engineer with a deep passion for offensive security. I firmly believe that understanding exactly how an attack works is the key to becoming an elite defender. Combining extensive experience in cloud infrastructure with a relentless drive to master Red Team tactics, I strive to be an invaluable, defense-first asset to any forward-thinking cybersecurity team.",
+      "cat experience.txt": "<span style='color: var(--ps-neon-green);'>Senior Cybersecurity Engineer @ Convera (Mar 2024 - Present)</span><br>Focusing on enterprise defense, Identity Protection, SIEM orchestration, and endpoint security.<br><br><span style='color: var(--ps-neon-green);'>Specialist @ LTIMindtree (Jul 2021 - Mar 2024)</span><br>Led a 20+ member team managing Azure IaaS architectures and automated security patch management.",
+      "cat skills.txt": "Azure IaaS & Cloud Infra [████████████████████] 95%<br>Active Directory Security  [███████████████████░] 90%<br>Crowdstrike / SIEM         [███████████████████░] 90%<br>PowerShell Automation      [██████████████████░░] 85%<br>Offensive Security         [█████████████████░░░] 80%",
+      "sudo": "guest is not in the sudoers file. This incident will be reported."
+    };
+
+    inputEl.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        var cmd = inputEl.value.trim();
+        inputEl.value = "";
+        
+        if (cmd === "") return;
+
+        // Add the user's command to the history
+        var cmdLine = document.createElement("div");
+        cmdLine.className = "ps-terminal-line";
+        cmdLine.style.marginBottom = "0.5rem";
+        
+        // Escape HTML
+        var safeCmd = cmd.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        
+        cmdLine.innerHTML = "<span class='ps-prompt-user'>guest</span><span class='ps-prompt-at'>@</span><span class='ps-prompt-host'>purplesec</span>:<span class='ps-prompt-path'>~</span>$ <span style='color: var(--md-code-fg-color);'>" + safeCmd + "</span>";
+        historyEl.appendChild(cmdLine);
+
+        // Process command
+        if (cmd === "clear") {
+          historyEl.innerHTML = "";
+        } else {
+          var responseLine = document.createElement("div");
+          responseLine.className = "ps-terminal-output";
+          responseLine.style.marginBottom = "1.5rem";
+          responseLine.style.marginTop = "0.5rem";
+          responseLine.style.color = "var(--md-default-fg-color--light)";
+          responseLine.style.lineHeight = "1.6";
+          
+          if (commands[cmd]) {
+            responseLine.innerHTML = commands[cmd];
+          } else if (cmd.startsWith("cat ")) {
+             responseLine.innerHTML = "cat: " + safeCmd.substring(4) + ": No such file or directory";
+          } else if (cmd.startsWith("sudo ")) {
+             responseLine.innerHTML = "guest is not in the sudoers file. This incident will be reported.";
+          } else {
+            responseLine.innerHTML = "bash: " + safeCmd + ": command not found";
+          }
+          historyEl.appendChild(responseLine);
+        }
+
+        // Scroll to bottom
+        terminalWindow.scrollTop = terminalWindow.scrollHeight;
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -320,6 +387,7 @@ function initPurpleSecJS() {
   // Global scripts (run on all pages including About/Resume)
   initGlitchEffect();
   initCardGlow();
+  initInteractiveTerminal();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

@@ -412,6 +412,19 @@ body, .md-typeset {
   color: rgba(201, 209, 217, 0.85);
 }
 
+.ps-terminal-input {
+  background: transparent;
+  border: none;
+  color: var(--ps-dark-text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  flex: 1;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  caret-color: var(--ps-neon-green);
+}
+
 .ps-term-success { color: var(--ps-neon-green); }
 .ps-term-info { color: #64b5f6; }
 .ps-term-warning { color: #ffbd2e; }

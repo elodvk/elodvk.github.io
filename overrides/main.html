@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+  {{ super() }}
+  {% set og_title = page.title if page and page.title else config.site_name %}
+  {% set og_desc = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
+  {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ og_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block site_nav %}
   {% if page and page.url and page.url[:5] == 'blog/' and page.url != 'blog/' and page.url[-10:] != 'index.html' and page.url[-1:] == '/' %}
     <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
