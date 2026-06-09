@@ -12,3 +12,13 @@ env/
 
 # Ignore cache directories
 .cache/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore environment variables
+.env

@@ -14,13 +14,16 @@
 {% endblock %}
 
 {% block site_nav %}
-  {% if page and page.url and page.url[:5] == 'blog/' and page.url != 'blog/' and page.url[-10:] != 'index.html' and page.url[-1:] == '/' %}
+  {% set is_blog_post = page and page.url and page.url[:5] == 'blog/' and page.url != 'blog/' and page.url[-10:] != 'index.html' and page.url[-1:] == '/' %}
+  {% set is_walkthrough_post = page and page.url and page.url[:13] == 'walkthroughs/' and page.url != 'walkthroughs/' and page.url[-10:] != 'index.html' and page.url[-1:] == '/' %}
+  {% if is_blog_post or is_walkthrough_post %}
+    {% set index_url = '/blog/' if is_blog_post else '/walkthroughs/' %}
     <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
       <div class="md-sidebar__scrollwrap">
         <div class="md-sidebar__inner" style="padding-top: 1rem;">
           
           <nav class="md-nav md-nav--primary" aria-label="Navigation">
-            <a href="/blog/" class="md-nav__link" style="display: flex; align-items: center; gap: 0.5rem; color: var(--md-default-fg-color--light); font-weight: 500; margin-bottom: 1rem; font-size: 0.85rem;">
+            <a href="{{ index_url }}" class="md-nav__link" style="display: flex; align-items: center; gap: 0.5rem; color: var(--md-default-fg-color--light); font-weight: 500; margin-bottom: 1rem; font-size: 0.85rem;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
               Back to index
             </a>
@@ -72,10 +75,39 @@
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; color: var(--md-default-fg-color--light); display: flex; flex-direction: column; gap: 0.6rem;">
               {% if page.meta and page.meta.date %}
                 <li style="display: flex; align-items: center; gap: 0.6rem;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                  {{ page.meta.date }}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  <span class="ps-date-text">{{ page.meta.date }}</span>
                 </li>
               {% endif %}
+              <li class="ps-read-time-container" style="display: flex; align-items: center; gap: 0.6rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span class="ps-read-time">Calculating...</span>
+              </li>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  // Format Date
+                  var dateEl = document.querySelector('.ps-date-text');
+                  if (dateEl) {
+                      var d = new Date(dateEl.innerText.trim());
+                      if (!isNaN(d)) {
+                          var day = String(d.getUTCDate()).padStart(2, '0');
+                          var month = d.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+                          var year = d.getUTCFullYear();
+                          dateEl.innerText = month + ' ' + day + ', ' + year;
+                      }
+                  }
+
+                  // Calculate Read Time
+                  var content = document.querySelector('.md-content');
+                  if (content) {
+                    var text = content.innerText || content.textContent;
+                    var words = text.split(/\s+/).length;
+                    var mins = Math.max(1, Math.round(words / 200));
+                    var el = document.querySelector('.ps-read-time');
+                    if(el) el.innerText = mins + " min read";
+                  }
+                });
+              </script>
               
             </ul>
 

@@ -29,9 +29,9 @@ Copyright &copy; 2025 – 2026 Bilash J. Shahi | PurpleSec
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
   { "Home" = "index.md" },
-  { "Writeups" = [
+  { "Blog" = "blog/index.md" },
+  { "Knowledge Base" = [
     { "Overview" = "writeups/index.md" },
-    { "Hack The Box" = "writeups/htb/index.md" },
     { "Active Directory" = [
       { "Overview" = "writeups/active_directory/index.md" },
       { "Initial Attack Vectors" = [
@@ -80,6 +80,7 @@ nav = [
       ]},
     ]},
   ]},
+  { "Pwned" = "walkthroughs/index.md" },
   { "Certifications" = [
     { "Overview" = "certifications/index.md" },
     { "OSCP" = "certifications/oscp/index.md" },
@@ -87,7 +88,6 @@ nav = [
     { "PNPT" = "certifications/pnpt/index.md" },
     { "CISSP" = "certifications/cissp/index.md" },
   ]},
-  { "Blog" = "blog/index.md" },
   { "About" = "about/index.md" },
 ]
 
@@ -293,6 +293,7 @@ cards = true
 background_color = "#0a0e14"
 color = "#bb86fc"
 [project.plugins.blog]
+blog_dir = "blog"
 
 [project.extra.analytics]
 provider = "google"

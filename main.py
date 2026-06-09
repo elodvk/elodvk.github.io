@@ -9,6 +9,88 @@ def define_env(env):
     This is the hook for defining variables, macros and filters
     """
 
+
+    @env.macro
+    def get_walkthroughs():
+        blog_dir = os.path.abspath('docs/walkthroughs')
+        posts = []
+
+        if not os.path.exists(blog_dir):
+            return posts
+
+        for root, dirs, files in os.walk(blog_dir):
+            for filename in files:
+                if filename.endswith('.md') and filename != 'index.md':
+                    filepath = os.path.join(root, filename)
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        content = f.read()
+
+                    meta = {}
+                    markdown_content = content
+                    if content.startswith('---'):
+                        parts = content.split('---', 2)
+                        if len(parts) >= 3:
+                            try:
+                                meta = yaml.safe_load(parts[1]) or {}
+                                markdown_content = parts[2]
+                            except Exception:
+                                pass
+                    
+                    if meta.get('draft') is True:
+                        continue
+
+                    # URL relative to docs
+                    rel_path = os.path.relpath(filepath, os.path.abspath('docs'))
+                    url = f"{rel_path[:-3]}/"
+                    
+                    # Extract Summary
+                    explicit_summary = meta.get('description') or meta.get('summary')
+                    if explicit_summary:
+                        summary = str(explicit_summary)
+                    else:
+                        lines = markdown_content.split('\n')
+                        summary = ""
+                        for line in lines:
+                            line = line.strip()
+                            if line and not line.startswith(('#', '<', '![', '>')):
+                                summary += line + " "
+                                if len(summary) > 200:
+                                    break
+                        summary = summary.replace('**', '').replace('*', '').replace('__', '').replace('_', '').strip()
+                        if len(summary) > 200:
+                            summary = summary[:197] + "..."
+
+                    # Parse Date
+                    date_val = meta.get('date', '1970-01-01')
+                    if isinstance(date_val, datetime):
+                        date_obj = date_val
+                    elif isinstance(date_val, date):
+                        date_obj = datetime(date_val.year, date_val.month, date_val.day)
+                    elif isinstance(date_val, str):
+                        try:
+                            date_obj = datetime.strptime(date_val, '%Y-%m-%d')
+                        except ValueError:
+                            date_obj = datetime.min
+                    else:
+                        date_obj = datetime.min
+
+                    meta['date_obj'] = date_obj
+                    meta['date_str'] = date_obj.strftime('%B %d, %Y')
+                    meta['year'] = date_obj.strftime('%Y')
+                    meta['summary'] = summary
+                    meta['url'] = url
+                    if 'title' not in meta:
+                        meta['title'] = filename[:-3].replace('-', ' ').title()
+
+                    # Machine tags/details
+                    meta['difficulty'] = meta.get('difficulty', 'Unknown')
+                    meta['os'] = meta.get('os', 'Unknown')
+
+                    posts.append(meta)
+
+        posts.sort(key=lambda x: x['date_obj'], reverse=True)
+        return posts
+
     @env.macro
     def get_blog_posts():
         blog_dir = os.path.abspath('docs/blog')
@@ -73,7 +155,7 @@ def define_env(env):
                     date_obj = datetime.min
 
                 meta['date_obj'] = date_obj
-                meta['date_str'] = date_obj.strftime('%b %d, %Y')
+                meta['date_str'] = date_obj.strftime('%B %d, %Y')
                 meta['year'] = date_obj.strftime('%Y')
                 
                 # Standardize Authors

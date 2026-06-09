@@ -1,22 +1,14 @@
 ---
 icon: lucide/book-open
-title: 'Writeups'
-description: 'Security writeups, walkthroughs, and technical documentation.'
+title: 'Knowledge Base'
+description: 'Security playbooks, attack methodologies, and technical documentation.'
 ---
 
-# :lucide-book-open: Writeups
+# :lucide-book-open: Knowledge Base
 
-Welcome to the writeups section. Here you'll find detailed walkthroughs of machines, challenges, and security research.
+Welcome to the knowledge base. Here you'll find detailed playbooks on Active Directory attacks, network enumeration, and post-compromise tactics.
 
 <div class="grid cards" markdown>
-
--   :lucide-monitor: **Hack The Box**
-
-    ---
-
-    Step-by-step machine walkthroughs covering enumeration, exploitation, and privilege escalation.
-
-    [:octicons-arrow-right-24: HTB Writeups](htb/index.md)
 
 -   :lucide-network: **Active Directory**
 
