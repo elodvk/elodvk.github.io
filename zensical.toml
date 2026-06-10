@@ -45,7 +45,7 @@ nav = [
         { "PingCastle" = "writeups/active_directory/Post-Compromise Enumeration/pingcastle.md" },
       ]},
       { "Post Compromise Attacks" = [
-        { "Dumping & Cracking Hashes" = "writeups/active_directory/Post Compromise Attacks/dumping & cracking hashes.md" },
+        { "Dumping & Cracking Hashes" = "writeups/active_directory/Post Compromise Attacks/dumping-and-cracking-hashes.md" },
         { "Kerberoasting" = "writeups/active_directory/Post Compromise Attacks/kerberoasting.md" },
         { "GPP Attacks" = "writeups/active_directory/Post Compromise Attacks/gpp.md" },
         { "Token Impersonation" = "writeups/active_directory/Post Compromise Attacks/token-impersonation.md" },
