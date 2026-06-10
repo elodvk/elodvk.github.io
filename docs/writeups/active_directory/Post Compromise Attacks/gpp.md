@@ -1,8 +1,8 @@
 ---
-title: '"GPP & cPassword"'
+title: 'GPP & cPassword'
 sidebar_position: 5
+description: 'Imagine a king who wanted to set the same password for the guards at every barracks in the kingdom. Instead of telling each guard individually, he ...'
 ---
-
 Imagine a king who wanted to set the same password for the guards at every barracks in the kingdom. Instead of telling each guard individually, he wrote the password on a notice, locked it in a "secure" box using a key that everyone in the kingdom knew how to make, and then posted that notice in the public square for every guard to see. Sounds insane, right?
 
 Welcome to the world of **Group Policy Preferences (GPP) password attacks**. For years, this was exactly how many system administrators managed local administrator passwords across their domains, and it remains one of the most devastatingly simple vulnerabilities a pentester can find.

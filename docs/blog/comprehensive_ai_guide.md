@@ -14,7 +14,6 @@ tags:
   - Local AI
 description: 'A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks.'
 ---
-
 The landscape of Artificial Intelligence has shifted rapidly from academic research to practical, everyday applications. If you are trying to navigate the current AI ecosystem, the sheer volume of technical terminology can be overwhelming. 
 
 This guide breaks down the core components of modern AI, explaining not just what these technologies are, but how they interact, how you can run them on your own hardware, and the practical risks involved.

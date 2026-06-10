@@ -6,7 +6,6 @@ tags:
   - OSCP
   - Offensive
 ---
-
 # :lucide-swords: OSCP — Offensive Security Certified Professional
 
 !!! warning "Status: In Progress"

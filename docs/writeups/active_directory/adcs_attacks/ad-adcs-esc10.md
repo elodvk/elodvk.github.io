@@ -2,7 +2,6 @@
 title: 'ESC10: Weak Certificate Mapping'
 description: 'ESC10: Weak Certificate Mapping.'
 ---
-
 # ESC10: Weak Certificate Mapping
 
 ESC10 is essentially ESC9's twin, but instead of relying on a misconfigured template, it relies on a misconfigured domain.

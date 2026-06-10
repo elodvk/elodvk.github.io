@@ -1,8 +1,7 @@
 ---
-title: 'ESC1: The "You Can Be Anyone" Template'
+title: 'ESC1: The You Can Be Anyone Template'
 description: 'ESC1: The "You Can Be Anyone" Template.'
 ---
-
 # ESC1: The "You Can Be Anyone" Template
 
 Ah, ESC1. The quintessential ADCS misconfiguration. This happens when a template allows Domain Users to enroll, requires client authentication, and—most importantly—has the `ENROLLEE_SUPPLIES_SUBJECT` flag enabled. 

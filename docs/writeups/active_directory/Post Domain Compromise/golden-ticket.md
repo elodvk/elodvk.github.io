@@ -1,8 +1,8 @@
 ---
-title: '"Golden Ticket"'
+title: 'Golden Ticket'
 sidebar_position: 2
+description: 'Youve dumped the `krbtgt` account credentials from a Domain Controller. You have its NTLM hash, but in a modern, secure Active Directory environmen...'
 ---
-
 You've dumped the `krbtgt` account credentials from a Domain Controller. You have its NTLM hash, but in a modern, secure Active Directory environment, that's only half the story. The true power lies in the stronger cryptographic keys derived from that password: the **AES keys**.
 
 A **Golden Ticket** attack is the creation of a forged Kerberos Ticket-Granting Ticket (TGT). By forging it with the `krbtgt` account's secret keys, you can grant yourself administrative access to any resource, as any user, for as long as you desire. While the NTLM hash works for older encryption, using the AES key is the modern, preferred method that ensures your ticket is accepted in a hardened environment.

@@ -1,8 +1,7 @@
 ---
-title: 'ESC3: The "Enrollment Agent" Loophole'
+title: 'ESC3: The Enrollment Agent Loophole'
 description: 'ESC3: The "Enrollment Agent" Loophole.'
 ---
-
 # ESC3: The "Enrollment Agent" Loophole
 
 ESC3 happens when an organization tries to be organized and delegates certificate enrollment, but does it poorly. 

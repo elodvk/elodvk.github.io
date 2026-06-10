@@ -2,7 +2,6 @@
 title: 'ESC8: Web Enrollment NTLM Relay'
 description: 'ESC8: Web Enrollment NTLM Relay.'
 ---
-
 # ESC8: Web Enrollment NTLM Relay
 
 ESC8 is where old-school NTLM relaying meets modern PKI destruction.

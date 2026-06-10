@@ -6,7 +6,6 @@ hide:
   - navigation
   - toc
 ---
-
 # :lucide-monitor: Pwned Machines
 
 Detailed walkthroughs of retired Hack The Box machines. Each writeup covers the full attack chain from enumeration to root.

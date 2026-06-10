@@ -1,8 +1,7 @@
 ---
-title: 'ESC9: The "No Security Extension" Spoof'
+title: 'ESC9: The No Security Extension Spoof'
 description: 'ESC9: The "No Security Extension" Spoof.'
 ---
-
 # ESC9: The "No Security Extension" Spoof
 
 ESC9 is a sneaky attack introduced to bypass Microsoft's attempt to fix ADCS vulnerabilities. 

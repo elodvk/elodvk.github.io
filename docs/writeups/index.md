@@ -3,7 +3,6 @@ icon: lucide/book-open
 title: 'Knowledge Base'
 description: 'Security playbooks, attack methodologies, and technical documentation.'
 ---
-
 # :lucide-book-open: Knowledge Base
 
 Welcome to the knowledge base. Here you'll find detailed playbooks on Active Directory attacks, network enumeration, and post-compromise tactics.

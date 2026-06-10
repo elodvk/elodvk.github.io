@@ -9,9 +9,6 @@ hide:
   - title
   - footer
 ---
-
-
-
 <!-- ===== STATS SECTION ===== -->
 <div class="ps-content-wrap" markdown>
 

@@ -1,10 +1,8 @@
 ---
-title: '"Dumping & Cracking Hashes 🔐"'
+title: 'Dumping & Cracking Hashes 🔐'
 sidebar_position: 1
+description: 'In the world of penetration testing, passwords are the ultimate prize. But youll almost never find them stored in plaintext. Instead, youll find th...'
 ---
-
-
-
 In the world of penetration testing, passwords are the ultimate prize. But you'll almost never find them stored in plaintext. Instead, you'll find their cryptographic shadows: **hashes**. A hash is a one-way mathematical function that turns a password into a fixed-length string of characters. While you can't reverse the math, if you can steal the hash, you can either use it directly (Pass the Hash) or try to find the original password.
 
 This guide covers the art of finding and breaking these credentials, including a trip down memory lane to a time when plaintext passwords were much easier to come by.

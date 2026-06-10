@@ -1,8 +1,7 @@
 ---
-title: 'ESC5: The "Keys to the Kingdom" Control'
+title: 'ESC5: The Keys to the Kingdom Control'
 description: 'ESC5: The "Keys to the Kingdom" Control.'
 ---
-
 # ESC5: The "Keys to the Kingdom" Control
 
 ESC5 is a broad category that essentially boils down to: "You have too much administrative control over the PKI infrastructure itself."

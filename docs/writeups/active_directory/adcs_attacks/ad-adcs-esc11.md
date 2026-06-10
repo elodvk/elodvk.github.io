@@ -2,7 +2,6 @@
 title: 'ESC11: ICPR NTLM Relaying'
 description: 'ESC11: ICPR NTLM Relaying.'
 ---
-
 # ESC11: ICPR NTLM Relaying
 
 ESC11 is what happens when you combine the classic NTLM relay attack from ESC8 with the magical world of Remote Procedure Calls (RPC). 

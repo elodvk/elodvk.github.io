@@ -6,7 +6,6 @@ tags:
   - CPTS
   - Offensive
 ---
-
 # :lucide-target: CPTS — Certified Penetration Testing Specialist
 
 !!! warning "Status: In Progress"

@@ -2,7 +2,6 @@
 title: 'LLMNR & NBT-NS Poisioning'
 description: 'LLMNR & NBT-NS Poisioning.'
 ---
-
 So, you're a pentester. You've landed on a client's internal network, your Kali terminal is glowing, and you're wondering, "What's the quickest way to get some credentials around here?" Before you start firing off complex exploits, let's talk about listening. Specifically, listening for the desperate, misguided cries of Windows machines that have lost their way.
 
 Welcome to the wonderful world of **LLMNR and NBT-NS poisoning**, the lowest-hanging fruit on many internal networks and an attacker's best friend. It’s less of a sophisticated "hack" and more like putting up a fake "Free Pizza" sign and waiting for hungry people to show up.

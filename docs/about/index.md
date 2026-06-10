@@ -9,7 +9,6 @@ hide:
   - path
   - title
 ---
-
 <!-- 
 NOTE: The visual content of this page is driven by a custom HTML template.
 To edit your resume details (skills, timeline, etc.), please modify the 

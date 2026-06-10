@@ -1637,3 +1637,56 @@ html {
   border-radius: 4px;
   font-size: 0.75rem;
 }
+
+/* --------------------------------------------------------------------------
+ * Enhanced Homepage Animations
+ * -------------------------------------------------------------------------- */
+
+/* Staggered Grid Cards */
+.ps-home .grid.cards.ps-reveal > ul > li,
+.ps-home .grid.cards.ps-reveal > ol > li {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ps-home .grid.cards.ps-revealed > ul > li,
+.ps-home .grid.cards.ps-revealed > ol > li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ps-home .grid.cards.ps-revealed > ul > li:nth-child(1), .ps-home .grid.cards.ps-revealed > ol > li:nth-child(1) { transition-delay: 0.1s; }
+.ps-home .grid.cards.ps-revealed > ul > li:nth-child(2), .ps-home .grid.cards.ps-revealed > ol > li:nth-child(2) { transition-delay: 0.2s; }
+.ps-home .grid.cards.ps-revealed > ul > li:nth-child(3), .ps-home .grid.cards.ps-revealed > ol > li:nth-child(3) { transition-delay: 0.3s; }
+.ps-home .grid.cards.ps-revealed > ul > li:nth-child(4), .ps-home .grid.cards.ps-revealed > ol > li:nth-child(4) { transition-delay: 0.4s; }
+
+/* Staggered Terminal Feed Items */
+.ps-term-feed-item {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item:nth-child(1) { transition-delay: 0.2s; }
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item:nth-child(2) { transition-delay: 0.35s; }
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item:nth-child(3) { transition-delay: 0.5s; }
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item:nth-child(4) { transition-delay: 0.65s; }
+.ps-terminal-dashboard.ps-revealed .ps-term-feed-item:nth-child(5) { transition-delay: 0.8s; }
+
+/* Subtle float animation on all cards */
+.ps-home .ps-stat-card:hover,
+.ps-home .grid.cards > ul > li:hover,
+.ps-home .ps-cert-card:hover {
+  animation: ps-float 3s ease-in-out infinite;
+}
+
+/* Enhanced Glitch hover for buttons */
+.cyber-btn-glitch-hover:hover {
+  animation: ps-pulse-glow 1.5s infinite alternate;
+}

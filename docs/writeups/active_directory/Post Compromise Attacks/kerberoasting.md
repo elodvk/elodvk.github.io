@@ -1,8 +1,8 @@
 ---
-title: '"Kerberoasting 🔥"'
+title: 'Kerberoasting 🔥'
 sidebar_position: 2
+description: 'So youve landed in a target network, and you have a single, low-privilege domain user account. You cant dump hashes from the Domain Controller, and...'
 ---
-
 So you've landed in a target network, and you have a single, low-privilege domain user account. You can't dump hashes from the Domain Controller, and you don't have local admin anywhere. What do you do? Do you pack up and go home? No. You fire up the grill, because it's time for a **Kerberoasting**.
 
 Kerberoasting is one of the most effective and stealthy attacks in any pentester's arsenal. It's a method of extracting password hashes for Active Directory **service accounts** and cracking them offline. The best part? **You can do it as any authenticated domain user.** You don't need any special privileges.

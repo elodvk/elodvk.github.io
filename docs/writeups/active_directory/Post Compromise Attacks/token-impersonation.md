@@ -1,8 +1,8 @@
 ---
-title: '"Token Impersonation"'
+title: 'Token Impersonation'
 sidebar_position: 3
+description: 'Youve compromised a server. You have a shell, but youre running as a low-privilege service account like `NT AUTHORITY\NETWORK SERVICE`. You run `wh...'
 ---
-
 You've compromised a server. You have a shell, but you're running as a low-privilege service account like `NT AUTHORITY\NETWORK SERVICE`. You run `whoami /groups` and see that you have a very interesting privilege: `SeImpersonatePrivilege`. Suddenly, your day just got a lot better.
 
 Welcome to the world of **Token Impersonation**, also known as Token Theft. This isn't about stealing a password hash to crack later. This is about stealing a user's *active login session* right out from under them. If a Domain Admin is logged onto the server you just compromised, you don't need their password; you just need to borrow their identity for a little while.

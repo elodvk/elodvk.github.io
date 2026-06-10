@@ -2,7 +2,6 @@
 title: 'ESC12: ADCS on YubiHSM'
 description: 'ESC12: ADCS on YubiHSM.'
 ---
-
 # ESC12: ADCS on YubiHSM
 
 ESC12 enters the realm of physical security devices. Sometimes, an organization decides that storing the Certificate Authority's private key on a hard drive isn't secure enough, so they store it on a Hardware Security Module (HSM)—specifically, a YubiHSM.

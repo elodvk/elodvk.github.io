@@ -6,7 +6,6 @@ tags:
   - CISSP
   - Defensive
 ---
-
 # :lucide-book-open-check: CISSP — Certified Information Systems Security Professional
 
 !!! info "Status: Preparing"

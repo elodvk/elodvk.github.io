@@ -1,11 +1,11 @@
 ---
-title: '"Dumping the NTDS.dit"'
+title: 'Dumping the NTDS.dit'
 sidebar_position: 1
 tags:
     - ntds
     - dump
+description: 'Youve done it. After hours of careful enumeration, privilege escalation, and lateral movement, youve finally compromised a Domain Admin account. Yo...'
 ---
-
 You've done it. After hours of careful enumeration, privilege escalation, and lateral movement, you've finally compromised a Domain Admin account. You have the run of the entire Active Directory domain. The war is won, right? Almost. Now it's time to secure the ultimate prize, the digital crown jewels of the kingdom: the **NTDS.dit** file.
 
 Dumping the NTDS.dit file is the final step in a successful AD pentest. It's the act of exfiltrating the entire Active Directory database, which contains the password hash for every single user and computer in the domain.

@@ -2,7 +2,6 @@
 title: 'ESC14: altSecurityIdentities'
 description: 'ESC14: altSecurityIdentities.'
 ---
-
 # ESC14: altSecurityIdentities
 
 ESC14 targets the explicit mapping configurations within Active Directory, specifically the `altSecurityIdentities` attribute.

@@ -2,7 +2,6 @@
 title: 'Active Directory Certificate Services (ADCS) Attacks'
 description: 'Active Directory Certificate Services (ADCS) Attacks.'
 ---
-
 # Active Directory Certificate Services (ADCS) Attacks
 
 Welcome to the wonderful world of Active Directory Certificate Services (ADCS), where Microsoft decided that handing out cryptographically signed skeleton keys to anyone who asks nicely was a stellar security posture.

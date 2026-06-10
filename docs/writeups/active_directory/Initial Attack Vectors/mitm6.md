@@ -1,8 +1,8 @@
 ---
 title: 'IPv6 DNS Takeover via mitm6'
 sidebar_position: 4
+description: 'Youve poisoned local name resolution with Responder and relayed credentials with `ntlmrelayx`. You feel like a true network ninja. But what if I to...'
 ---
-
 You've poisoned local name resolution with Responder and relayed credentials with `ntlmrelayx`. You feel like a true network ninja. But what if I told you there's a way to force clients to talk to you without waiting for a user to make a typo? What if you could become the network's DNS server just by asking nicely?
 
 Enter mitm6, a devastatingly clever attack that abuses a network's misplaced enthusiasm for IPv6. Instead of waiting for a single machine to get lost, `mitm6` tricks the entire Windows domain into using your machine as its primary DNS server. This isn't just setting up a fake pizza sign; this is replacing the city's official map with one where every road leads to your restaurant.

@@ -2,7 +2,6 @@
 title: 'Pass-the-Hash (PtH) attack'
 description: 'Pass-the-Hash (PtH) attack'
 ---
-
 In the world of Windows network security, one of the most powerful and dangerous lateral
 movement techniques is the Pass-the-Hash (PtH) attack. Unlike traditional password-based
 attacks that require cracking or guessing credentials, PtH allows an attacker to authenticate

@@ -2,7 +2,6 @@
 title: 'Getting Started with Active Directory Pentesting'
 description: 'Getting Started with Active Directory Pentesting'
 ---
-
 Welcome to the Active Directory (AD) pentesting section of the documentation. This guide introduces the fundamentals of pentesting Active Directory environments, a critical skill for security professionals aiming to identify and mitigate vulnerabilities in enterprise networks.
 
 ## What is Active Directory Pentesting?

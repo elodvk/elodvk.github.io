@@ -2,7 +2,6 @@
 title: 'ESC15: EKUwu Application Policies (CVE-2024-49019)'
 description: 'ESC15: EKUwu Application Policies (CVE-2024-49019).'
 ---
-
 # ESC15: EKUwu Application Policies (CVE-2024-49019)
 
 Ah, ESC15. Discovered recently (and affectionately dubbed EKUwu by its finders), this vulnerability targets the intersection of Certificate Templates and the Version 1 template schema.

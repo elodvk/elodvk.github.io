@@ -2,7 +2,6 @@
 title: 'ESC7: Vulnerable CA Access Control'
 description: 'ESC7: Vulnerable CA Access Control.'
 ---
-
 # ESC7: Vulnerable CA Access Control
 
 ESC7 is the digital equivalent of finding the keys to the CA server lying on the receptionist's desk.

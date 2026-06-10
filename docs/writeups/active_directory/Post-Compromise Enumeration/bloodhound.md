@@ -1,8 +1,8 @@
 ---
-title: '"Domain Enumeration with Bloodhound"'
+title: 'Domain Enumeration with Bloodhound'
 sidebar_position: 2
+description: 'Youve landed your initial foothold and have a set of domain credentials. Its time to trade in your paper map for a GPS. **BloodHound** is that GPS....'
 ---
-
 You've landed your initial foothold and have a set of domain credentials. It's time to trade in your paper map for a GPS. **BloodHound** is that GPS. It doesn't just list domain objects; it maps the complex web of relationships between them, showing you the hidden paths and secret passages that lead directly to Domain Admin.
 
 This guide focuses on using the Python-based collector for the **BloodHound Community Edition (CE)**, and will dive into writing custom **Cypher queries** to uncover high-impact, non-default attack paths.

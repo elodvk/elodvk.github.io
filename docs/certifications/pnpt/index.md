@@ -6,7 +6,6 @@ tags:
   - PNPT
   - Offensive
 ---
-
 # :lucide-shield-check: PNPT — Practical Network Penetration Tester
 
 !!! success "Status: Certified :tada:"

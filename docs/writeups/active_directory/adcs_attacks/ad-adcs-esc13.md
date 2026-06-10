@@ -2,7 +2,6 @@
 title: 'ESC13: The Issuance Policy Overlap'
 description: 'ESC13: The Issuance Policy Overlap.'
 ---
-
 # ESC13: The Issuance Policy Overlap
 
 ESC13 is a bit of a brain-bender. It relies on the complex mapping of `Issuance Policies` (or Certificate Policies). 

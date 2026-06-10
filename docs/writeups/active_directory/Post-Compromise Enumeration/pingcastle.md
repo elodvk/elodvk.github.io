@@ -1,8 +1,8 @@
 ---
-title: '"Domain Enumeration with PingCastle"'
+title: 'Domain Enumeration with PingCastle'
 sidebar_position: 4
+description: 'Youve mapped the attack paths with BloodHound and read the kingdoms laws with Plumhound. But what if you could get an instant, high-level security ...'
 ---
-
 You've mapped the attack paths with BloodHound and read the kingdom's laws with Plumhound. But what if you could get an instant, high-level "security score" for the entire domain? What if a tool could automatically check for dozens of common misconfigurations and vulnerabilities and present them in a clean, prioritized report?
 
 Enter **PingCastle**. This tool isn't a stealthy attacker's scalpel; it's a security auditor's powerful scanner. It connects to the domain, performs a huge number of checks based on a built-in model of AD security maturity, and then generates a beautiful HTML report that tells you exactly where the bodies are buried.

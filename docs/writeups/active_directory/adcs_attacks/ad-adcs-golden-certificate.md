@@ -2,7 +2,6 @@
 title: 'Active Directory - Golden Certificate'
 description: 'Active Directory - Golden Certificate.'
 ---
-
 # Active Directory - Golden Certificate
 
 Ah, the **Golden Certificate**. If a Golden Ticket is the master key to the castle, a Golden Certificate is the cryptographic forging machine that prints those master keys on demand. 

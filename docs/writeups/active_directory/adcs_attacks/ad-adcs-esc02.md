@@ -2,7 +2,6 @@
 title: 'ESC2: Misconfigured Certificate Templates II'
 description: 'ESC2: Misconfigured Certificate Templates II.'
 ---
-
 # ESC2: Misconfigured Certificate Templates II
 
 ESC2 is ESC1's slightly less famous, but equally devastating sibling. 

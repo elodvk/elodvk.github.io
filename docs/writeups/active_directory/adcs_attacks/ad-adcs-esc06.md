@@ -1,8 +1,7 @@
 ---
-title: 'ESC6: The "Sure, Be Whoever You Want" Registry Key'
+title: 'ESC6: The Sure, Be Whoever You Want Registry Key'
 description: 'ESC6: The "Sure, Be Whoever You Want" Registry Key.'
 ---
-
 # ESC6: The "Sure, Be Whoever You Want" Registry Key
 
 ESC6 occurs when the Certificate Authority has a specific registry key enabled: `EDITF_ATTRIBUTESUBJECTALTNAME2`. 

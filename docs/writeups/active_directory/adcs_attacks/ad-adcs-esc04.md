@@ -2,7 +2,6 @@
 title: 'ESC4: Build-A-Bear (But For Vulnerabilities)'
 description: 'ESC4: Build-A-Bear (But For Vulnerabilities).'
 ---
-
 # ESC4: Build-A-Bear (But For Vulnerabilities)
 
 ESC4 is less about finding a vulnerability, and more about *creating* one.
