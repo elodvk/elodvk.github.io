@@ -1,0 +1,297 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="cyber-404-container">
+  <div class="cyber-glitch-wrapper">
+    <h1 class="cyber-glitch" data-text="404">404</h1>
+  </div>
+  <div class="cyber-terminal">
+    <div class="cyber-terminal-header">
+      <span class="cyber-dot red"></span>
+      <span class="cyber-dot yellow"></span>
+      <span class="cyber-dot green"></span>
+      <span class="cyber-terminal-title">purplesec_sys_err.sh</span>
+    </div>
+    <div class="cyber-terminal-body">
+      <p><span class="cyber-prompt">root@purplesec:~#</span> ./locate_target.sh</p>
+      <p class="cyber-error">[CRITICAL] Target sector not found.</p>
+      <p class="cyber-info">>> Analyzing grid anomalies...</p>
+      <p class="cyber-info">>> The requested data fragment has been deleted or never existed.</p>
+      <p><span class="cyber-prompt">root@purplesec:~#</span> <span class="cyber-cursor">_</span></p>
+    </div>
+  </div>
+  
+  <a href="/" class="cyber-btn">
+    <span class="cyber-btn-text">RETURN TO MAINFRAME</span>
+    <span class="cyber-btn-glitch"></span>
+  </a>
+</div>
+
+<style>
+  .cyber-404-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    font-family: "JetBrains Mono", monospace;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .cyber-glitch-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .cyber-glitch {
+    font-size: 8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: relative;
+    color: var(--md-primary-fg-color, #bb86fc);
+    animation: cyber-glitch-anim 2.5s infinite;
+  }
+
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  .cyber-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: cyber-glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  .cyber-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: cyber-glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  @keyframes cyber-glitch-anim {
+    0% {
+      clip: rect(38px, 9999px, 83px, 0);
+      transform: skew(0.5deg);
+    }
+    5% {
+      clip: rect(21px, 9999px, 88px, 0);
+      transform: skew(0.3deg);
+    }
+    10% {
+      clip: rect(6px, 9999px, 82px, 0);
+      transform: skew(0.6deg);
+    }
+    15% {
+      clip: rect(42px, 9999px, 53px, 0);
+      transform: skew(0.9deg);
+    }
+    20% {
+      clip: rect(35px, 9999px, 20px, 0);
+      transform: skew(0.5deg);
+    }
+    25% {
+      clip: rect(98px, 9999px, 58px, 0);
+      transform: skew(0.2deg);
+    }
+    30% {
+      clip: rect(100px, 9999px, 79px, 0);
+      transform: skew(0.7deg);
+    }
+    35% {
+      clip: rect(8px, 9999px, 7px, 0);
+      transform: skew(0.1deg);
+    }
+    40% {
+      clip: rect(90px, 9999px, 24px, 0);
+      transform: skew(0.6deg);
+    }
+    45% {
+      clip: rect(47px, 9999px, 1px, 0);
+      transform: skew(0.8deg);
+    }
+    50% {
+      clip: rect(35px, 9999px, 20px, 0);
+      transform: skew(0.3deg);
+    }
+    55% {
+      clip: rect(62px, 9999px, 12px, 0);
+      transform: skew(0.9deg);
+    }
+    60% {
+      clip: rect(45px, 9999px, 81px, 0);
+      transform: skew(0.1deg);
+    }
+    65% {
+      clip: rect(72px, 9999px, 17px, 0);
+      transform: skew(0.5deg);
+    }
+    70% {
+      clip: rect(89px, 9999px, 50px, 0);
+      transform: skew(0.8deg);
+    }
+    75% {
+      clip: rect(27px, 9999px, 32px, 0);
+      transform: skew(0.6deg);
+    }
+    80% {
+      clip: rect(18px, 9999px, 52px, 0);
+      transform: skew(0.4deg);
+    }
+    85% {
+      clip: rect(82px, 9999px, 12px, 0);
+      transform: skew(0.1deg);
+    }
+    90% {
+      clip: rect(94px, 9999px, 29px, 0);
+      transform: skew(0.7deg);
+    }
+    95% {
+      clip: rect(50px, 9999px, 82px, 0);
+      transform: skew(0.5deg);
+    }
+    100% {
+      clip: rect(69px, 9999px, 19px, 0);
+      transform: skew(0.9deg);
+    }
+  }
+
+  .cyber-terminal {
+    background: #0a0e14;
+    border: 1px solid rgba(187, 134, 252, 0.3);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(187, 134, 252, 0.1);
+  }
+
+  .cyber-terminal-header {
+    background: #111823;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(187, 134, 252, 0.1);
+  }
+
+  .cyber-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .cyber-dot.red { background: #ff5f56; }
+  .cyber-dot.yellow { background: #ffbd2e; }
+  .cyber-dot.green { background: #27c93f; }
+
+  .cyber-terminal-title {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cyber-terminal-body {
+    padding: 20px;
+    text-align: left;
+    color: #c9d1d9;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .cyber-terminal-body p {
+    margin: 5px 0;
+  }
+
+  .cyber-prompt {
+    color: #27c93f;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .cyber-error {
+    color: #ff5f56;
+    font-weight: bold;
+  }
+
+  .cyber-info {
+    color: #58a6ff;
+  }
+
+  .cyber-cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #c9d1d9;
+    animation: cyber-blink 1s step-end infinite;
+  }
+
+  @keyframes cyber-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .cyber-btn {
+    position: relative;
+    padding: 15px 30px;
+    background: transparent;
+    border: 2px solid var(--md-primary-fg-color, #bb86fc);
+    color: var(--md-primary-fg-color, #bb86fc);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    overflow: hidden;
+  }
+
+  .cyber-btn:hover {
+    background: var(--md-primary-fg-color, #bb86fc);
+    color: #000;
+    box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
+  }
+
+  .cyber-btn-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--md-primary-fg-color, #bb86fc);
+    transform: translateX(-100%);
+    transition: 0.3s;
+    z-index: -1;
+  }
+
+  .cyber-btn:hover .cyber-btn-glitch {
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  // Simple typing effect for terminal
+  document.addEventListener('DOMContentLoaded', () => {
+    const lines = document.querySelectorAll('.cyber-terminal-body p');
+    lines.forEach(line => line.style.opacity = 0);
+    
+    let delay = 0;
+    lines.forEach((line, index) => {
+      setTimeout(() => {
+        line.style.opacity = 1;
+      }, delay);
+      delay += index === 0 ? 800 : 500;
+    });
+  });
+</script>
+{% endblock %}
