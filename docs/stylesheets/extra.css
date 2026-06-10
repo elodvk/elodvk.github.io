@@ -41,8 +41,9 @@
 
   --ps-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --ps-transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
 }
+
+
 
 /* --------------------------------------------------------------------------
  * Global Typography & Spacing Improvements
@@ -383,12 +384,12 @@ body, .md-typeset {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
   line-height: 1.6;
-  color: var(--ps-dark-text);
+  color: #c9d1d9;
   min-height: 180px;
 }
 
 .ps-prompt-user { color: var(--ps-neon-green); font-weight: 600; }
-.ps-prompt-at { color: var(--ps-dark-text); }
+.ps-prompt-at { color: #c9d1d9; }
 .ps-prompt-host { color: var(--ps-accent); font-weight: 600; }
 .ps-prompt-path { color: #64b5f6; font-weight: 600; }
 
@@ -415,7 +416,7 @@ body, .md-typeset {
 .ps-terminal-input {
   background: transparent;
   border: none;
-  color: var(--ps-dark-text);
+  color: #c9d1d9;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
   flex: 1;
