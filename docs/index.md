@@ -59,7 +59,7 @@ hide:
 
     Step-by-step machine walkthroughs covering enumeration, exploitation, and privilege escalation from Easy to Insane difficulty.
 
-    [:octicons-arrow-right-24: Browse HTB Writeups](writeups/htb/index.md)
+    [:octicons-arrow-right-24: Browse HTB Writeups](walkthroughs/index.md)
 
 -   :lucide-network:{ .lg .middle } **Active Directory Attacks**
 
