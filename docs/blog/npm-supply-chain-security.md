@@ -3,7 +3,7 @@ title: 'How GitHub and npm Are Fighting Back Against Supply Chain Attacks — An
 date: 2026-06-11
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity Engineer
+  title: Cybersecurity enthusiast
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:
