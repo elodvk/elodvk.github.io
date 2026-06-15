@@ -31,6 +31,7 @@ tags:
   - VS Code Extension
   - Walkthrough
   - Writeup
+image: walkthroughs/checkpoint/checkpoint_banner.png
 ---
 
 ![Checkpoint Machine Banner](checkpoint/checkpoint_banner.png)

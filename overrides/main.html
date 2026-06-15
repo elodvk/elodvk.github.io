@@ -7,7 +7,11 @@
   {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
   <meta property="og:title" content="{{ og_title }}">
   <meta property="og:description" content="{{ og_desc }}">
+  {% if page.meta and page.meta.image %}
+  <meta property="og:image" content="{{ config.site_url }}{{ page.meta.image }}">
+  {% else %}
   <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
+  {% endif %}
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ og_url }}">
   <meta name="twitter:card" content="summary_large_image">
