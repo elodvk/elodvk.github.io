@@ -1,4 +1,4 @@
----
+--- 
 title: 'NVIDIA RTX Spark & DGX Spark: The Dawn of Personal AI Supercomputers and What It Means for Local LLM Enthusiasts'
 date: 2026-06-11
 authors:
@@ -16,6 +16,7 @@ tags:
   - Hardware
   - Grace Blackwell
 description: 'An in-depth look at NVIDIA RTX Spark and DGX Spark — the new personal AI supercomputers powered by Grace Blackwell silicon. From the 128GB unified memory architecture to running 200B-parameter models locally, we explore what these machines mean for developers, researchers, and the local LLM community.'
+image: assets/images/blog/dgx_spark_hero.png
 ---
 
 For years, running large language models locally has been a game of creative compromises. You buy the most GPU VRAM you can afford, quantize models down to 4-bit or lower until they barely resemble their original quality, stack multiple consumer GPUs with hacky multi-GPU setups, and still hit walls with anything beyond 70B parameters. The cloud was always the fallback — and the cloud always meant giving up privacy, paying per-token, and trusting someone else's infrastructure with your data.

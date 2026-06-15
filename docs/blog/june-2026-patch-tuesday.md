@@ -1,4 +1,4 @@
----
+--- 
 title: 'June 2026 Patch Tuesday: A Record-Breaking 206 CVEs, Three Zero-Days & Two BitLocker Bypasses'
 date: 2026-06-11
 authors:
@@ -15,6 +15,7 @@ tags:
   - Vulnerability Management
   - Zero-Day
 description: 'A deep-dive into June 2026 Patch Tuesday — the largest in Microsoft history, patching 206 CVEs including 3 zero-days, a wormable Windows Kernel RCE (CVSS 9.8), an actively exploited Defender EoP, and two separate BitLocker bypasses (YellowKey & Bitskrieg).'
+image: assets/images/blog/patch_tuesday_hero.png
 ---
 
 June 9, 2026. Microsoft drops what will be remembered as the **most consequential Patch Tuesday in the program's history** — a staggering **206 CVEs** patched in a single release, shattering all previous monthly records. If that number doesn't raise the hairs on your arms, the contents will: three publicly known zero-days, a near-perfect CVSS 9.8 wormable Windows Kernel vulnerability, an actively exploited Microsoft Defender escalation of privilege, and not one but *two* distinct BitLocker bypass techniques courtesy of a very agitated security researcher.

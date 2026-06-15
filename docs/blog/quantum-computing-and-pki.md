@@ -1,4 +1,4 @@
----
+--- 
 title: "Quantum Computing and PKI: The Looming Cryptographic Apocalypse and How to Survive It"
 date: 2026-06-12
 authors:
@@ -14,6 +14,7 @@ tags:
   - TLS
   - NIST
 description: "A comprehensive deep dive into how quantum computing threatens to dismantle Public Key Infrastructure (PKI), the backbone of internet security. Covers Shor's and Grover's algorithms, the Harvest Now Decrypt Later threat, NIST's post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), real-world hybrid TLS deployments by Google and Cloudflare, Quantum Key Distribution vs PQC, cryptographic agility, and a practical enterprise migration checklist."
+image: assets/images/blog/quantum_pki_hero.png
 ---
 
 Every time you see that padlock icon in your browser, visit your bank, send an email, or sign a document digitally — you are relying on **Public Key Infrastructure (PKI)**. It is the invisible backbone of digital trust. It authenticates servers, encrypts data in transit, verifies software signatures, and secures everything from government communications to cryptocurrency wallets.

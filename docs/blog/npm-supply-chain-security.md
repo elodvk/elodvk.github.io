@@ -1,4 +1,4 @@
----
+--- 
 title: 'How GitHub and npm Are Fighting Back Against Supply Chain Attacks — And What You Need to Do Before July 2026'
 date: 2026-06-11
 authors:
@@ -14,6 +14,7 @@ tags:
   - DevSecOps
   - Node.js
 description: 'A deep dive into the npm v12 security overhaul arriving July 2026, the supply chain attacks that forced it, and a practical guide to preparing your projects — covering lifecycle script lockdown, Trusted Publishing, provenance attestations, and lessons from event-stream, colors.js, Shai-Hulud, and the chalk/debug compromise.'
+image: assets/images/blog/npm_supply_chain.png
 ---
 
 You run `npm install`. Thousands of packages cascade into your `node_modules`. You don't think about it — why would you? The ecosystem has been doing this for over a decade. Install, import, ship.

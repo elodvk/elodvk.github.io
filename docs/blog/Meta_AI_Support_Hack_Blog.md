@@ -1,4 +1,4 @@
----
+--- 
 title: 'The Anatomy of the Meta AI Support Hack: Why AI Should Never Reset Passwords'
 date: 2026-06-09
 authors:
@@ -12,7 +12,10 @@ tags:
   - Security
   - Social Engineering
 description: 'A deep dive into the 2026 Meta AI support hack, exploring how attackers socially engineered an AI chatbot to bypass IAM and reset Instagram passwords.'
+image: blog/assets/meta_ai_hack.png
 ---
+![Banner image](assets/meta_ai_hack.png)
+
 As organizations race to replace human support agents with generative artificial intelligence, we are witnessing a dangerous collision between natural language processing and identity and access management (IAM). The recent compromise involving Meta’s AI Support Assistant is a textbook example of what happens when we blindly trust Large Language Models (LLMs) with security-critical workflows.
 
 In early June 2026, a video surfaced on X detailing a devastatingly simple method to hijack Instagram accounts by socially engineering the platform's AI customer support bot. As a cybersecurity professional, watching this unfold was both fascinating and deeply concerning. It highlighted a fundamental truth: LLMs are designed to be helpful, and in the realm of security, "helpful" is often synonymous with "vulnerable."

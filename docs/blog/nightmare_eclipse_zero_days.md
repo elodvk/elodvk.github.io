@@ -1,4 +1,4 @@
----
+--- 
 title: 'The Nightmare Eclipse Zero-Day Drops: An Objective Case Study'
 date: 2026-06-10
 authors:
@@ -13,7 +13,10 @@ tags:
   - Nightmare Eclipse
   - Case Study
 description: 'A detailed, objective case study of the "Nightmare Eclipse" zero-day vulnerability drops, covering the released exploits, the dispute with Microsoft, and the impact on the cybersecurity industry.'
+image: blog/assets/nightmare_eclipse.png
 ---
+![Banner image](assets/nightmare_eclipse.png)
+
 In the spring of 2026, the cybersecurity community witnessed one of the most high-profile and controversial series of uncoordinated vulnerability disclosures in recent history. An independent security researcher operating under the pseudonyms **"Nightmare Eclipse"** and **"Chaotic Eclipse"** began publicly releasing a string of fully functional, weaponized zero-day exploits targeting core Microsoft Windows components.
 
 This incident has reignited long-standing industry debates surrounding Coordinated Vulnerability Disclosure (CVD), bug bounty economics, and the fragile relationship between independent researchers and major technology vendors.

@@ -1,4 +1,4 @@
----
+--- 
 title: 'How I Conquered the PNPT: A Wild Ride Through Cyber Shenanigans'
 date: 2025-10-22
 authors:
@@ -12,6 +12,7 @@ tags:
   - Practical Network Penetration Tester
   - Active Directory
 description: 'A candid review of the Practical Network Penetration Tester (PNPT) exam, featuring tips, lessons learned, and active directory exploitation strategies.'
+image: https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/159871898
 ---
 On **September 3, 2025**, I finally tamed the beast known as the Practical Network Penetration Tester (PNPT) exam. This blog is my victory lap, a chance to share the highs, lows, and downright facepalm moments of my journey. It’s also a love letter to my future self as I gear up for the OSCP (fingers crossed). So, grab a coffee—or an energy drink if you’re feeling my late-night hacking vibes—and let’s dive into how I survived this cyber rollercoaster.
 
