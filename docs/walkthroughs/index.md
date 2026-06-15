@@ -50,7 +50,16 @@ Detailed walkthroughs of retired Hack The Box machines. Each writeup covers the 
     <div class="ps-blog-card-content">
 
       <div class="ps-blog-card-meta-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--ps-dark-text); opacity: 0.8;">
-        <span class="ps-blog-card-read-time">⚙️ {{ post.os }} | 🔥 {{ post.difficulty }}</span>
+        <span class="ps-blog-card-read-time">
+          {% if post.os | lower == 'windows' %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: text-top;"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg> {{ post.os }}
+          {% elif post.os | lower == 'linux' %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: text-top;"><path d="M220.8 123.3c1.1.2 2.1.6 2.9 1.1-.3-.6-.6-1.1-.8-1.7-.6.2-1.4.4-2.1.6zm215.1 270.6c0-70.5-23.7-93.5-31.5-104-5.3-7.2-22.3-30.8-31-41.2-12.7-15.3-15.2-15.3-20.7-32.9-4.8-15.4-8.7-37.4-12.7-56.1-6.1-28.1-13-59.5-27-77.9-10.7-14.1-28.5-27.1-43-34.9-18.7-10.1-42.3-17.7-65.7-18-20.5-.3-40.7 5.1-57 14-13.8 7.5-29 19.3-39 31.9-12.3 15.6-18.6 44.5-23.8 67.9-4.9 22-8.5 40.8-13.6 57-5.9 19.1-10 20.3-23.4 36.3-8.8 10.6-25.2 32.7-30.5 39.8-7.8 10.5-31.5 33.5-31.5 104 0 54.5 24 81.3 29.8 87 23.3 22.8 69.5 29.5 98.4 29.5 6.4 0 11.2-.4 14.3-.8 4.4 20.8 30.6 30 52 30h40.3c21.4 0 47.6-9.2 52-30 3.1.4 7.9.8 14.3.8 28.9 0 75.1-6.7 98.4-29.5 5.9-5.7 29.9-32.5 29.9-87zM161 247.3c0-11 6-20.4 13.9-20.4s14 9.4 14 20.4-6.3 20.4-14 20.4-13.9-9.4-13.9-20.4zm105.7 0c0-11 6.3-20.4 14-20.4s14 9.4 14 20.4-6.3 20.4-14 20.4-14-9.4-14-20.4zm-48.4 143.4h-10c-17.2 0-33.3-8.9-39.7-24.6-2.5-6.1-5-17.2-2.1-23.8 2.2-5 7.6-13.2 14.4-18.7 8.8-7.1 22.7-14.7 32.5-14.7 9.8 0 23.6 7.6 32.5 14.7 6.9 5.5 12.2 13.7 14.4 18.7 2.9 6.6.4 17.7-2.1 23.8-6.4 15.7-22.5 24.6-39.7 24.6z"/></svg> {{ post.os }}
+          {% else %}
+            ⚙️ {{ post.os | default('N/A', true) }}
+          {% endif %}
+          | 🔥 {{ post.difficulty }}
+        </span>
         {% if post.tags %}
         <div class="ps-blog-card-tags" style="display: flex; gap: 0.5rem;">
           {% for tag in post.tags[:2] %}
