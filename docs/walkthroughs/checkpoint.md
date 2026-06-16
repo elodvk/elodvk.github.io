@@ -33,10 +33,10 @@ tags:
   - VS Code Extension
   - Walkthrough
   - Writeup
-image: walkthroughs/checkpoint/checkpoint_banner.png
+image: assets/checkpoint/checkpoint_banner.png
 ---
 
-![Checkpoint Machine Banner](checkpoint/checkpoint_banner.png)
+![Checkpoint Machine Banner](assets/checkpoint/checkpoint_banner.png)
 
 ## HTB Checkpoint — Full Walkthrough & Writeup
 
@@ -338,11 +338,11 @@ After importing the data into BloodHound, two critical ACL (Access Control List)
 
 **1.** `alex.turner` has **GenericWrite** permissions over the `MARK.DAVIES` user object — this means we can modify attributes on Mark's account.
 
-![BloodHound graph showing alex.turner GenericWrite over Mark.Davies](checkpoint/bloodhound_alex_genericwrite_mark.png)
+![BloodHound graph showing alex.turner GenericWrite over Mark.Davies](assets/checkpoint/bloodhound_alex_genericwrite_mark.png)
 
 **2.** `ryan.brooks` has **GenericWrite** permissions over the `SVC_DEPLOY@CHECKPOINT.HTB` service account — meaning if we can compromise Ryan, we can manipulate the service account.
 
-![BloodHound graph showing ryan.brooks GenericWrite over svc_deploy](checkpoint/bloodhound_ryan_genericwrite_svc.png)
+![BloodHound graph showing ryan.brooks GenericWrite over svc_deploy](assets/checkpoint/bloodhound_ryan_genericwrite_svc.png)
 
 ??? info "What is GenericWrite?"
     **GenericWrite** is an Active Directory permission that allows a principal to write to any non-protected attribute on the target object. This is extremely powerful because it can be abused to:
