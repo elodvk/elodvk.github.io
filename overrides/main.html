@@ -310,6 +310,8 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
   <script>
     (function() {
       const _supabaseUrl = 'https://pszigoacrnajyjksyglq.supabase.co';
@@ -369,7 +371,7 @@
         try {
           const { data, error } = await supabaseClient
             .from('page_comments')
-            .select('author_name, comment_text, created_at')
+            .select('id, author_name, comment_text, created_at, likes')
             .eq('slug', slug)
             .order('created_at', { ascending: false });
             
@@ -385,8 +387,16 @@
               data.forEach(c => {
                 const date = new Date(c.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
                 const safeName = c.author_name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                const safeText = c.comment_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+                
+                let safeText = "";
+                if (window.marked && window.DOMPurify) {
+                  safeText = DOMPurify.sanitize(marked.parse(c.comment_text));
+                } else {
+                  safeText = c.comment_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+                }
+                
                 const initial = safeName.length > 0 ? safeName[0].toUpperCase() : 'A';
+                const likesCount = c.likes || 0;
                 
                 const div = document.createElement('div');
                 div.style.cssText = "display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--md-default-fg-color--lightest);";
@@ -397,7 +407,11 @@
                       <span style="font-weight: 600; font-size: 0.95rem; color: var(--md-typeset-a-color);">${safeName}</span>
                       <span style="font-size: 0.75rem; color: var(--md-default-fg-color--light);">${date}</span>
                     </div>
-                    <div style="font-size: 0.9rem; color: var(--md-default-fg-color); line-height: 1.5; word-break: break-word;">${safeText}</div>
+                    <div class="ps-comment-body" style="font-size: 0.9rem; color: var(--md-default-fg-color); line-height: 1.5; word-break: break-word; margin-bottom: 0.5rem;">${safeText}</div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--md-default-fg-color--light); font-size: 0.85rem; user-select: none;" onclick="window.likeComment('${c.id}', this)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s, fill 0.2s;" class="ps-heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      <span class="ps-like-count">${likesCount}</span>
+                    </div>
                   </div>
                 `;
                 listEl.appendChild(div);
@@ -478,8 +492,44 @@
           console.error("Error in psReact:", e);
         }
       };
+      window.likeComment = async function(commentId, btnElement) {
+        if (!commentId) return;
+        var key = 'ps-comment-likes';
+        var saved = JSON.parse(localStorage.getItem(key) || '{}');
+        
+        if (saved[commentId]) return; // Already liked
+        
+        saved[commentId] = true;
+        localStorage.setItem(key, JSON.stringify(saved));
+        
+        // Optimistic update
+        const countSpan = btnElement.querySelector('.ps-like-count');
+        const icon = btnElement.querySelector('.ps-heart-icon');
+        if (countSpan) countSpan.innerText = parseInt(countSpan.innerText) + 1;
+        if (icon) {
+          icon.style.fill = 'var(--md-accent-fg-color)';
+          icon.style.stroke = 'var(--md-accent-fg-color)';
+          icon.style.transform = 'scale(1.2)';
+          setTimeout(() => icon.style.transform = 'scale(1)', 200);
+        }
+        
+        if (initSupabase()) {
+          try {
+            await supabaseClient.rpc('increment_comment_like', { comment_id: commentId });
+          } catch(e) {
+            console.error("Error liking comment:", e);
+          }
+        }
+      };
     })();
   </script>
+  
+  <style>
+    .ps-comment-body p { margin-top: 0; margin-bottom: 0.5em; }
+    .ps-comment-body pre { background: var(--md-code-bg-color); padding: 0.8em; border-radius: 4px; overflow-x: auto; margin-bottom: 0.5em; }
+    .ps-comment-body code { background: var(--md-code-bg-color); padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.85em; }
+    .ps-comment-body a { color: var(--md-typeset-a-color); text-decoration: underline; }
+  </style>
 
   <!-- Ko-fi CTA -->
   <div id="ps-kofi" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(255, 94, 91, 0.1), rgba(41, 171, 224, 0.05)); border: 1px solid var(--md-default-fg-color--lightest);">
