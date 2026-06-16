@@ -135,7 +135,7 @@ hide:
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/tcmsecurity.svg" alt="TCM Security" style="max-height: 100%;"></div>
+<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/tcmsecurity.png" alt="TCM Security" style="max-height: 100%;"></div>
 <div class="ps-cert-name">PNPT</div>
 <div class="ps-cert-full">Practical Network Penetration Tester</div>
 <div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
@@ -163,7 +163,7 @@ hide:
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/microsoft.svg" alt="Microsoft" style="max-height: 100%;"></div>
+<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/microsoft.png" alt="Microsoft" style="max-height: 100%;"></div>
 <div class="ps-cert-name">AZ-104</div>
 <div class="ps-cert-full">Azure Administrator Associate</div>
 <div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
@@ -177,7 +177,7 @@ hide:
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/microsoft.svg" alt="Microsoft" style="max-height: 100%;"></div>
+<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/microsoft.png" alt="Microsoft" style="max-height: 100%;"></div>
 <div class="ps-cert-name">SC-300</div>
 <div class="ps-cert-full">Identity and Access Administrator</div>
 <div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
