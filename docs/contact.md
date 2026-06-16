@@ -8,7 +8,7 @@ description: Get in touch securely.
 Whether you have a question about a walkthrough, want to discuss a potential project, or just want to connect, feel free to send me a message! Your message will be sent securely to my private database.
 
 <div style="max-width: 600px; margin-top: 2rem;">
-  <form id="ps-contact-form" onsubmit="window.submitContact(event)" style="display: flex; flex-direction: column; gap: 1rem; background: var(--md-default-bg-color); padding: 1.5rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+  <form id="ps-contact-form" onsubmit="event.preventDefault(); if(window.submitContact) window.submitContact(event); else alert('Script not loaded yet. Please refresh the page.');" style="display: flex; flex-direction: column; gap: 1rem; background: var(--md-default-bg-color); padding: 1.5rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
     
     <div style="display: flex; gap: 1rem;">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
