@@ -17,6 +17,9 @@ env/
 .DS_Store
 Thumbs.db
 
+# Ignore drafts
+drafts/
+
 # Ignore logs
 *.log
 
