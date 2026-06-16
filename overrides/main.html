@@ -182,9 +182,126 @@
   {% set is_walkthrough_post = page and page.url and page.url[:13] == 'walkthroughs/' and page.url != 'walkthroughs/' and page.url[-10:] != 'index.html' and page.url[-1:] == '/' %}
 
   {% if is_blog_post or is_walkthrough_post %}
-  <hr style="margin-top: 3rem; border: 0; border-top: 1px solid var(--md-default-fg-color--lightest);">
 
-  <div id="ps-comments-section" style="margin-top: 2rem;">
+  <!-- Emoji Reactions -->
+  <hr style="margin-top: 3rem; border: 0; border-top: 1px solid var(--md-default-fg-color--lightest);">
+  <div id="ps-reactions" style="margin-top: 2rem; margin-bottom: 2.5rem;">
+    <p style="font-size: 0.85rem; color: var(--md-default-fg-color--light); margin-bottom: 1rem; font-weight: 500;">What did you think of this post?</p>
+    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+      <button class="ps-reaction-btn" data-emoji="fire" onclick="psReact(this)" title="Fire">
+        <span class="ps-reaction-emoji">🔥</span><span class="ps-reaction-label">Awesome</span>
+      </button>
+      <button class="ps-reaction-btn" data-emoji="clap" onclick="psReact(this)" title="Clap">
+        <span class="ps-reaction-emoji">👏</span><span class="ps-reaction-label">Well Written</span>
+      </button>
+      <button class="ps-reaction-btn" data-emoji="mindblown" onclick="psReact(this)" title="Mind Blown">
+        <span class="ps-reaction-emoji">🤯</span><span class="ps-reaction-label">Mind Blown</span>
+      </button>
+      <button class="ps-reaction-btn" data-emoji="lightbulb" onclick="psReact(this)" title="Learned Something">
+        <span class="ps-reaction-emoji">💡</span><span class="ps-reaction-label">Learned Something</span>
+      </button>
+      <button class="ps-reaction-btn" data-emoji="heart" onclick="psReact(this)" title="Love It">
+        <span class="ps-reaction-emoji">❤️</span><span class="ps-reaction-label">Love It</span>
+      </button>
+    </div>
+  </div>
+  <style>
+    .ps-reaction-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--md-default-fg-color--lightest);
+      border-radius: 2rem;
+      background: transparent;
+      color: var(--md-default-fg-color--light);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .ps-reaction-btn:hover {
+      border-color: var(--md-accent-fg-color);
+      background: var(--md-accent-fg-color--transparent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .ps-reaction-btn.ps-reacted {
+      border-color: var(--md-accent-fg-color);
+      background: var(--md-accent-fg-color--transparent);
+      color: var(--md-accent-fg-color);
+      font-weight: 600;
+    }
+    .ps-reaction-btn.ps-reacted .ps-reaction-emoji {
+      animation: ps-bounce 0.4s ease;
+    }
+    .ps-reaction-emoji { font-size: 1.1rem; }
+    @keyframes ps-bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+    }
+  </style>
+  <script>
+    (function() {
+      var key = 'ps-reactions-' + window.location.pathname;
+      var saved = JSON.parse(localStorage.getItem(key) || '{}');
+      document.querySelectorAll('.ps-reaction-btn').forEach(function(btn) {
+        if (saved[btn.dataset.emoji]) btn.classList.add('ps-reacted');
+      });
+    })();
+    function psReact(btn) {
+      var key = 'ps-reactions-' + window.location.pathname;
+      var saved = JSON.parse(localStorage.getItem(key) || '{}');
+      var emoji = btn.dataset.emoji;
+      if (saved[emoji]) {
+        delete saved[emoji];
+        btn.classList.remove('ps-reacted');
+      } else {
+        saved[emoji] = true;
+        btn.classList.add('ps-reacted');
+      }
+      localStorage.setItem(key, JSON.stringify(saved));
+    }
+  </script>
+
+  <!-- Newsletter CTA -->
+  <div id="ps-newsletter" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(var(--md-accent-fg-color--rgb, 103,58,183), 0.08), rgba(var(--md-primary-fg-color--rgb, 103,58,183), 0.04)); border: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 200px;">
+        <p style="margin: 0 0 0.3rem; font-weight: 700; font-size: 1rem; color: var(--md-default-fg-color);">
+          📬 Stay in the loop
+        </p>
+        <p style="margin: 0; font-size: 0.82rem; color: var(--md-default-fg-color--light); line-height: 1.5;">
+          Get notified when I publish new deep dives, walkthroughs, and vulnerability research. No spam, unsubscribe anytime.
+        </p>
+      </div>
+      <form
+        action="https://buttondown.com/api/emails/embed-subscribe/elodvk"
+        method="post"
+        target="_blank"
+        style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; flex-shrink: 0;"
+      >
+        <input
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+          style="padding: 0.55rem 1rem; border-radius: 8px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-bg-color); color: var(--md-default-fg-color); font-size: 0.85rem; min-width: 200px; outline: none; transition: border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--md-accent-fg-color)'"
+          onblur="this.style.borderColor='var(--md-default-fg-color--lightest)'"
+        >
+        <button
+          type="submit"
+          style="padding: 0.55rem 1.2rem; border-radius: 8px; border: none; background: var(--md-accent-fg-color, #7c4dff); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap;"
+          onmouseover="this.style.opacity='0.85'; this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)'"
+        >Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Comments -->
+  <div id="ps-comments-section">
     <h2 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
       Comments
