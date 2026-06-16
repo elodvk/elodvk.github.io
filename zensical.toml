@@ -247,8 +247,8 @@ name = "RSS Feed"
 
 [[project.extra.social]]
 icon = "fontawesome/solid/mug-hot"
-link = "https://www.buymeacoffee.com/elodvk"
-name = "Buy Me A Coffee"
+link = "https://ko-fi.com/elodvk"
+name = "Support me on Ko-fi"
 
 # ----------------------------------------------------------------------------
 # In this section you can configure the Markdown extensions that are used when
