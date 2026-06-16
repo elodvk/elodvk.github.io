@@ -89,6 +89,7 @@ nav = [
     { "CISSP" = "certifications/cissp/index.md" },
   ]},
   { "About" = "about/index.md" },
+  { "Contact" = "contact.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

@@ -549,6 +549,59 @@
         }
       };
 
+      window.submitContact = async function(event) {
+        event.preventDefault();
+        
+        const btn = document.getElementById('contact-submit-btn');
+        const statusEl = document.getElementById('contact-status');
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const messageInput = document.getElementById('contact-message');
+        
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
+        if (statusEl) { statusEl.innerText = 'Sending...'; statusEl.style.color = 'var(--md-default-fg-color)'; }
+        
+        if (!initSupabase()) {
+          if (statusEl) { statusEl.innerText = 'Error initializing database.'; statusEl.style.color = '#ff5e5b'; }
+          if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+          return;
+        }
+        
+        try {
+          const { error } = await supabaseClient
+            .from('contact_messages')
+            .insert({
+              name: nameInput.value.trim(),
+              email: emailInput.value.trim(),
+              message: messageInput.value.trim()
+            });
+            
+          if (!error) {
+            nameInput.value = '';
+            emailInput.value = '';
+            messageInput.value = '';
+            if (statusEl) {
+              statusEl.innerText = 'Message Sent Successfully!';
+              statusEl.style.color = 'var(--md-accent-fg-color)';
+            }
+          } else {
+            console.error("Error submitting message:", error);
+            if (statusEl) {
+              statusEl.innerText = 'Failed to send message. (Did you run the SQL script?)';
+              statusEl.style.color = '#ff5e5b';
+            }
+          }
+        } catch(e) {
+          console.error("Error submitting message:", e);
+          if (statusEl) {
+            statusEl.innerText = 'An unexpected error occurred.';
+            statusEl.style.color = '#ff5e5b';
+          }
+        } finally {
+          if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+        }
+      };
+
       window.psReact = async function(btn) {
         try {
           var key = 'ps-reactions-' + window.location.pathname;
