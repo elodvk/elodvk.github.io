@@ -240,6 +240,11 @@ icon = "fontawesome/brands/linkedin"
 link = "https://linkedin.com/in/"
 name = "LinkedIn"
 
+[[project.extra.social]]
+icon = "fontawesome/solid/rss"
+link = "/feed.xml"
+name = "RSS Feed"
+
 # ----------------------------------------------------------------------------
 # In this section you can configure the Markdown extensions that are used when
 # rendering your documentation. We enable the most useful extensions by default,
