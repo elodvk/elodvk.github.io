@@ -399,6 +399,10 @@
                 });
               });
             }
+          } else if (error) {
+            const listEl = document.getElementById('ps-comment-list');
+            if(listEl) listEl.innerHTML = '<div style="color: #ff5e5b; font-size: 0.9rem; font-weight: 500;">Database Error: ' + error.message + ' <br><br><span style="color: var(--md-default-fg-color--light); font-weight: normal;">Did you forget to run the SQL script to add the new columns (`likes` and `parent_id`)?</span></div>';
+            console.error("Supabase Error:", error);
           }
         } catch(e) {
           console.error("Error fetching comments:", e);
