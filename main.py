@@ -210,7 +210,7 @@ def define_env(env):
                 f'<atom:link href="{feed_url}" rel="self" type="application/rss+xml"/>',
                 '<language>en-us</language>',
                 '<generator>PurpleSec Custom RSS</generator>',
-                f'<managingEditor>bilash@purplesec.org (Bilash J. Shahi)</managingEditor>',
+                f'<managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>',
             ]
             
             for post in posts[:50]:
@@ -226,7 +226,7 @@ def define_env(env):
                 xml.append(f'<description>{desc}</description>')
                 xml.append(f'<pubDate>{date_str}</pubDate>')
                 xml.append(f'<guid isPermaLink="true">{url}</guid>')
-                xml.append(f'<author>bilash@purplesec.org (Bilash J. Shahi)</author>')
+                xml.append(f'<author>elodvk@proton.me (Bilash J. Shahi)</author>')
                 for tag in tags[:5]:
                     xml.append(f'<category>{html.escape(str(tag))}</category>')
                 xml.append('</item>')
