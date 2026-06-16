@@ -142,45 +142,45 @@ hide:
 </div>
 </div>
 
-<div class="ps-cert-card ps-reveal ps-stagger-2" markdown>
+<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-2" markdown>
 <div class="ps-cert-bar">
 <span class="ps-terminal-dot ps-terminal-dot--red"></span>
 <span class="ps-terminal-dot ps-terminal-dot--yellow"></span>
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="font-size: 2rem;">⚔️</div>
-<div class="ps-cert-name">OSCP</div>
-<div class="ps-cert-full">Offensive Security Certified Professional</div>
-<div class="ps-cert-status ps-cert-status--progress">🔄 In Progress</div>
+<div style="font-size: 2rem;">🤖</div>
+<div class="ps-cert-name">Anthropic</div>
+<div class="ps-cert-full">Claude Code in Action</div>
+<div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
 </div>
 </div>
 
-<div class="ps-cert-card ps-reveal ps-stagger-3" markdown>
+<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-3" markdown>
 <div class="ps-cert-bar">
 <span class="ps-terminal-dot ps-terminal-dot--red"></span>
 <span class="ps-terminal-dot ps-terminal-dot--yellow"></span>
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="font-size: 2rem;">🎯</div>
-<div class="ps-cert-name">CPTS</div>
-<div class="ps-cert-full">Certified Penetration Testing Specialist</div>
-<div class="ps-cert-status ps-cert-status--progress">🔄 In Progress</div>
+<div style="font-size: 2rem;">☁️</div>
+<div class="ps-cert-name">AZ-104</div>
+<div class="ps-cert-full">Azure Administrator Associate</div>
+<div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
 </div>
 </div>
 
-<div class="ps-cert-card ps-reveal ps-stagger-4" markdown>
+<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-4" markdown>
 <div class="ps-cert-bar">
 <span class="ps-terminal-dot ps-terminal-dot--red"></span>
 <span class="ps-terminal-dot ps-terminal-dot--yellow"></span>
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
-<div style="font-size: 2rem;">📖</div>
-<div class="ps-cert-name">CISSP</div>
-<div class="ps-cert-full">Certified Information Systems Security Professional</div>
-<div class="ps-cert-status ps-cert-status--preparing">📚 Preparing</div>
+<div style="font-size: 2rem;">🔐</div>
+<div class="ps-cert-name">SC-300</div>
+<div class="ps-cert-full">Identity and Access Administrator</div>
+<div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
 </div>
 </div>
 
