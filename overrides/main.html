@@ -359,7 +359,7 @@
       setTimeout(fetchReactions, 100);
     });
 
-    async function psReact(btn) {
+    window.psReact = async function(btn) {
       try {
         var key = 'ps-reactions-' + window.location.pathname;
         var saved = JSON.parse(localStorage.getItem(key) || '{}');
@@ -388,7 +388,7 @@
       } catch(e) {
         console.error("Error in psReact:", e);
       }
-    }
+    };
   </script>
 
   <!-- Ko-fi CTA -->
