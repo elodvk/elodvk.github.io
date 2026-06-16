@@ -2,7 +2,7 @@
 title: 'HTB Checkpoint Walkthrough — BadSuccessor (CVE-2025-53779) Active Directory Exploit'
 description: 'Step-by-step Hack The Box Checkpoint walkthrough. Exploit the BadSuccessor dMSA vulnerability (CVE-2025-53779) on Windows Server 2025 for full domain compromise via AD object restoration, malicious VS Code extension, and Volatility memory forensics.'
 date: 2026-06-15
-password: "9dab1cad684e637162dd61c0fe57bd7a"
+draft: true
 difficulty: Medium
 os: Windows
 authors:
