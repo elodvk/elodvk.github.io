@@ -357,6 +357,96 @@
         if (saved[btn.dataset.emoji]) btn.classList.add('ps-reacted');
       });
       setTimeout(fetchReactions, 100);
+      setTimeout(fetchComments, 100);
+
+      async function fetchComments() {
+        if (!initSupabase()) {
+          const list = document.getElementById('ps-comment-list');
+          if(list) list.innerHTML = '<div style="color: var(--md-default-fg-color--light); font-size: 0.9rem;">Unable to load comments.</div>';
+          return;
+        }
+        const slug = window.location.pathname;
+        try {
+          const { data, error } = await supabaseClient
+            .from('page_comments')
+            .select('author_name, comment_text, created_at')
+            .eq('slug', slug)
+            .order('created_at', { ascending: false });
+            
+          if (data) {
+            const listEl = document.getElementById('ps-comment-list');
+            const countEl = document.getElementById('ps-comment-count');
+            if (countEl) countEl.innerText = data.length;
+            
+            if (data.length === 0) {
+              listEl.innerHTML = '<div style="color: var(--md-default-fg-color--light); font-size: 0.9rem; font-style: italic;">No comments yet. Be the first to share your thoughts!</div>';
+            } else {
+              listEl.innerHTML = '';
+              data.forEach(c => {
+                const date = new Date(c.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                const safeName = c.author_name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const safeText = c.comment_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+                const initial = safeName.length > 0 ? safeName[0].toUpperCase() : 'A';
+                
+                const div = document.createElement('div');
+                div.style.cssText = "display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--md-default-fg-color--lightest);";
+                div.innerHTML = `
+                  <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--md-primary-fg-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; flex-shrink: 0;">${initial}</div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                      <span style="font-weight: 600; font-size: 0.95rem; color: var(--md-typeset-a-color);">${safeName}</span>
+                      <span style="font-size: 0.75rem; color: var(--md-default-fg-color--light);">${date}</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--md-default-fg-color); line-height: 1.5; word-break: break-word;">${safeText}</div>
+                  </div>
+                `;
+                listEl.appendChild(div);
+              });
+            }
+          }
+        } catch(e) {
+          console.error("Error fetching comments:", e);
+        }
+      }
+
+      window.submitComment = async function(event) {
+        event.preventDefault();
+        const btn = document.getElementById('comment-submit-btn');
+        const statusEl = document.getElementById('comment-status');
+        const nameInput = document.getElementById('comment-author');
+        const textInput = document.getElementById('comment-text');
+        
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        
+        if (!initSupabase()) return;
+        const slug = window.location.pathname;
+        try {
+          const { error } = await supabaseClient
+            .from('page_comments')
+            .insert({
+              slug: slug,
+              author_name: nameInput.value.trim(),
+              comment_text: textInput.value.trim()
+            });
+            
+          if (!error) {
+            nameInput.value = '';
+            textInput.value = '';
+            statusEl.style.display = 'block';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+            fetchComments(); // Refresh list
+          } else {
+            console.error("Error submitting comment:", error);
+            alert("Failed to submit comment. Please try again.");
+          }
+        } catch(e) {
+          console.error("Error submitting comment:", e);
+        } finally {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        }
+      };
 
       window.psReact = async function(btn) {
         try {
@@ -446,28 +536,32 @@
   </div>
 
   <!-- Comments -->
-  <div id="ps-comments-section">
+  <div id="ps-comments-section" style="margin-top: 3rem;">
     <h2 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      Comments
+      Comments (<span id="ps-comment-count">0</span>)
     </h2>
 
-    <script src="https://giscus.app/client.js"
-      data-repo="elodvk/elodvk.github.io"
-      data-repo-id="R_kgDOS0PRKA"
-      data-category="General"
-      data-category-id="DIC_kwDOS0PRKM4C_PI4"
-      data-mapping="pathname"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="preferred_color_scheme"
-      data-lang="en"
-      data-loading="lazy"
-      crossorigin="anonymous"
-      async>
-    </script>
+    <!-- Comment Form -->
+    <div style="background: var(--md-default-bg-color); border: 1px solid var(--md-default-fg-color--lightest); border-radius: 12px; padding: 1.5rem; margin-bottom: 2.5rem;">
+      <form id="ps-comment-form" onsubmit="window.submitComment(event)">
+        <div style="margin-bottom: 1rem;">
+          <input type="text" id="comment-author" placeholder="Your Name" required maxlength="100" style="width: 100%; max-width: 300px; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); font-size: 0.9rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--md-accent-fg-color)'" onblur="this.style.borderColor='var(--md-default-fg-color--lightest)'">
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <textarea id="comment-text" placeholder="Leave a comment..." required maxlength="2000" rows="3" style="width: 100%; padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); font-size: 0.9rem; resize: vertical; outline: none; font-family: inherit; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--md-accent-fg-color)'" onblur="this.style.borderColor='var(--md-default-fg-color--lightest)'"></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 1rem;">
+          <span id="comment-status" style="font-size: 0.85rem; color: #4caf50; display: none;">Comment posted!</span>
+          <button type="submit" id="comment-submit-btn" style="padding: 0.6rem 1.5rem; border-radius: 8px; border: none; background: var(--md-accent-fg-color); color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.2s;" onmouseover="this.style.opacity='0.9'; this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)'">Post Comment</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Comment List -->
+    <div id="ps-comment-list" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div style="color: var(--md-default-fg-color--light); font-size: 0.9rem;">Loading comments...</div>
+    </div>
   </div>
   {% endif %}
 {% endblock %}
