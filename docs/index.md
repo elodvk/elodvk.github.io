@@ -1,6 +1,6 @@
 ---
-title: 'PurpleSec — Cybersecurity Writeups & Documentation'
-description: 'Offensive and defensive security writeups, Hack The Box walkthroughs, and certification preparation guides by Bilash J. Shahi.'
+title: 'PurpleSec — Cybersecurity Research & Enterprise Defense'
+description: 'Enterprise defense strategies, advanced Active Directory attack paths, Hack The Box walkthroughs, and cybersecurity research by Bilash J. Shahi (PurpleSec).'
 template: home.html
 hide:
   - navigation
@@ -40,11 +40,11 @@ hide:
 
 <div class="ps-reveal" markdown>
 
-## What You'll Find Here { .ps-section-title }
+## Knowledge Base & Security Research { .ps-section-title }
 
 <div class="ps-section-divider"></div>
 
-<p class="ps-section-subtitle">Deep-dive security content organized for both learning and quick reference.</p>
+<p class="ps-section-subtitle">Deep-dive technical articles and operational methodologies organized for immediate reference.</p>
 
 </div>
 
@@ -54,7 +54,7 @@ hide:
 
     ---
 
-    Step-by-step machine walkthroughs covering enumeration, exploitation, and privilege escalation from Easy to Insane difficulty.
+    Comprehensive machine walkthroughs covering initial access, enumeration, custom exploitation, and privilege escalation vectors from Easy to Insane difficulty.
 
     [:octicons-arrow-right-24: Browse HTB Writeups](walkthroughs/index.md)
 
@@ -62,7 +62,7 @@ hide:
 
     ---
 
-    Complete AD attack paths — from LLMNR poisoning and Kerberoasting to Golden Ticket attacks and full domain compromise.
+    In-depth analysis of Active Directory vulnerabilities, detailing attack paths like Kerberoasting, NTLM relaying, and DCSync for full domain compromise.
 
     [:octicons-arrow-right-24: Explore AD Techniques](writeups/active_directory/index.md)
 
@@ -70,7 +70,7 @@ hide:
 
     ---
 
-    Study notes, resources, and experience reports for PNPT, OSCP, CPTS, and CISSP certifications.
+    Curated study guides, methodology notes, and exam experiences for industry-leading certifications including PNPT, OSCP, CPTS, and CISSP.
 
     [:octicons-arrow-right-24: View Cert Guides](certifications/index.md)
 
@@ -78,7 +78,7 @@ hide:
 
     ---
 
-    Thoughts on cybersecurity, tool reviews, exam experiences, and updates on my learning journey.
+    Thoughts on enterprise defense, threat hunting, infrastructure security, and the latest developments in the cybersecurity landscape.
 
     [:octicons-arrow-right-24: Read the Blog](blog/index.md)
 
