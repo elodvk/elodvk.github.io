@@ -19,6 +19,54 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ og_url }}">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- RSS Autodiscovery -->
+  <link rel="alternate" type="application/rss+xml" title="PurpleSec Blog RSS" href="{{ config.site_url }}feed.xml">
+
+  <!-- JSON-LD Structured Data for Blog/Walkthrough Posts -->
+  {% set is_article = page and page.url and ((page.url[:5] == 'blog/' and page.url != 'blog/' and page.url[-1:] == '/') or (page.url[:13] == 'walkthroughs/' and page.url != 'walkthroughs/' and page.url[-1:] == '/')) %}
+  {% if is_article and page.meta %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ og_title | tojson }},
+    "description": {{ og_desc | tojson }},
+    "url": "{{ og_url }}",
+    {% if page.meta.image %}
+      {% if page.meta.image[:4] == 'http' %}
+    "image": "{{ page.meta.image }}",
+      {% else %}
+    "image": "{{ config.site_url }}{{ page.meta.image }}",
+      {% endif %}
+    {% else %}
+    "image": "{{ config.site_url }}assets/images/social-preview.png",
+    {% endif %}
+    {% if page.meta.date %}
+    "datePublished": "{{ page.meta.date }}",
+    {% endif %}
+    "dateModified": "{{ page.meta.date | default('') }}",
+    "author": {
+      "@type": "Person",
+      "name": "Bilash J. Shahi",
+      "url": "https://purplesec.org/about/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PurpleSec",
+      "url": "https://purplesec.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ config.site_url }}assets/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ og_url }}"
+    }
+  }
+  </script>
+  {% endif %}
 {% endblock %}
 
 {% block site_nav %}

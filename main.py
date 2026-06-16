@@ -189,50 +189,65 @@ def define_env(env):
 
         # Sort by newest first
         posts.sort(key=lambda x: x['date_obj'], reverse=True)
-        # Generate RSS Feed right here since mkdocs-macros hooks are ignored
+        # Generate RSS Feed
         try:
             site_url = 'https://purplesec.org/'
             site_name = 'PurpleSec'
-            site_desc = 'Cybersecurity Blog'
-            
-            # site_dir might not be accessible from env.variables directly, use a relative path
-            rss_path = os.path.abspath('site/feed.xml')
+            site_desc = 'Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.'
+            feed_url = site_url + 'feed.xml'
             
             now = datetime.utcnow()
             pub_date = format_datetime(now)
             
             xml = [
                 '<?xml version="1.0" encoding="utf-8"?>',
-                '<rss version="2.0">',
+                '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
                 '<channel>',
-                f'<title>{site_name}</title>',
+                f'<title>{html.escape(site_name)}</title>',
                 f'<link>{site_url}</link>',
-                f'<description>{site_desc}</description>',
+                f'<description>{html.escape(site_desc)}</description>',
                 f'<lastBuildDate>{pub_date}</lastBuildDate>',
-                '<generator>PurpleSec Custom RSS</generator>'
+                f'<atom:link href="{feed_url}" rel="self" type="application/rss+xml"/>',
+                '<language>en-us</language>',
+                '<generator>PurpleSec Custom RSS</generator>',
+                f'<managingEditor>bilash@purplesec.org (Bilash J. Shahi)</managingEditor>',
             ]
             
             for post in posts[:50]:
                 title = html.escape(post.get('title', ''))
-                url = site_url + post.get('url', '')
+                url = site_url + 'blog/' + post.get('url', '')
                 desc = html.escape(post.get('summary', ''))
                 date_str = format_datetime(post['date_obj'])
+                tags = post.get('tags', [])
                 
                 xml.append('<item>')
                 xml.append(f'<title>{title}</title>')
                 xml.append(f'<link>{url}</link>')
                 xml.append(f'<description>{desc}</description>')
                 xml.append(f'<pubDate>{date_str}</pubDate>')
-                xml.append(f'<guid>{url}</guid>')
+                xml.append(f'<guid isPermaLink="true">{url}</guid>')
+                xml.append(f'<author>bilash@purplesec.org (Bilash J. Shahi)</author>')
+                for tag in tags[:5]:
+                    xml.append(f'<category>{html.escape(str(tag))}</category>')
                 xml.append('</item>')
                 
             xml.append('</channel>')
             xml.append('</rss>')
             
-            os.makedirs(os.path.dirname(rss_path), exist_ok=True)
-            with open(rss_path, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(xml))
+            feed_content = '\n'.join(xml)
+            
+            # Write to site/ for production build
+            site_path = os.path.abspath('site/feed.xml')
+            os.makedirs(os.path.dirname(site_path), exist_ok=True)
+            with open(site_path, 'w', encoding='utf-8') as f:
+                f.write(feed_content)
+            
+            # Also write to docs/ so it gets picked up during build
+            docs_path = os.path.abspath('docs/feed.xml')
+            with open(docs_path, 'w', encoding='utf-8') as f:
+                f.write(feed_content)
         except Exception as e:
             print("Failed to generate RSS:", e)
 
         return posts
+
