@@ -245,6 +245,11 @@ icon = "fontawesome/solid/rss"
 link = "/feed.xml"
 name = "RSS Feed"
 
+[[project.extra.social]]
+icon = "fontawesome/solid/mug-hot"
+link = "https://www.buymeacoffee.com/elodvk"
+name = "Buy Me A Coffee"
+
 # ----------------------------------------------------------------------------
 # In this section you can configure the Markdown extensions that are used when
 # rendering your documentation. We enable the most useful extensions by default,

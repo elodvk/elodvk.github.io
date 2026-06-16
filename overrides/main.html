@@ -67,6 +67,9 @@
   }
   </script>
   {% endif %}
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-4905942185058876" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block site_nav %}
@@ -315,6 +318,24 @@
       localStorage.setItem(key, JSON.stringify(saved));
     }
   </script>
+
+  <!-- Buy Me A Coffee CTA -->
+  <div id="ps-bmc" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(255, 221, 0, 0.1), rgba(255, 129, 63, 0.05)); border: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 200px;">
+        <p style="margin: 0 0 0.3rem; font-weight: 700; font-size: 1rem; color: var(--md-default-fg-color);">
+          ☕ Enjoying the content?
+        </p>
+        <p style="margin: 0; font-size: 0.82rem; color: var(--md-default-fg-color--light); line-height: 1.5;">
+          If my walkthroughs or deep dives helped you, consider buying me a coffee to support the site!
+        </p>
+      </div>
+      <a href="https://www.buymeacoffee.com/elodvk" target="_blank" style="padding: 0.6rem 1.4rem; border-radius: 8px; background-color: #FFDD00; color: #000000; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255, 221, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" style="width: 16px; height: 16px;">
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
 
   <!-- Newsletter CTA -->
   <div id="ps-newsletter" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(var(--md-accent-fg-color--rgb, 103,58,183), 0.08), rgba(var(--md-primary-fg-color--rgb, 103,58,183), 0.04)); border: 1px solid var(--md-default-fg-color--lightest);">
