@@ -244,19 +244,19 @@
     <p style="font-size: 0.85rem; color: var(--md-default-fg-color--light); margin-bottom: 1rem; font-weight: 500;">What did you think of this post?</p>
     <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
       <button class="ps-reaction-btn" data-emoji="fire" onclick="psReact(this)" title="Fire">
-        <span class="ps-reaction-emoji">🔥</span><span class="ps-reaction-label">Awesome</span>
+        <span class="ps-reaction-emoji">🔥</span><span class="ps-reaction-label">Awesome</span><span class="ps-reaction-count" id="count-fire">0</span>
       </button>
       <button class="ps-reaction-btn" data-emoji="clap" onclick="psReact(this)" title="Clap">
-        <span class="ps-reaction-emoji">👏</span><span class="ps-reaction-label">Well Written</span>
+        <span class="ps-reaction-emoji">👏</span><span class="ps-reaction-label">Well Written</span><span class="ps-reaction-count" id="count-clap">0</span>
       </button>
       <button class="ps-reaction-btn" data-emoji="mindblown" onclick="psReact(this)" title="Mind Blown">
-        <span class="ps-reaction-emoji">🤯</span><span class="ps-reaction-label">Mind Blown</span>
+        <span class="ps-reaction-emoji">🤯</span><span class="ps-reaction-label">Mind Blown</span><span class="ps-reaction-count" id="count-mindblown">0</span>
       </button>
       <button class="ps-reaction-btn" data-emoji="lightbulb" onclick="psReact(this)" title="Learned Something">
-        <span class="ps-reaction-emoji">💡</span><span class="ps-reaction-label">Learned Something</span>
+        <span class="ps-reaction-emoji">💡</span><span class="ps-reaction-label">Learned Something</span><span class="ps-reaction-count" id="count-lightbulb">0</span>
       </button>
       <button class="ps-reaction-btn" data-emoji="heart" onclick="psReact(this)" title="Love It">
-        <span class="ps-reaction-emoji">❤️</span><span class="ps-reaction-label">Love It</span>
+        <span class="ps-reaction-emoji">❤️</span><span class="ps-reaction-label">Love It</span><span class="ps-reaction-count" id="count-heart">0</span>
       </button>
     </div>
   </div>
@@ -287,6 +287,19 @@
       color: var(--md-accent-fg-color);
       font-weight: 600;
     }
+    .ps-reaction-count {
+      margin-left: 0.2rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 1rem;
+      background: var(--md-default-fg-color--lightest);
+      color: var(--md-default-fg-color);
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .ps-reaction-btn.ps-reacted .ps-reaction-count {
+      background: var(--md-accent-fg-color);
+      color: #fff;
+    }
     .ps-reaction-btn.ps-reacted .ps-reaction-emoji {
       animation: ps-bounce 0.4s ease;
     }
@@ -296,26 +309,73 @@
       50% { transform: scale(1.4); }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    const _supabaseUrl = 'YOUR_SUPABASE_URL';
+    const _supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+    
+    // Only initialize if keys are provided
+    let supabase = null;
+    if (_supabaseUrl !== 'YOUR_SUPABASE_URL') {
+      supabase = window.supabase.createClient(_supabaseUrl, _supabaseAnonKey);
+    }
+
+    async function fetchReactions() {
+      if (!supabase) return;
+      const slug = window.location.pathname;
+      const { data, error } = await supabase
+        .from('page_reactions')
+        .select('fire, clap, mindblown, lightbulb, heart')
+        .eq('slug', slug)
+        .single();
+        
+      if (data) {
+        if (data.fire !== undefined) document.getElementById('count-fire').innerText = data.fire;
+        if (data.clap !== undefined) document.getElementById('count-clap').innerText = data.clap;
+        if (data.mindblown !== undefined) document.getElementById('count-mindblown').innerText = data.mindblown;
+        if (data.lightbulb !== undefined) document.getElementById('count-lightbulb').innerText = data.lightbulb;
+        if (data.heart !== undefined) document.getElementById('count-heart').innerText = data.heart;
+      }
+    }
+
     (function() {
       var key = 'ps-reactions-' + window.location.pathname;
       var saved = JSON.parse(localStorage.getItem(key) || '{}');
       document.querySelectorAll('.ps-reaction-btn').forEach(function(btn) {
         if (saved[btn.dataset.emoji]) btn.classList.add('ps-reacted');
       });
+      fetchReactions();
     })();
-    function psReact(btn) {
+
+    async function psReact(btn) {
       var key = 'ps-reactions-' + window.location.pathname;
       var saved = JSON.parse(localStorage.getItem(key) || '{}');
       var emoji = btn.dataset.emoji;
+      
+      // If already reacted, do nothing (we only allow incrementing once)
       if (saved[emoji]) {
-        delete saved[emoji];
-        btn.classList.remove('ps-reacted');
-      } else {
-        saved[emoji] = true;
-        btn.classList.add('ps-reacted');
-      }
+        return;
+      } 
+      
+      // Mark as reacted locally immediately
+      saved[emoji] = true;
+      btn.classList.add('ps-reacted');
       localStorage.setItem(key, JSON.stringify(saved));
+      
+      // Optimistic UI update
+      const countEl = document.getElementById('count-' + emoji);
+      if (countEl) {
+        countEl.innerText = parseInt(countEl.innerText) + 1;
+      }
+
+      // Send to Supabase
+      if (supabase) {
+        const slug = window.location.pathname;
+        await supabase.rpc('increment_reaction', {
+          page_slug: slug,
+          reaction_type: emoji
+        });
+      }
     }
   </script>
 
