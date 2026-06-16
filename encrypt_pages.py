@@ -94,6 +94,19 @@ def process_file(md_path: str):
                     contentDiv.innerHTML = plaintext;
                     contentDiv.style.display = 'block';
                     
+                    // Force images to be visible in case Material CSS hides them
+                    var imgs = contentDiv.getElementsByTagName('img');
+                    for (var i = 0; i < imgs.length; i++) {{
+                        imgs[i].style.opacity = '1';
+                        imgs[i].style.visibility = 'visible';
+                        imgs[i].style.display = 'block';
+                    }}
+                    
+                    // Re-initialize MkDocs Material components (e.g. image zoom, tabs, Mermaid)
+                    if (typeof document$ !== "undefined") {{
+                        document$.next(document);
+                    }}
+                    
                     // Re-run prism/highlight.js if needed
                     if (window.hljs) hljs.highlightAll();
                 }} else {{
