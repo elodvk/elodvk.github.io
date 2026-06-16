@@ -55,6 +55,19 @@ def process_file(md_path: str):
         print(f"[!] Could not find article content in {html_path}")
         return
     
+    # Fix relative paths before encrypting so they don't break dynamically
+    from urllib.parse import urljoin
+    rel_site_path = os.path.relpath(html_path, 'site').replace('\\', '/')
+    base_url = "/" + os.path.dirname(rel_site_path) + "/"
+    if base_url == "//":
+        base_url = "/"
+        
+    for tag in article.find_all(['img', 'a']):
+        if tag.name == 'img' and tag.has_attr('src') and not tag['src'].startswith(('http', 'data:')):
+            tag['src'] = urljoin(base_url, tag['src'])
+        elif tag.name == 'a' and tag.has_attr('href') and not tag['href'].startswith(('http', 'mailto:', '#')):
+            tag['href'] = urljoin(base_url, tag['href'])
+    
     # Extract inner HTML of article
     article_html = "".join(str(c) for c in article.contents)
     
