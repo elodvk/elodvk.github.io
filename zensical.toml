@@ -206,7 +206,7 @@ logo = "assets/images/logo.svg"
 # a monospaced font used in code blocks.
 # ----------------------------------------------------------------------------
 [project.theme.font]
-text = "Roboto"
+text = "JetBrains Mono"
 code = "JetBrains Mono"
 
 # ----------------------------------------------------------------------------

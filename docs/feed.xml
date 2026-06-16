@@ -4,15 +4,27 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Tue, 16 Jun 2026 07:29:25 -0000</lastBuildDate>
+<lastBuildDate>Tue, 16 Jun 2026 18:51:02 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
 <item>
+<title>Deep Dive: CVE-2025-57819 - Critical RCE in Sangoma FreePBX</title>
+<link>https://purplesec.org/blog/cve-2025-57819/</link>
+<description>A detailed technical breakdown of CVE-2025-57819, an unauthenticated SQL injection and remote code execution vulnerability in Sangoma FreePBX Endpoint Manager.</description>
+<pubDate>Tue, 16 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/cve-2025-57819/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>CVE-2025-57819</category>
+<category>FreePBX</category>
+<category>Vulnerability</category>
+<category>Security</category>
+</item>
+<item>
 <title>Deep Dive: BadSuccessor (CVE-2025-53779) — The Windows Server 2025 dMSA Exploit That Shook Active Directory</title>
 <link>https://purplesec.org/blog/badsuccessor-cve-2025-53779/</link>
-<description>The definitive technical analysis of BadSuccessor (CVE-2025-53779). Covers the full history of dMSA, Akamai's discovery, Kerberos PAC mechanics, Microsoft's controversial response, public PoC tools, the Ouroboros persistence technique, SIEM detection rules, and enterprise mitigations.</description>
+<description>The definitive technical analysis of BadSuccessor (CVE-2025-53779). Covers the full history of dMSA, Akamai&#x27;s discovery, Kerberos PAC mechanics, Microsoft&#x27;s controversial response, public PoC tools, the Ouroboros persistence technique, SIEM detection rules, and enterprise mitigations.</description>
 <pubDate>Mon, 15 Jun 2026 00:00:00 -0000</pubDate>
 <guid isPermaLink="true">https://purplesec.org/blog/badsuccessor-cve-2025-53779/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
@@ -23,21 +35,9 @@
 <category>Privilege Escalation</category>
 </item>
 <item>
-<title>HTB Checkpoint Walkthrough — BadSuccessor (CVE-2025-53779) Active Directory Exploit</title>
-<link>https://purplesec.org/walkthroughs/checkpoint/</link>
-<description>Step-by-step Hack The Box Checkpoint walkthrough. Exploit the BadSuccessor dMSA vulnerability (CVE-2025-53779) on Windows Server 2025 for full domain compromise via AD object restoration, malicious VS Code extension, and Volatility memory forensics.</description>
-<pubDate>Mon, 15 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/walkthroughs/checkpoint/</guid>
-<author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Hack The Box</category>
-<category>Windows</category>
-<category>Active Directory</category>
-<category>CVE-2025-53779</category>
-</item>
-<item>
-<title>The Ban on "Foreign Nationals": US Government's Unprecedented Move Against Anthropic's Fable and Mythos Models</title>
+<title>The Ban on &quot;Foreign Nationals&quot;: US Government&#x27;s Unprecedented Move Against Anthropic&#x27;s Fable and Mythos Models</title>
 <link>https://purplesec.org/blog/anthropic-fable-mythos-export-control/</link>
-<description>A deep dive into the recent U.S. government export control directive targeting Anthropic's Fable 5 and Mythos 5 models, the global shutdown, and the jailbreak controversy.</description>
+<description>A deep dive into the recent U.S. government export control directive targeting Anthropic&#x27;s Fable 5 and Mythos 5 models, the global shutdown, and the jailbreak controversy.</description>
 <pubDate>Sat, 13 Jun 2026 00:00:00 -0000</pubDate>
 <guid isPermaLink="true">https://purplesec.org/blog/anthropic-fable-mythos-export-control/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
@@ -50,7 +50,7 @@
 <item>
 <title>Quantum Computing and PKI: The Looming Cryptographic Apocalypse and How to Survive It</title>
 <link>https://purplesec.org/blog/quantum-computing-and-pki/</link>
-<description>A comprehensive deep dive into how quantum computing threatens to dismantle Public Key Infrastructure (PKI), the backbone of internet security. Covers Shor's and Grover's algorithms, the Harvest Now Decrypt Later threat, NIST's post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), real-world hybrid TLS deployments by Google and Cloudflare, Quantum Key Distribution vs PQC, cryptographic agility, and a practical enterprise migration checklist.</description>
+<description>A comprehensive deep dive into how quantum computing threatens to dismantle Public Key Infrastructure (PKI), the backbone of internet security. Covers Shor&#x27;s and Grover&#x27;s algorithms, the Harvest Now Decrypt Later threat, NIST&#x27;s post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), real-world hybrid TLS deployments by Google and Cloudflare, Quantum Key Distribution vs PQC, cryptographic agility, and a practical enterprise migration checklist.</description>
 <pubDate>Fri, 12 Jun 2026 00:00:00 -0000</pubDate>
 <guid isPermaLink="true">https://purplesec.org/blog/quantum-computing-and-pki/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
@@ -102,7 +102,7 @@
 <item>
 <title>The Nightmare Eclipse Zero-Day Campaign: A Complete Technical Analysis of the 2026 Microsoft Vendetta</title>
 <link>https://purplesec.org/blog/nightmare_eclipse_zero_days/</link>
-<description>The definitive case study on the Nightmare Eclipse zero-day campaign against Microsoft. Covers all 8+ exploits (YellowKey, BlueHammer, RedSun, UnDefend, RoguePlanet, GreatXML), the researcher's identity and motivations, CVE details, patch status, CISA KEV entries, detection strategies, and the broader vulnerability disclosure debate.</description>
+<description>The definitive case study on the Nightmare Eclipse zero-day campaign against Microsoft. Covers all 8+ exploits (YellowKey, BlueHammer, RedSun, UnDefend, RoguePlanet, GreatXML), the researcher&#x27;s identity and motivations, CVE details, patch status, CISA KEV entries, detection strategies, and the broader vulnerability disclosure debate.</description>
 <pubDate>Wed, 10 Jun 2026 00:00:00 -0000</pubDate>
 <guid isPermaLink="true">https://purplesec.org/blog/nightmare_eclipse_zero_days/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
