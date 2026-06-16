@@ -360,6 +360,27 @@
       });
       setTimeout(fetchReactions, 100);
       setTimeout(fetchComments, 100);
+      setTimeout(trackPageView, 100);
+      
+      async function trackPageView() {
+        if (!initSupabase()) return;
+        const slug = window.location.pathname;
+        try {
+          const { data, error } = await supabaseClient.rpc('increment_page_view', { page_slug: slug });
+          if (!error && data !== null) {
+            const h1 = document.querySelector('h1');
+            if (h1 && !document.getElementById('ps-page-views')) {
+              const viewsDiv = document.createElement('div');
+              viewsDiv.id = 'ps-page-views';
+              viewsDiv.style.cssText = 'color: var(--md-default-fg-color--light); font-size: 0.85rem; margin-top: -1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.4rem; font-weight: 500; user-select: none;';
+              viewsDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--md-accent-fg-color);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> <span>${data.toLocaleString()} Views</span>`;
+              h1.insertAdjacentElement('afterend', viewsDiv);
+            }
+          }
+        } catch(e) {
+          console.error("Error tracking view:", e);
+        }
+      }
 
       async function fetchComments() {
         if (!initSupabase()) {
