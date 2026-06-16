@@ -1,10 +1,68 @@
 import os
+import glob
+import urllib.parse
 import xml.etree.ElementTree as ET
 import urllib.request
 import urllib.error
 import json
 
+def regenerate_sitemap():
+    site_dir = 'site'
+    if not os.path.exists(site_dir):
+        print(f"[!] Site directory {site_dir} not found. Cannot regenerate sitemap.")
+        return
+
+    base_url = "https://purplesec.org/"
+    urls = []
+
+    # Find all index.html files
+    index_files = glob.glob(os.path.join(site_dir, '**', 'index.html'), recursive=True)
+    
+    for file_path in index_files:
+        # Convert path to relative path
+        rel_path = os.path.relpath(file_path, site_dir)
+        
+        # Normalize slashes
+        rel_path = rel_path.replace('\\', '/')
+        
+        # Turn index.html into a folder-style path
+        if rel_path == 'index.html':
+            url_path = ''
+        else:
+            url_path = rel_path[:-10] # remove 'index.html'
+            
+        # URL-encode the path components (e.g., spaces to %20)
+        encoded_path = urllib.parse.quote(url_path)
+        
+        full_url = base_url + encoded_path
+        urls.append(full_url)
+
+    # Sort URLs for consistency
+    urls.sort()
+
+    # Generate XML content
+    xml = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    ]
+    for url in urls:
+        xml.append('  <url>')
+        xml.append(f'    <loc>{url}</loc>')
+        xml.append('  </url>')
+    xml.append('</urlset>')
+    
+    sitemap_content = '\n'.join(xml)
+    
+    # Write to site/sitemap.xml
+    sitemap_path = os.path.join(site_dir, 'sitemap.xml')
+    with open(sitemap_path, 'w', encoding='utf-8') as f:
+        f.write(sitemap_content)
+    print(f"[+] Regenerated sitemap at {sitemap_path} with {len(urls)} URLs.")
+
 def main():
+    # Automatically regenerate sitemap first so it contains all pages
+    regenerate_sitemap()
+
     sitemap_path = os.path.join('site', 'sitemap.xml')
     if not os.path.exists(sitemap_path):
         print(f"[!] Sitemap not found at {sitemap_path}")
