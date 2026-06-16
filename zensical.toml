@@ -300,6 +300,8 @@ color = "#bb86fc"
 [project.plugins.blog]
 blog_dir = "blog"
 
+[project.plugins.encryptcontent]
+
 [project.extra.analytics]
 provider = "google"
 property = "G-5S46532J99"
