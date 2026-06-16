@@ -371,9 +371,9 @@
         try {
           const { data, error } = await supabaseClient
             .from('page_comments')
-            .select('id, author_name, comment_text, created_at, likes')
+            .select('id, author_name, comment_text, created_at, likes, parent_id')
             .eq('slug', slug)
-            .order('created_at', { ascending: false });
+            .order('created_at', { ascending: true }); // Ascending works better for chronological replies
             
           if (data) {
             const listEl = document.getElementById('ps-comment-list');
@@ -384,37 +384,19 @@
               listEl.innerHTML = '<div style="color: var(--md-default-fg-color--light); font-size: 0.9rem; font-style: italic;">No comments yet. Be the first to share your thoughts!</div>';
             } else {
               listEl.innerHTML = '';
-              data.forEach(c => {
-                const date = new Date(c.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-                const safeName = c.author_name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+              
+              const topLevel = data.filter(c => !c.parent_id);
+              const replies = data.filter(c => c.parent_id);
+              
+              // We reverse topLevel so newest threads are at the top
+              topLevel.reverse().forEach(c => {
+                listEl.appendChild(renderCommentNode(c, false));
                 
-                let safeText = "";
-                if (window.marked && window.DOMPurify) {
-                  safeText = DOMPurify.sanitize(marked.parse(c.comment_text));
-                } else {
-                  safeText = c.comment_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
-                }
-                
-                const initial = safeName.length > 0 ? safeName[0].toUpperCase() : 'A';
-                const likesCount = c.likes || 0;
-                
-                const div = document.createElement('div');
-                div.style.cssText = "display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--md-default-fg-color--lightest);";
-                div.innerHTML = `
-                  <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--md-primary-fg-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; flex-shrink: 0;">${initial}</div>
-                  <div style="flex: 1;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                      <span style="font-weight: 600; font-size: 0.95rem; color: var(--md-typeset-a-color);">${safeName}</span>
-                      <span style="font-size: 0.75rem; color: var(--md-default-fg-color--light);">${date}</span>
-                    </div>
-                    <div class="ps-comment-body" style="font-size: 0.9rem; color: var(--md-default-fg-color); line-height: 1.5; word-break: break-word; margin-bottom: 0.5rem;">${safeText}</div>
-                    <div style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--md-default-fg-color--light); font-size: 0.85rem; user-select: none;" onclick="window.likeComment('${c.id}', this)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s, fill 0.2s;" class="ps-heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                      <span class="ps-like-count">${likesCount}</span>
-                    </div>
-                  </div>
-                `;
-                listEl.appendChild(div);
+                // Render direct replies underneath this thread in chronological order
+                const commentReplies = replies.filter(r => r.parent_id === c.id);
+                commentReplies.forEach(r => {
+                  listEl.appendChild(renderCommentNode(r, true));
+                });
               });
             }
           }
@@ -423,33 +405,114 @@
         }
       }
 
-      window.submitComment = async function(event) {
-        event.preventDefault();
-        const btn = document.getElementById('comment-submit-btn');
-        const statusEl = document.getElementById('comment-status');
-        const nameInput = document.getElementById('comment-author');
-        const textInput = document.getElementById('comment-text');
+      function renderCommentNode(c, isReply) {
+        const date = new Date(c.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const safeName = c.author_name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         
-        btn.disabled = true;
-        btn.style.opacity = '0.5';
+        let safeText = "";
+        if (window.marked && window.DOMPurify) {
+          safeText = DOMPurify.sanitize(marked.parse(c.comment_text));
+        } else {
+          safeText = c.comment_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+        }
+        
+        const initial = safeName.length > 0 ? safeName[0].toUpperCase() : 'A';
+        const likesCount = c.likes || 0;
+        
+        const div = document.createElement('div');
+        div.style.cssText = \`display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--md-default-fg-color--lightest); \${isReply ? 'margin-left: 3.5rem; padding-bottom: 1rem; border-bottom: none; margin-top: -0.5rem;' : ''}\`;
+        
+        const size = isReply ? 34 : 44;
+        
+        div.innerHTML = \`
+          <div style="width: \${size}px; height: \${size}px; border-radius: 50%; background: var(--md-primary-fg-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: \${isReply ? '1rem' : '1.2rem'}; flex-shrink: 0;">\${initial}</div>
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+              <span style="font-weight: 600; font-size: \${isReply ? '0.85rem' : '0.95rem'}; color: var(--md-typeset-a-color);">\${safeName}</span>
+              <span style="font-size: 0.75rem; color: var(--md-default-fg-color--light);">\${date}</span>
+            </div>
+            <div class="ps-comment-body" style="font-size: 0.9rem; color: var(--md-default-fg-color); line-height: 1.5; word-break: break-word; margin-bottom: 0.5rem;">\${safeText}</div>
+            <div style="display: flex; align-items: center; gap: 1rem; user-select: none;">
+              <div style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--md-default-fg-color--light); font-size: 0.85rem;" onclick="window.likeComment('\${c.id}', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s, fill 0.2s;" class="ps-heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span class="ps-like-count">\${likesCount}</span>
+              </div>
+              \${!isReply ? \`<div style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--md-default-fg-color--light); font-size: 0.85rem;" onclick="window.showReplyForm('\${c.id}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 10 20 15 15 20"></polyline><path d="M4 4v7a4 4 0 0 0 4 4h12"></path></svg>
+                Reply
+              </div>\` : ''}
+            </div>
+            <div id="reply-container-\${c.id}"></div>
+          </div>
+        \`;
+        return div;
+      }
+
+      window.showReplyForm = function(commentId) {
+        // Clear any existing active reply forms to keep it clean
+        document.querySelectorAll('.ps-active-reply-form').forEach(el => el.innerHTML = '');
+        
+        const container = document.getElementById('reply-container-' + commentId);
+        if (container) {
+          container.classList.add('ps-active-reply-form');
+          container.innerHTML = \`
+            <form onsubmit="window.submitComment(event, '\${commentId}')" style="margin-top: 1rem; padding: 1rem; border-left: 2px solid var(--md-accent-fg-color); background: var(--md-default-bg-color); border-radius: 0 8px 8px 0;">
+              <div style="margin-bottom: 0.5rem;">
+                <input type="text" id="reply-author-\${commentId}" placeholder="Your Name" required maxlength="100" style="width: 100%; max-width: 250px; padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); font-size: 0.85rem; outline: none;">
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <textarea id="reply-text-\${commentId}" placeholder="Write a reply..." required maxlength="2000" rows="2" style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); font-size: 0.85rem; resize: vertical; outline: none; font-family: inherit;"></textarea>
+              </div>
+              <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem;">
+                <button type="button" onclick="document.getElementById('reply-container-\${commentId}').innerHTML=''" style="padding: 0.4rem 0.8rem; border-radius: 6px; border: none; background: transparent; color: var(--md-default-fg-color--light); font-size: 0.85rem; cursor: pointer;">Cancel</button>
+                <button type="submit" id="reply-submit-btn-\${commentId}" style="padding: 0.4rem 1rem; border-radius: 6px; border: none; background: var(--md-accent-fg-color); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Post Reply</button>
+              </div>
+            </form>
+          \`;
+        }
+      };
+
+      window.submitComment = async function(event, parentId = null) {
+        event.preventDefault();
+        
+        const isReply = parentId !== null;
+        const btnId = isReply ? 'reply-submit-btn-' + parentId : 'comment-submit-btn';
+        const nameInputId = isReply ? 'reply-author-' + parentId : 'comment-author';
+        const textInputId = isReply ? 'reply-text-' + parentId : 'comment-text';
+        
+        const btn = document.getElementById(btnId);
+        const nameInput = document.getElementById(nameInputId);
+        const textInput = document.getElementById(textInputId);
+        const statusEl = document.getElementById('comment-status'); // Only for main form
+        
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
         
         if (!initSupabase()) return;
         const slug = window.location.pathname;
+        
+        const payload = {
+          slug: slug,
+          author_name: nameInput.value.trim(),
+          comment_text: textInput.value.trim()
+        };
+        
+        if (isReply) {
+          payload.parent_id = parentId;
+        }
+        
         try {
           const { error } = await supabaseClient
             .from('page_comments')
-            .insert({
-              slug: slug,
-              author_name: nameInput.value.trim(),
-              comment_text: textInput.value.trim()
-            });
+            .insert(payload);
             
           if (!error) {
             nameInput.value = '';
             textInput.value = '';
-            statusEl.style.display = 'block';
-            setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
-            fetchComments(); // Refresh list
+            if (!isReply && statusEl) {
+              statusEl.style.display = 'block';
+              setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+            }
+            fetchComments(); // Refresh list to show new comment/reply
           } else {
             console.error("Error submitting comment:", error);
             alert("Failed to submit comment. Please try again.");
@@ -457,8 +520,7 @@
         } catch(e) {
           console.error("Error submitting comment:", e);
         } finally {
-          btn.disabled = false;
-          btn.style.opacity = '1';
+          if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
         }
       };
 
