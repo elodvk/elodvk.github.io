@@ -20,8 +20,9 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: 3.x
-      - run: pip install zensical
+      - run: pip install zensical pycryptodome beautifulsoup4
       - run: zensical build --clean
+      - run: python encrypt_pages.py
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
