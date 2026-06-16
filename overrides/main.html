@@ -314,67 +314,79 @@
     const _supabaseUrl = 'https://pszigoacrnajyjksyglq.supabase.co';
     const _supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzemlnb2Fjcm5hanlqa3N5Z2xxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1OTQ4NDMsImV4cCI6MjA5NzE3MDg0M30.R_9m2wYIvQs0LmYrpb6LjFcdgvCr1nZ7lPmUsIj-AJ8';
     
-    // Only initialize if keys are provided
     let supabase = null;
-    if (_supabaseUrl !== 'YOUR_SUPABASE_URL') {
-      supabase = window.supabase.createClient(_supabaseUrl, _supabaseAnonKey);
+    
+    function initSupabase() {
+      if (!supabase && window.supabase && _supabaseUrl !== 'YOUR_SUPABASE_URL') {
+        try {
+          supabase = window.supabase.createClient(_supabaseUrl, _supabaseAnonKey);
+        } catch(e) {
+          console.error("Error initializing Supabase:", e);
+        }
+      }
+      return supabase;
     }
 
     async function fetchReactions() {
-      if (!supabase) return;
+      if (!initSupabase()) return;
       const slug = window.location.pathname;
-      const { data, error } = await supabase
-        .from('page_reactions')
-        .select('fire, clap, mindblown, lightbulb, heart')
-        .eq('slug', slug)
-        .single();
-        
-      if (data) {
-        if (data.fire !== undefined) document.getElementById('count-fire').innerText = data.fire;
-        if (data.clap !== undefined) document.getElementById('count-clap').innerText = data.clap;
-        if (data.mindblown !== undefined) document.getElementById('count-mindblown').innerText = data.mindblown;
-        if (data.lightbulb !== undefined) document.getElementById('count-lightbulb').innerText = data.lightbulb;
-        if (data.heart !== undefined) document.getElementById('count-heart').innerText = data.heart;
+      try {
+        const { data, error } = await supabase
+          .from('page_reactions')
+          .select('fire, clap, mindblown, lightbulb, heart')
+          .eq('slug', slug)
+          .maybeSingle(); // Use maybeSingle to prevent error if row doesn't exist
+          
+        if (data) {
+          if (data.fire !== undefined) document.getElementById('count-fire').innerText = data.fire;
+          if (data.clap !== undefined) document.getElementById('count-clap').innerText = data.clap;
+          if (data.mindblown !== undefined) document.getElementById('count-mindblown').innerText = data.mindblown;
+          if (data.lightbulb !== undefined) document.getElementById('count-lightbulb').innerText = data.lightbulb;
+          if (data.heart !== undefined) document.getElementById('count-heart').innerText = data.heart;
+        }
+      } catch(e) {
+        console.error("Error fetching reactions:", e);
       }
     }
 
-    (function() {
+    window.addEventListener('DOMContentLoaded', () => {
       var key = 'ps-reactions-' + window.location.pathname;
       var saved = JSON.parse(localStorage.getItem(key) || '{}');
       document.querySelectorAll('.ps-reaction-btn').forEach(function(btn) {
         if (saved[btn.dataset.emoji]) btn.classList.add('ps-reacted');
       });
-      fetchReactions();
-    })();
+      // Wait a tiny bit to ensure script has loaded
+      setTimeout(fetchReactions, 100);
+    });
 
     async function psReact(btn) {
-      var key = 'ps-reactions-' + window.location.pathname;
-      var saved = JSON.parse(localStorage.getItem(key) || '{}');
-      var emoji = btn.dataset.emoji;
-      
-      // If already reacted, do nothing (we only allow incrementing once)
-      if (saved[emoji]) {
-        return;
-      } 
-      
-      // Mark as reacted locally immediately
-      saved[emoji] = true;
-      btn.classList.add('ps-reacted');
-      localStorage.setItem(key, JSON.stringify(saved));
-      
-      // Optimistic UI update
-      const countEl = document.getElementById('count-' + emoji);
-      if (countEl) {
-        countEl.innerText = parseInt(countEl.innerText) + 1;
-      }
+      try {
+        var key = 'ps-reactions-' + window.location.pathname;
+        var saved = JSON.parse(localStorage.getItem(key) || '{}');
+        var emoji = btn.dataset.emoji;
+        
+        if (saved[emoji]) {
+          return; // Already reacted
+        } 
+        
+        saved[emoji] = true;
+        btn.classList.add('ps-reacted');
+        localStorage.setItem(key, JSON.stringify(saved));
+        
+        const countEl = document.getElementById('count-' + emoji);
+        if (countEl) {
+          countEl.innerText = parseInt(countEl.innerText || "0") + 1;
+        }
 
-      // Send to Supabase
-      if (supabase) {
-        const slug = window.location.pathname;
-        await supabase.rpc('increment_reaction', {
-          page_slug: slug,
-          reaction_type: emoji
-        });
+        if (initSupabase()) {
+          const slug = window.location.pathname;
+          await supabase.rpc('increment_reaction', {
+            page_slug: slug,
+            reaction_type: emoji
+          });
+        }
+      } catch(e) {
+        console.error("Error in psReact:", e);
       }
     }
   </script>
