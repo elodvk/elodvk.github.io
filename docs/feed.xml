@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>PurpleSec</title>
+<link>https://purplesec.org/</link>
+<description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
+<lastBuildDate>Tue, 16 Jun 2026 07:29:25 -0000</lastBuildDate>
+<atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
+<language>en-us</language>
+<generator>PurpleSec Custom RSS</generator>
+<managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>Deep Dive: BadSuccessor (CVE-2025-53779) — The Windows Server 2025 dMSA Exploit That Shook Active Directory</title>
+<link>https://purplesec.org/blog/badsuccessor-cve-2025-53779/</link>
+<description>The definitive technical analysis of BadSuccessor (CVE-2025-53779). Covers the full history of dMSA, Akamai's discovery, Kerberos PAC mechanics, Microsoft's controversial response, public PoC tools, the Ouroboros persistence technique, SIEM detection rules, and enterprise mitigations.</description>
+<pubDate>Mon, 15 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/badsuccessor-cve-2025-53779/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Active Directory</category>
+<category>CVE-2025-53779</category>
+<category>BadSuccessor</category>
+<category>Windows Server 2025</category>
+<category>Privilege Escalation</category>
+</item>
+<item>
+<title>HTB Checkpoint Walkthrough — BadSuccessor (CVE-2025-53779) Active Directory Exploit</title>
+<link>https://purplesec.org/walkthroughs/checkpoint/</link>
+<description>Step-by-step Hack The Box Checkpoint walkthrough. Exploit the BadSuccessor dMSA vulnerability (CVE-2025-53779) on Windows Server 2025 for full domain compromise via AD object restoration, malicious VS Code extension, and Volatility memory forensics.</description>
+<pubDate>Mon, 15 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/walkthroughs/checkpoint/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Hack The Box</category>
+<category>Windows</category>
+<category>Active Directory</category>
+<category>CVE-2025-53779</category>
+</item>
+<item>
+<title>The Ban on "Foreign Nationals": US Government's Unprecedented Move Against Anthropic's Fable and Mythos Models</title>
+<link>https://purplesec.org/blog/anthropic-fable-mythos-export-control/</link>
+<description>A deep dive into the recent U.S. government export control directive targeting Anthropic's Fable 5 and Mythos 5 models, the global shutdown, and the jailbreak controversy.</description>
+<pubDate>Sat, 13 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/anthropic-fable-mythos-export-control/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI</category>
+<category>Export Control</category>
+<category>Anthropic</category>
+<category>Cybersecurity</category>
+<category>Policy</category>
+</item>
+<item>
+<title>Quantum Computing and PKI: The Looming Cryptographic Apocalypse and How to Survive It</title>
+<link>https://purplesec.org/blog/quantum-computing-and-pki/</link>
+<description>A comprehensive deep dive into how quantum computing threatens to dismantle Public Key Infrastructure (PKI), the backbone of internet security. Covers Shor's and Grover's algorithms, the Harvest Now Decrypt Later threat, NIST's post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), real-world hybrid TLS deployments by Google and Cloudflare, Quantum Key Distribution vs PQC, cryptographic agility, and a practical enterprise migration checklist.</description>
+<pubDate>Fri, 12 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/quantum-computing-and-pki/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Quantum Computing</category>
+<category>PKI</category>
+<category>Post-Quantum Cryptography</category>
+<category>Cryptography</category>
+<category>TLS</category>
+</item>
+<item>
+<title>June 2026 Patch Tuesday: A Record-Breaking 206 CVEs, Three Zero-Days &amp; Two BitLocker Bypasses</title>
+<link>https://purplesec.org/blog/june-2026-patch-tuesday/</link>
+<description>A deep-dive into June 2026 Patch Tuesday — the largest in Microsoft history, patching 206 CVEs including 3 zero-days, a wormable Windows Kernel RCE (CVSS 9.8), an actively exploited Defender EoP, and two separate BitLocker bypasses (YellowKey &amp; Bitskrieg).</description>
+<pubDate>Thu, 11 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/june-2026-patch-tuesday/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Patch Tuesday</category>
+<category>Microsoft</category>
+<category>CVE</category>
+<category>Windows</category>
+<category>BitLocker</category>
+</item>
+<item>
+<title>How GitHub and npm Are Fighting Back Against Supply Chain Attacks — And What You Need to Do Before July 2026</title>
+<link>https://purplesec.org/blog/npm-supply-chain-security/</link>
+<description>A deep dive into the npm v12 security overhaul arriving July 2026, the supply chain attacks that forced it, and a practical guide to preparing your projects — covering lifecycle script lockdown, Trusted Publishing, provenance attestations, and lessons from event-stream, colors.js, Shai-Hulud, and the chalk/debug compromise.</description>
+<pubDate>Thu, 11 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/npm-supply-chain-security/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>npm</category>
+<category>GitHub</category>
+<category>Supply Chain Security</category>
+<category>Software Security</category>
+<category>DevSecOps</category>
+</item>
+<item>
+<title>NVIDIA RTX Spark &amp; DGX Spark: The Dawn of Personal AI Supercomputers and What It Means for Local LLM Enthusiasts</title>
+<link>https://purplesec.org/blog/nvidia-rtx-dgx-spark/</link>
+<description>An in-depth look at NVIDIA RTX Spark and DGX Spark — the new personal AI supercomputers powered by Grace Blackwell silicon. From the 128GB unified memory architecture to running 200B-parameter models locally, we explore what these machines mean for developers, researchers, and the local LLM community.</description>
+<pubDate>Thu, 11 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/nvidia-rtx-dgx-spark/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>NVIDIA</category>
+<category>AI</category>
+<category>LLM</category>
+<category>DGX Spark</category>
+<category>RTX Spark</category>
+</item>
+<item>
+<title>The Nightmare Eclipse Zero-Day Campaign: A Complete Technical Analysis of the 2026 Microsoft Vendetta</title>
+<link>https://purplesec.org/blog/nightmare_eclipse_zero_days/</link>
+<description>The definitive case study on the Nightmare Eclipse zero-day campaign against Microsoft. Covers all 8+ exploits (YellowKey, BlueHammer, RedSun, UnDefend, RoguePlanet, GreatXML), the researcher's identity and motivations, CVE details, patch status, CISA KEV entries, detection strategies, and the broader vulnerability disclosure debate.</description>
+<pubDate>Wed, 10 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/nightmare_eclipse_zero_days/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Zero-Day</category>
+<category>Microsoft</category>
+<category>Vulnerability Disclosure</category>
+<category>Nightmare Eclipse</category>
+<category>Case Study</category>
+</item>
+<item>
+<title>To Err is Algorithm: Case Studies Where AI Messed Up Big Time</title>
+<link>https://purplesec.org/blog/when_ai_messes_up/</link>
+<description>A deep dive into three major incidents where artificial intelligence systems failed spectacularly, resulting in financial loss, legal liability, and public relations nightmares.</description>
+<pubDate>Wed, 10 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/when_ai_messes_up/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI</category>
+<category>Machine Learning</category>
+<category>Case Studies</category>
+<category>Incident Response</category>
+<category>Cybersecurity</category>
+</item>
+<item>
+<title>A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local Deployment</title>
+<link>https://purplesec.org/blog/comprehensive_ai_guide/</link>
+<description>A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks.</description>
+<pubDate>Tue, 09 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/comprehensive_ai_guide/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI</category>
+<category>Machine Learning</category>
+<category>Large Language Models</category>
+<category>RAG</category>
+<category>Local AI</category>
+</item>
+<item>
+<title>The Golden Skeleton Key: A Deep Dive into CVE-2026-45585 (YellowKey) BitLocker Bypass</title>
+<link>https://purplesec.org/blog/CVE-2026-45585_YellowKey_DeepDive/</link>
+<description>A comprehensive technical deep dive into CVE-2026-45585 (YellowKey), a critical physical access vulnerability that completely bypasses Microsoft BitLocker encryption.</description>
+<pubDate>Tue, 09 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/CVE-2026-45585_YellowKey_DeepDive/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>CVE-2026-45585</category>
+<category>BitLocker</category>
+<category>YellowKey</category>
+<category>Windows</category>
+<category>Physical Security</category>
+</item>
+<item>
+<title>The Anatomy of the Meta AI Support Hack: Why AI Should Never Reset Passwords</title>
+<link>https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</link>
+<description>A deep dive into the 2026 Meta AI support hack, exploring how attackers socially engineered an AI chatbot to bypass IAM and reset Instagram passwords.</description>
+<pubDate>Tue, 09 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Meta</category>
+<category>AI</category>
+<category>Security</category>
+<category>Social Engineering</category>
+</item>
+<item>
+<title>How I Conquered the PNPT: A Wild Ride Through Cyber Shenanigans</title>
+<link>https://purplesec.org/blog/pnpt-review/</link>
+<description>A candid review of the Practical Network Penetration Tester (PNPT) exam, featuring tips, lessons learned, and active directory exploitation strategies.</description>
+<pubDate>Wed, 22 Oct 2025 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/pnpt-review/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>TCM Security</category>
+<category>PNPT</category>
+<category>Practical Network Penetration Tester</category>
+<category>Active Directory</category>
+</item>
+</channel>
+</rss>
