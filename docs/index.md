@@ -163,6 +163,20 @@ hide:
 <span class="ps-terminal-dot ps-terminal-dot--green"></span>
 </div>
 <div class="ps-cert-card-inner" markdown>
+<div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/securiti.svg" alt="Securiti" style="max-height: 100%;"></div>
+<div class="ps-cert-name">Securiti</div>
+<div class="ps-cert-full">AI Security & Governance</div>
+<div class="ps-cert-status ps-cert-status--certified">✅ Certified</div>
+</div>
+</div>
+
+<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-4" markdown>
+<div class="ps-cert-bar">
+<span class="ps-terminal-dot ps-terminal-dot--red"></span>
+<span class="ps-terminal-dot ps-terminal-dot--yellow"></span>
+<span class="ps-terminal-dot ps-terminal-dot--green"></span>
+</div>
+<div class="ps-cert-card-inner" markdown>
 <div style="height: 2rem; display: flex; align-items: center; justify-content: center;"><img src="/assets/images/certs/microsoft.png" alt="Microsoft" style="max-height: 100%;"></div>
 <div class="ps-cert-name">AZ-104</div>
 <div class="ps-cert-full">Azure Administrator Associate</div>
@@ -170,7 +184,7 @@ hide:
 </div>
 </div>
 
-<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-4" markdown>
+<div class="ps-cert-card ps-cert-card--certified ps-reveal ps-stagger-1" markdown>
 <div class="ps-cert-bar">
 <span class="ps-terminal-dot ps-terminal-dot--red"></span>
 <span class="ps-terminal-dot ps-terminal-dot--yellow"></span>
