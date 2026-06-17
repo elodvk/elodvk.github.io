@@ -85,14 +85,6 @@ graph TD
 
 An initial `nmap` scan quickly reveals that the target is a domain controller, as indicated by the presence of standard Active Directory services.
 
-??? info "What is nmap?"
-    **nmap** (Network Mapper) is the industry-standard open-source tool for network discovery and security auditing. The flags used here are:
-
-    - `-sC` — Run default NSE (Nmap Scripting Engine) scripts for service enumeration
-    - `-sV` — Probe open ports to determine service/version info
-    - `-T4` — Aggressive timing template for faster scans
-    - `-oA` — Output results in all formats (normal, XML, and greppable)
-
 ```shell
 nmap 10.129.212.6
 ```
@@ -182,8 +174,6 @@ Key observations from the service scan:
 
 Using `netexec` with the provided credentials to enumerate SMB shares. The `DevDrop` share immediately stands out — its description indicates it hosts approved `.vsix` packages for VS Code engine `1.118.0`.
 
-??? info "What is netexec?"
-    **netexec** (formerly CrackMapExec) is a post-exploitation tool for pentesting Windows/AD environments. The `--shares` flag enumerates all accessible SMB shares and displays the current user's permissions on each.
 
 ```shell
 netexec smb 10.129.212.6 -u 'alex.turner' -p 'Checkpoint2024!' --shares
@@ -334,15 +324,13 @@ Dumping Containers: 100%|██████████████████�
 
 ### Analysis
 
-After importing the data into BloodHound, two critical ACL (Access Control List) relationships emerge that form the backbone of the attack chain:
+After importing the data into BloodHound, a critical ACL (Access Control List) relationship emerges that forms the target path of the attack chain:
 
-**1.** `alex.turner` has **GenericWrite** permissions over the `MARK.DAVIES` user object — this means we can modify attributes on Mark's account.
-
-![BloodHound graph showing alex.turner GenericWrite over Mark.Davies](assets/checkpoint/bloodhound_alex_genericwrite_mark.png)
-
-**2.** `ryan.brooks` has **GenericWrite** permissions over the `SVC_DEPLOY@CHECKPOINT.HTB` service account — meaning if we can compromise Ryan, we can manipulate the service account.
+`ryan.brooks` has **GenericWrite** permissions over the `SVC_DEPLOY@CHECKPOINT.HTB` service account — meaning if we can compromise Ryan, we can manipulate the service account.
 
 ![BloodHound graph showing ryan.brooks GenericWrite over svc_deploy](assets/checkpoint/bloodhound_ryan_genericwrite_svc.png)
+
+*(Note: Because the `MARK.DAVIES` account is currently deleted and resides in the Active Directory Recycle Bin, it does not appear in this initial BloodHound collection. We must first discover and restore the deleted object to make use of it.)*
 
 ??? info "What is GenericWrite?"
     **GenericWrite** is an Active Directory permission that allows a principal to write to any non-protected attribute on the target object. This is extremely powerful because it can be abused to:
@@ -401,6 +389,10 @@ bloodyad -d checkpoint.htb --host dc01.checkpoint.htb -u alex.turner -p 'Checkpo
 ```
 [+] CN=Mark Davies\0ADEL:2217e877-e2a2-47d7-91d4-99ede36f367e,CN=Deleted Objects,DC=checkpoint,DC=htb has been restored successfully under CN=Mark Davies,OU=Employees,DC=checkpoint,DC=htb
 ```
+
+With the `MARK.DAVIES` account successfully restored, a subsequent BloodHound collection can be run to confirm the relationship: `alex.turner` has **GenericWrite** permissions over the newly active `MARK.DAVIES` user object.
+
+![BloodHound graph showing alex.turner GenericWrite over Mark.Davies](assets/checkpoint/bloodhound_alex_genericwrite_mark.png)
 
 ### Password Reuse
 
