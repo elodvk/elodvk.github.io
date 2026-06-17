@@ -10,7 +10,6 @@ tags:
   - Telegram
   - Government Bans
   - Cybersecurity
-  - Active Directory
   - Privacy
 description: 'An in-depth investigation into India''s recent temporary ban on Telegram, the technical exploit of timestamp forgery used by exam paper leaking rackets, and the global legal struggles of Pavel Durov.'
 image: /blog/assets/telegram_ban_india_banner.png
