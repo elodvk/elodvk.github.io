@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Wed, 17 Jun 2026 10:46:57 -0000</lastBuildDate>
+<lastBuildDate>Wed, 17 Jun 2026 17:12:33 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>The Great Telegram Lockdown: Exam Leaks, Timestamp Forgery, and the Global War on Moderation</title>
+<link>https://purplesec.org/blog/telegram-ban-india-global-moderation/</link>
+<description>An in-depth investigation into India&#x27;s recent temporary ban on Telegram, the technical exploit of timestamp forgery used by exam paper leaking rackets, and the global legal struggles of Pavel Durov.</description>
+<pubDate>Wed, 17 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/telegram-ban-india-global-moderation/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Telegram</category>
+<category>Government Bans</category>
+<category>Cybersecurity</category>
+<category>Active Directory</category>
+<category>Privacy</category>
+</item>
 <item>
 <title>Deep Dive: CVE-2025-57819 - Critical RCE in Sangoma FreePBX</title>
 <link>https://purplesec.org/blog/cve-2025-57819/</link>
