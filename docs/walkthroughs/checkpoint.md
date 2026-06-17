@@ -330,7 +330,8 @@ After importing the data into BloodHound, a critical ACL (Access Control List) r
 
 ![BloodHound graph showing ryan.brooks GenericWrite over svc_deploy](assets/checkpoint/bloodhound_ryan_genericwrite_svc.png)
 
-*(Note: Because the `MARK.DAVIES` account is currently deleted and resides in the Active Directory Recycle Bin, it does not appear in this initial BloodHound collection. We must first discover and restore the deleted object to make use of it.)*
+!!! note 
+    Because the `MARK.DAVIES` account is currently deleted and resides in the Active Directory Recycle Bin, it does not appear in this initial BloodHound collection. We must first discover and restore the deleted object to make use of it.)*
 
 ??? info "What is GenericWrite?"
     **GenericWrite** is an Active Directory permission that allows a principal to write to any non-protected attribute on the target object. This is extremely powerful because it can be abused to:
