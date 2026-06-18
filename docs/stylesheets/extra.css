@@ -2935,3 +2935,193 @@ html {
   .ps-browser-dots i { width: 10px; height: 10px; }
 }
 
+
+/* ============================================================================
+ * Window Frames — Image viewer / Shell / Editor
+ * Built at runtime by initWindowFrames(). Same authoring as .ps-browser:
+ *   <div class="ps-image"  data-title="login.png"        markdown>![alt](shot.png)</div>
+ *   <div class="ps-shell"  data-title="kali@kali: ~"     markdown>![alt](shot.png)</div>
+ *   <div class="ps-editor" data-title="reverse-shell.php" markdown>![alt](shot.png)</div>
+ * Each can also wrap a fenced code block instead of an image.
+ * ============================================================================ */
+.ps-win-frame {
+  --psw-bar: #181d27;
+  --psw-body: var(--ps-terminal-bg);
+  --psw-ink: #c9d1d9;
+  --psw-muted: #8b98a8;
+  --psw-accent: var(--ps-accent);
+  margin: 1.6rem 0;
+  border: 1px solid #2a3240;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--psw-body);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5), 0 2px 0 rgba(255,255,255,0.03) inset;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.ps-win-frame:hover {
+  border-color: #36404f;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.6), var(--ps-glow-sm);
+}
+
+/* Title bar (shared) */
+.ps-win-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 40px;
+  padding: 0 0.75rem;
+  background: var(--psw-bar);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+/* Traffic-light dots (shared) */
+.ps-win-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.ps-win-dots i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25) inset;
+}
+.ps-win-dots i:nth-child(1) { background: #ff5f57; }
+.ps-win-dots i:nth-child(2) { background: #febc2e; }
+.ps-win-dots i:nth-child(3) { background: #28c840; }
+
+/* Centered title (image + shell) */
+.ps-win-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--psw-muted);
+}
+.ps-win-title-icon { display: inline-flex; flex-shrink: 0; color: var(--psw-accent); }
+.ps-win-title-icon svg { width: 14px; height: 14px; }
+.ps-win-title-text {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+/* Spacer balances the dots so the centered title is truly centered */
+.ps-win-spacer { flex-shrink: 0; width: 52px; }
+
+/* Body */
+.ps-win-body { display: block; background: var(--psw-body); }
+.ps-win-body--media { line-height: 0; }
+.ps-win-body--media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+/* When wrapping real text/code, let the inner block sit flush */
+.ps-win-body--text > :first-child { margin-top: 0; }
+.ps-win-body--text > :last-child { margin-bottom: 0; }
+.ps-win-body--text .highlight,
+.ps-win-body--text pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+.ps-win-body--text > p { margin: 0; }
+
+/* ---- Image viewer ---- */
+.ps-win--image { --psw-bar: #1c2026; }
+
+/* ---- Shell / terminal ---- */
+.ps-win--shell {
+  --psw-bar: #0c1119;
+  --psw-body: #0a0e14;
+  --psw-accent: var(--ps-neon-green);
+}
+.ps-win--shell .ps-win-title { color: #9fb0c3; }
+.ps-win--shell .ps-win-title-text { color: var(--ps-neon-green); opacity: 0.85; }
+.ps-win--shell .ps-win-body--text {
+  padding: 0;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ---- Editor (VS Code-style file tab) ---- */
+.ps-win--editor { --psw-bar: #20232e; }
+.ps-win--editor .ps-win-bar {
+  gap: 0.75rem;
+  background: #181b24; /* darker title strip behind the tab */
+}
+.ps-win-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 40px;
+  max-width: 320px;
+  padding: 0 0.85rem;
+  background: #20232e; /* active tab = editor body tone */
+  border-right: 1px solid rgba(0,0,0,0.4);
+  border-top: 2px solid var(--ps-accent);
+  margin-bottom: -1px;
+}
+.ps-win-tab .ps-win-title-icon { color: var(--psw-muted); }
+.ps-win-tab .ps-win-title-text {
+  min-width: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--psw-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ps-win-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--ps-accent);
+}
+.ps-win-tabclose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  color: var(--psw-muted);
+  flex-shrink: 0;
+}
+.ps-win-tabclose svg { width: 11px; height: 11px; }
+.ps-win-tabclose:hover { background: rgba(255,255,255,0.12); color: var(--psw-ink); }
+.ps-win--editor .ps-win-body { background: #20232e; }
+.ps-win--editor .ps-win-body--text .highlight,
+.ps-win--editor .ps-win-body--text pre { background: #20232e !important; }
+
+/* ---- Light mode ---- */
+[data-md-color-scheme="default"] .ps-win-frame {
+  --psw-ink: #2b2f36;
+  --psw-muted: #6b7280;
+  border-color: #c2c9d4;
+  background: #fff;
+}
+[data-md-color-scheme="default"] .ps-win--image { --psw-bar: #eef1f5; --psw-body: #fff; }
+[data-md-color-scheme="default"] .ps-win--shell { --psw-bar: #11151c; --psw-body: #0a0e14; }
+[data-md-color-scheme="default"] .ps-win--editor .ps-win-bar { background: #e6e9ef; }
+[data-md-color-scheme="default"] .ps-win--editor .ps-win-tab { background: #fff; }
+[data-md-color-scheme="default"] .ps-win--editor .ps-win-body { background: #fff; }
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .ps-win-bar { height: 36px; padding: 0 0.55rem; gap: 0.45rem; }
+  .ps-win-spacer { width: 0; }
+  .ps-win-title { font-size: 0.74rem; }
+  .ps-win-tab { height: 36px; padding: 0 0.6rem; max-width: 200px; }
+  .ps-win-tab .ps-win-title-text { font-size: 0.72rem; }
+  .ps-win-dots i { width: 10px; height: 10px; }
+}

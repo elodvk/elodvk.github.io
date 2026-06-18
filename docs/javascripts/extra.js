@@ -583,6 +583,115 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Window Frames (image viewer / shell / editor)
+   * Same authoring pattern as .ps-browser, but type-appropriate chrome.
+   *   <div class="ps-image"  data-title="login.png"        markdown>![alt](shot.png)</div>
+   *   <div class="ps-shell"  data-title="kali@kali: ~"     markdown>![alt](shot.png)</div>
+   *   <div class="ps-editor" data-title="reverse-shell.php" markdown>![alt](shot.png)</div>
+   * Each can also wrap real text/code (a fenced block) instead of an image.
+   * -------------------------------------------------------------------------- */
+  function initWindowFrames() {
+    var targets = document.querySelectorAll(".ps-image:not([data-psb-done]), .ps-shell:not([data-psb-done]), .ps-editor:not([data-psb-done])");
+    if (!targets.length) return;
+
+    var WICON = {
+      image:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg>',
+      shell:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>',
+      editor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>',
+      close:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>'
+    };
+
+    // Color the editor "modified" dot / accent by file extension
+    function extColor(name) {
+      var m = String(name).toLowerCase().match(/\.([a-z0-9]+)$/);
+      var ext = m ? m[1] : "";
+      var map = {
+        php: "#8993be", py: "#ffd43b", js: "#f0db4f", ts: "#3178c6",
+        sh: "#4cc77f", bash: "#4cc77f", html: "#e34c26", css: "#2965f1",
+        json: "#cbcb41", rb: "#cc342d", go: "#00add8", rs: "#dea584",
+        c: "#5f9ea0", cpp: "#5f9ea0", java: "#e76f00", sql: "#e38c00",
+        ps1: "#5391fe", txt: "#9aa4b2", conf: "#9aa4b2", yml: "#cb171e", yaml: "#cb171e"
+      };
+      return map[ext] || "var(--ps-accent)";
+    }
+
+    targets.forEach(function (el) {
+      el.setAttribute("data-psb-done", "1");
+
+      var type = el.classList.contains("ps-shell") ? "shell"
+               : el.classList.contains("ps-editor") ? "editor"
+               : "image";
+
+      var img, container;
+
+      if (el.tagName === "IMG") {
+        img = el;
+        if (!img.parentNode) return;
+        container = document.createElement("div");
+        img.parentNode.insertBefore(container, img);
+        var hold = img;
+        container.appendChild(hold);
+      } else {
+        container = el;
+        img = el.querySelector("img");
+      }
+
+      // Default titles per window type
+      var defaultTitle = type === "shell" ? "bash"
+                       : type === "editor" ? "untitled"
+                       : "Preview";
+
+      var title = (container.getAttribute && container.getAttribute("data-title")) ||
+                  (img && img.getAttribute("data-title")) ||
+                  (img && (img.getAttribute("alt") || "").trim()) ||
+                  defaultTitle;
+
+      // Collect existing content and move it into the body
+      var body = document.createElement("div");
+      body.className = "ps-win-body " + (img ? "ps-win-body--media" : "ps-win-body--text");
+      while (container.firstChild) {
+        body.appendChild(container.firstChild);
+      }
+
+      container.classList.add("ps-win-frame", "ps-win--" + type);
+
+      // Build the title bar
+      var bar = document.createElement("div");
+      bar.className = "ps-win-bar";
+
+      var dots = '<span class="ps-win-dots"><i></i><i></i><i></i></span>';
+
+      if (type === "editor") {
+        // A single file tab (icon + filename + modified dot + close)
+        bar.innerHTML =
+          dots +
+          '<div class="ps-win-tab">' +
+            '<span class="ps-win-title-icon">' + WICON.editor + '</span>' +
+            '<span class="ps-win-title-text"></span>' +
+            '<span class="ps-win-dot" aria-hidden="true"></span>' +
+            '<span class="ps-win-tabclose" aria-hidden="true">' + WICON.close + '</span>' +
+          '</div>' +
+          '<span class="ps-win-spacer"></span>';
+        bar.querySelector(".ps-win-title-text").textContent = title;
+        bar.querySelector(".ps-win-dot").style.background = extColor(title);
+      } else {
+        // Centered title for image viewer + shell
+        bar.innerHTML =
+          dots +
+          '<span class="ps-win-title">' +
+            '<span class="ps-win-title-icon">' + WICON[type] + '</span>' +
+            '<span class="ps-win-title-text"></span>' +
+          '</span>' +
+          '<span class="ps-win-spacer"></span>';
+        bar.querySelector(".ps-win-title-text").textContent = title;
+      }
+
+      container.appendChild(bar);
+      container.appendChild(body);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -720,6 +829,7 @@ function initPurpleSecJS() {
   initArchiveToggle();
   initTagFilter();
   initBrowserFrames();
+  initWindowFrames();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

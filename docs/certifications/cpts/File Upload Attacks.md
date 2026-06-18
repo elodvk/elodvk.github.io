@@ -145,7 +145,9 @@ A web shell takes commands via HTTP and prints the output in your browser — gr
 
 Upload it, visit it, enumerate:
 
+<div class="ps-shell" data-title="www-data@target: /var/www/html" markdown>
 ![phpbash terminal-like web shell](assets/file-upload-attacks/phpbash-web-shell.png)
+</div>
 
 ### Option B — Write Your Own Web Shell
 
@@ -190,7 +192,9 @@ A reverse shell is fully interactive — almost always nicer than a web shell. M
 - **revshells.com** — online generator for dozens of payloads/languages; copy-paste ready.
 - **SecLists** — reverse shells for many frameworks.
 
+<div class="ps-editor" data-title="php-reverse-shell.php" markdown>
 ![Editing IP and port in the pentestmonkey script](assets/file-upload-attacks/pentestmonkey-edit-ip-port.png)
+</div>
 
 **2. Start a listener, upload, and trigger it:**
 
@@ -247,7 +251,9 @@ Here's a profile-image uploader. The file dialog is locked to images:
 ![Profile image upload feature](assets/file-upload-attacks/profile-image-upload.png)
 </div>
 
+<div class="ps-image" data-title="file-dialog.png" markdown>
 ![File dialog limited to image formats](assets/file-upload-attacks/file-dialog-images-only.png)
+</div>
 
 Picking *All Files* and selecting a PHP script throws "Only images are allowed!" and disables the Upload button — and notice the page never sends a request, confirming validation is purely front-end:
 
@@ -340,12 +346,132 @@ The exercise we find in this section is similar to the one we saw in the previou
 
 Let's start by trying one of the client-side bypasses we learned in the previous section to upload a PHP script to the back-end server. We'll intercept an image upload request with Burp, replace the file content and filename with our PHP script's, and forward the request:
 
+<div class="ps-browser" data-url="http://154.57.164.81:32687" markdown>
+![](image.png)
+</div>
+
+As we can see, our attack did not succeed this time, as we gotExtension not allowed . This indicates that the web application may have some form of file type validation on the back-end, in addition to the front-end validations.
+
+There are generally two common forms of validating a file extension on the back-end:
+
+1. Testing against ablacklist of types
+2. Testing against awhitelist of types
+
+Furthermore, the validation may also check the `file type` or the `file content` for type matching. The weakest form of validation amongst these istesting the file extension against a `blacklist of extension` to determine whether the upload request should be blocked. For example, the following piece of code checks if the uploaded file extension is `PHP` and drops the request if it is:
+
+```php
+$fileName = basename($_FILES["uploadFile"]["name"]);
+$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+$blacklist = array('php', 'php7', 'phps');
+
+if (in_array($extension, $blacklist)) {
+    echo "File type not allowed";
+    die();
+}
+```
+
+The code is taking the file extension (`$extension`) from the uploaded file name (`$fileName`) and then comparing it against a list of blacklisted extensions (`$blacklist`). However, this validation method has a major flaw. , as many other extensions are not included in this list, which may still be used to execute `PHP` code on the back-end server if uploaded. It is not comprehensive
+
+!!! tip
+    The comparison above is also case-sensitive, and is only considering lowercase extensions. In Windows Servers, file names are case insensitive, so we may try uploading a `php` with a mixed-case (e.g. ), which may bypass the blacklist as well, and should still execute as a PHP script`.pHp`
+
+So, let's try to exploit this weakness to bypass the blacklist and upload a PHP file.
+
+### Fuzzing Extensions
+
+As the web application seems to be testing the file extension, our first step is to fuzz the upload functionality with a list of potential extensions and see which of them return the previous error message. Any upload requests that do not return an error message, return a different message, or succeed in uploading the file, may indicate an allowed file extension.
+
+There are many lists of extensions we can utilize in our fuzzing scan. provides lists of extensions for PHP and .NET web applications. We may also use list of common Web Extensions.PayloadsAllTheThingsSecLists
+
+We may use any of the above lists for our fuzzing scan. As we are testing a PHP application, we will download and use the above PHP list. Then, fromBurp History , we can locate our last request to/upload.php , right-click on it, and selectSend to Intruder . From thePositions tab, we canClear any automatically set positions, and then select the.php extension infilename="HTB.php" and click theAdd button to add it as a fuzzing position:
 
 
 
 
+We'll keep the file content for this attack, as we are only interested in fuzzing file extensions. Finally, we canLoad the PHP extensions list from above in thePayloads tab underPayload Options . We will also un-tick theURL Encoding option to avoid encoding the (.) before the file extension. Once this is done, we can click onStart Attack to start fuzzing for file extensions that are not blacklisted:
+
+![](image-2.png)
 
 
+
+We can sort the results byLength , and we will see that all requests with the Content-Length (229, 230) passed the extension validation, as they all responded withFile successfully uploaded . In contrast, the rest responded with an error message saying Extension not allowed.
+
+![](image-1.png)
+
+### Non-Blacklisted Extensions
+Now, we can try uploading a file using any of theallowed extensions from above, and some of them may allow us to execute PHP code. , so we may need to try several extensions to get one that successfully executes PHP code.Not all extensions will work with all web server configurations
+
+Let's use the `.phar` extension, which PHP web servers often allow for code execution rights. We can right-click on its request in the Intruder results and selectSend to Repeater . Now, all we have to do is repeat what we have done in the previous two sections by changing the file name to use the.phtml extension and changing the content to that of a PHP web shell:
+
+
+![](image-4.png)
+
+As we can see, our file seems to have indeed been uploaded. The final step is to visit our upload file, which should be under the image upload directory (profile_images), as we saw in the previous section. Then, we can test executing a command, which should confirm that we successfully bypassed the blacklist and uploaded our web shell:
+
+
+<div class="ps-browser" data-url="http://154.57.164.68:32525/profile_images/shell.phar?cmd=id" markdown>
+![](image-3.png)
+</div>
+
+
+## Whitelist Filters
+
+As discussed in the previous section, the other type of file extension validation is by utilizing awhitelist of allowed file extensions . A whitelist is generally more secure than a blacklist. The web server would only allow the specified extensions, and the list would not need to be comprehensive in covering uncommon extensions.
+
+Still, there are different use cases for a blacklist and for a whitelist. A blacklist may be helpful in cases where the upload functionality needs to allow a wide variety of file types (e.g., File Manager), while a whitelist is usually only used with upload functionalities where only a few file types are allowed. Both may also be used in tandem.
+
+### Whitelisting Extensions
+
+Let's start the exercise at the end of this section and attempt to upload an uncommon PHP extension, like.phtml , and see if we are still able to upload it as we did in the previous section:
+
+
+<div class="ps-browser" data-url="154.57.164.72:30653" markdown>
+![Employee File Manager](image-5.png)
+</div>
+
+
+We see that we get a message sayingOnly images are allowed , which may be more common in web apps than seeing a blocked extension type. However, error messages do not always reflect which form of validation is being utilized, so let's try to fuzz for allowed extensions as we did in the previous section, using the same wordlist that we used previously:
+
+![](image-6.png)
+
+We can see that all variations of PHP extensions are blocked (e.g. php5, php7, phtml). However, the wordlist we used also contained other 'malicious' extensions that were not blocked and were successfully uploaded. So, let's try to understand how we were able to upload these extensions and in which cases we may be able to utilize them to execute PHP code on the back-end server.
+
+The following is an example of a file extension whitelist test:
+
+```php
+$fileName = basename($_FILES["uploadFile"]["name"]);
+
+if (!preg_match('^.*\.(jpg|jpeg|png|gif)', $fileName)) {
+    echo "Only images are allowed";
+    die();
+}
+```
+
+We see that the script uses a Regular Expression (regex) to test whether the filename contains any whitelisted image extensions. The issue here lies within the regex, as it only checks whether the file name contains the extension and not if it actually ends with it. Many developers make such mistakes due to a weak understanding of regex patterns.
+
+So, let's see how we can bypass these tests to upload PHP scripts.
+
+### Double Extensions
+
+The code only tests whether the file name contains an image extension; a straightforward method of passing the regex test is through Double Extensions. For example, if the .jpg extension was allowed, we can add it in our uploaded file name and still end our filename with .php (e.g. shell.jpg.php), in which case we should be able to pass the whitelist test, while still uploading a PHP script that can execute PHP code.
+
+Let's intercept a normal upload request, and modify the file name to (shell.php.jpg), and modify its content to that of a web shell:
+
+![](image-7.png)
+
+Now, if we visit the uploaded file and try to send a command, we can see that it does indeed successfully execute system commands, meaning that the file we uploaded is a fully working PHP script:
+
+<div class="ps-browser" data-url="http://154.57.164.72:30653/profile_images/shell.phar.jpg?cmd=id" markdown>
+![](image-8.png)
+</div>
+
+However, this may not always work, as some web applications may use a strict regex pattern, as mentioned earlier, like the following:
+
+```php
+if (!preg_match('/^.*\.(jpg|jpeg|png|gif)$/', $fileName)) { ...SNIP... }
+```
+
+This pattern should only consider the final file extension, as it uses (^.*\.) to match everything up to the last (.), and then uses ($) at the end to only match extensions that end the file name. So, the above attack would not work. Nevertheless, some exploitation techniques may allow us to bypass this pattern, but most rely on misconfigurations or outdated systems.
 
 
 
