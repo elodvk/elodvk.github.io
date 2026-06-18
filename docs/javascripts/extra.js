@@ -433,6 +433,103 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Browser Window Frames
+   * Wraps a screenshot in an auto-generated browser chrome: traffic-light dots,
+   * a fake URL bar (from data-url), and a copy-URL button.
+   * Authoring (markdown + md_in_html):
+   *   <div class="ps-browser" data-url="http://SERVER_IP:PORT/" markdown>
+   *   ![alt](path/to/shot.png)
+   *   </div>
+   * (A bare <img class="ps-browser" data-url="..."> is also supported.)
+   * -------------------------------------------------------------------------- */
+  function initBrowserFrames() {
+    var targets = document.querySelectorAll(".ps-browser:not([data-psb-done])");
+    if (!targets.length) return;
+
+    var copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+    var checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    var searchIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>';
+
+    function fallbackCopy(text) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+
+    function buildBar(url) {
+      var bar = document.createElement("div");
+      bar.className = "ps-browser-bar";
+      bar.innerHTML =
+        '<span class="ps-browser-dots"><i></i><i></i><i></i></span>' +
+        '<span class="ps-browser-url">' +
+          '<span class="ps-browser-url-icon">' + searchIcon + '</span>' +
+          '<span class="ps-browser-url-text"></span>' +
+        '</span>' +
+        '<button type="button" class="ps-browser-copy" title="Copy URL" aria-label="Copy URL">' + copyIcon + '</button>';
+      // Set URL text safely (no HTML injection)
+      bar.querySelector(".ps-browser-url-text").textContent = url;
+
+      var copyBtn = bar.querySelector(".ps-browser-copy");
+      copyBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        function showCopied() {
+          copyBtn.classList.add("is-copied");
+          copyBtn.innerHTML = checkIcon;
+          setTimeout(function () {
+            copyBtn.classList.remove("is-copied");
+            copyBtn.innerHTML = copyIcon;
+          }, 1500);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(showCopied).catch(function () {
+            fallbackCopy(url); showCopied();
+          });
+        } else {
+          fallbackCopy(url); showCopied();
+        }
+      });
+      return bar;
+    }
+
+    targets.forEach(function (el) {
+      el.setAttribute("data-psb-done", "1");
+
+      var img, container, url;
+
+      if (el.tagName === "IMG") {
+        // Bare image form: build a fresh frame and move the image into it
+        img = el;
+        if (!img.parentNode) return;
+        url = img.getAttribute("data-url") || "http://SERVER_IP:PORT/";
+        container = document.createElement("div");
+        img.parentNode.insertBefore(container, img);
+      } else {
+        // Container form (md_in_html): reuse this element as the frame
+        img = el.querySelector("img");
+        if (!img) return;
+        url = el.getAttribute("data-url") || img.getAttribute("data-url") || "http://SERVER_IP:PORT/";
+        container = el;
+        container.innerHTML = "";
+      }
+
+      container.classList.add("ps-browser-frame");
+
+      var viewport = document.createElement("div");
+      viewport.className = "ps-browser-viewport";
+
+      container.appendChild(buildBar(url));
+      container.appendChild(viewport);
+      viewport.appendChild(img);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -569,6 +666,7 @@ function initPurpleSecJS() {
   initBlogPagination();
   initArchiveToggle();
   initTagFilter();
+  initBrowserFrames();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

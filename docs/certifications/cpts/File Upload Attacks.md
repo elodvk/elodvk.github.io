@@ -243,7 +243,9 @@ Many apps validate the file in the browser with JavaScript only. Since **anythin
 
 Here's a profile-image uploader. The file dialog is locked to images:
 
+<div class="ps-browser" data-url="http://SERVER_IP:PORT/" markdown>
 ![Profile image upload feature](assets/file-upload-attacks/profile-image-upload.png)
+</div>
 
 ![File dialog limited to image formats](assets/file-upload-attacks/file-dialog-images-only.png)
 
@@ -323,6 +325,38 @@ Visit it and you've got command execution:
 
 !!! danger "The real lesson"
     Client-side validation is a UX feature, never a security control. **Every** upload restriction must be enforced server-side. If it isn't, all of the above applies.
+
+
+## Blacklist Filters
+
+In the previous section, we saw an example of a web application that only applied type validation controls on the front-end (i.e., client-side), which made it trivial to bypass these controls. This is why it is always recommended to implement all security-related controls on the back-end server, where attackers cannot directly manipulate it.
+
+Still, if the type validation controls on the back-end server were not securely coded, an attacker can utilize multiple techniques to bypass them and reach PHP file uploads.
+
+The exercise we find in this section is similar to the one we saw in the previous section, but it has a blacklist of disallowed extensions to prevent uploading web scripts. We will see why using a blacklist of common extensions may not be enough to prevent arbitrary file uploads and discuss several methods to bypass it.
+
+
+### Blacklisting Extensions
+
+Let's start by trying one of the client-side bypasses we learned in the previous section to upload a PHP script to the back-end server. We'll intercept an image upload request with Burp, replace the file content and filename with our PHP script's, and forward the request:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
