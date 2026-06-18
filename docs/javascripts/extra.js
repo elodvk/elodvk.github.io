@@ -566,12 +566,12 @@ function initPurpleSecJS() {
 
       container.classList.add("ps-browser-frame");
 
-      // Tab title acts like a real browser tab = the PAGE title, not the URL.
-      // Priority: explicit data-title, else the image alt text, else "New Tab".
+      // Tab title acts like a real browser tab. Priority: explicit data-title,
+      // else the image alt text (page title), else fall back to the URL.
       var title = (el.getAttribute && el.getAttribute("data-title")) ||
                   img.getAttribute("data-title") ||
                   (img.getAttribute("alt") || "").trim() ||
-                  "New Tab";
+                  url;
 
       var viewport = document.createElement("div");
       viewport.className = "ps-browser-viewport";
