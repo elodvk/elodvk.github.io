@@ -7,20 +7,22 @@
   {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
   <meta property="og:title" content="{{ og_title }}">
   <meta property="og:description" content="{{ og_desc }}">
-  {% if page.meta and page.meta.image %}
-    {% set img_url = page.meta.image.path if page.meta.image is mapping and page.meta.image.path is defined else page.meta.image %}
-    {% if img_url is string %}
-      {% if img_url[:4] == 'http' %}
-      <meta property="og:image" content="{{ img_url }}">
-      {% else %}
-      <meta property="og:image" content="{{ config.site_url }}{{ img_url }}">
-      {% endif %}
+  {% set raw_img = (page.meta.image.path if page.meta and page.meta.image is mapping and page.meta.image.path is defined else (page.meta.image if page.meta else none)) %}
+  {% if raw_img is string and raw_img %}
+    {% if raw_img[:4] == 'http' %}
+      {% set og_image = raw_img %}
+    {% elif raw_img[:1] == '/' %}
+      {% set og_image = config.site_url ~ raw_img[1:] %}
+    {% elif page and page.url and page.url[:13] == 'walkthroughs/' and raw_img[:7] == 'assets/' %}
+      {% set og_image = config.site_url ~ 'walkthroughs/' ~ raw_img %}
     {% else %}
-      <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
+      {% set og_image = config.site_url ~ raw_img %}
     {% endif %}
   {% else %}
-  <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
+    {% set og_image = config.site_url ~ 'assets/images/social-preview.png' %}
   {% endif %}
+  <meta property="og:image" content="{{ og_image }}">
+  <meta name="twitter:image" content="{{ og_image }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ og_url }}">
   <meta name="twitter:card" content="summary_large_image">
@@ -38,22 +40,11 @@
     "headline": {{ og_title | tojson }},
     "description": {{ og_desc | tojson }},
     "url": "{{ og_url }}",
-    {% if page.meta.image %}
-      {% set img_url = page.meta.image.path if page.meta.image is mapping and page.meta.image.path is defined else page.meta.image %}
-      {% if img_url is string and img_url[:4] == 'http' %}
-    "image": "{{ img_url }}",
-      {% elif img_url is string %}
-    "image": "{{ config.site_url }}{{ img_url }}",
-      {% else %}
-    "image": "{{ config.site_url }}assets/images/social-preview.png",
-      {% endif %}
-    {% else %}
-    "image": "{{ config.site_url }}assets/images/social-preview.png",
-    {% endif %}
+    "image": "{{ og_image }}",
     {% if page.meta.date %}
     "datePublished": "{{ page.meta.date }}",
+    "dateModified": "{{ page.meta.date }}",
     {% endif %}
-    "dateModified": "{{ page.meta.date | default('') }}",
     "author": {
       "@type": "Person",
       "name": "Bilash J. Shahi",

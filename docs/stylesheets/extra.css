@@ -2482,6 +2482,10 @@ html {
  * Consistency layer — shared landing-page components
  * ============================================================================ */
 
+/* Hide the auto-injected page-title H1 on template pages that already
+   provide their own hero H1 (prevents a duplicate/visible second H1). */
+.ps-home h1#__skip { display: none !important; }
+
 /* fx-card index line color variants (used for cert status, etc.) */
 .ps-fx-index--green { color: var(--ps-neon-green) !important; }
 .ps-fx-index--amber { color: #ffbd2e !important; }
