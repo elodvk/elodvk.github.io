@@ -3221,3 +3221,99 @@ html {
   .ps-codewin .ps-win-dots i { width: 9px; height: 9px; }
   .ps-codewin-title { font-size: 0.72rem; }
 }
+
+/* ============================================================================
+ * LIGHT THEME
+ * The design system is dark-first. In light mode we:
+ *   (a) flip the core design tokens to light surfaces / dark text,
+ *   (b) keep the immersive "command-center" sections (home/about hero,
+ *       terminal feed, quote band) dark by design, and
+ *   (c) patch components that hardcode dark backgrounds or light text.
+ * ============================================================================ */
+[data-md-color-scheme="default"] {
+  --ps-accent: #7e22ce;
+  --ps-accent-glow: rgba(126, 34, 206, 0.25);
+  --ps-neon: #c026d3;
+  --ps-neon-green: #0a8f3c;
+  --ps-cyber-green: #0a8f3c;
+  --ps-green: #0a8f3c;
+  --ps-dark-bg: #eceff3;
+  --ps-dark-surface: #ffffff;
+  --ps-dark-border: #d0d7de;
+  --ps-dark-text: #1f2328;
+  --ps-terminal-bg: #ffffff;
+  --ps-card-bg: rgba(126, 34, 206, 0.04);
+  --ps-card-border: rgba(126, 34, 206, 0.20);
+  --ps-glow-sm: 0 0 15px rgba(126, 34, 206, 0.12);
+  --ps-glow-md: 0 0 28px rgba(126, 34, 206, 0.18);
+  --ps-glow-green-sm: 0 0 15px rgba(10, 143, 60, 0.12);
+}
+
+/* Matrix rain only reads well on a dark canvas — hide it in light mode */
+[data-md-color-scheme="default"] #ps-matrix-canvas { display: none !important; }
+
+/* --- Home / About hero stays a dark "command-center" band --- */
+[data-md-color-scheme="default"] .ps-nh-hero {
+  background: radial-gradient(ellipse at 50% -10%, #1a1230 0%, #0a0e14 62%);
+}
+[data-md-color-scheme="default"] .ps-nh-title,
+[data-md-color-scheme="default"] .ps-about-name {
+  background: linear-gradient(110deg, #ffffff 0%, #bb86fc 38%, #e040fb 62%, #00ff66 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-md-color-scheme="default"] .ps-nh-typed,
+[data-md-color-scheme="default"] .ps-nh-lead { color: #c9d1d9; }
+[data-md-color-scheme="default"] .ps-nh-hero #ps-typed-text { color: #bb86fc; }
+[data-md-color-scheme="default"] .ps-nh-hero .ps-nh-status { color: #00ff66; }
+[data-md-color-scheme="default"] .ps-nh-status-dot { background: #00ff66; box-shadow: 0 0 8px #00ff66; }
+[data-md-color-scheme="default"] .ps-nh-btn-ghost {
+  color: #c9d1d9 !important;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+[data-md-color-scheme="default"] .ps-nh-btn-ghost:hover { color: #fff !important; }
+
+/* --- Spotlight + blog-card image fades resolve to light, not dark --- */
+[data-md-color-scheme="default"] .ps-spotlight-media::after {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.9) 100%);
+}
+[data-md-color-scheme="default"] .ps-blog-card-media::after {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 62%, rgba(255,255,255,0.5) 100%);
+}
+@media (max-width: 768px) {
+  [data-md-color-scheme="default"] .ps-spotlight-media::after {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.95) 100%);
+  }
+}
+@media (max-width: 700px) {
+  [data-md-color-scheme="default"] .ps-blog-card-media::after {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 55%, rgba(255,255,255,0.85) 100%);
+  }
+}
+
+/* --- Focus cards need a visible tint on white --- */
+[data-md-color-scheme="default"] .ps-fx-card {
+  background: linear-gradient(160deg, rgba(126,34,206,0.05), rgba(126,34,206,0.015));
+}
+
+/* --- Quote band stays dark; keep its text vivid --- */
+[data-md-color-scheme="default"] .ps-quote blockquote { color: #bb86fc; }
+
+/* --- Hovers must not turn white-on-white --- */
+[data-md-color-scheme="default"] .ps-tag-filter:hover { color: var(--ps-accent); }
+[data-md-color-scheme="default"] .ps-archive-year-header:hover { color: #000 !important; }
+
+/* --- Contact form: lighten inputs and fix chips --- */
+[data-md-color-scheme="default"] .ps-contact-field input,
+[data-md-color-scheme="default"] .ps-contact-field textarea {
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--ps-dark-text);
+}
+[data-md-color-scheme="default"] .ps-contact-field input::placeholder,
+[data-md-color-scheme="default"] .ps-contact-field textarea::placeholder {
+  color: rgba(31, 35, 40, 0.4);
+}
+[data-md-color-scheme="default"] .ps-contact-chip { background: rgba(126, 34, 206, 0.04); }
+[data-md-color-scheme="default"] .ps-contact-chip:hover { color: var(--ps-accent) !important; }
