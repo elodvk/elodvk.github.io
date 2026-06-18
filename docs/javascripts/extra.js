@@ -472,12 +472,6 @@ function initPurpleSecJS() {
       document.body.removeChild(ta);
     }
 
-    // Pull a human-ish host out of a URL string (tolerant of fake hosts/ports)
-    function hostFromUrl(u) {
-      var s = String(u).replace(/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//, "");
-      return s.split(/[/?#]/)[0] || s;
-    }
-
     function buildBar(url, title) {
       var isSecure = /^https:\/\//i.test(url);
 
@@ -572,10 +566,12 @@ function initPurpleSecJS() {
 
       container.classList.add("ps-browser-frame");
 
-      // Tab title: explicit data-title, else the host parsed from the URL
+      // Tab title acts like a real browser tab = the PAGE title, not the URL.
+      // Priority: explicit data-title, else the image alt text, else "New Tab".
       var title = (el.getAttribute && el.getAttribute("data-title")) ||
                   img.getAttribute("data-title") ||
-                  hostFromUrl(url);
+                  (img.getAttribute("alt") || "").trim() ||
+                  "New Tab";
 
       var viewport = document.createElement("div");
       viewport.className = "ps-browser-viewport";
