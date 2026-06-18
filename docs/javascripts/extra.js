@@ -764,6 +764,83 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Auto Media Frames
+   * Turns plain content images into window frames WITHOUT a wrapper div, using
+   * native markdown image syntax. The frame type comes from the image title:
+   *   ![alt](shot.png)                          -> image viewer (default)
+   *   ![alt](shot.png "http://SERVER_IP:PORT/")  -> browser window (title = URL)
+   *   ![alt](shot.png "browser:http://host/")    -> browser window
+   *   ![alt](shot.png "shell:kali@kali: ~")      -> terminal window
+   *   ![alt](shot.png "editor:exploit.py")       -> editor window
+   *   ![alt](shot.png "image:custom title")      -> image viewer w/ explicit title
+   * It only creates the wrapper markup; initBrowserFrames()/initWindowFrames()
+   * (which run right after) do the actual chrome building.
+   * Skips: linked images, inline images, banners, and component/opt-out regions.
+   * -------------------------------------------------------------------------- */
+  function initAutoMedia() {
+    var imgs = document.querySelectorAll(".md-content .md-typeset p > img:not([data-psb-auto])");
+    if (!imgs.length) return;
+
+    function baseName(src) {
+      var s = String(src).split(/[?#]/)[0];
+      var parts = s.split("/");
+      return decodeURIComponent(parts[parts.length - 1] || "image");
+    }
+
+    imgs.forEach(function (img) {
+      img.setAttribute("data-psb-auto", "1");
+
+      // Skip manual wrappers, opt-outs, links, tables, figures
+      if (img.closest(".ps-browser, .ps-image, .ps-shell, .ps-editor, .ps-win-frame, .ps-browser-frame, .ps-noframe, .no-window, a, table, figure")) return;
+
+      var p = img.parentNode;
+      if (!p || p.tagName !== "P") return;
+
+      // Skip inline images (paragraph also contains text)
+      if (p.textContent.replace(/\s+/g, "").length > 0) return;
+
+      var alt = (img.getAttribute("alt") || "").trim();
+      // Skip hero/banner images — they read better full-bleed, unframed
+      if (/banner/i.test(alt)) return;
+
+      var t = (img.getAttribute("title") || "").trim();
+      var cls = "ps-image", url = null, dataTitle = null;
+
+      if (/^https?:\/\//i.test(t)) {
+        cls = "ps-browser"; url = t;
+      } else if (/^browser:/i.test(t)) {
+        cls = "ps-browser"; url = t.replace(/^browser:/i, "").trim();
+      } else if (/^shell:/i.test(t)) {
+        cls = "ps-shell"; dataTitle = t.replace(/^shell:/i, "").trim() || null;
+      } else if (/^editor:/i.test(t)) {
+        cls = "ps-editor"; dataTitle = t.replace(/^editor:/i, "").trim() || null;
+      } else if (/^image:/i.test(t)) {
+        cls = "ps-image"; dataTitle = t.replace(/^image:/i, "").trim() || null;
+      } else {
+        // Default: image viewer. Title = explicit title, else alt, else filename.
+        cls = "ps-image";
+        dataTitle = t || alt || baseName(img.getAttribute("src"));
+      }
+
+      // Remove the title attr so it doesn't also show as a hover tooltip
+      img.removeAttribute("title");
+
+      var wrap = document.createElement("div");
+      wrap.className = cls;
+      if (url) wrap.setAttribute("data-url", url);
+      if (dataTitle) wrap.setAttribute("data-title", dataTitle);
+
+      p.parentNode.insertBefore(wrap, p);
+      wrap.appendChild(img);
+
+      // Drop the (now image-less) paragraph
+      if (!p.querySelector("img") && p.textContent.replace(/\s+/g, "").length === 0) {
+        p.parentNode.removeChild(p);
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -900,6 +977,7 @@ function initPurpleSecJS() {
   initBlogPagination();
   initArchiveToggle();
   initTagFilter();
+  initAutoMedia();
   initBrowserFrames();
   initWindowFrames();
   initCodeWindows();
