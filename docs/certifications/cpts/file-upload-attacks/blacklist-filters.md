@@ -17,7 +17,7 @@ tags:
 
 Let's try one of the [client-side bypasses](client-side-validation.md) — intercept an image upload with Burp, swap the file content and filename for our PHP script, and forward it:
 
-![Server responds: Extension not allowed](../image.png "http://SERVER_IP:PORT")
+![Server responds: Extension not allowed](../assets/file-upload-attacks/blacklist-extension-not-allowed.png "http://SERVER_IP:PORT")
 
 This time the attack fails — we get **"Extension not allowed"**. That tells us the application validates on the **back-end**, in addition to the front-end.
 
@@ -55,11 +55,11 @@ Since the app tests the extension, fuzz the upload with a list of candidate exte
 
 Intercept the `/upload.php` request, send it to **Burp Intruder**, clear the auto positions, and set a single payload position on the extension in `filename="HTB.php"`. Load the PHP extensions wordlist under **Payload Options**, and **un-tick URL-encoding** so the `.` before the extension isn't encoded. Start the attack:
 
-![Burp Intruder fuzzing file extensions](../image-2.png)
+![Burp Intruder fuzzing file extensions](../assets/file-upload-attacks/blacklist-intruder-fuzzing.png)
 
 Sort the results by **Length**. Requests with a distinct Content-Length (e.g. 229, 230) passed validation — they responded with **"File successfully uploaded"** — while the rest returned **"Extension not allowed"**:
 
-![Sorting Intruder results by length to find allowed extensions](../image-1.png)
+![Sorting Intruder results by length to find allowed extensions](../assets/file-upload-attacks/blacklist-intruder-results.png)
 
 !!! note "Common PHP-executable extensions to try"
     `.phtml`, `.php3`, `.php4`, `.php5`, `.php7`, `.phps`, `.pht`, `.phar`, `.pgif`, `.inc`. Not all work on every server config — this is exactly why fuzzing beats guessing.
@@ -68,11 +68,11 @@ Sort the results by **Length**. Requests with a distinct Content-Length (e.g. 22
 
 Pick an allowed extension that still executes PHP. `.phar` is frequently permitted and runs as PHP. Send that request to **Repeater**, change the filename to a non-blacklisted extension, and set the body to your web shell:
 
-![Uploading a .phar web shell that passed the blacklist](../image-4.png)
+![Uploading a .phar web shell that passed the blacklist](../assets/file-upload-attacks/blacklist-phar-upload.png)
 
 The file uploads successfully. Now visit it in the upload directory (here `profile_images`) and run a command to confirm RCE:
 
-![Web shell executing id via the .phar upload](../image-3.png "http://SERVER_IP:PORT/profile_images/shell.phar?cmd=id")
+![Web shell executing id via the .phar upload](../assets/file-upload-attacks/blacklist-phar-rce.png "http://SERVER_IP:PORT/profile_images/shell.phar?cmd=id")
 
 !!! warning "Not every allowed extension executes"
     Fuzzing finds extensions the *blacklist* allows — but execution depends on the **web server configuration** (which extensions are mapped to the PHP handler). Try several allowed extensions until one runs code.

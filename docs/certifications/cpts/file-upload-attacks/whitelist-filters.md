@@ -19,11 +19,11 @@ Whitelists suit upload features that allow only a few file types (e.g. an avatar
 
 Try uploading an uncommon PHP extension like `.phtml` (which slipped past the blacklist earlier):
 
-![Only images are allowed message](../image-5.png "browser:SERVER_IP:PORT")
+![Only images are allowed message](../assets/file-upload-attacks/whitelist-only-images-allowed.png "browser:SERVER_IP:PORT")
 
 This time we get **"Only images are allowed"**. Error messages don't always reveal *which* validation is in play, so fuzz for allowed extensions the same way as before:
 
-![Fuzzing results — all PHP variants blocked](../image-6.png)
+![Fuzzing results — all PHP variants blocked](../assets/file-upload-attacks/whitelist-fuzzing-blocked.png)
 
 All PHP variants (`php5`, `php7`, `phtml`, …) are blocked. The whitelist is doing its job on the extension — so we attack the **regex** instead.
 
@@ -50,11 +50,11 @@ shell.jpg.php   → contains ".jpg", but ends in ".php" and executes as PHP
 
 Intercept a normal upload, change the filename to `shell.php.jpg`/`shell.jpg.php` (depending on which the server executes), and set the body to a web shell:
 
-![Uploading a double-extension PHP shell](../image-7.png)
+![Uploading a double-extension PHP shell](../assets/file-upload-attacks/whitelist-double-extension-upload.png)
 
 Visit the file and run a command — it executes as a full PHP script:
 
-![Web shell executing id via the double extension](../image-8.png "http://SERVER_IP:PORT/profile_images/shell.phar.jpg?cmd=id")
+![Web shell executing id via the double extension](../assets/file-upload-attacks/whitelist-double-extension-rce.png "http://SERVER_IP:PORT/profile_images/shell.phar.jpg?cmd=id")
 
 !!! tip "Order depends on the server"
     On Apache with certain `AddHandler`/`AddType` misconfigurations, `shell.php.jpg` executes because Apache runs the first recognised handler extension. On a strict last-extension parser, you need `shell.jpg.php`. Try both.

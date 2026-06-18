@@ -15,15 +15,17 @@ tags:
 
 ## Recognising a Client-Side Check
 
-Here's a profile-image uploader. The file dialog is locked to images:
+Here's a profile-image uploader. 
 
 ![Profile image upload feature](../assets/file-upload-attacks/profile-image-upload.png "http://SERVER_IP:PORT/")
+
+The file dialog is locked to images:
 
 ![File dialog limited to image formats](../assets/file-upload-attacks/file-dialog-images-only.png "image:file-dialog.png")
 
 Picking *All Files* and selecting a PHP script throws "Only images are allowed!" and disables the Upload button — and notice the page **never sends a request**, confirming the validation is purely front-end:
 
-![Front-end error blocks the upload](../assets/file-upload-attacks/frontend-validation-error.png)
+![Front-end error blocks the upload](../assets/file-upload-attacks/frontend-validation-error.png "http://SERVER_IP:PORT")
 
 !!! tip "How to tell it's client-side"
     Watch your proxy. If selecting a bad file produces an error **without any HTTP request**, the check runs in JavaScript. No request = nothing reached the server = client-side only.
@@ -47,7 +49,7 @@ Two parts matter: `filename="something.png"` and the file body. Change the filen
 
 The server accepts it, and you browse to your uploaded shell for RCE:
 
-![File successfully uploaded](../assets/file-upload-attacks/burp-upload-success.png)
+![File successfully uploaded](../assets/file-upload-attacks/burp-upload-success.png "http://SERVER_IP:PORT/profile_images/shell.php.jpg?cmd=id")
 
 !!! tip "Proxy alternatives"
     Burp is the standard, but **Caido**, **OWASP ZAP**, and **mitmproxy** all intercept and edit upload requests just as well.
