@@ -1,52 +1,47 @@
 ---
-title: 'Getting Started with Active Directory Pentesting'
-description: 'Getting Started with Active Directory Pentesting'
+title: 'Active Directory Pentesting — Getting Started'
+description: 'An introduction to Active Directory penetration testing: fundamentals, lab setup, core tooling, and the attack lifecycle from reconnaissance to domain dominance.'
 ---
-Welcome to the Active Directory (AD) pentesting section of the documentation. This guide introduces the fundamentals of pentesting Active Directory environments, a critical skill for security professionals aiming to identify and mitigate vulnerabilities in enterprise networks.
+<div class="ps-blog-masthead ps-reveal-scale">
+<h1 class="ps-blog-masthead-title">Active Directory</h1>
+<p class="ps-blog-masthead-sub">Microsoft's directory service runs the modern enterprise — which makes it the single highest-value target on the network. This is how it gets attacked, and defended.</p>
+</div>
 
 ## What is Active Directory Pentesting?
 
-Active Directory is Microsoft’s directory service that manages authentication, authorization, and resource access in Windows-based networks. Pentesting AD involves assessing the security of AD configurations, user accounts, permissions, and infrastructure to uncover weaknesses that attackers could exploit.
+Active Directory (AD) is Microsoft's directory service for managing authentication, authorization, and resource access across Windows networks. **AD pentesting** is the practice of assessing the security of those configurations — user accounts, permissions, trusts, group policy, and the supporting infrastructure — to uncover the weaknesses an attacker would exploit.
 
-This section focuses on practical techniques, tools, and methodologies for AD pentesting, including reconnaissance, privilege escalation, and lateral movement.
+This section is built around practical techniques, real tooling, and a repeatable methodology: reconnaissance, credential access, privilege escalation, lateral movement, and full domain compromise.
 
-## Why Pentest Active Directory?
+## Why It Matters
 
-AD is the backbone of many enterprise environments, making it a prime target for attackers. A single misconfiguration can lead to domain compromise, data breaches, or ransomware deployment. Pentesting AD helps organizations:
+AD is the backbone of most enterprise environments, so a single misconfiguration can cascade into domain compromise, data theft, or ransomware. Assessing it helps organizations:
 
- - Identify weak passwords and misconfigured accounts.
- - Detect excessive permissions or insecure group policies.
- - Harden domain controllers and related infrastructure.
- - Prepare for real-world attack scenarios, such as pass-the-hash or Kerberos-based attacks.
+- Identify weak passwords, stale accounts, and misconfigured trusts
+- Detect excessive permissions and insecure Group Policy
+- Harden domain controllers and certificate services
+- Rehearse real-world attack chains — pass-the-hash, Kerberoasting, ADCS abuse, and more
 
-## What’s Covered in This Section
+## The Attack Lifecycle
 
-The Active Directory pentesting documentation is organized to guide you from beginner concepts to advanced techniques:
+The writeups in this section follow the path an engagement actually takes:
 
- - **Reconnaissance**: Learn how to gather information about AD environments using tools like BloodHound and PowerView.
- - **Enumeration**: Discover users, groups, and permissions to identify potential attack paths.
- - **Exploitation**: Explore techniques like Kerberoasting, NTLM relay, and privilege escalation.
- - **Post-Exploitation**: Understand lateral movement, persistence, and data exfiltration in AD.
+- **Initial Attack Vectors** — LLMNR poisoning, SMB relay, and mitm6 to capture and relay credentials.
+- **Post-Compromise Enumeration** — BloodHound, ldapdomaindump, and PingCastle to map the domain and find the shortest path to Domain Admin.
+- **Post-Compromise Attacks** — Kerberoasting, hash dumping and cracking, token impersonation, GPP, and Mimikatz.
+- **ADCS Attacks** — the full ESC1–ESC15 catalogue plus the Golden Certificate.
+- **Post-Domain Compromise** — dumping NTDS.dit and forging Golden Tickets for persistent control.
 
+## Building a Lab
 
+To practice safely, you'll want an isolated environment:
 
-## Getting Started
+1. **A lab network** — domain controller + a couple of domain-joined workstations on VMware or VirtualBox, fully isolated from production.
+2. **Tooling** — [Impacket](https://github.com/fortra/impacket) for protocol attacks, [BloodHound](https://github.com/SpecterOps/BloodHound) for relationship mapping, and [Mimikatz](https://github.com/gentilkiwi/mimikatz) for credential extraction.
+3. **Foundations** — a working familiarity with Windows networking, LDAP, and Kerberos. Helpful, but you'll pick most of it up as you go.
 
-To begin pentesting Active Directory, you’ll need:
+!!! warning "Authorized testing only"
 
-1. **A Lab Environment**: Set up a safe, isolated AD lab using virtual machines (e.g., with VMware or VirtualBox). Tools like Microsoft’s AD DS Deployment Guide can help.
+    Every technique here is documented for **authorized engagements and isolated lab environments**. Running these against systems you don't own or have explicit permission to test is illegal.
 
-
-2. **Pentesting Tools**: Install tools like:
-    - Impacket for protocol attacks.
-    - BloodHound for AD relationship mapping.
-    - Mimikatz for credential extraction.
-
-3. **Basic Knowledge**: Familiarity with Windows networking, LDAP, and Kerberos is helpful but not required. Start with our Guides for foundational knowledge.
-
-## Next Steps
-
-Explore the following sections of the documentation to deepen your AD pentesting skills:
-
- - **Guides**: Step-by-step tutorials on AD concepts and pentesting workflows.
- - **OSINT**: Learn how open-source intelligence complements AD reconnaissance.
+Use the navigation on the left to dive into any phase, or start with [Initial Attack Vectors](Initial%20Attack%20Vectors/llmnr-poisioning.md).

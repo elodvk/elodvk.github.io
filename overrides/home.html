@@ -2,118 +2,58 @@
 
 {% block content %}
 <div class="ps-home">
-  <!-- Matrix Rain Canvas -->
-  <canvas id="ps-matrix-canvas"></canvas>
+  <!-- Matrix Rain Canvas (fixed, behind everything) -->
+  <canvas id="ps-matrix-canvas" aria-hidden="true"></canvas>
 
-  <!-- Hero Section -->
-  <div class="ps-hero-content">
-    <div class="ps-hero-terminal ps-reveal-scale">
-      <div class="ps-terminal-header">
-        <div class="ps-terminal-buttons">
-          <span class="ps-term-btn ps-term-close"></span>
-          <span class="ps-term-btn ps-term-min"></span>
-          <span class="ps-term-btn ps-term-max"></span>
-        </div>
-        <div class="ps-terminal-header-title">root@purplesec:~</div>
+  <!-- ===== HERO ===== -->
+  <header class="ps-nh-hero">
+    <!-- ambient gradient orbs -->
+    <span class="ps-nh-orb ps-nh-orb-1" aria-hidden="true"></span>
+    <span class="ps-nh-orb ps-nh-orb-2" aria-hidden="true"></span>
+    <span class="ps-nh-orb ps-nh-orb-3" aria-hidden="true"></span>
+    <!-- subtle grid overlay -->
+    <div class="ps-nh-grid" aria-hidden="true"></div>
+
+    <div class="ps-nh-hero-inner">
+      <div class="ps-nh-status">
+        <span class="ps-nh-status-dot"></span>
+        Systems Operational &nbsp;·&nbsp; Offense + Defense
       </div>
-      <div class="ps-terminal-window">
-        <div class="ps-terminal-output" id="ps-hero-output" style="opacity: 0; transition: opacity 0.8s ease;">
-          <div style="text-align: left; margin-bottom: 2rem; font-size: clamp(0.95rem, 4vw, 1.05rem); line-height: 1.6; color: #c9d1d9;">
-            <h1 class="cyber-glitch" data-text="Welcome to PurpleSec" style="color: var(--ps-accent); margin-top: 0; margin-bottom: 1rem; font-size: clamp(2rem, 6vw, 2.5rem); line-height: 1.2; text-transform: uppercase;">Welcome to PurpleSec</h1>
-            <p>
-              Hey there! PurpleSec is where I document my journey through both <strong>offensive</strong> and <strong>defensive</strong> security. My core philosophy is simple: <em>if you know exactly how an attack works, you become a much better defender.</em> Explore my Active Directory writeups, research notes, and certifications below.
-            </p>
-          </div>
-          
-          <div style="text-align: center;">
-            <div class="ps-hero-actions" style="margin-top: 1rem;">
-              <a href="writeups/" class="ps-btn ps-btn-primary cyber-btn-glitch-hover"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>&nbsp;Explore Writeups</a>
-              <a href="certifications/" class="ps-btn ps-btn-secondary cyber-btn-glitch-hover"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>&nbsp;View Certifications</a>
-            </div>
-          </div>
-        </div>
+
+      <h1 class="ps-nh-title">PurpleSec</h1>
+
+      <div class="ps-nh-typed">
+        <span class="ps-nh-typed-prefix">&gt;_</span>
+        <span id="ps-typed-text"></span><span class="ps-nh-caret"></span>
+      </div>
+
+      <p class="ps-nh-lead">
+        Where <span class="ps-nh-red">offense</span> meets <span class="ps-nh-blue">defense</span> — a living archive of real-world
+        attack paths, Hack The Box pwns, and threat research, built to make defenders think like attackers.
+      </p>
+
+      <div class="ps-nh-cta">
+        <a href="walkthroughs/" class="ps-nh-btn ps-nh-btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg>
+          Explore Writeups
+        </a>
+        <a href="blog/" class="ps-nh-btn ps-nh-btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Read the Blog
+        </a>
+        <a href="about/" class="ps-nh-btn ps-nh-btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+          About Me
+        </a>
       </div>
     </div>
-    <a href="#ps-stats-section" class="ps-scroll-indicator"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m7 6 5 5 5-5M7 13l5 5 5-5"/></svg></a>
-  </div>
 
-  <style>
-    /* Ensure the default injected title from markdown is hidden completely */
-    .ps-home h1#__skip { display: none !important; }
-    /* Hide Next/Previous pagination buttons on homepage */
-    .md-footer__inner { display: none !important; }
+    <a href="#ps-stats-section" class="ps-scroll-indicator" aria-label="Scroll to content">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m7 6 5 5 5-5M7 13l5 5 5-5"/></svg>
+    </a>
+  </header>
 
-    /* Cyber Glitch Animation for Title */
-    .cyber-glitch {
-      position: relative;
-      display: inline-block;
-      animation: cyber-glitch-anim 3s infinite;
-    }
-    .cyber-glitch::before,
-    .cyber-glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.6; z-index: -1;
-    }
-    .cyber-glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #00fffc;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: cyber-glitch-anim 5s infinite linear alternate-reverse;
-    }
-    .cyber-glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #bb86fc;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: cyber-glitch-anim 5s infinite linear alternate-reverse;
-    }
-    @keyframes cyber-glitch-anim {
-      0% { clip: rect(38px, 9999px, 83px, 0); transform: skew(0.5deg); }
-      5% { clip: rect(21px, 9999px, 88px, 0); transform: skew(0.3deg); }
-      10% { clip: rect(6px, 9999px, 82px, 0); transform: skew(0.6deg); }
-      15% { clip: rect(42px, 9999px, 53px, 0); transform: skew(0.9deg); }
-      20% { clip: rect(35px, 9999px, 20px, 0); transform: skew(0.5deg); }
-      25% { clip: rect(98px, 9999px, 58px, 0); transform: skew(0.2deg); }
-      30% { clip: rect(100px, 9999px, 79px, 0); transform: skew(0.7deg); }
-      35% { clip: rect(8px, 9999px, 7px, 0); transform: skew(0.1deg); }
-      40% { clip: rect(90px, 9999px, 24px, 0); transform: skew(0.6deg); }
-      45% { clip: rect(47px, 9999px, 1px, 0); transform: skew(0.8deg); }
-      50% { clip: rect(35px, 9999px, 20px, 0); transform: skew(0.3deg); }
-      55% { clip: rect(62px, 9999px, 12px, 0); transform: skew(0.9deg); }
-      60% { clip: rect(45px, 9999px, 81px, 0); transform: skew(0.1deg); }
-      65% { clip: rect(72px, 9999px, 17px, 0); transform: skew(0.5deg); }
-      70% { clip: rect(89px, 9999px, 50px, 0); transform: skew(0.8deg); }
-      75% { clip: rect(27px, 9999px, 32px, 0); transform: skew(0.6deg); }
-      80% { clip: rect(18px, 9999px, 52px, 0); transform: skew(0.4deg); }
-      85% { clip: rect(82px, 9999px, 12px, 0); transform: skew(0.1deg); }
-      90% { clip: rect(94px, 9999px, 29px, 0); transform: skew(0.7deg); }
-      95% { clip: rect(50px, 9999px, 82px, 0); transform: skew(0.5deg); }
-      100% { clip: rect(69px, 9999px, 19px, 0); transform: skew(0.9deg); }
-    }
-
-    /* Cyber Hover effect for buttons */
-    .cyber-btn-glitch-hover {
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    .cyber-btn-glitch-hover:hover {
-      box-shadow: 0 0 15px var(--ps-accent, #bb86fc);
-      transform: translateY(-2px);
-    }
-    
-    /* Terminal subtle float & glow */
-    .ps-hero-terminal {
-      animation: float 4s ease-in-out infinite;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(187, 134, 252, 0.2);
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-  </style>
-
-  <!-- The markdown content (stats, cards, etc.) from index.md is rendered here -->
+  <!-- Markdown content (ticker, stats, focus, spotlight, certs, quotes, CTA) -->
   {{ super() }}
 </div>
 {% endblock %}

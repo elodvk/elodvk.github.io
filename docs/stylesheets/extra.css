@@ -24,6 +24,7 @@
   --ps-neon: #e040fb;
   --ps-neon-green: #00ff66;
   --ps-cyber-green: #00e676;
+  --ps-green: #00ff66;
   --ps-dark-bg: #0d1117;
   --ps-dark-surface: #161b22;
   --ps-dark-border: #30363d;
@@ -161,6 +162,11 @@ body, .md-typeset {
 @keyframes ps-scroll-down-bounce {
   0%, 100% { transform: translateY(0) translateX(-50%); opacity: 1; }
   50% { transform: translateY(12px) translateX(-50%); opacity: 0.5; }
+}
+
+@keyframes ps-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1418,17 +1424,17 @@ html {
  * Blog Cards Styling
  * -------------------------------------------------------------------------- */
 .ps-blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-top: 1.5rem;
 }
 .ps-blog-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: var(--ps-terminal-bg);
   border: 1px solid var(--ps-card-border);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
   text-decoration: none !important;
@@ -1436,7 +1442,7 @@ html {
   position: relative;
 }
 .ps-blog-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--ps-glow-sm);
   border-color: var(--ps-accent);
 }
@@ -1460,29 +1466,38 @@ html {
 .ps-card-term-btn:nth-child(2) { background: #ffbd2e; } /* min */
 .ps-card-term-btn:nth-child(3) { background: #28c840; } /* max */
 .ps-blog-card-content {
-  padding: 1.5rem;
+  padding: 1.5rem 1.75rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-width: 0;
 }
 
 .ps-blog-card-title {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.3;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   color: var(--md-default-fg-color);
   transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .ps-blog-card:hover .ps-blog-card-title {
   color: var(--md-primary-fg-color);
 }
 .ps-blog-card-summary {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.6;
   color: var(--md-default-fg-color--light);
-  margin-bottom: 1.5rem;
-  flex: 1;
+  margin-bottom: 1.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .ps-blog-card-footer {
   display: flex;
@@ -1540,6 +1555,216 @@ html {
 }
 .ps-blog-card:hover .ps-blog-card-read-more {
   gap: 0.6rem;
+}
+
+/* --- Blog card hero image + overlaid chips --- */
+.ps-blog-card-media {
+  position: relative;
+  width: 300px;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-color: #0d1117;
+  border-right: 1px solid var(--ps-card-border);
+  overflow: hidden;
+}
+
+/* Legibility gradient + subtle scan tint */
+.ps-blog-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10,14,20,0.05) 0%, rgba(10,14,20,0.15) 70%, rgba(10,14,20,0.6) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.ps-blog-card:hover .ps-blog-card-media {
+  background-size: 110%;
+}
+
+/* Fallback when a post has no image */
+.ps-blog-card-media--fallback {
+  background:
+    radial-gradient(circle at 30% 25%, rgba(187,134,252,0.28), transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(0,255,102,0.16), transparent 55%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 8px),
+    var(--ps-terminal-bg);
+}
+.ps-blog-card-media--fallback::before {
+  content: "</>";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: rgba(187, 134, 252, 0.35);
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.ps-blog-card-cat {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 2;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ps-accent);
+  background: rgba(10, 14, 20, 0.78);
+  border: 1px solid rgba(187, 134, 252, 0.35);
+  padding: 0.22rem 0.55rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.ps-blog-card-readtime {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ps-neon-green);
+  background: rgba(10, 14, 20, 0.7);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* Difficulty color coding (machines) — applies on chips, spotlight meta, filter pills */
+.ps-diff--easy { color: var(--ps-neon-green) !important; }
+.ps-diff--medium { color: #ffbd2e !important; }
+.ps-diff--hard { color: #ff5f57 !important; }
+.ps-diff--insane { color: var(--ps-neon) !important; }
+
+/* Difficulty filter pills carry a faint tint of their color */
+.ps-diff-filter { border-color: currentColor; }
+.ps-diff-filter.ps-tag-active {
+  color: #000 !important;
+  background: currentColor;
+}
+.ps-diff-filter.ps-tag-active.ps-diff--easy { background: var(--ps-neon-green); }
+.ps-diff-filter.ps-tag-active.ps-diff--medium { background: #ffbd2e; }
+.ps-diff-filter.ps-tag-active.ps-diff--hard { background: #ff5f57; }
+.ps-diff-filter.ps-tag-active.ps-diff--insane { background: var(--ps-neon); }
+
+/* --------------------------------------------------------------------------
+ * Blog Masthead (compact terminal header)
+ * -------------------------------------------------------------------------- */
+.ps-blog-masthead {
+  margin: 0.25rem 0 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--ps-card-border);
+}
+.ps-blog-masthead-cmd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  color: #8b98a5;
+  margin-bottom: 0.45rem;
+}
+.ps-bm-prompt { color: var(--ps-neon-green); margin-right: 0.4rem; }
+.ps-bm-cursor {
+  display: inline-block;
+  width: 8px;
+  margin-left: 2px;
+  color: var(--ps-neon-green);
+  animation: ps-blink 1s step-end infinite;
+}
+.ps-blog-masthead-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.35rem !important;
+  border: none !important;
+  background: linear-gradient(90deg, var(--ps-accent), var(--ps-neon-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ps-blog-masthead-sub {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin: 0 !important;
+  max-width: 640px;
+}
+
+/* Hide the auto-injected page-view counter on the home + listing pages
+   (it's meaningful on individual articles, just noise on index pages). */
+.ps-nh-title + #ps-page-views,
+.ps-hero-brand + #ps-page-views,
+.ps-blog-masthead-title + #ps-page-views {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Blog Toolbar (filter row)
+ * -------------------------------------------------------------------------- */
+.ps-blog-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2.5rem 0 1.75rem;
+}
+.ps-blog-toolbar-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--ps-neon-green);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+.ps-blog-toolbar .ps-tag-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.ps-tag-count {
+  font-size: 0.7em;
+  opacity: 0.6;
+  margin-left: 0.15rem;
+}
+.ps-tag-active .ps-tag-count { opacity: 0.8; }
+
+/* --------------------------------------------------------------------------
+ * Blog empty state (no posts match a filter)
+ * -------------------------------------------------------------------------- */
+.ps-blog-empty {
+  font-family: "JetBrains Mono", monospace;
+  padding: 2.5rem 1rem;
+  text-align: left;
+}
+.ps-blog-empty-cmd { display: block; color: var(--ps-accent); margin-bottom: 0.5rem; }
+.ps-blog-empty-msg { display: block; color: #8b98a5; }
+
+/* Stack blog cards vertically on narrow screens */
+@media (max-width: 700px) {
+  .ps-blog-card {
+    flex-direction: column;
+  }
+  .ps-blog-card-media {
+    width: 100%;
+    height: 170px;
+    min-height: 0;
+    align-self: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--ps-card-border);
+  }
+  .ps-blog-card-media::after {
+    background: linear-gradient(180deg, rgba(10,14,20,0.05) 0%, rgba(10,14,20,0.35) 55%, rgba(10,14,20,0.85) 100%);
+  }
+  .ps-blog-card-content {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
 }
 
 /* ============================================================================
@@ -1690,3 +1915,725 @@ html {
 .cyber-btn-glitch-hover:hover {
   animation: ps-pulse-glow 1.5s infinite alternate;
 }
+
+/* --------------------------------------------------------------------------
+ * Featured Intel Spotlight (latest blog post on home)
+ * -------------------------------------------------------------------------- */
+.ps-spotlight {
+  display: block;
+  text-decoration: none !important;
+  border: 1px solid var(--ps-card-border);
+  border-radius: 12px;
+  background: var(--ps-terminal-bg);
+  overflow: hidden;
+  margin: 1.5rem 0 3rem;
+  transition: var(--ps-transition);
+  position: relative;
+}
+
+.ps-spotlight:hover {
+  border-color: var(--ps-accent);
+  box-shadow: var(--ps-glow-md);
+  transform: translateY(-5px);
+}
+
+.ps-spotlight-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--ps-card-border);
+}
+
+.ps-spotlight-bar-path {
+  margin-left: 0.6rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(187, 134, 252, 0.55);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ps-spotlight-body {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: stretch;
+}
+
+.ps-spotlight-media {
+  background-size: cover;
+  background-position: center;
+  min-height: 260px;
+  position: relative;
+  filter: saturate(1.05);
+}
+
+.ps-spotlight-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10,14,20,0) 60%, rgba(10,14,20,0.9) 100%);
+}
+
+.ps-spotlight-content {
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ps-spotlight-title {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin: 0.75rem 0 0.6rem !important;
+  color: var(--ps-dark-text);
+  transition: var(--ps-transition);
+}
+
+.ps-spotlight:hover .ps-spotlight-title {
+  color: var(--ps-accent);
+}
+
+.ps-spotlight-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  opacity: 0.65;
+  margin-bottom: 0.9rem;
+}
+
+.ps-spotlight-meta span:last-child { color: var(--ps-accent); opacity: 0.9; }
+
+.ps-spotlight-summary {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ps-dark-text);
+  opacity: 0.82;
+  margin: 0 0 1.25rem;
+}
+
+.ps-spotlight-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ps-neon-green);
+  letter-spacing: 0.02em;
+}
+
+.ps-spotlight-cta svg { transition: transform 0.25s ease; }
+.ps-spotlight:hover .ps-spotlight-cta svg { transform: translateX(5px); }
+
+/* --------------------------------------------------------------------------
+ * Closing CTA banner
+ * -------------------------------------------------------------------------- */
+.ps-home-cta {
+  text-align: center;
+  margin: 3.5rem 0 2rem;
+  padding: 3rem 2rem;
+  border: 1px solid var(--ps-card-border);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(187, 134, 252, 0.12), transparent 60%),
+    var(--ps-terminal-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.ps-home-cta::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ps-neon-green), var(--ps-accent), var(--ps-neon), transparent);
+}
+
+.ps-cta-title {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  font-family: "JetBrains Mono", monospace;
+  margin: 0 0 0.75rem !important;
+  border: none !important;
+}
+
+.ps-home-cta p {
+  max-width: 620px;
+  margin: 0 auto 2.25rem !important;
+  opacity: 0.78;
+}
+
+.ps-cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .ps-spotlight-body {
+    grid-template-columns: 1fr;
+  }
+  .ps-spotlight-media {
+    min-height: 180px;
+  }
+  .ps-spotlight-media::after {
+    background: linear-gradient(180deg, rgba(10,14,20,0) 50%, rgba(10,14,20,0.95) 100%);
+  }
+  .ps-spotlight-content {
+    padding: 1.5rem 1.5rem;
+  }
+  .ps-cta-actions .ps-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ============================================================================
+ * NEW HOME (v2) — Immersive hero, live ticker, focus cards
+ * ============================================================================ */
+
+/* Keep all home content above the fixed matrix canvas */
+.ps-home > .ps-nh-hero,
+.ps-home > .ps-nh-ticker,
+.ps-home > .ps-content-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Hero shell --- */
+.ps-nh-hero {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 96px);
+  min-height: calc(100svh - 96px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem 3.5rem;
+  overflow: hidden;
+}
+
+/* ambient gradient orbs */
+.ps-nh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ps-nh-orb-1 {
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(187,134,252,0.42), transparent 70%);
+  top: -120px; left: -80px;
+  animation: ps-orb-float 16s ease-in-out infinite;
+}
+.ps-nh-orb-2 {
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(0,255,102,0.18), transparent 70%);
+  bottom: -100px; right: -60px;
+  animation: ps-orb-float 20s ease-in-out infinite reverse;
+}
+.ps-nh-orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(224,64,251,0.22), transparent 70%);
+  top: 40%; left: 55%;
+  animation: ps-orb-float 24s ease-in-out infinite;
+}
+@keyframes ps-orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 25px) scale(0.95); }
+}
+
+/* faint perspective grid */
+.ps-nh-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(187,134,252,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(187,134,252,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 80%);
+}
+
+.ps-nh-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+
+/* status pill */
+.ps-nh-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ps-neon-green);
+  background: rgba(0, 255, 102, 0.06);
+  border: 1px solid rgba(0, 255, 102, 0.28);
+  padding: 0.42rem 0.95rem;
+  border-radius: 999px;
+  margin-bottom: 1.4rem;
+}
+.ps-nh-status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ps-neon-green);
+  box-shadow: 0 0 8px var(--ps-neon-green);
+  animation: ps-pulse-dot 1.6s ease-in-out infinite;
+}
+@keyframes ps-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* animated shimmer wordmark */
+.ps-nh-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(110deg, #ffffff 0%, var(--ps-accent) 38%, var(--ps-neon) 62%, var(--ps-neon-green) 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ps-shimmer 7s linear infinite;
+  text-shadow: 0 0 60px rgba(187, 134, 252, 0.25);
+}
+
+/* typed role line */
+.ps-nh-typed {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1rem, 3.2vw, 1.4rem);
+  font-weight: 600;
+  margin: 1rem 0 0;
+  min-height: 1.6em;
+  color: var(--ps-dark-text);
+}
+.ps-nh-typed-prefix { color: var(--ps-neon-green); margin-right: 0.55rem; }
+#ps-typed-text { color: var(--ps-accent); }
+.ps-nh-caret {
+  display: inline-block;
+  width: 11px;
+  height: 1.05em;
+  background: var(--ps-accent);
+  margin-left: 3px;
+  vertical-align: -2px;
+  animation: ps-blink 1s step-end infinite;
+}
+
+.ps-nh-lead {
+  max-width: 620px;
+  margin: 1.25rem auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ps-dark-text);
+  opacity: 0.85;
+}
+.ps-nh-red { color: #ff5f6d; font-weight: 600; }
+.ps-nh-blue { color: #4aa8ff; font-weight: 600; }
+
+/* CTA buttons */
+.ps-nh-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.ps-nh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 9px;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition: var(--ps-transition);
+}
+.ps-nh-btn-primary {
+  background: linear-gradient(135deg, var(--ps-purple-600), var(--ps-purple-800));
+  color: #fff !important;
+  box-shadow: 0 10px 28px rgba(138, 43, 170, 0.35);
+}
+.ps-nh-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 32px var(--ps-accent-glow);
+}
+.ps-nh-btn-ghost {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ps-dark-text) !important;
+  border: 1px solid var(--ps-card-border);
+  backdrop-filter: blur(6px);
+}
+.ps-nh-btn-ghost:hover {
+  transform: translateY(-3px);
+  border-color: var(--ps-accent);
+  color: #fff !important;
+  box-shadow: var(--ps-glow-sm);
+}
+
+/* --- Live ticker --- */
+.ps-nh-ticker {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--ps-card-border);
+  border-bottom: 1px solid var(--ps-card-border);
+  background: rgba(10, 14, 20, 0.65);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.ps-nh-ticker-tag {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--ps-accent);
+  color: #0a0e14;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding: 0 1.1rem;
+}
+.ps-nh-ticker-viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.ps-nh-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ps-ticker-scroll 48s linear infinite;
+}
+.ps-nh-ticker:hover .ps-nh-ticker-track { animation-play-state: paused; }
+.ps-nh-ticker-group {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  padding: 0.7rem 0;
+  padding-right: 2.75rem;
+  flex-shrink: 0;
+}
+.ps-nh-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  color: var(--ps-dark-text);
+  opacity: 0.8;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.ps-nh-ticker-item::before { content: "▹"; color: var(--ps-neon-green); }
+.ps-nh-ticker-item:hover { color: var(--ps-accent); opacity: 1; }
+@keyframes ps-ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* stat number suffix */
+.ps-stat-suffix { color: var(--ps-accent); }
+
+/* --- Focus cards --- */
+.ps-fx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 1rem;
+}
+.ps-fx-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid var(--ps-card-border);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008));
+  text-decoration: none !important;
+  color: inherit !important;
+  overflow: hidden;
+  transition: var(--ps-transition);
+}
+.ps-fx-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ps-neon-green), var(--ps-accent), var(--ps-neon));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.ps-fx-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--ps-accent);
+  box-shadow: var(--ps-glow-md);
+}
+.ps-fx-card:hover::before { transform: scaleX(1); }
+.ps-fx-index {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--ps-accent);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+.ps-fx-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  background: rgba(187, 134, 252, 0.1);
+  border: 1px solid rgba(187, 134, 252, 0.2);
+  color: var(--ps-accent);
+  margin-bottom: 1.1rem;
+  transition: var(--ps-transition);
+}
+.ps-fx-card:hover .ps-fx-icon {
+  background: var(--ps-accent);
+  color: #0a0e14;
+  box-shadow: 0 0 20px var(--ps-accent-glow);
+}
+.ps-fx-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: var(--md-default-fg-color);
+}
+.ps-fx-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ps-dark-text);
+  opacity: 0.78;
+  flex: 1;
+}
+.ps-fx-arrow {
+  margin-top: 1.1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ps-neon-green);
+  transition: letter-spacing 0.25s ease;
+}
+.ps-fx-card:hover .ps-fx-arrow { letter-spacing: 0.03em; }
+
+@media (max-width: 768px) {
+  .ps-nh-hero { min-height: calc(100vh - 48px); min-height: calc(100svh - 48px); padding: 4rem 1.25rem 3rem; }
+  .ps-nh-cta { flex-direction: column; align-items: center; }
+  .ps-nh-btn { width: 100%; max-width: 300px; justify-content: center; }
+  .ps-nh-ticker-tag { padding: 0 0.7rem; font-size: 0.66rem; }
+  .ps-nh-hero .ps-scroll-indicator { display: none; }
+}
+
+/* Respect users who prefer reduced motion — disable ambient/decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  #ps-matrix-canvas { display: none; }
+  .ps-nh-title,
+  .ps-nh-orb-1, .ps-nh-orb-2, .ps-nh-orb-3,
+  .ps-nh-ticker-track,
+  .ps-nh-status-dot,
+  .ps-nh-caret {
+    animation: none !important;
+  }
+  .ps-nh-title {
+    background-position: 0 0;
+  }
+  .ps-reveal, .ps-reveal-left, .ps-reveal-right, .ps-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================================
+ * Consistency layer — shared landing-page components
+ * ============================================================================ */
+
+/* fx-card index line color variants (used for cert status, etc.) */
+.ps-fx-index--green { color: var(--ps-neon-green) !important; }
+.ps-fx-index--amber { color: #ffbd2e !important; }
+.ps-fx-index--blue  { color: #4aa8ff !important; }
+
+/* Generic masthead alias so any page can use .ps-masthead == .ps-blog-masthead */
+.ps-masthead {
+  margin: 0.25rem 0 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--ps-card-border);
+}
+.ps-masthead .ps-blog-masthead-title { margin-top: 0; }
+
+/* --------------------------------------------------------------------------
+ * Contact form — terminal-themed, consistent with site aesthetic
+ * -------------------------------------------------------------------------- */
+.ps-contact-terminal {
+  max-width: 640px;
+  margin: 2rem 0;
+  border: 1px solid var(--ps-card-border);
+  border-radius: 12px;
+  background: var(--ps-terminal-bg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+.ps-contact-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--ps-card-border);
+}
+.ps-contact-bar-title {
+  margin-left: 0.6rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(187, 134, 252, 0.6);
+  letter-spacing: 0.04em;
+}
+.ps-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.75rem;
+}
+.ps-contact-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.ps-contact-field {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ps-contact-field label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ps-accent);
+}
+.ps-contact-field label::before { content: "$ "; color: var(--ps-neon-green); }
+.ps-contact-field input,
+.ps-contact-field textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--ps-card-border);
+  border-radius: 6px;
+  padding: 0.7rem 0.85rem;
+  color: var(--ps-dark-text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ps-contact-field input::placeholder,
+.ps-contact-field textarea::placeholder { color: rgba(201, 209, 217, 0.35); }
+.ps-contact-field input:focus,
+.ps-contact-field textarea:focus {
+  border-color: var(--ps-accent);
+  box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.12);
+}
+.ps-contact-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.ps-contact-status { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; font-weight: 500; }
+.ps-contact-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--ps-purple-600), var(--ps-purple-800));
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--ps-transition);
+}
+.ps-contact-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px var(--ps-accent-glow);
+}
+
+/* Contact method chips */
+.ps-contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+.ps-contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ps-card-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ps-dark-text) !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  text-decoration: none !important;
+  transition: var(--ps-transition);
+}
+.ps-contact-chip:hover {
+  border-color: var(--ps-accent);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: var(--ps-glow-sm);
+}
+.ps-contact-chip svg { color: var(--ps-accent); }
+
+/* --------------------------------------------------------------------------
+ * About page hero overrides (content-sized, not forced full height)
+ * -------------------------------------------------------------------------- */
+.ps-about-hero {
+  min-height: auto !important;
+  padding: 3rem 1.5rem 2.5rem;
+}
+.ps-about-hero .ps-nh-hero-inner { margin-bottom: 2rem; }
+.ps-about-name {
+  font-size: clamp(2.1rem, 6vw, 4rem) !important;
+}
+.ps-about-hero .ps-hero-terminal {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+}
+.ps-about .ps-content-wrap .ps-stats { margin-top: 0; }

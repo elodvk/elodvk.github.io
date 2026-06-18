@@ -8,10 +8,15 @@
   <meta property="og:title" content="{{ og_title }}">
   <meta property="og:description" content="{{ og_desc }}">
   {% if page.meta and page.meta.image %}
-    {% if page.meta.image[:4] == 'http' %}
-    <meta property="og:image" content="{{ page.meta.image }}">
+    {% set img_url = page.meta.image.path if page.meta.image is mapping and page.meta.image.path is defined else page.meta.image %}
+    {% if img_url is string %}
+      {% if img_url[:4] == 'http' %}
+      <meta property="og:image" content="{{ img_url }}">
+      {% else %}
+      <meta property="og:image" content="{{ config.site_url }}{{ img_url }}">
+      {% endif %}
     {% else %}
-    <meta property="og:image" content="{{ config.site_url }}{{ page.meta.image }}">
+      <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
     {% endif %}
   {% else %}
   <meta property="og:image" content="{{ config.site_url }}assets/images/social-preview.png">
@@ -34,10 +39,13 @@
     "description": {{ og_desc | tojson }},
     "url": "{{ og_url }}",
     {% if page.meta.image %}
-      {% if page.meta.image[:4] == 'http' %}
-    "image": "{{ page.meta.image }}",
+      {% set img_url = page.meta.image.path if page.meta.image is mapping and page.meta.image.path is defined else page.meta.image %}
+      {% if img_url is string and img_url[:4] == 'http' %}
+    "image": "{{ img_url }}",
+      {% elif img_url is string %}
+    "image": "{{ config.site_url }}{{ img_url }}",
       {% else %}
-    "image": "{{ config.site_url }}{{ page.meta.image }}",
+    "image": "{{ config.site_url }}assets/images/social-preview.png",
       {% endif %}
     {% else %}
     "image": "{{ config.site_url }}assets/images/social-preview.png",
@@ -259,7 +267,9 @@
       }
 
 
-      setTimeout(fetchComments, 100);
+      setTimeout(function() {
+        if (document.getElementById('ps-comment-list')) fetchComments();
+      }, 100);
       setTimeout(trackPageView, 100);
       
       async function trackPageView() {

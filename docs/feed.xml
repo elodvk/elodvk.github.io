@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Wed, 17 Jun 2026 17:12:33 -0000</lastBuildDate>
+<lastBuildDate>Thu, 18 Jun 2026 03:50:14 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -19,7 +19,6 @@
 <category>Telegram</category>
 <category>Government Bans</category>
 <category>Cybersecurity</category>
-<category>Active Directory</category>
 <category>Privacy</category>
 </item>
 <item>

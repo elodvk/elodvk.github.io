@@ -41,7 +41,7 @@ def define_env(env):
 
                     # URL relative to docs
                     rel_path = os.path.relpath(filepath, os.path.abspath('docs'))
-                    url = f"{rel_path[:-3]}/"
+                    url = f"{rel_path[:-3]}/".replace(os.sep, '/').replace('\\', '/')
                     
                     # Extract Summary
                     explicit_summary = meta.get('description') or meta.get('summary')
@@ -85,6 +85,15 @@ def define_env(env):
                     # Machine tags/details
                     meta['difficulty'] = meta.get('difficulty', 'Unknown')
                     meta['os'] = meta.get('os', 'Unknown')
+
+                    # Standardize Authors
+                    authors = meta.get('authors', {})
+                    if isinstance(authors, dict):
+                        meta['authors'] = [authors]
+                    elif isinstance(authors, list):
+                        pass
+                    else:
+                        meta['authors'] = [{'name': str(authors)}]
 
                     posts.append(meta)
 

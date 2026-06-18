@@ -24,29 +24,44 @@
   </style>
 
   <!-- Hero Section -->
-  <div class="ps-hero-content">
+  <div class="ps-nh-hero ps-about-hero">
+    <span class="ps-nh-orb ps-nh-orb-1" aria-hidden="true"></span>
+    <span class="ps-nh-orb ps-nh-orb-2" aria-hidden="true"></span>
+    <div class="ps-nh-grid" aria-hidden="true"></div>
 
-    <!-- Hero Icon -->
-    <div class="ps-hero-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor"
-        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
+    <div class="ps-nh-hero-inner">
+      <div class="ps-nh-status">
+        <span class="ps-nh-status-dot"></span>
+        Available · Senior Cybersecurity Engineer
+      </div>
+
+      <h1 class="ps-nh-title ps-about-name">Bilash J. Shahi</h1>
+
+      <div class="ps-nh-typed">
+        <span class="ps-nh-typed-prefix">&gt;_</span>
+        <span id="ps-typed-text"></span><span class="ps-nh-caret"></span>
+      </div>
+
+      <p class="ps-nh-lead">
+        7+ years across enterprise defense, cloud infrastructure, and offensive security research —
+        turning attacker tradecraft into stronger, measurable defenses.
+      </p>
+
+      <div class="ps-nh-cta">
+        <a href="https://www.linkedin.com/in/bilash-j-shahi" target="_blank" rel="noopener" class="ps-nh-btn ps-nh-btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          Connect
+        </a>
+        <a href="mailto:elodvk@proton.me" class="ps-nh-btn ps-nh-btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="/walkthroughs/" class="ps-nh-btn ps-nh-btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg>
+          See My Work
+        </a>
+      </div>
     </div>
-
-    <!-- Glitch Title -->
-    <h1 class="ps-hero-title ps-glitch-wrap" data-text="SYSTEM_OPERATOR_PROFILE">SYSTEM_OPERATOR_PROFILE</h1>
-
-    <!-- Tagline typing effect -->
-    <div class="ps-hero-tagline">
-      <span class="ps-cmd-prefix">>_</span><span id="ps-typed-text" class="ps-typed-text"></span>
-    </div>
-
-    <p class="ps-hero-desc">
-      Senior Cybersecurity Engineer specializing in enterprise defense, cloud infrastructure, and offensive security
-      research.
-    </p>
 
     <!-- The Interactive Terminal -->
     <div class="ps-hero-terminal ps-reveal-scale" style="margin-top: 2rem;">
@@ -86,8 +101,28 @@
 
   <div class="ps-content-wrap">
 
+    <!-- Quick Stats -->
+    <div class="ps-stats ps-reveal" style="margin-top: 0;">
+      <div class="ps-stat-card ps-stagger-1">
+        <div class="ps-stat-number"><span data-count="7">0</span><span class="ps-stat-suffix">+</span></div>
+        <div class="ps-stat-label">Years in Security</div>
+      </div>
+      <div class="ps-stat-card ps-stagger-2">
+        <div class="ps-stat-number"><span data-count="11">0</span><span class="ps-stat-suffix">+</span></div>
+        <div class="ps-stat-label">Certifications</div>
+      </div>
+      <div class="ps-stat-card ps-stagger-3">
+        <div class="ps-stat-number"><span data-count="15">0</span><span class="ps-stat-suffix">+</span></div>
+        <div class="ps-stat-label">Machines Pwned</div>
+      </div>
+      <div class="ps-stat-card ps-stagger-4">
+        <div class="ps-stat-number"><span data-count="4">0</span><span class="ps-stat-suffix"></span></div>
+        <div class="ps-stat-label">HTB Pro Labs Cleared</div>
+      </div>
+    </div>
+
     <!-- Experience Grid -->
-    <div class="ps-reveal" id="ps-experience-section">
+    <div class="ps-reveal" id="ps-experience-section" style="margin-top: 4rem;">
       <h2 class="ps-section-title">Mission Logs (Experience)</h2>
       <div class="ps-section-divider"></div>
       <p class="ps-section-subtitle">Operational history across enterprise defense and infrastructure management.</p>

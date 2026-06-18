@@ -6,12 +6,30 @@
 function initPurpleSecJS() {
 
   /* --------------------------------------------------------------------------
+   * Idempotency / cleanup
+   * On instant navigation (document$), this whole function re-runs. Clear any
+   * timers and listeners from the previous page so they don't stack up and leak.
+   * -------------------------------------------------------------------------- */
+  window.__psTimers = window.__psTimers || {};
+  if (window.__psTimers.matrix) { clearInterval(window.__psTimers.matrix); window.__psTimers.matrix = null; }
+  if (window.__psTimers.quote) { clearInterval(window.__psTimers.quote); window.__psTimers.quote = null; }
+  if (window.__psTimers.typing) { clearTimeout(window.__psTimers.typing); window.__psTimers.typing = null; }
+  if (window.__psTimers.matrixResize) {
+    window.removeEventListener("resize", window.__psTimers.matrixResize);
+    window.__psTimers.matrixResize = null;
+  }
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --------------------------------------------------------------------------
    * Matrix Rain Canvas
    * Renders falling characters on a canvas behind the hero section
    * -------------------------------------------------------------------------- */
   function initMatrixRain() {
     var canvas = document.getElementById("ps-matrix-canvas");
     if (!canvas) return;
+    // Skip the (heavy) animation entirely when reduced motion is requested
+    if (prefersReducedMotion) { canvas.style.display = "none"; return; }
 
     var ctx = canvas.getContext("2d");
     var fontSize = 16;
@@ -30,6 +48,7 @@ function initPurpleSecJS() {
     }
     resize();
     window.addEventListener("resize", resize);
+    window.__psTimers.matrixResize = resize;
 
     // Authentic mix of Katakana, Latin, and Numerals
     var chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ=+-*/";
@@ -74,7 +93,7 @@ function initPurpleSecJS() {
     }
 
     // 50ms interval gives a perfect pace
-    setInterval(draw, 50);
+    window.__psTimers.matrix = setInterval(draw, 50);
   }
 
   /* --------------------------------------------------------------------------
@@ -100,11 +119,11 @@ function initPurpleSecJS() {
     if (!el) return;
 
     var phrases = [
-      "Offensive Security. Documented.",
-      "Hack. Learn. Document. Repeat.",
+      "Attack. Understand. Defend.",
       "From Foothold to Domain Admin.",
-      "Enumerate Everything.",
-      "Red Team Mindset. Purple Team Heart.",
+      "Active Directory, Demystified.",
+      "Real Exploits. Real Defense.",
+      "Offense Informs Defense.",
     ];
 
     var phraseIndex = 0;
@@ -124,10 +143,10 @@ function initPurpleSecJS() {
 
         if (charIndex === current.length) {
           isDeleting = true;
-          setTimeout(type, pauseAfterType);
+          window.__psTimers.typing = setTimeout(type, pauseAfterType);
           return;
         }
-        setTimeout(type, typeSpeed + Math.random() * 40);
+        window.__psTimers.typing = setTimeout(type, typeSpeed + Math.random() * 40);
       } else {
         el.textContent = current.substring(0, charIndex - 1);
         charIndex--;
@@ -135,14 +154,54 @@ function initPurpleSecJS() {
         if (charIndex === 0) {
           isDeleting = false;
           phraseIndex = (phraseIndex + 1) % phrases.length;
-          setTimeout(type, pauseAfterDelete);
+          window.__psTimers.typing = setTimeout(type, pauseAfterDelete);
           return;
         }
-        setTimeout(type, deleteSpeed);
+        window.__psTimers.typing = setTimeout(type, deleteSpeed);
       }
     }
 
     type();
+  }
+
+  /* --------------------------------------------------------------------------
+   * Animated Count-Up
+   * Counts numbers from 0 to their data-count target when scrolled into view
+   * -------------------------------------------------------------------------- */
+  function initCounters() {
+    var nums = document.querySelectorAll("[data-count]");
+    if (!nums.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        observer.unobserve(el);
+
+        var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+
+        if (prefersReducedMotion) { el.textContent = target.toString(); return; }
+
+        var duration = 1500;
+        var startTime = null;
+
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          // easeOutCubic for a snappy finish
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target).toString();
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target.toString();
+          }
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+
+    nums.forEach(function (n) { observer.observe(n); });
   }
 
   /* --------------------------------------------------------------------------
@@ -276,6 +335,7 @@ function initPurpleSecJS() {
     function resetTimer() {
       clearInterval(intervalId);
       intervalId = setInterval(nextSlide, 8000); // rotate every 8s
+      window.__psTimers.quote = intervalId;
     }
 
     if (prevBtn) {
@@ -380,6 +440,7 @@ function initPurpleSecJS() {
     initMatrixRain();
     initHeroTerminal();
     initTypingEffect();
+    initCounters();
     initScrollIndicator();
     initQuoteCarousel();
   }
@@ -402,6 +463,7 @@ function initPurpleSecJS() {
       var limit = Math.min(hiddenPosts.length, 9);
       for (var i = 0; i < limit; i++) {
         hiddenPosts[i].classList.remove("is-hidden");
+        hiddenPosts[i].style.display = "flex";
       }
       
       // If no more hidden posts remain, hide the container
@@ -448,6 +510,7 @@ function initPurpleSecJS() {
     var filterBtns = document.querySelectorAll(".ps-tag-filter");
     var cards = document.querySelectorAll(".ps-blog-card");
     var loadMoreContainer = document.querySelector(".ps-blog-load-more-container");
+    var emptyEl = document.getElementById("ps-blog-empty");
     
     if (!filterBtns.length || !cards.length) return;
 
@@ -489,6 +552,11 @@ function initPurpleSecJS() {
           } else {
             loadMoreContainer.style.display = "none";
           }
+        }
+
+        // Show empty-state message when nothing matches
+        if (emptyEl) {
+          emptyEl.style.display = visibleCount === 0 ? "block" : "none";
         }
       });
     });
