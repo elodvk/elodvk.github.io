@@ -84,7 +84,10 @@ nav = [
   { "Certifications" = [
     { "Overview" = "certifications/index.md" },
     { "OSCP" = "certifications/oscp/index.md" },
-    { "CPTS" = "certifications/cpts/index.md" },
+    { "CPTS" = [
+      { "Overview" = "certifications/cpts/index.md" },
+      { "File Upload Attacks" = "certifications/cpts/File Upload Attacks.md" },
+    ]},
     { "PNPT" = "certifications/pnpt/index.md" },
     { "CISSP" = "certifications/cissp/index.md" },
   ]},
