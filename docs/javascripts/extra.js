@@ -692,6 +692,78 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Auto Code Windows
+   * Automatically wraps fenced code blocks in window chrome based on language,
+   * so you don't have to wrap them by hand. Shell-ish languages get a terminal
+   * window; everything else gets an editor window. Native syntax highlighting,
+   * the copy button, and line numbers are preserved.
+   * Opt out per block (or a region) with class `.ps-noframe` / `.no-window`.
+   * Skips code inside manual window wrappers, admonitions, and tabbed blocks.
+   * -------------------------------------------------------------------------- */
+  function initCodeWindows() {
+    var blocks = document.querySelectorAll(".md-typeset div.highlight:not([data-psb-done])");
+    if (!blocks.length) return;
+
+    var shellLangs = {
+      shell: 1, bash: 1, sh: 1, console: 1, "shell-session": 1, "sh-session": 1,
+      zsh: 1, fish: 1, ps: 1, ps1: 1, powershell: 1, pwsh: 1, cmd: 1, bat: 1,
+      dos: 1, text: 1, output: 1
+    };
+    var labelMap = {
+      ps: "powershell", ps1: "powershell", pwsh: "powershell",
+      "shell-session": "shell", "sh-session": "shell", js: "javascript"
+    };
+
+    var ICN = {
+      shell:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>',
+      editor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>'
+    };
+
+    blocks.forEach(function (hl) {
+      hl.setAttribute("data-psb-done", "1");
+
+      // Skip code already inside a manual wrapper, opt-outs, admonitions, tabs
+      if (hl.closest && hl.closest(".ps-win-frame, .ps-browser-frame, .ps-codewin, .ps-noframe, .no-window, .admonition, .tabbed-content")) return;
+      // Skip mermaid diagrams
+      if (hl.classList.contains("mermaid") || hl.querySelector(".mermaid")) return;
+
+      var m = hl.className.match(/language-([a-z0-9_-]+)/i);
+      var lang = m ? m[1].toLowerCase() : "";
+      var isShell = !!shellLangs[lang];
+      var type = isShell ? "shell" : "editor";
+
+      // Title: an explicit fence title (.filename), else a friendly language name
+      var title, fnEl = hl.querySelector(".filename");
+      if (fnEl && fnEl.textContent.trim()) {
+        title = fnEl.textContent.trim();
+        fnEl.parentNode.removeChild(fnEl);
+      } else {
+        title = labelMap[lang] || lang || (isShell ? "terminal" : "code");
+      }
+      var badge = (labelMap[lang] || lang || "").toUpperCase();
+
+      var win = document.createElement("div");
+      win.className = "ps-codewin ps-codewin--" + type;
+
+      var bar = document.createElement("div");
+      bar.className = "ps-codewin-bar";
+      bar.innerHTML =
+        '<span class="ps-win-dots"><i></i><i></i><i></i></span>' +
+        '<span class="ps-codewin-title">' +
+          '<span class="ps-codewin-icon">' + ICN[type] + '</span>' +
+          '<span class="ps-codewin-name"></span>' +
+        '</span>' +
+        (badge ? '<span class="ps-codewin-lang"></span>' : '');
+      bar.querySelector(".ps-codewin-name").textContent = title;
+      if (badge) bar.querySelector(".ps-codewin-lang").textContent = badge;
+
+      hl.parentNode.insertBefore(win, hl);
+      win.appendChild(bar);
+      win.appendChild(hl);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -830,6 +902,7 @@ function initPurpleSecJS() {
   initTagFilter();
   initBrowserFrames();
   initWindowFrames();
+  initCodeWindows();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

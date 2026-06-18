@@ -3125,3 +3125,99 @@ html {
   .ps-win-tab .ps-win-title-text { font-size: 0.72rem; }
   .ps-win-dots i { width: 10px; height: 10px; }
 }
+
+/* ============================================================================
+ * Auto Code Windows
+ * initCodeWindows() wraps fenced code blocks in lightweight window chrome
+ * (terminal for shell langs, editor otherwise) while keeping the native
+ * syntax theme, copy button, and line numbers. Opt out with `.ps-noframe`.
+ * ============================================================================ */
+.ps-codewin {
+  margin: 1.4rem 0;
+  border: 1px solid #2a3240;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--md-code-bg-color);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.ps-codewin:hover {
+  border-color: #36404f;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.ps-codewin-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 36px;
+  padding: 0 0.7rem;
+  background: rgba(0, 0, 0, 0.28);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.ps-codewin .ps-win-dots i { width: 11px; height: 11px; }
+
+.ps-codewin-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+}
+.ps-codewin-icon { display: inline-flex; flex-shrink: 0; }
+.ps-codewin-icon svg { width: 14px; height: 14px; }
+.ps-codewin-name {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #c9d1d9;
+}
+.ps-codewin-lang {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8b98a8;
+  padding: 0.12rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.ps-codewin--shell .ps-codewin-icon { color: var(--ps-neon-green); }
+.ps-codewin--shell .ps-codewin-name { color: var(--ps-neon-green); opacity: 0.9; }
+.ps-codewin--editor .ps-codewin-icon { color: var(--ps-accent); }
+
+/* Inner code block sits flush inside the window */
+.ps-codewin .highlight {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.ps-codewin .highlight > pre,
+.ps-codewin pre > code,
+.ps-codewin pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Light mode */
+[data-md-color-scheme="default"] .ps-codewin { border-color: #d0d7de; }
+[data-md-color-scheme="default"] .ps-codewin-bar {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+[data-md-color-scheme="default"] .ps-codewin-name { color: #2b2f36; }
+[data-md-color-scheme="default"] .ps-codewin-lang {
+  color: #6b7280;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 600px) {
+  .ps-codewin-bar { height: 32px; padding: 0 0.5rem; gap: 0.45rem; }
+  .ps-codewin .ps-win-dots i { width: 9px; height: 9px; }
+  .ps-codewin-title { font-size: 0.72rem; }
+}
