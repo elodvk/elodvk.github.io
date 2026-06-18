@@ -2643,108 +2643,236 @@ html {
 .ps-about .ps-content-wrap .ps-stats { margin-top: 0; }
 
 /* ============================================================================
- * Browser Window Frame
- * Wraps a screenshot in an auto-generated browser chrome (traffic-light dots,
- * fake URL bar, copy-URL button). Built at runtime by initBrowserFrames().
- * Authoring: ![alt](shot.png){ .ps-browser data-url="http://SERVER_IP:PORT/" }
+ * Browser Window Frame  (realistic Chrome-style chrome)
+ * Built at runtime by initBrowserFrames(). Structure:
+ *   .ps-browser-frame
+ *     .ps-browser-tabs   (window dots + active tab + new-tab)
+ *     .ps-browser-bar    (back/fwd/reload + omnibox[lock+url+copy] + star/menu)
+ *     .ps-browser-viewport (the screenshot)
+ * Authoring (md_in_html):
+ *   <div class="ps-browser" data-url="http://SERVER_IP:PORT/" markdown>
+ *   ![alt](shot.png)
+ *   </div>
  * ============================================================================ */
 .ps-browser-frame {
+  --psb-strip: #0a0d13;
+  --psb-toolbar: #181d27;
+  --psb-omni: #0c1016;
+  --psb-ink: #c9d1d9;
+  --psb-muted: #8b98a8;
   margin: 1.6rem 0;
-  border: 1px solid var(--ps-card-border);
+  border: 1px solid #2a3240;
   border-radius: 12px;
   overflow: hidden;
   background: var(--ps-terminal-bg);
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45), var(--ps-glow-sm);
-  transition: var(--ps-transition);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5), 0 2px 0 rgba(255,255,255,0.03) inset;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 .ps-browser-frame:hover {
-  border-color: rgba(187, 134, 252, 0.3);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.55), var(--ps-glow-md);
+  border-color: #36404f;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.6), var(--ps-glow-sm);
 }
 
-/* Top chrome bar */
-.ps-browser-bar {
+/* ---- Tab strip ---- */
+.ps-browser-tabs {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.7rem 0.9rem;
-  background: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid var(--ps-card-border);
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 42px;
+  padding: 0 0.7rem;
+  background: var(--psb-strip);
 }
 
-/* Traffic-light dots */
+/* Window traffic-light dots */
 .ps-browser-dots {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   flex-shrink: 0;
+  align-self: center;
+  margin-right: 0.35rem;
 }
 .ps-browser-dots i {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   display: block;
+  transition: filter 0.2s ease;
 }
-.ps-browser-dots i:nth-child(1) { background: #ff5f57; }
-.ps-browser-dots i:nth-child(2) { background: #ffbd2e; }
-.ps-browser-dots i:nth-child(3) { background: #28c840; }
+.ps-browser-dots i:nth-child(1) { background: #ff5f57; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25) inset; }
+.ps-browser-dots i:nth-child(2) { background: #febc2e; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25) inset; }
+.ps-browser-dots i:nth-child(3) { background: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25) inset; }
+.ps-browser-frame:hover .ps-browser-dots i { filter: brightness(1.05); }
 
-/* Fake URL / address bar */
+/* Active tab — merges into the toolbar below */
+.ps-browser-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 34px;
+  min-width: 130px;
+  max-width: 260px;
+  padding: 0 0.7rem;
+  background: var(--psb-toolbar);
+  border-radius: 9px 9px 0 0;
+  position: relative;
+}
+.ps-browser-tab-fav {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--ps-accent);
+}
+.ps-browser-tab-fav svg { width: 14px; height: 14px; }
+.ps-browser-tab-title {
+  flex: 1;
+  min-width: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  color: var(--psb-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+.ps-browser-tab-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: var(--psb-muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ps-browser-tab-close svg { width: 11px; height: 11px; }
+.ps-browser-tab:hover .ps-browser-tab-close { color: var(--psb-ink); }
+.ps-browser-tab-close:hover { background: rgba(255,255,255,0.12); }
+
+/* New-tab button */
+.ps-browser-tab-new {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 4px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--psb-muted);
+  border-radius: 50%;
+  cursor: default;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ps-browser-tab-new svg { width: 15px; height: 15px; }
+.ps-browser-tab-new:hover { background: rgba(255,255,255,0.08); color: var(--psb-ink); }
+
+/* ---- Toolbar ---- */
+.ps-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--psb-toolbar);
+  border-bottom: 1px solid rgba(0,0,0,0.35);
+}
+
+.ps-browser-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  flex-shrink: 0;
+}
+.ps-browser-navbtn,
+.ps-browser-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--psb-ink);
+  border-radius: 50%;
+  cursor: default;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ps-browser-navbtn svg,
+.ps-browser-iconbtn svg { width: 18px; height: 18px; }
+.ps-browser-navbtn:hover,
+.ps-browser-iconbtn:hover { background: rgba(255,255,255,0.08); }
+.ps-browser-navbtn.is-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.ps-browser-reload { cursor: pointer; }
+.ps-browser-reload:hover { color: var(--ps-accent); }
+.ps-browser-reload.is-spinning svg { animation: ps-browser-spin 0.6s ease; }
+@keyframes ps-browser-spin { to { transform: rotate(360deg); } }
+
+/* Omnibox / address bar */
 .ps-browser-url {
   flex: 1;
   min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.4rem 0.9rem;
-  background: rgba(10, 14, 20, 0.7);
-  border: 1px solid rgba(0, 255, 102, 0.3);
+  height: 34px;
+  padding: 0 0.4rem 0 0.85rem;
+  background: var(--psb-omni);
+  border: 1px solid rgba(255,255,255,0.07);
   border-radius: 999px;
   font-family: "JetBrains Mono", monospace;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
+.ps-browser-url:hover { background: #0f141b; }
 .ps-browser-url-icon {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--ps-neon-green);
-  opacity: 0.85;
+  color: var(--psb-muted);
 }
 .ps-browser-url-icon svg { width: 14px; height: 14px; }
+.ps-browser-url.is-insecure .ps-browser-url-icon { color: #e0a64b; }
+.ps-browser-url:not(.is-insecure) .ps-browser-url-icon { color: #4cc77f; }
 .ps-browser-url-text {
+  flex: 1;
+  min-width: 0;
   font-size: 0.82rem;
-  color: var(--ps-dark-text);
+  color: var(--psb-ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
-/* Copy-URL button */
+/* Copy-URL button (lives inside the omnibox) */
 .ps-browser-copy {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 26px;
+  height: 26px;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
-  color: var(--ps-neon-green);
-  background: rgba(0, 255, 102, 0.06);
-  border: 1px solid rgba(0, 255, 102, 0.3);
-  transition: var(--ps-transition);
+  color: var(--psb-muted);
+  background: transparent;
+  border: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
-.ps-browser-copy svg { width: 16px; height: 16px; }
+.ps-browser-copy svg { width: 15px; height: 15px; }
 .ps-browser-copy:hover {
-  background: rgba(0, 255, 102, 0.14);
-  border-color: var(--ps-neon-green);
-  box-shadow: var(--ps-glow-green-sm);
-  transform: translateY(-1px);
+  background: rgba(255,255,255,0.1);
+  color: var(--ps-accent);
 }
 .ps-browser-copy.is-copied {
-  color: #0a0e14;
-  background: var(--ps-neon-green);
-  border-color: var(--ps-neon-green);
+  color: var(--ps-neon-green);
+  background: rgba(0, 255, 102, 0.12);
+  transform: scale(1.05);
 }
 
 /* Image viewport */
@@ -2761,25 +2889,49 @@ html {
   border-radius: 0;
 }
 
-/* Light mode */
+/* ---- Light mode ---- */
 [data-md-color-scheme="default"] .ps-browser-frame {
+  --psb-strip: #d6dce4;
+  --psb-toolbar: #eef1f5;
+  --psb-omni: #ffffff;
+  --psb-ink: #2b2f36;
+  --psb-muted: #6b7280;
+  border-color: #c2c9d4;
   background: #fff;
 }
 [data-md-color-scheme="default"] .ps-browser-bar {
-  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 [data-md-color-scheme="default"] .ps-browser-url {
-  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0,0,0,0.12);
 }
-[data-md-color-scheme="default"] .ps-browser-url-text {
-  color: #333;
+[data-md-color-scheme="default"] .ps-browser-navbtn:hover,
+[data-md-color-scheme="default"] .ps-browser-iconbtn:hover,
+[data-md-color-scheme="default"] .ps-browser-tab-new:hover,
+[data-md-color-scheme="default"] .ps-browser-tab-close:hover,
+[data-md-color-scheme="default"] .ps-browser-copy:hover {
+  background: rgba(0,0,0,0.06);
 }
 
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .ps-browser-reload.is-spinning svg { animation: none; }
+}
+
+/* ---- Responsive ---- */
 @media (max-width: 600px) {
-  .ps-browser-bar { gap: 0.55rem; padding: 0.6rem 0.7rem; }
-  .ps-browser-url { padding: 0.35rem 0.7rem; }
-  .ps-browser-url-text { font-size: 0.74rem; }
-  /* Save space on very small screens */
-  .ps-browser-dots { gap: 5px; }
+  .ps-browser-tabs { height: 38px; padding: 0 0.5rem; gap: 0.35rem; }
+  .ps-browser-tab { min-width: 92px; max-width: 160px; height: 30px; padding: 0 0.5rem; }
+  .ps-browser-tab-title { font-size: 0.7rem; }
+  .ps-browser-tab-new { display: none; }
+  .ps-browser-bar { gap: 0.25rem; padding: 0.45rem 0.5rem; }
+  /* Drop secondary controls to save room on phones */
+  .ps-browser-navbtn:nth-child(1),
+  .ps-browser-navbtn:nth-child(2),
+  .ps-browser-star { display: none; }
+  .ps-browser-navbtn, .ps-browser-iconbtn { width: 28px; height: 28px; }
+  .ps-browser-url { height: 30px; padding: 0 0.3rem 0 0.6rem; }
+  .ps-browser-url-text { font-size: 0.72rem; }
   .ps-browser-dots i { width: 10px; height: 10px; }
 }
+

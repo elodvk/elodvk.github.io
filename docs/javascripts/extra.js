@@ -446,9 +446,20 @@ function initPurpleSecJS() {
     var targets = document.querySelectorAll(".ps-browser:not([data-psb-done])");
     if (!targets.length) return;
 
-    var copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-    var checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-    var searchIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>';
+    var ICON = {
+      copy:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>',
+      check:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+      back:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>',
+      forward: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>',
+      reload:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path></svg>',
+      lock:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>',
+      info:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>',
+      globe:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+      star:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
+      close:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>',
+      plus:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>',
+      menu:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>'
+    };
 
     function fallbackCopy(text) {
       var ta = document.createElement("textarea");
@@ -461,16 +472,46 @@ function initPurpleSecJS() {
       document.body.removeChild(ta);
     }
 
-    function buildBar(url) {
+    // Pull a human-ish host out of a URL string (tolerant of fake hosts/ports)
+    function hostFromUrl(u) {
+      var s = String(u).replace(/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//, "");
+      return s.split(/[/?#]/)[0] || s;
+    }
+
+    function buildBar(url, title) {
+      var isSecure = /^https:\/\//i.test(url);
+
+      var wrap = document.createDocumentFragment();
+
+      // --- Tab strip: window controls + active tab + new-tab button ---
+      var tabs = document.createElement("div");
+      tabs.className = "ps-browser-tabs";
+      tabs.innerHTML =
+        '<span class="ps-browser-dots"><i></i><i></i><i></i></span>' +
+        '<div class="ps-browser-tab">' +
+          '<span class="ps-browser-tab-fav">' + ICON.globe + '</span>' +
+          '<span class="ps-browser-tab-title"></span>' +
+          '<span class="ps-browser-tab-close" aria-hidden="true">' + ICON.close + '</span>' +
+        '</div>' +
+        '<button type="button" class="ps-browser-tab-new" tabindex="-1" aria-label="New tab">' + ICON.plus + '</button>';
+      tabs.querySelector(".ps-browser-tab-title").textContent = title;
+
+      // --- Toolbar: nav buttons + address bar + actions ---
       var bar = document.createElement("div");
       bar.className = "ps-browser-bar";
       bar.innerHTML =
-        '<span class="ps-browser-dots"><i></i><i></i><i></i></span>' +
-        '<span class="ps-browser-url">' +
-          '<span class="ps-browser-url-icon">' + searchIcon + '</span>' +
+        '<div class="ps-browser-nav">' +
+          '<button type="button" class="ps-browser-navbtn is-disabled" tabindex="-1" aria-label="Back">' + ICON.back + '</button>' +
+          '<button type="button" class="ps-browser-navbtn is-disabled" tabindex="-1" aria-label="Forward">' + ICON.forward + '</button>' +
+          '<button type="button" class="ps-browser-navbtn ps-browser-reload" tabindex="-1" aria-label="Reload">' + ICON.reload + '</button>' +
+        '</div>' +
+        '<div class="ps-browser-url' + (isSecure ? '' : ' is-insecure') + '">' +
+          '<span class="ps-browser-url-icon">' + (isSecure ? ICON.lock : ICON.info) + '</span>' +
           '<span class="ps-browser-url-text"></span>' +
-        '</span>' +
-        '<button type="button" class="ps-browser-copy" title="Copy URL" aria-label="Copy URL">' + copyIcon + '</button>';
+          '<button type="button" class="ps-browser-copy" title="Copy URL" aria-label="Copy URL">' + ICON.copy + '</button>' +
+        '</div>' +
+        '<button type="button" class="ps-browser-iconbtn ps-browser-star" tabindex="-1" aria-label="Bookmark">' + ICON.star + '</button>' +
+        '<button type="button" class="ps-browser-iconbtn" tabindex="-1" aria-label="Menu">' + ICON.menu + '</button>';
       // Set URL text safely (no HTML injection)
       bar.querySelector(".ps-browser-url-text").textContent = url;
 
@@ -480,10 +521,10 @@ function initPurpleSecJS() {
         e.stopPropagation();
         function showCopied() {
           copyBtn.classList.add("is-copied");
-          copyBtn.innerHTML = checkIcon;
+          copyBtn.innerHTML = ICON.check;
           setTimeout(function () {
             copyBtn.classList.remove("is-copied");
-            copyBtn.innerHTML = copyIcon;
+            copyBtn.innerHTML = ICON.copy;
           }, 1500);
         }
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -494,7 +535,18 @@ function initPurpleSecJS() {
           fallbackCopy(url); showCopied();
         }
       });
-      return bar;
+
+      // Playful reload spin
+      var reloadBtn = bar.querySelector(".ps-browser-reload");
+      reloadBtn.addEventListener("click", function () {
+        reloadBtn.classList.remove("is-spinning");
+        void reloadBtn.offsetWidth; // restart animation
+        reloadBtn.classList.add("is-spinning");
+      });
+
+      wrap.appendChild(tabs);
+      wrap.appendChild(bar);
+      return wrap;
     }
 
     targets.forEach(function (el) {
@@ -520,10 +572,15 @@ function initPurpleSecJS() {
 
       container.classList.add("ps-browser-frame");
 
+      // Tab title: explicit data-title, else the host parsed from the URL
+      var title = (el.getAttribute && el.getAttribute("data-title")) ||
+                  img.getAttribute("data-title") ||
+                  hostFromUrl(url);
+
       var viewport = document.createElement("div");
       viewport.className = "ps-browser-viewport";
 
-      container.appendChild(buildBar(url));
+      container.appendChild(buildBar(url, title));
       container.appendChild(viewport);
       viewport.appendChild(img);
     });
