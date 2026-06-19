@@ -4017,3 +4017,32 @@ html {
 .ps-mh-htb img { max-width: 100%; height: auto; border-radius: 8px; }
 .ps-mh-htb a { display: inline-block; transition: transform 0.2s ease; }
 .ps-mh-htb a:hover { transform: translateY(-3px); }
+
+/* ============================================================================
+ * Code highlighting — calm terminal/output blocks
+ * Highlighting command OUTPUT (nmap, etc.) turns every IP/port/word into a
+ * noisy rainbow (esp. the red number color). For terminal-session languages
+ * we neutralize the token colors to the base code color so output reads like
+ * a real terminal — strings stay green and comments muted for a subtle vibe.
+ * Real languages (php/python/js/…) keep full Material highlighting.
+ * ============================================================================ */
+.md-typeset .language-shell,
+.md-typeset .language-console,
+.md-typeset .language-shell-session,
+.md-typeset .language-sh-session,
+.md-typeset .language-con,
+.md-typeset .language-text,
+.md-typeset .language-output {
+  --md-code-hl-number-color: var(--md-code-fg-color);
+  --md-code-hl-keyword-color: var(--md-code-fg-color);
+  --md-code-hl-name-color: var(--md-code-fg-color);
+  --md-code-hl-function-color: var(--md-code-fg-color);
+  --md-code-hl-constant-color: var(--md-code-fg-color);
+  --md-code-hl-operator-color: var(--md-code-fg-color);
+  --md-code-hl-punctuation-color: var(--md-code-fg-color);
+  --md-code-hl-variable-color: var(--md-code-fg-color);
+  --md-code-hl-generic-color: var(--md-code-fg-color);
+  --md-code-hl-special-color: var(--md-code-fg-color);
+  --md-code-hl-string-color: var(--ps-neon-green);
+  --md-code-hl-comment-color: var(--md-default-fg-color--light);
+}
