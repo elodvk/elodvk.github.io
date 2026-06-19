@@ -841,6 +841,105 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Image Zoom (lightbox)
+   * Click any content image to view it enlarged on a dimmed overlay.
+   * Click anywhere / press Esc / hit the × to close.
+   * -------------------------------------------------------------------------- */
+  function initImageZoom() {
+    // Build the overlay once and reuse it across pages (survives instant nav)
+    var overlay = document.getElementById("ps-lightbox");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "ps-lightbox";
+      overlay.className = "ps-lightbox";
+      overlay.setAttribute("aria-hidden", "true");
+      overlay.innerHTML =
+        '<img class="ps-lightbox-img" alt="">' +
+        '<button type="button" class="ps-lightbox-close" aria-label="Close (Esc)">&times;</button>';
+      document.body.appendChild(overlay);
+
+      var imgEl = overlay.querySelector(".ps-lightbox-img");
+      var closeLightbox = function () {
+        overlay.classList.remove("is-open");
+        overlay.setAttribute("aria-hidden", "true");
+        document.documentElement.style.overflow = "";
+        setTimeout(function () {
+          if (!overlay.classList.contains("is-open")) imgEl.removeAttribute("src");
+        }, 260);
+      };
+      overlay.addEventListener("click", closeLightbox);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && overlay.classList.contains("is-open")) closeLightbox();
+      });
+      overlay.__open = function (src, alt) {
+        imgEl.src = src;
+        imgEl.alt = alt || "";
+        overlay.classList.add("is-open");
+        overlay.setAttribute("aria-hidden", "false");
+        document.documentElement.style.overflow = "hidden";
+      };
+    }
+
+    var imgs = document.querySelectorAll(".md-content .md-typeset img:not([data-ps-zoom])");
+    imgs.forEach(function (img) {
+      img.setAttribute("data-ps-zoom", "1");
+      // Skip icons, emoji, avatars, and linked images
+      if (img.classList.contains("twemoji") || img.classList.contains("emojione")) return;
+      if (img.closest("a, .md-social, .ps-blog-card-author")) return;
+
+      img.classList.add("ps-zoomable");
+      img.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        overlay.__open(img.currentSrc || img.src, img.alt);
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+   * Layout Toggles — collapse the left navigation and/or the right TOC
+   * Adds slim arrow tabs on the page edges. State persists in localStorage.
+   * -------------------------------------------------------------------------- */
+  function initLayoutToggles() {
+    var chevL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+    var chevR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+
+    // Restore persisted state
+    if (localStorage.getItem("ps-nav-collapsed") === "1") document.body.classList.add("ps-nav-collapsed");
+    if (localStorage.getItem("ps-toc-collapsed") === "1") document.body.classList.add("ps-toc-collapsed");
+
+    function ensureBtn(id, cls, html, key, clsName) {
+      var btn = document.getElementById(id);
+      if (!btn) {
+        btn = document.createElement("button");
+        btn.id = id;
+        btn.type = "button";
+        btn.className = "ps-layout-toggle " + cls;
+        btn.innerHTML = html;
+        btn.addEventListener("click", function () {
+          var on = document.body.classList.toggle(clsName);
+          localStorage.setItem(key, on ? "1" : "0");
+        });
+        document.body.appendChild(btn);
+      }
+      return btn;
+    }
+
+    var navBtn = ensureBtn("ps-nav-toggle", "ps-layout-toggle--nav", chevL, "ps-nav-collapsed", "ps-nav-collapsed");
+    navBtn.setAttribute("aria-label", "Toggle navigation sidebar");
+    var tocBtn = ensureBtn("ps-toc-toggle", "ps-layout-toggle--toc", chevR, "ps-toc-collapsed", "ps-toc-collapsed");
+    tocBtn.setAttribute("aria-label", "Toggle table of contents");
+
+    // Show a toggle only when its sidebar actually exists on this page
+    var hasNav = !!document.querySelector(".md-sidebar--primary .md-nav__list");
+    var tocEl = document.querySelector(".md-sidebar--secondary .md-nav--secondary .md-nav__link");
+    var hasToc = !!tocEl;
+
+    navBtn.style.display = hasNav ? "" : "none";
+    tocBtn.style.display = hasToc ? "" : "none";
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -981,6 +1080,8 @@ function initPurpleSecJS() {
   initBrowserFrames();
   initWindowFrames();
   initCodeWindows();
+  initImageZoom();
+  initLayoutToggles();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);
