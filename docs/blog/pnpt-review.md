@@ -3,7 +3,7 @@ title: 'How I Conquered the PNPT: A Wild Ride Through Cyber Shenanigans'
 date: 2025-10-22
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

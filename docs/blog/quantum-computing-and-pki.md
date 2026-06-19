@@ -3,7 +3,7 @@ title: "Quantum Computing and PKI: The Looming Cryptographic Apocalypse and How 
 date: 2026-06-12
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

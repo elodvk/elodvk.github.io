@@ -58,11 +58,11 @@ The server accepts it, and you browse to your uploaded shell for RCE:
 
 Since the validation lives in the page, just remove it. Open the inspector (++ctrl+shift+c++) and click the upload control:
 
-![Inspecting the file input](../assets/file-upload-attacks/inspect-file-input.png)
+![Inspecting the file input](../assets/file-upload-attacks/inspect-file-input.png "http://SERVER_IP:PORT/")
 
 You'll find the input wired to a JS validator:
 
-```html
+```js
 <input type="file" name="uploadFile" id="uploadFile" onchange="checkFile(this)" accept=".jpg,.jpeg,.png">
 ```
 
@@ -87,18 +87,18 @@ function validate() {
 
 It checks the extension, shows the error, and disables the button. You don't need to rewrite any JS — just **delete the `onchange="checkFile(this)"` handler** (and optionally the `accept` attribute) directly in the DOM:
 
-![Removing the onchange handler](../assets/file-upload-attacks/remove-onchange-handler.png)
+![Removing the onchange handler](../assets/file-upload-attacks/remove-onchange-handler.png "http://SERVER_IP:PORT/")
 
 !!! tip
     Removing `accept=".jpg,.jpeg,.png"` makes selecting your PHP file in the dialog easier, but it's optional.
 
 The edit is temporary (it won't survive a refresh), but that's fine — you only need it to live long enough to submit one upload. After uploading, use the inspector again to find your shell's URL:
 
-![Locating the uploaded shell URL](../assets/file-upload-attacks/locate-shell-url.png)
+![Locating the uploaded shell URL](../assets/file-upload-attacks/locate-shell-url.png "http://SERVER_IP:PORT/")
 
 Visit it and you've got command execution:
 
-![Interacting with the uploaded web shell](../assets/file-upload-attacks/interact-web-shell.png)
+![Interacting with the uploaded web shell](../assets/file-upload-attacks/interact-web-shell.png "http://SERVER_IP:PORT/profile_images/shell.php.jpg?cmd=id")
 
 ## Which Bypass to Use?
 

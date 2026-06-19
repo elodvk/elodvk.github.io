@@ -5,7 +5,7 @@ difficulty: Hard
 os: Windows
 authors:
 - name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

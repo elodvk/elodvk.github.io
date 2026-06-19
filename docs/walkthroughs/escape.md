@@ -5,7 +5,7 @@ difficulty: Medium
 os: Windows
 authors:
 - name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:
@@ -156,14 +156,14 @@ Nmap done: 1 IP address (1 host up) scanned in 127.93 seconds
 
 Before I go any further, I am going to update the `krb5.conf` file and also update the `/etc/hosts` file.
 
-```plaintext
+```plaintext title="/etc/hosts"
 10.129.137.201  DC
 10.129.137.201  DC.SEQUEL.HTB
 10.129.137.201  SEQUEL.HTB
 ```
-{: file='/etc/hosts'}
 
-```plaintext
+
+```conf title="/etc/krbt.conf"
 [libdefaults]
     default_realm = SEQUEL.HTB
     dns_lookup_realm = true
@@ -179,7 +179,7 @@ Before I go any further, I am going to update the `krb5.conf` file and also upda
     .SEQUEL.HTB = SEQUEL.HTB
     SEQUEL.HTB = SEQUEL.HTB
 ```
-{: file='/etc/krb5.conf'}
+
 
 ### SMB
 

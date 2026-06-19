@@ -3,7 +3,7 @@ title: 'NVIDIA RTX Spark & DGX Spark: The Dawn of Personal AI Supercomputers and
 date: 2026-06-11
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

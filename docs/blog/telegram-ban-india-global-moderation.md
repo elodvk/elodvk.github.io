@@ -3,7 +3,7 @@ title: 'The Great Telegram Lockdown: Exam Leaks, Timestamp Forgery, and the Glob
 date: 2026-06-17
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

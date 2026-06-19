@@ -3,7 +3,7 @@ title: 'June 2026 Patch Tuesday: A Record-Breaking 206 CVEs, Three Zero-Days & T
 date: 2026-06-11
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

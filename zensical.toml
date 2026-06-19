@@ -98,6 +98,7 @@ nav = [
         { "Limited File Uploads" = "certifications/cpts/file-upload-attacks/limited-uploads.md" },
         { "Prevention & Hardening" = "certifications/cpts/file-upload-attacks/prevention.md" },
         { "Cheatsheet" = "certifications/cpts/file-upload-attacks/cheatsheet.md" },
+        { "Practice" = "certifications/cpts/file-upload-attacks/practice.md" },
       ]},
     ]},
     { "PNPT" = "certifications/pnpt/index.md" },

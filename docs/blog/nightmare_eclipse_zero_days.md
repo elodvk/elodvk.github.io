@@ -4,7 +4,7 @@ description: "The definitive case study on the Nightmare Eclipse zero-day campai
 date: 2026-06-10
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

@@ -5,7 +5,7 @@ difficulty: N/A
 os: N/A
 authors:
 - name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

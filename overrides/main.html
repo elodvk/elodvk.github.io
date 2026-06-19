@@ -261,27 +261,6 @@
       setTimeout(function() {
         if (document.getElementById('ps-comment-list')) fetchComments();
       }, 100);
-      setTimeout(trackPageView, 100);
-      
-      async function trackPageView() {
-        if (!initSupabase()) return;
-        const slug = window.location.pathname;
-        try {
-          const { data, error } = await supabaseClient.rpc('increment_page_view', { page_slug: slug });
-          if (!error && data !== null) {
-            const h1 = document.querySelector('h1');
-            if (h1 && !document.getElementById('ps-page-views')) {
-              const viewsDiv = document.createElement('div');
-              viewsDiv.id = 'ps-page-views';
-              viewsDiv.style.cssText = 'color: var(--md-default-fg-color--light); font-size: 0.85rem; margin-top: -1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.4rem; font-weight: 500; user-select: none;';
-              viewsDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--md-accent-fg-color);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> <span>${data.toLocaleString()} Views</span>`;
-              h1.insertAdjacentElement('afterend', viewsDiv);
-            }
-          }
-        } catch(e) {
-          console.error("Error tracking view:", e);
-        }
-      }
 
       async function fetchComments() {
         if (!initSupabase()) {
@@ -543,60 +522,6 @@
     .ps-comment-body code { background: var(--md-code-bg-color); padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.85em; }
     .ps-comment-body a { color: var(--md-typeset-a-color); text-decoration: underline; }
   </style>
-
-  <!-- Ko-fi CTA -->
-  <div id="ps-kofi" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(255, 94, 91, 0.1), rgba(41, 171, 224, 0.05)); border: 1px solid var(--md-default-fg-color--lightest);">
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 200px;">
-        <p style="margin: 0 0 0.3rem; font-weight: 700; font-size: 1rem; color: var(--md-default-fg-color);">
-          ☕ Enjoying the content?
-        </p>
-        <p style="margin: 0; font-size: 0.82rem; color: var(--md-default-fg-color--light); line-height: 1.5;">
-          If my walkthroughs or deep dives helped you, consider supporting the site on Ko-fi!
-        </p>
-      </div>
-      <a href="https://ko-fi.com/elodvk" target="_blank" style="padding: 0.6rem 1.4rem; border-radius: 8px; background-color: #29abe0; color: #ffffff; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(41, 171, 224, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.051-3.954-1.09-1.397-1.056-3.321.144-4.225.86-.649 2.05-.595 2.76.12l.142.146.123-.146c.71-.854 2.083-1.037 2.946-.22.956.887 1.258 2.378.465 3.514zm9.053-.941c-.482 1.637-2.613 2.16-4.385 2.197.026-1.57.062-3.15.083-4.733 1.94-.031 3.903.043 4.544 1.051.401.621.109 1.485-.242 1.485z"/></svg>
-        Support me on Ko-fi
-      </a>
-    </div>
-  </div>
-
-  <!-- Newsletter CTA -->
-  <div id="ps-newsletter" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-radius: 12px; background: linear-gradient(135deg, rgba(var(--md-accent-fg-color--rgb, 103,58,183), 0.08), rgba(var(--md-primary-fg-color--rgb, 103,58,183), 0.04)); border: 1px solid var(--md-default-fg-color--lightest);">
-    <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 200px;">
-        <p style="margin: 0 0 0.3rem; font-weight: 700; font-size: 1rem; color: var(--md-default-fg-color);">
-          📬 Stay in the loop
-        </p>
-        <p style="margin: 0; font-size: 0.82rem; color: var(--md-default-fg-color--light); line-height: 1.5;">
-          Get notified when I publish new deep dives, walkthroughs, and vulnerability research. No spam, unsubscribe anytime.
-        </p>
-      </div>
-      <form
-        action="https://buttondown.com/api/emails/embed-subscribe/elodvk"
-        method="post"
-        target="_blank"
-        style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; flex-shrink: 0;"
-      >
-        <input
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-          style="padding: 0.55rem 1rem; border-radius: 8px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-bg-color); color: var(--md-default-fg-color); font-size: 0.85rem; min-width: 200px; outline: none; transition: border-color 0.2s;"
-          onfocus="this.style.borderColor='var(--md-accent-fg-color)'"
-          onblur="this.style.borderColor='var(--md-default-fg-color--lightest)'"
-        >
-        <button
-          type="submit"
-          style="padding: 0.55rem 1.2rem; border-radius: 8px; border: none; background: var(--md-accent-fg-color, #7c4dff); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap;"
-          onmouseover="this.style.opacity='0.85'; this.style.transform='translateY(-1px)'"
-          onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)'"
-        >Subscribe</button>
-      </form>
-    </div>
-  </div>
 
   <!-- Comments -->
   <div id="ps-comments-section" style="margin-top: 3rem;">

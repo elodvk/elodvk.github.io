@@ -3,7 +3,7 @@ title: 'A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local De
 date: 2026-06-09
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:

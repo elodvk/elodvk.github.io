@@ -3,7 +3,7 @@ title: 'The Ban on "Foreign Nationals": US Government''s Unprecedented Move Agai
 date: 2026-06-13
 authors:
   name: Bilash J. Shahi
-  title: Cybersecurity enthusiast
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:
