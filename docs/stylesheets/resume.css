@@ -153,13 +153,12 @@
 
 /* ============================================================================
  * Light theme overrides (About / resume components)
- * The interactive terminal stays dark by design; everything else adapts.
+ * The interactive terminal is light in light mode (see extra.css), so its
+ * JS-injected text uses Material's dark fg vars and stays readable.
  * ============================================================================ */
-[data-md-color-scheme="default"] .ps-timeline-date { color: rgba(31, 35, 40, 0.6); }
-[data-md-color-scheme="default"] .ps-skill-bar { background: rgba(0, 0, 0, 0.08); }
-[data-md-color-scheme="default"] .ps-cert-badge { background: rgba(126, 34, 206, 0.04); }
-
-/* The interactive terminal keeps its dark background in light mode, so force
-   its JS-injected (inline-coloured) command echo + output to stay readable. */
-[data-md-color-scheme="default"] #interactive-terminal { color: #c9d1d9; }
-[data-md-color-scheme="default"] #terminal-history [style] { color: #c9d1d9 !important; }
+[data-md-color-scheme="default"] .ps-timeline-date { color: #5b6172; }
+[data-md-color-scheme="default"] .ps-skill-bar { background: rgba(20, 22, 43, 0.08); }
+[data-md-color-scheme="default"] .ps-cert-badge {
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(20, 22, 43, 0.05), 0 6px 18px rgba(20, 22, 43, 0.05);
+}

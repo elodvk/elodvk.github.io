@@ -3223,68 +3223,163 @@ html {
 }
 
 /* ============================================================================
- * LIGHT THEME
- * The design system is dark-first. In light mode we:
- *   (a) flip the core design tokens to light surfaces / dark text,
- *   (b) keep the immersive "command-center" sections (home/about hero,
- *       terminal feed, quote band) dark by design, and
- *   (c) patch components that hardcode dark backgrounds or light text.
+ * LIGHT THEME  (v2 — unified, layered palette)
+ * Design language: a soft tinted page, crisp white cards that lift with gentle
+ * neutral shadows, soft lavender-grey borders, and readable purple/green
+ * accents. Every section — including the hero, the "terminal" feed, the quote,
+ * and the interactive terminal — adapts to a cohesive light surface.
+ *
+ * Palette
+ *   page        #f4f5fa      surface     #ffffff      surface-alt #f1f2f8
+ *   border      #e4e3f0      hairline    #ecebf4
+ *   text        #1c1f2b      muted       #5b6172
+ *   purple      #6d28d9 (text/icon)      green       #0a8f3c
  * ============================================================================ */
 [data-md-color-scheme="default"] {
-  --ps-accent: #7e22ce;
-  --ps-accent-glow: rgba(126, 34, 206, 0.25);
-  --ps-neon: #c026d3;
+  /* Material core — tint the page so white cards gain depth */
+  --md-default-bg-color: #f4f5fa;
+  --md-typeset-a-color: #6d28d9;
+
+  /* Brand accents (tuned for contrast on white) */
+  --ps-accent: #6d28d9;
+  --ps-accent-glow: rgba(109, 40, 217, 0.22);
+  --ps-neon: #b5179e;
   --ps-neon-green: #0a8f3c;
   --ps-cyber-green: #0a8f3c;
   --ps-green: #0a8f3c;
-  --ps-dark-bg: #eceff3;
+
+  /* Surfaces / text / borders */
+  --ps-dark-bg: #eaecf4;
   --ps-dark-surface: #ffffff;
-  --ps-dark-border: #d0d7de;
-  --ps-dark-text: #1f2328;
+  --ps-dark-border: #e4e3f0;
+  --ps-dark-text: #1c1f2b;
   --ps-terminal-bg: #ffffff;
-  --ps-card-bg: rgba(126, 34, 206, 0.04);
-  --ps-card-border: rgba(126, 34, 206, 0.20);
-  --ps-glow-sm: 0 0 15px rgba(126, 34, 206, 0.12);
-  --ps-glow-md: 0 0 28px rgba(126, 34, 206, 0.18);
-  --ps-glow-green-sm: 0 0 15px rgba(10, 143, 60, 0.12);
+  --ps-card-bg: #ffffff;
+  --ps-card-border: #e4e3f0;
+
+  /* Soft neutral elevation instead of neon glows */
+  --ps-glow-sm: 0 1px 2px rgba(20, 22, 43, 0.05), 0 4px 14px rgba(20, 22, 43, 0.05);
+  --ps-glow-md: 0 2px 6px rgba(20, 22, 43, 0.07), 0 14px 34px rgba(20, 22, 43, 0.10);
+  --ps-glow-lg: 0 8px 40px rgba(20, 22, 43, 0.12);
+  --ps-glow-green-sm: 0 2px 12px rgba(10, 143, 60, 0.12);
+  --ps-glow-green-md: 0 4px 20px rgba(10, 143, 60, 0.16);
 }
 
-/* Matrix rain only reads well on a dark canvas — hide it in light mode */
+/* Matrix rain only reads on a dark canvas — hide it in light mode */
 [data-md-color-scheme="default"] #ps-matrix-canvas { display: none !important; }
 
-/* --- Home / About hero stays a dark "command-center" band --- */
+/* ---------------------------------------------------------------------------
+ * Content card surfaces: crisp white + gentle resting shadow (depth on the
+ * tinted page). !important overrides the older purple-tint light rules.
+ * ------------------------------------------------------------------------- */
+[data-md-color-scheme="default"] .ps-stat-card,
+[data-md-color-scheme="default"] .ps-cert-card,
+[data-md-color-scheme="default"] .ps-featured,
+[data-md-color-scheme="default"] .ps-blog-card,
+[data-md-color-scheme="default"] .ps-spotlight,
+[data-md-color-scheme="default"] .ps-fx-card,
+[data-md-color-scheme="default"] .ps-contact-terminal,
+[data-md-color-scheme="default"] .ps-home .md-typeset .grid.cards > ol > li,
+[data-md-color-scheme="default"] .ps-home .md-typeset .grid.cards > ul > li {
+  background: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(20, 22, 43, 0.05), 0 6px 18px rgba(20, 22, 43, 0.05);
+}
+
+[data-md-color-scheme="default"] .ps-home-cta {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(109, 40, 217, 0.08), transparent 60%),
+    #ffffff;
+  box-shadow: 0 1px 2px rgba(20, 22, 43, 0.05), 0 10px 28px rgba(20, 22, 43, 0.07);
+}
+
+/* Card "terminal" title bars → light grey strips (match the window frames) */
+[data-md-color-scheme="default"] .ps-card-terminal-header,
+[data-md-color-scheme="default"] .ps-spotlight-bar,
+[data-md-color-scheme="default"] .ps-contact-bar,
+[data-md-color-scheme="default"] .ps-cert-bar,
+[data-md-color-scheme="default"] .ps-terminal-bar,
+[data-md-color-scheme="default"] .ps-featured-bar,
+[data-md-color-scheme="default"] .ps-stat-card::before,
+[data-md-color-scheme="default"] .ps-home .md-typeset .grid.cards > ol > li::before,
+[data-md-color-scheme="default"] .ps-home .md-typeset .grid.cards > ul > li::before {
+  background: #f1f2f8;
+  border-bottom-color: var(--ps-card-border);
+}
+[data-md-color-scheme="default"] .ps-spotlight-bar-path,
+[data-md-color-scheme="default"] .ps-contact-bar-title { color: rgba(109, 40, 217, 0.7); }
+
+/* ---------------------------------------------------------------------------
+ * Hero — light treatment (no longer a dark band)
+ * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-nh-hero {
-  background: radial-gradient(ellipse at 50% -10%, #1a1230 0%, #0a0e14 62%);
+  background: linear-gradient(160deg, #faf8ff 0%, #f4f5fa 55%, #f1fbf5 100%);
 }
 [data-md-color-scheme="default"] .ps-nh-title,
 [data-md-color-scheme="default"] .ps-about-name {
-  background: linear-gradient(110deg, #ffffff 0%, #bb86fc 38%, #e040fb 62%, #00ff66 100%);
+  background: linear-gradient(110deg, #6d28d9 0%, #b5179e 52%, #0a8f3c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none;
 }
-[data-md-color-scheme="default"] .ps-nh-typed,
-[data-md-color-scheme="default"] .ps-nh-lead { color: #c9d1d9; }
-[data-md-color-scheme="default"] .ps-nh-hero #ps-typed-text { color: #bb86fc; }
-[data-md-color-scheme="default"] .ps-nh-hero .ps-nh-status { color: #00ff66; }
-[data-md-color-scheme="default"] .ps-nh-status-dot { background: #00ff66; box-shadow: 0 0 8px #00ff66; }
-[data-md-color-scheme="default"] .ps-nh-btn-ghost {
-  color: #c9d1d9 !important;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.16);
+[data-md-color-scheme="default"] .ps-nh-orb-1 { background: radial-gradient(circle, rgba(109,40,217,0.18), transparent 70%); }
+[data-md-color-scheme="default"] .ps-nh-orb-2 { background: radial-gradient(circle, rgba(10,143,60,0.14), transparent 70%); }
+[data-md-color-scheme="default"] .ps-nh-orb-3 { background: radial-gradient(circle, rgba(181,23,158,0.14), transparent 70%); }
+[data-md-color-scheme="default"] .ps-nh-grid {
+  background-image:
+    linear-gradient(rgba(109,40,217,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,40,217,0.07) 1px, transparent 1px);
 }
-[data-md-color-scheme="default"] .ps-nh-btn-ghost:hover { color: #fff !important; }
 
-/* --- Spotlight + blog-card image fades resolve to light, not dark --- */
+/* ---------------------------------------------------------------------------
+ * Dashboard "terminal" feed — light surface, readable text
+ * ------------------------------------------------------------------------- */
+[data-md-color-scheme="default"] .ps-dashboard-terminal {
+  background: #ffffff;
+  border-color: var(--ps-card-border);
+  box-shadow: 0 1px 2px rgba(20, 22, 43, 0.05), 0 6px 18px rgba(20, 22, 43, 0.05);
+}
+[data-md-color-scheme="default"] .ps-term-feed-title { color: var(--ps-dark-text); }
+[data-md-color-scheme="default"] .ps-term-feed-item:hover { background: rgba(109, 40, 217, 0.05); }
+[data-md-color-scheme="default"] .ps-term-feed-item:hover .ps-term-feed-title { color: var(--ps-accent); }
+[data-md-color-scheme="default"] .ps-term-feed::-webkit-scrollbar-thumb { background: rgba(109, 40, 217, 0.3); }
+
+/* ---------------------------------------------------------------------------
+ * Quote band / quote-in-terminal — light surface, readable text
+ * ------------------------------------------------------------------------- */
+[data-md-color-scheme="default"] .ps-quote {
+  background: transparent !important;
+  border-top-color: var(--ps-card-border);
+}
+[data-md-color-scheme="default"] .ps-quote blockquote { color: var(--ps-accent); }
+[data-md-color-scheme="default"] .ps-quote-terminal .ps-quote blockquote { color: #0a8f3c; }
+
+/* ---------------------------------------------------------------------------
+ * Interactive terminal (About) + legacy hero terminal — light surface
+ * ------------------------------------------------------------------------- */
+[data-md-color-scheme="default"] #interactive-terminal,
+[data-md-color-scheme="default"] .ps-hero-terminal,
+[data-md-color-scheme="default"] .ps-dashboard-terminal--solid {
+  background: #ffffff;
+}
+[data-md-color-scheme="default"] .ps-terminal-header { background: #f1f2f8; border-bottom-color: var(--ps-card-border); }
+[data-md-color-scheme="default"] .ps-terminal-header-title { color: rgba(28, 31, 43, 0.5); }
+[data-md-color-scheme="default"] .ps-terminal-window { color: var(--ps-dark-text); }
+[data-md-color-scheme="default"] .ps-prompt-at { color: #5b6172; }
+[data-md-color-scheme="default"] .ps-terminal-input { color: var(--ps-dark-text); caret-color: var(--ps-accent); }
+
+/* ---------------------------------------------------------------------------
+ * Image edge-fades resolve to the light surface (not a dark smear)
+ * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-spotlight-media::after {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.9) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.92) 100%);
 }
 [data-md-color-scheme="default"] .ps-blog-card-media::after {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 62%, rgba(255,255,255,0.5) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0) 64%, rgba(255,255,255,0.45) 100%);
 }
 @media (max-width: 768px) {
   [data-md-color-scheme="default"] .ps-spotlight-media::after {
-    background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.95) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.96) 100%);
   }
 }
 @media (max-width: 700px) {
@@ -3293,27 +3388,54 @@ html {
   }
 }
 
-/* --- Focus cards need a visible tint on white --- */
-[data-md-color-scheme="default"] .ps-fx-card {
-  background: linear-gradient(160deg, rgba(126,34,206,0.05), rgba(126,34,206,0.015));
+/* ---------------------------------------------------------------------------
+ * Pills, tags, toolbars, hovers
+ * ------------------------------------------------------------------------- */
+/* Active (purple-filled) tag needs white text; difficulty pills keep black */
+[data-md-color-scheme="default"] .ps-tag-active:not(.ps-diff-filter) { color: #fff !important; }
+[data-md-color-scheme="default"] .ps-tag-filter { background: rgba(109, 40, 217, 0.05); }
+[data-md-color-scheme="default"] .ps-tag-filter:hover {
+  background: rgba(109, 40, 217, 0.12);
+  color: var(--ps-accent);
 }
+[data-md-color-scheme="default"] .ps-archive-year-header:hover { color: #111 !important; }
+[data-md-color-scheme="default"] #ps-load-more-btn { background: rgba(109, 40, 217, 0.07); }
+[data-md-color-scheme="default"] #ps-load-more-btn:hover { background: rgba(109, 40, 217, 0.14); }
 
-/* --- Quote band stays dark; keep its text vivid --- */
-[data-md-color-scheme="default"] .ps-quote blockquote { color: #bb86fc; }
+/* Cert status chips — readable tints on white */
+[data-md-color-scheme="default"] .ps-cert-status--certified { background: rgba(10, 143, 60, 0.10); border-color: rgba(10, 143, 60, 0.30); }
+[data-md-color-scheme="default"] .ps-cert-status--progress { background: rgba(109, 40, 217, 0.10); border-color: rgba(109, 40, 217, 0.30); }
+[data-md-color-scheme="default"] .ps-cert-status--preparing { color: #b06a00; background: rgba(176, 106, 0, 0.10); border-color: rgba(176, 106, 0, 0.30); }
 
-/* --- Hovers must not turn white-on-white --- */
-[data-md-color-scheme="default"] .ps-tag-filter:hover { color: var(--ps-accent); }
-[data-md-color-scheme="default"] .ps-archive-year-header:hover { color: #000 !important; }
-
-/* --- Contact form: lighten inputs and fix chips --- */
+/* ---------------------------------------------------------------------------
+ * Contact form — lighten inputs, fix chips
+ * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-contact-field input,
 [data-md-color-scheme="default"] .ps-contact-field textarea {
-  background: rgba(0, 0, 0, 0.03);
+  background: #f4f5fa;
+  border-color: var(--ps-card-border);
   color: var(--ps-dark-text);
 }
 [data-md-color-scheme="default"] .ps-contact-field input::placeholder,
 [data-md-color-scheme="default"] .ps-contact-field textarea::placeholder {
-  color: rgba(31, 35, 40, 0.4);
+  color: rgba(28, 31, 43, 0.4);
 }
-[data-md-color-scheme="default"] .ps-contact-chip { background: rgba(126, 34, 206, 0.04); }
-[data-md-color-scheme="default"] .ps-contact-chip:hover { color: var(--ps-accent) !important; }
+[data-md-color-scheme="default"] .ps-contact-chip { background: #ffffff; }
+[data-md-color-scheme="default"] .ps-contact-chip:hover {
+  background: rgba(109, 40, 217, 0.06);
+  color: var(--ps-accent) !important;
+}
+
+/* ---------------------------------------------------------------------------
+ * Code & window frames — align borders/bars to the light palette
+ * ------------------------------------------------------------------------- */
+[data-md-color-scheme="default"] .ps-codewin,
+[data-md-color-scheme="default"] .ps-browser-frame,
+[data-md-color-scheme="default"] .ps-win-frame {
+  box-shadow: 0 1px 2px rgba(20, 22, 43, 0.05), 0 8px 22px rgba(20, 22, 43, 0.07);
+}
+
+/* Masthead bottom rule + faint section dividers use the soft border token */
+[data-md-color-scheme="default"] .ps-section-divider {
+  box-shadow: none;
+}
