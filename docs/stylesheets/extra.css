@@ -2905,6 +2905,7 @@ html {
 [data-md-color-scheme="default"] .ps-browser-url {
   border-color: rgba(0,0,0,0.12);
 }
+[data-md-color-scheme="default"] .ps-browser-url:hover { background: #f1f2f8; }
 [data-md-color-scheme="default"] .ps-browser-navbtn:hover,
 [data-md-color-scheme="default"] .ps-browser-iconbtn:hover,
 [data-md-color-scheme="default"] .ps-browser-tab-new:hover,
