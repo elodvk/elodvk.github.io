@@ -854,26 +854,26 @@ function initPurpleSecJS() {
       overlay.className = "ps-lightbox";
       overlay.setAttribute("aria-hidden", "true");
       overlay.innerHTML =
-        '<img class="ps-lightbox-img" alt="">' +
+        '<div class="ps-lightbox-stage"></div>' +
         '<button type="button" class="ps-lightbox-close" aria-label="Close (Esc)">&times;</button>';
       document.body.appendChild(overlay);
 
-      var imgEl = overlay.querySelector(".ps-lightbox-img");
+      var stage = overlay.querySelector(".ps-lightbox-stage");
       var closeLightbox = function () {
         overlay.classList.remove("is-open");
         overlay.setAttribute("aria-hidden", "true");
         document.documentElement.style.overflow = "";
         setTimeout(function () {
-          if (!overlay.classList.contains("is-open")) imgEl.removeAttribute("src");
+          if (!overlay.classList.contains("is-open")) stage.innerHTML = "";
         }, 260);
       };
       overlay.addEventListener("click", closeLightbox);
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && overlay.classList.contains("is-open")) closeLightbox();
       });
-      overlay.__open = function (src, alt) {
-        imgEl.src = src;
-        imgEl.alt = alt || "";
+      overlay.__openNode = function (node) {
+        stage.innerHTML = "";
+        stage.appendChild(node);
         overlay.classList.add("is-open");
         overlay.setAttribute("aria-hidden", "false");
         document.documentElement.style.overflow = "hidden";
@@ -891,7 +891,21 @@ function initPurpleSecJS() {
       img.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        overlay.__open(img.currentSrc || img.src, img.alt);
+
+        // If the image lives inside a window frame, zoom the whole frame
+        var frame = img.closest(".ps-browser-frame, .ps-win-frame");
+        var node;
+        if (frame) {
+          node = frame.cloneNode(true);
+          node.classList.add("ps-lightbox-frame");
+          node.removeAttribute("data-psb-done");
+        } else {
+          node = document.createElement("img");
+          node.className = "ps-lightbox-img";
+          node.src = img.currentSrc || img.src;
+          node.alt = img.alt || "";
+        }
+        overlay.__openNode(node);
       });
     });
   }

@@ -3501,15 +3501,31 @@ html {
   cursor: zoom-out;
 }
 .ps-lightbox.is-open { opacity: 1; visibility: visible; }
+.ps-lightbox-stage {
+  width: 100%;
+  max-width: min(1100px, 94vw);
+  max-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  transform: scale(0.96);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ps-lightbox.is-open .ps-lightbox-stage { transform: scale(1); }
 .ps-lightbox-img {
   max-width: 100%;
   max-height: 92vh;
   border-radius: 8px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
-  transform: scale(0.95);
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.ps-lightbox.is-open .ps-lightbox-img { transform: scale(1); }
+/* Cloned window frame shown at full size — drop margins, kill hover motion */
+.ps-lightbox-frame {
+  width: 100%;
+  margin: 0 !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6) !important;
+}
+.ps-lightbox-frame:hover { transform: none !important; }
 .ps-lightbox-close {
   position: fixed;
   top: 1rem;
@@ -3530,7 +3546,7 @@ html {
 }
 .ps-lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
 @media (prefers-reduced-motion: reduce) {
-  .ps-lightbox, .ps-lightbox-img { transition: none; }
+  .ps-lightbox, .ps-lightbox-stage { transition: none; }
 }
 
 /* ============================================================================
