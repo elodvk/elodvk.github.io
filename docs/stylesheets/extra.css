@@ -3575,3 +3575,117 @@ html {
 @media screen and (min-width: 76.25em) {
   .ps-layout-toggle--nav { display: flex; }
 }
+
+/* ============================================================================
+ * Reading Settings — user-selectable body font + text size
+ * Font is swapped via Material's text-font variable so CODE stays monospace.
+ * Size scales the article body via --ps-reading-scale.
+ * ============================================================================ */
+:root.ps-font-mono  { --md-text-font: "IBM Plex Mono"; }
+:root.ps-font-sans  { --md-text-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+:root.ps-font-serif { --md-text-font: Georgia, Cambria, "Times New Roman", Times, serif; }
+
+/* Reading size — scales the article copy (headings are em-based, so they follow) */
+.md-content .md-typeset { font-size: calc(0.8rem * var(--ps-reading-scale, 1)); }
+
+/* Floating "Aa" button */
+.ps-reading-fab {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 7;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--ps-card-border);
+  color: var(--md-default-fg-color--light);
+  box-shadow: 0 4px 16px rgba(20, 22, 43, 0.18);
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ps-reading-fab:hover {
+  color: var(--ps-accent);
+  border-color: var(--ps-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(20, 22, 43, 0.22);
+}
+
+/* Popover */
+.ps-reading-panel {
+  position: fixed;
+  bottom: 4.7rem;
+  right: 1.4rem;
+  z-index: 7;
+  width: 234px;
+  padding: 1rem 1.1rem 1.1rem;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--ps-card-border);
+  border-radius: 12px;
+  box-shadow: 0 14px 42px rgba(20, 22, 43, 0.24);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+.ps-reading-panel.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+.ps-reading-title {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--md-default-fg-color);
+}
+.ps-reading-group { margin-bottom: 0.85rem; }
+.ps-reading-label {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 0.45rem;
+}
+.ps-reading-chips { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.ps-reading-chip {
+  flex: 1;
+  min-width: 38px;
+  padding: 0.42rem 0.5rem;
+  border-radius: 7px;
+  border: 1px solid var(--ps-card-border);
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.ps-reading-chip:hover { color: var(--ps-accent); border-color: var(--ps-accent); }
+.ps-reading-chip.is-active {
+  background: var(--ps-accent);
+  border-color: var(--ps-accent);
+  color: #0a0e14;
+}
+[data-md-color-scheme="default"] .ps-reading-chip.is-active { color: #fff; }
+.ps-reading-reset {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding-top: 0.6rem;
+  border: none;
+  border-top: 1px solid var(--ps-card-border);
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.ps-reading-reset:hover { color: var(--ps-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-reading-panel { transition: none; }
+}

@@ -940,6 +940,111 @@ function initPurpleSecJS() {
   }
 
   /* --------------------------------------------------------------------------
+   * Reading Settings — let users pick the body font + text size
+   * Applied via Material's --md-text-font-family (code stays monospace) and a
+   * --ps-reading-scale multiplier. Persists in localStorage.
+   * -------------------------------------------------------------------------- */
+  function initReadingSettings() {
+    var SIZES = { sm: 0.9, md: 1, lg: 1.12, xl: 1.28 };
+    var root = document.documentElement;
+
+    var curFont = localStorage.getItem("ps-font") || "mono";
+    var curSize = localStorage.getItem("ps-size") || "md";
+
+    function applyFont(key) {
+      root.classList.remove("ps-font-mono", "ps-font-sans", "ps-font-serif");
+      root.classList.add("ps-font-" + key);
+    }
+    function applySize(key) {
+      root.style.setProperty("--ps-reading-scale", SIZES[key] || 1);
+    }
+    applyFont(curFont);
+    applySize(curSize);
+
+    // Build the UI once; it persists across instant navigation
+    if (document.getElementById("ps-reading-fab")) return;
+
+    var fab = document.createElement("button");
+    fab.id = "ps-reading-fab";
+    fab.type = "button";
+    fab.className = "ps-reading-fab";
+    fab.setAttribute("aria-label", "Reading settings");
+    fab.innerHTML = "Aa";
+
+    var panel = document.createElement("div");
+    panel.id = "ps-reading-panel";
+    panel.className = "ps-reading-panel";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", "Reading settings");
+    panel.innerHTML =
+      '<div class="ps-reading-title">Reading</div>' +
+      '<div class="ps-reading-group">' +
+        '<div class="ps-reading-label">Font</div>' +
+        '<div class="ps-reading-chips">' +
+          '<button type="button" class="ps-reading-chip" data-font="mono">Mono</button>' +
+          '<button type="button" class="ps-reading-chip" data-font="sans">Sans</button>' +
+          '<button type="button" class="ps-reading-chip" data-font="serif">Serif</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ps-reading-group">' +
+        '<div class="ps-reading-label">Size</div>' +
+        '<div class="ps-reading-chips">' +
+          '<button type="button" class="ps-reading-chip" data-size="sm">S</button>' +
+          '<button type="button" class="ps-reading-chip" data-size="md">M</button>' +
+          '<button type="button" class="ps-reading-chip" data-size="lg">L</button>' +
+          '<button type="button" class="ps-reading-chip" data-size="xl">XL</button>' +
+        '</div>' +
+      '</div>' +
+      '<button type="button" class="ps-reading-reset">Reset to default</button>';
+
+    document.body.appendChild(fab);
+    document.body.appendChild(panel);
+
+    function markActive() {
+      panel.querySelectorAll("[data-font]").forEach(function (b) {
+        b.classList.toggle("is-active", b.getAttribute("data-font") === curFont);
+      });
+      panel.querySelectorAll("[data-size]").forEach(function (b) {
+        b.classList.toggle("is-active", b.getAttribute("data-size") === curSize);
+      });
+    }
+    markActive();
+
+    fab.addEventListener("click", function (e) {
+      e.stopPropagation();
+      panel.classList.toggle("is-open");
+    });
+    panel.addEventListener("click", function (e) { e.stopPropagation(); });
+    document.addEventListener("click", function () { panel.classList.remove("is-open"); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") panel.classList.remove("is-open");
+    });
+
+    panel.querySelectorAll("[data-font]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        curFont = b.getAttribute("data-font");
+        localStorage.setItem("ps-font", curFont);
+        applyFont(curFont);
+        markActive();
+      });
+    });
+    panel.querySelectorAll("[data-size]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        curSize = b.getAttribute("data-size");
+        localStorage.setItem("ps-size", curSize);
+        applySize(curSize);
+        markActive();
+      });
+    });
+    panel.querySelector(".ps-reading-reset").addEventListener("click", function () {
+      curFont = "mono"; curSize = "md";
+      localStorage.setItem("ps-font", "mono");
+      localStorage.setItem("ps-size", "md");
+      applyFont("mono"); applySize("md"); markActive();
+    });
+  }
+
+  /* --------------------------------------------------------------------------
    * Initialize Everything
    * -------------------------------------------------------------------------- */
   // Home page specific scripts
@@ -1082,6 +1187,7 @@ function initPurpleSecJS() {
   initCodeWindows();
   initImageZoom();
   initLayoutToggles();
+  initReadingSettings();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);
