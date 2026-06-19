@@ -2,58 +2,22 @@
 
 {% block content %}
 <div class="ps-home">
-  <!-- Matrix Rain Canvas (fixed, behind everything) -->
-  <canvas id="ps-matrix-canvas" aria-hidden="true"></canvas>
 
   <!-- ===== HERO ===== -->
-  <header class="ps-nh-hero">
-    <!-- ambient gradient orbs -->
-    <span class="ps-nh-orb ps-nh-orb-1" aria-hidden="true"></span>
-    <span class="ps-nh-orb ps-nh-orb-2" aria-hidden="true"></span>
-    <span class="ps-nh-orb ps-nh-orb-3" aria-hidden="true"></span>
-    <!-- subtle grid overlay -->
-    <div class="ps-nh-grid" aria-hidden="true"></div>
-
-    <div class="ps-nh-hero-inner">
-      <div class="ps-nh-status">
-        <span class="ps-nh-status-dot"></span>
-        Systems Operational &nbsp;·&nbsp; Offense + Defense
-      </div>
-
-      <h1 class="ps-nh-title">PurpleSec</h1>
-
-      <div class="ps-nh-typed">
-        <span class="ps-nh-typed-prefix">&gt;_</span>
-        <span id="ps-typed-text"></span><span class="ps-nh-caret"></span>
-      </div>
-
-      <p class="ps-nh-lead">
-        Where <span class="ps-nh-red">offense</span> meets <span class="ps-nh-blue">defense</span> — a living archive of real-world
-        attack paths, Hack The Box pwns, and threat research, built to make defenders think like attackers.
-      </p>
-
-      <div class="ps-nh-cta">
-        <a href="walkthroughs/" class="ps-nh-btn ps-nh-btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg>
-          Explore Writeups
-        </a>
-        <a href="blog/" class="ps-nh-btn ps-nh-btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          Read the Blog
-        </a>
-        <a href="about/" class="ps-nh-btn ps-nh-btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-          About Me
-        </a>
-      </div>
+  <header class="ps-mh-hero">
+    <span class="ps-mh-eyebrow">Offensive &amp; Defensive Security</span>
+    <h1 class="ps-mh-title">PurpleSec</h1>
+    <p class="ps-mh-lead">
+      Where offense meets defense — a living archive of real-world attack paths,
+      Hack The Box pwns, and threat research, built to make defenders think like attackers.
+    </p>
+    <div class="ps-mh-actions">
+      <a href="walkthroughs/" class="md-button md-button--primary">Explore Writeups</a>
+      <a href="blog/" class="md-button">Read the Blog</a>
     </div>
-
-    <a href="#ps-stats-section" class="ps-scroll-indicator" aria-label="Scroll to content">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m7 6 5 5 5-5M7 13l5 5 5-5"/></svg>
-    </a>
   </header>
 
-  <!-- Markdown content (ticker, stats, focus, spotlight, certs, quotes, CTA) -->
+  <!-- Markdown content (cards, stats, featured, recent, certs, quote, CTA) -->
   {{ super() }}
 </div>
 {% endblock %}
