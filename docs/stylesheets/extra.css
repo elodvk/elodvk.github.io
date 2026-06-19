@@ -3466,6 +3466,10 @@ html {
 }
 .md-footer-meta { border-top: 1px solid var(--ps-card-border); }
 
+/* Hide the "Made with Zensical" attribution (keep the copyright line) */
+.md-copyright { font-size: 0; }
+.md-copyright__highlight { font-size: 0.64rem; }
+
 /* Social icons: simple accent on hover */
 .md-social__link { transition: color 0.2s ease, opacity 0.2s ease; }
 .md-social__link:hover { color: var(--ps-accent); opacity: 1; }
