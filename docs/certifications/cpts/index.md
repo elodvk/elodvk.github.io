@@ -16,6 +16,9 @@ tags:
 
 The CPTS by Hack The Box is a comprehensive penetration testing certification that covers modern attack techniques and methodologies. It's known for its practical, hands-on approach.
 
+!!! tip "Looking for practice machines?"
+    See the [**Practice Machines & Exam Prep**](practice-machines.md) page for a full, domain-by-domain Hack The Box roadmap covering web, privilege escalation, common services, pivoting, Active Directory, and report writing.
+
 ## HTB Academy Modules
 
 - [ ] Penetration Testing Process

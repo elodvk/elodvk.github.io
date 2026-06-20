@@ -86,6 +86,7 @@ nav = [
     { "OSCP" = "certifications/oscp/index.md" },
     { "CPTS" = [
       { "Overview" = "certifications/cpts/index.md" },
+      { "Practice Machines & Exam Prep" = "certifications/cpts/practice-machines.md" },
       { "File Upload Attacks" = [
         { "Overview" = "certifications/cpts/file-upload-attacks/index.md" },
         { "Fingerprinting the Web Stack" = "certifications/cpts/file-upload-attacks/fingerprinting.md" },
