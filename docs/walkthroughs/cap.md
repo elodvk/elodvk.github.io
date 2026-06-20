@@ -2,7 +2,6 @@
 title: 'HTB Cap'
 description: 'A comprehensive penetration testing walkthrough for Hack The Box: Cap. Covers service enumeration, exploiting Insecure Direct Object Reference (IDOR) to leak sensitive PCAP data, and escalating privileges via abused Linux Capabilities and CVE-2021-4034 (PwnKit).'
 date: 2026-06-22
-password: "INSERT_ROOT_FLAG_HERE"
 difficulty: Easy
 os: Linux
 authors:
