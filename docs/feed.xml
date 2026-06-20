@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Fri, 19 Jun 2026 08:51:51 -0000</lastBuildDate>
+<lastBuildDate>Sat, 20 Jun 2026 08:13:56 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>An AI Agent Is an Identity — and Most Organizations Don&#x27;t Treat Them That Way</title>
+<link>https://purplesec.org/blog/ai-agents-are-identities/</link>
+<description>A deep, practical examination of why autonomous AI agents are full-fledged identities — not glorified service accounts — and why human-centric IAM is failing to govern them. Covers the non-human identity explosion (the 144:1 ratio), the confused deputy and lethal trifecta problems, the Salesloft Drift OAuth breach, the OWASP NHI and LLM Top 10s, the identity implications of local LLMs vs Claude/Gemini/OpenAI SaaS models, Microsoft Entra Agent ID and Google Agent Identity, and a concrete framework for treating agents as first-class governed identities.</description>
+<pubDate>Sat, 20 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/ai-agents-are-identities/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Identity and Access Management</category>
+<category>Non-Human Identity</category>
+<category>AI Agents</category>
+<category>Zero Trust</category>
+</item>
 <item>
 <title>The Great Telegram Lockdown: Exam Leaks, Timestamp Forgery, and the Global War on Moderation</title>
 <link>https://purplesec.org/blog/telegram-ban-india-global-moderation/</link>
