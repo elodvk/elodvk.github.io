@@ -3499,6 +3499,7 @@ html {
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
   cursor: zoom-out;
+  user-select: none;
 }
 .ps-lightbox.is-open { opacity: 1; visibility: visible; }
 .ps-lightbox-stage {
@@ -3508,10 +3509,14 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: auto;
+  overflow: visible;
   transform: scale(0.96);
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.12s ease-out;
+  transform-origin: center center;
+  position: relative;
+  cursor: grab;
 }
+.ps-lightbox-stage:active { cursor: grabbing; }
 .ps-lightbox.is-open .ps-lightbox-stage { transform: scale(1); }
 .ps-lightbox-img {
   max-width: 100%;
@@ -3526,6 +3531,66 @@ html {
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6) !important;
 }
 .ps-lightbox-frame:hover { transform: none !important; }
+/* Mermaid diagram shown enlarged — padded surface so it reads on the dim overlay */
+.ps-lightbox-stage--diagram {
+  background: var(--md-default-bg-color, #fff);
+  border: 1px solid var(--ps-card-border, rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  max-width: min(1200px, 94vw);
+  cursor: grab;
+  position: relative;
+}
+.ps-lightbox-stage--diagram:active { cursor: grabbing; }
+.ps-lightbox-svg {
+  display: block;
+  max-width: 100%;
+  max-height: 92vh;
+}
+.ps-lightbox-mermaid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.ps-lightbox-mermaid svg {
+  display: block;
+}
+/* Ensure mermaid text is readable in the lightbox for both themes */
+.ps-lightbox-mermaid .node rect,
+.ps-lightbox-mermaid .node circle,
+.ps-lightbox-mermaid .node ellipse,
+.ps-lightbox-mermaid .node polygon,
+.ps-lightbox-mermaid .node path {
+  stroke-width: 1.5px;
+}
+.ps-lightbox-mermaid .edgeLabel {
+  font-size: 14px;
+}
+.ps-lightbox-mermaid text {
+  font-size: 14px !important;
+  font-family: var(--md-mermaid-font-family, var(--md-text-font, "IBM Plex Mono")), sans-serif !important;
+}
+/* Fallback mermaid note vars (not defined by all Material versions) */
+:root > * {
+  --md-mermaid-note-bg-color: var(--md-mermaid-node-bg-color);
+  --md-mermaid-note-fg-color: var(--md-mermaid-label-fg-color);
+  --md-mermaid-note-border-color: var(--md-mermaid-node-fg-color);
+}
+/* Zoom hint */
+.ps-lightbox-stage--diagram::after {
+  content: "Scroll to zoom \B7  Drag to pan \B7  Double-click to reset";
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light, rgba(255,255,255,0.5));
+  opacity: 0.6;
+  pointer-events: none;
+  white-space: nowrap;
+}
 .ps-lightbox-close {
   position: fixed;
   top: 1rem;

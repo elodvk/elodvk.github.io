@@ -845,7 +845,7 @@ function initPurpleSecJS() {
    * Click any content image to view it enlarged on a dimmed overlay.
    * Click anywhere / press Esc / hit the × to close.
    * -------------------------------------------------------------------------- */
-  function initImageZoom() {
+  function getLightbox() {
     // Build the overlay once and reuse it across pages (survives instant nav)
     var overlay = document.getElementById("ps-lightbox");
     if (!overlay) {
@@ -859,26 +859,140 @@ function initPurpleSecJS() {
       document.body.appendChild(overlay);
 
       var stage = overlay.querySelector(".ps-lightbox-stage");
+
+      // --- State for zoom + pan ---
+      overlay._zoomScale = 1;
+      overlay._panX = 0;
+      overlay._panY = 0;
+      var _isPanning = false;
+      var _panStartX = 0;
+      var _panStartY = 0;
+      var _panOriginX = 0;
+      var _panOriginY = 0;
+      var _didPan = false;
+
+      function applyTransform() {
+        stage.style.transform = "translate(" + overlay._panX + "px, " + overlay._panY + "px) scale(" + overlay._zoomScale + ")";
+      }
+
+      function resetTransform() {
+        overlay._zoomScale = 1;
+        overlay._panX = 0;
+        overlay._panY = 0;
+        stage.style.transform = "";
+      }
+
       var closeLightbox = function () {
         overlay.classList.remove("is-open");
         overlay.setAttribute("aria-hidden", "true");
         document.documentElement.style.overflow = "";
+        resetTransform();
         setTimeout(function () {
           if (!overlay.classList.contains("is-open")) stage.innerHTML = "";
         }, 260);
       };
-      overlay.addEventListener("click", closeLightbox);
+
+      // Close on backdrop click (but not after a pan drag)
+      overlay.addEventListener("click", function (e) {
+        if (_didPan) { _didPan = false; return; }
+        if (e.target === overlay || e.target === stage) closeLightbox();
+      });
+      overlay.querySelector(".ps-lightbox-close").addEventListener("click", closeLightbox);
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && overlay.classList.contains("is-open")) closeLightbox();
       });
-      overlay.__openNode = function (node) {
+
+      // --- Scroll-to-zoom ---
+      overlay.addEventListener("wheel", function (e) {
+        if (!overlay.classList.contains("is-open")) return;
+        e.preventDefault();
+        var delta = e.deltaY > 0 ? -0.15 : 0.15;
+        overlay._zoomScale = Math.min(5, Math.max(0.5, overlay._zoomScale + delta));
+        applyTransform();
+      }, { passive: false });
+
+      // --- Pan (drag to move) ---
+      overlay.addEventListener("mousedown", function (e) {
+        if (!overlay.classList.contains("is-open")) return;
+        // Only pan with left button, not on close button
+        if (e.button !== 0) return;
+        if (e.target.closest(".ps-lightbox-close")) return;
+        _isPanning = true;
+        _didPan = false;
+        _panStartX = e.clientX;
+        _panStartY = e.clientY;
+        _panOriginX = overlay._panX;
+        _panOriginY = overlay._panY;
+        stage.style.cursor = "grabbing";
+        e.preventDefault();
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        if (!_isPanning) return;
+        var dx = e.clientX - _panStartX;
+        var dy = e.clientY - _panStartY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) _didPan = true;
+        overlay._panX = _panOriginX + dx;
+        overlay._panY = _panOriginY + dy;
+        applyTransform();
+      });
+
+      document.addEventListener("mouseup", function () {
+        if (!_isPanning) return;
+        _isPanning = false;
+        stage.style.cursor = "";
+      });
+
+      // --- Touch pan support ---
+      overlay.addEventListener("touchstart", function (e) {
+        if (!overlay.classList.contains("is-open")) return;
+        if (e.touches.length !== 1) return;
+        if (e.target.closest(".ps-lightbox-close")) return;
+        _isPanning = true;
+        _didPan = false;
+        _panStartX = e.touches[0].clientX;
+        _panStartY = e.touches[0].clientY;
+        _panOriginX = overlay._panX;
+        _panOriginY = overlay._panY;
+      }, { passive: true });
+
+      overlay.addEventListener("touchmove", function (e) {
+        if (!_isPanning || e.touches.length !== 1) return;
+        var dx = e.touches[0].clientX - _panStartX;
+        var dy = e.touches[0].clientY - _panStartY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) _didPan = true;
+        overlay._panX = _panOriginX + dx;
+        overlay._panY = _panOriginY + dy;
+        applyTransform();
+        e.preventDefault();
+      }, { passive: false });
+
+      overlay.addEventListener("touchend", function () {
+        _isPanning = false;
+      });
+
+      // --- Double-click to reset view ---
+      overlay.addEventListener("dblclick", function (e) {
+        if (e.target.closest(".ps-lightbox-close")) return;
+        resetTransform();
+        applyTransform();
+      });
+
+      overlay.__openNode = function (node, stageClass) {
         stage.innerHTML = "";
+        stage.className = "ps-lightbox-stage" + (stageClass ? " " + stageClass : "");
+        resetTransform();
         stage.appendChild(node);
         overlay.classList.add("is-open");
         overlay.setAttribute("aria-hidden", "false");
         document.documentElement.style.overflow = "hidden";
       };
     }
+    return overlay;
+  }
+
+  function initImageZoom() {
+    var overlay = getLightbox();
 
     var imgs = document.querySelectorAll(".md-content .md-typeset img:not([data-ps-zoom])");
     imgs.forEach(function (img) {
@@ -907,6 +1021,25 @@ function initPurpleSecJS() {
         }
         overlay.__openNode(node);
       });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+   * Diagram Zoom — make rendered Mermaid diagrams zoomable like images.
+   * Material renders Mermaid SVGs into a CLOSED shadow DOM, so we can't clone
+   * the SVG directly. Source is captured early (saveMermaidSources), and a
+   * MutationObserver + this fallback poll ensures all diagrams get zoom.
+   * On click, re-renders the diagram into the lightbox via mermaid.render().
+   * -------------------------------------------------------------------------- */
+
+  function initDiagramZoom() {
+    getLightbox(); // ensure overlay exists
+
+    var diagrams = document.querySelectorAll(
+      ".md-content .md-typeset .mermaid:not([data-ps-zoom])"
+    );
+    diagrams.forEach(function (el) {
+      attachDiagramZoom(el);
     });
   }
 
@@ -1200,6 +1333,9 @@ function initPurpleSecJS() {
   initWindowFrames();
   initCodeWindows();
   initImageZoom();
+  // Mermaid renders asynchronously into a closed shadow DOM — wait for processing
+  setTimeout(initDiagramZoom, 800);
+  setTimeout(initDiagramZoom, 2500);
   initLayoutToggles();
   initReadingSettings();
 
@@ -1208,8 +1344,209 @@ function initPurpleSecJS() {
 }
 
 // Support for MkDocs Material Instant Navigation
+// _mermaidSources is populated by an inline <script> in main.html BEFORE the bundle loads.
+// This ensures we capture mermaid source text from <pre class="mermaid"> elements before
+// Material's bundle removes the class and replaces them with closed-shadow-DOM divs.
+// For instant navigation (document$), we re-capture since new page content loads.
+function saveMermaidSources() {
+  if (typeof _mermaidSources === "undefined") window._mermaidSources = [];
+  _mermaidSources.length = 0;
+  var pres = document.querySelectorAll("pre.mermaid");
+  for (var i = 0; i < pres.length; i++) {
+    var code = pres[i].querySelector("code");
+    var src = code ? (code.textContent || "").trim() : (pres[i].textContent || "").trim();
+    if (src) _mermaidSources.push(src);
+  }
+}
+
+// Also observe for Material's mermaid replacement (handles all timing issues)
+var _mermaidObserver = null;
+function startMermaidObserver() {
+  if (_mermaidObserver) return;
+  var content = document.querySelector(".md-content");
+  if (!content) return;
+
+  // Track sources from removed <pre> nodes (Material removes the pre synchronously
+  // but the textContent is still readable in the removed node)
+  var _observedSources = [];
+
+  _mermaidObserver = new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var mut = mutations[i];
+
+      // Capture text from removed <pre> nodes (Material replaces pre with div)
+      var removed = mut.removedNodes;
+      for (var k = 0; k < removed.length; k++) {
+        var rn = removed[k];
+        if (rn.nodeType === 1 && rn.tagName === "PRE") {
+          var code = rn.querySelector("code");
+          var txt = code ? (code.textContent || "").trim() : (rn.textContent || "").trim();
+          if (txt && txt.length > 5) _observedSources.push(txt);
+        }
+      }
+
+      // Attach zoom to new .mermaid divs
+      var added = mut.addedNodes;
+      for (var j = 0; j < added.length; j++) {
+        var node = added[j];
+        if (node.nodeType === 1 && node.classList && node.classList.contains("mermaid") && node.tagName === "DIV" && !node.hasAttribute("data-ps-zoom")) {
+          // Use _observedSources (captured from the removed pre in the same mutation batch)
+          // or fall back to global _mermaidSources
+          var srcList = _observedSources.length > 0 ? _observedSources : _mermaidSources;
+          var all = document.querySelectorAll(".md-content .md-typeset .mermaid[data-ps-zoom]");
+          var idx = all.length; // this will be the next index (before we mark it)
+          var src = (idx < srcList.length) ? srcList[idx] : null;
+          if (src) node.setAttribute("data-ps-src", src);
+          attachDiagramZoom(node);
+        }
+      }
+    }
+  });
+  _mermaidObserver.observe(content, { childList: true, subtree: true });
+}
+
+function attachDiagramZoom(el) {
+  // Ensure the lightbox overlay exists (creates it if not yet built)
+  var overlay = document.getElementById("ps-lightbox");
+  if (!overlay || !overlay.__openNode) {
+    // Lightbox not ready yet — defer until initPurpleSecJS creates it
+    setTimeout(function () { attachDiagramZoom(el); }, 500);
+    return;
+  }
+
+  el.setAttribute("data-ps-zoom", "1");
+
+  // Find source: check data attr first, then use saved sources by counting existing zoomed diagrams
+  var src = el.getAttribute("data-ps-src");
+  if (!src) {
+    // Count how many .mermaid[data-ps-zoom] exist BEFORE this one in document order
+    var all = document.querySelectorAll(".md-content .md-typeset .mermaid[data-ps-zoom]");
+    var idx = -1;
+    for (var i = 0; i < all.length; i++) {
+      if (all[i] === el) { idx = i; break; }
+    }
+    if (idx >= 0 && idx < _mermaidSources.length) {
+      src = _mermaidSources[idx];
+    }
+  }
+
+  if (!src) return;
+  el.setAttribute("data-ps-src", src);
+  el.classList.add("ps-zoomable");
+  el.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    renderMermaidToLightbox(el.getAttribute("data-ps-src"), overlay);
+  });
+}
+
+function renderMermaidToLightbox(src, overlay) {
+  if (!src || typeof mermaid === "undefined" || !mermaid.render) return;
+
+  var id = "__ps_mermaid_zoom_" + Date.now();
+  var container = document.createElement("div");
+  container.className = "ps-lightbox-mermaid";
+
+  // We render using Material's existing mermaid config (themeCSS with --md-mermaid-* vars).
+  // Those CSS vars are defined on the page and auto-switch with the color scheme,
+  // so the diagram will have correct colors in both dark and light mode.
+
+  try {
+    var result = mermaid.render(id, src);
+    if (result && typeof result.then === "function") {
+      result.then(function (res) {
+        container.innerHTML = res.svg || res;
+        patchMermaidSvg(container);
+        scaleMermaidSvg(container);
+        overlay.__openNode(container, "ps-lightbox-stage--diagram");
+        cleanupMermaidArtifact(id);
+      }).catch(function () {
+        showMermaidFallback(container, src, overlay);
+        cleanupMermaidArtifact(id);
+      });
+    } else {
+      container.innerHTML = result.svg || result;
+      patchMermaidSvg(container);
+      scaleMermaidSvg(container);
+      overlay.__openNode(container, "ps-lightbox-stage--diagram");
+      cleanupMermaidArtifact(id);
+    }
+  } catch (err) {
+    showMermaidFallback(container, src, overlay);
+    cleanupMermaidArtifact(id);
+  }
+}
+
+// Material renders mermaid inside a closed shadow DOM, so its themeCSS
+// uses --md-mermaid-* vars that resolve from the host page. When we render
+// outside a shadow DOM (in the lightbox), the SVG inherits from the page
+// and those vars work directly. But mermaid v11 wraps styles inside the SVG
+// in a <style> tag — if Material's themeCSS wasn't applied (because mermaid
+// was re-initialized elsewhere), we inject a fallback <style> that maps
+// node colors to the page's CSS vars.
+function patchMermaidSvg(container) {
+  var svg = container.querySelector("svg");
+  if (!svg) return;
+  // Check if the SVG already has Material's themeCSS (look for --md-mermaid)
+  var existingStyle = svg.querySelector("style");
+  if (existingStyle && existingStyle.textContent.indexOf("--md-mermaid") !== -1) return;
+
+  // Inject fallback CSS that maps to Material's mermaid vars
+  var style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+  style.textContent =
+    ".node circle, .node ellipse, .node path, .node polygon, .node rect { fill: var(--md-mermaid-node-bg-color); stroke: var(--md-mermaid-node-fg-color); }" +
+    "marker { fill: var(--md-mermaid-edge-color) !important; }" +
+    ".edgeLabel .label rect { fill: transparent; }" +
+    ".label, .edgeLabel, .edgeLabel p, .label div .edgeLabel { color: var(--md-mermaid-label-fg-color); font-family: var(--md-mermaid-font-family); }" +
+    ".flowchartTitleText { fill: var(--md-mermaid-label-fg-color); }" +
+    "text { fill: var(--md-mermaid-label-fg-color); font-family: var(--md-mermaid-font-family); }" +
+    ".edgePath .path { stroke: var(--md-mermaid-edge-color); }" +
+    ".cluster rect { fill: var(--md-mermaid-node-bg-color); stroke: var(--md-mermaid-node-fg-color); }" +
+    ".actor { fill: var(--md-mermaid-sequence-actor-bg-color); stroke: var(--md-mermaid-sequence-actor-border-color); }" +
+    "text.actor > tspan { fill: var(--md-mermaid-sequence-actor-fg-color); }" +
+    ".actor-line { stroke: var(--md-mermaid-sequence-actor-line-color); }" +
+    ".messageLine0, .messageLine1 { stroke: var(--md-mermaid-edge-color); }" +
+    ".messageText { fill: var(--md-mermaid-edge-color); font-family: var(--md-mermaid-font-family); }" +
+    ".labelBox { fill: var(--md-mermaid-sequence-label-bg-color); stroke: var(--md-mermaid-sequence-label-fg-color); }" +
+    ".labelText, .labelText > tspan { fill: var(--md-mermaid-sequence-label-fg-color); }" +
+    ".loopText, .loopText > tspan { fill: var(--md-mermaid-sequence-loop-fg-color); }" +
+    ".loopLine { stroke: var(--md-mermaid-sequence-loop-fg-color); }" +
+    ".note { fill: var(--md-mermaid-note-bg-color); stroke: var(--md-mermaid-note-border-color); }" +
+    ".noteText, .noteText > tspan { fill: var(--md-mermaid-note-fg-color); }" +
+    "#arrowhead path { fill: var(--md-mermaid-edge-color); stroke: var(--md-mermaid-edge-color); }";
+  svg.insertBefore(style, svg.firstChild);
+}
+
+function scaleMermaidSvg(container) {
+  var svg = container.querySelector("svg");
+  if (svg) {
+    svg.removeAttribute("id");
+    svg.classList.add("ps-lightbox-svg");
+    svg.removeAttribute("width");
+    svg.style.maxWidth = "100%";
+    svg.style.maxHeight = "86vh";
+    svg.style.height = "auto";
+    svg.style.width = "100%";
+  }
+}
+
+function showMermaidFallback(container, src, overlay) {
+  container.textContent = src;
+  container.style.whiteSpace = "pre-wrap";
+  container.style.padding = "2rem";
+  container.style.fontFamily = "var(--md-code-font)";
+  overlay.__openNode(container, "ps-lightbox-stage--diagram");
+}
+
+function cleanupMermaidArtifact(id) {
+  var stale = document.getElementById(id);
+  if (stale) stale.remove();
+}
+
 if (typeof document$ !== "undefined") {
   document$.subscribe(function() {
+    saveMermaidSources(); // Also capture for instant-nav page transitions
+    startMermaidObserver(); // Start watching BEFORE init so we catch Material's replacements
     initPurpleSecJS();
   });
 } else {

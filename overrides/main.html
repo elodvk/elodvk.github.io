@@ -553,3 +553,19 @@
   </div>
   {% endif %}
 {% endblock %}
+
+{% block scripts %}
+  <!-- Capture mermaid diagram source text BEFORE the bundle processes them -->
+  <script>
+    var _mermaidSources = [];
+    (function() {
+      var pres = document.querySelectorAll("pre.mermaid");
+      for (var i = 0; i < pres.length; i++) {
+        var code = pres[i].querySelector("code");
+        var src = code ? (code.textContent || "").trim() : (pres[i].textContent || "").trim();
+        if (src) _mermaidSources.push(src);
+      }
+    })();
+  </script>
+  {{ super() }}
+{% endblock %}
