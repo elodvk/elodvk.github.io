@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Sun, 21 Jun 2026 13:14:50 -0000</lastBuildDate>
+<lastBuildDate>Sun, 21 Jun 2026 16:09:34 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>RoguePlanet: Deep Dive into the Microsoft Defender TOCTOU Zero-Day (CVE-2026-50656)</title>
+<link>https://purplesec.org/blog/rogueplanet/</link>
+<description>A comprehensive technical analysis of RoguePlanet (CVE-2026-50656), a critical Time-of-Check to Time-of-Use (TOCTOU) local privilege escalation vulnerability in Microsoft Defender, released by researcher Nightmare Eclipse.</description>
+<pubDate>Sun, 21 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/rogueplanet/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Zero-Day</category>
+<category>Microsoft Defender</category>
+<category>Vulnerability Analysis</category>
+<category>Nightmare Eclipse</category>
+<category>CVE-2026-50656</category>
+</item>
 <item>
 <title>An AI Agent Is an Identity — and Most Organizations Don&#x27;t Treat Them That Way</title>
 <link>https://purplesec.org/blog/ai-agents-are-identities/</link>

