@@ -1370,6 +1370,29 @@ function initPurpleSecJS() {
       
       var utterance = new SpeechSynthesisUtterance(fullText);
       
+      // Try to select a more natural sounding voice
+      var voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        var preferredVoice = voices.find(function(v) {
+          return v.lang.indexOf('en') === 0 && (
+            v.name.indexOf('Premium') !== -1 || 
+            v.name.indexOf('Natural') !== -1 || 
+            v.name.indexOf('Online') !== -1 || 
+            v.name.indexOf('Google') !== -1
+          );
+        });
+        if (!preferredVoice) {
+          preferredVoice = voices.find(function(v) { return v.lang.indexOf('en') === 0; });
+        }
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+        }
+      }
+      
+      // Tweak rate and pitch for a more natural cadence
+      utterance.rate = 0.95;
+      utterance.pitch = 1.0;
+      
       utterance.onstart = function() {
         if (playIcon) playIcon.style.display = "none";
         if (stopIcon) stopIcon.style.display = "block";
