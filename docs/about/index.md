@@ -8,6 +8,7 @@ hide:
   - navigation
   - path
   - title
+  - footer
 ---
 <!-- 
 NOTE: The visual content of this page is driven by a custom HTML template.

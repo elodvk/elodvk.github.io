@@ -4,6 +4,7 @@ description: 'Thoughts on cybersecurity, tool reviews, exam experiences, and upd
 hide:
   - navigation
   - toc
+  - footer
 ---
 {% set posts = get_blog_posts() %}
 

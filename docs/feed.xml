@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Sun, 21 Jun 2026 16:09:34 -0000</lastBuildDate>
+<lastBuildDate>Sun, 21 Jun 2026 16:43:28 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>The Anatomy of a Botnet: History, Architecture, and the Botnet Economy</title>
+<link>https://purplesec.org/blog/botnets-history-and-mechanics/</link>
+<description>A massively detailed deep dive into the evolution of botnets, from benign 1980s IRC automation to the modern, sophisticated global networks fueling Botnet-as-a-Service (BaaS).</description>
+<pubDate>Sun, 21 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/botnets-history-and-mechanics/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Botnets</category>
+<category>Architecture</category>
+<category>Mirai</category>
+<category>Emotet</category>
+<category>Deep Dive</category>
+</item>
 <item>
 <title>RoguePlanet: Deep Dive into the Microsoft Defender TOCTOU Zero-Day (CVE-2026-50656)</title>
 <link>https://purplesec.org/blog/rogueplanet/</link>

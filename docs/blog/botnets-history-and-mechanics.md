@@ -4,7 +4,7 @@ description: "A massively detailed deep dive into the evolution of botnets, from
 date: 2026-06-21
 authors:
   name: Bilash J. Shahi
-  title: Senior Cybersecurity Engineer
+  title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:
