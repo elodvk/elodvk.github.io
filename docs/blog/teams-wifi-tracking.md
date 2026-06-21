@@ -1,11 +1,18 @@
 ---
 title: "Wi-Fi Snitching: How Microsoft Teams' New Auto-Detect Feature Works (And How to Opt-Out)"
 date: 2026-06-21
-author: "Bilash J. Shahi"
 description: "A deep dive into Microsoft Teams' new 'Workplace check-in' feature, the privacy concerns around Wi-Fi tracking, and how to opt-out of corporate surveillance."
-categories:
+authors:
+  name: Bilash J. Shahi
+  title: Cybersecurity Professional
+  picture: https://avatars.githubusercontent.com/elodvk
+  url: https://purplesec.org
+tags:
+  - Microsoft Teams
   - Privacy
+  - Surveillance
   - Enterprise Security
+  - Cybersecurity
 image: /blog/assets/teams-wifi-tracking.png
 ---
 
