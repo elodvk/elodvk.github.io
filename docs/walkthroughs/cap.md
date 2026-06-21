@@ -1,5 +1,5 @@
 ---
-title: 'HTB Cap'
+title: 'HTB Cap Walkthrough'
 description: 'A comprehensive penetration testing walkthrough for Hack The Box: Cap. Covers service enumeration, exploiting Insecure Direct Object Reference (IDOR) to leak sensitive PCAP data, and escalating privileges via abused Linux Capabilities and CVE-2021-4034 (PwnKit).'
 date: 2026-06-22
 difficulty: Easy
@@ -58,6 +58,7 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 The scan reveals three active services:
+
 - **Port 21 (FTP):** Running `vsftpd 3.0.3`. Anonymous login was tested and determined to be disabled.
 - **Port 22 (SSH):** Running `OpenSSH 8.2p1`.
 - **Port 80 (HTTP):** A web application running on `Gunicorn`, presenting a "Security Dashboard".
