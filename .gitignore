@@ -25,3 +25,14 @@ drafts/
 
 # Ignore environment variables
 .env
+
+# Ignore node modules
+node_modules/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.bak
+*~
+
