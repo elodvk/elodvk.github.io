@@ -56,7 +56,7 @@ hide:
     <div class="ps-mh-stat-label">Research Articles</div>
   </div>
   <div class="ps-mh-stat">
-    <div class="ps-mh-stat-num"><span data-count="7">0</span>+</div>
+    <div class="ps-mh-stat-num"><span data-count="10">0</span>+</div>
     <div class="ps-mh-stat-label">Years In The Field</div>
   </div>
 </div>
