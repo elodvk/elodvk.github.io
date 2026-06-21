@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Sun, 21 Jun 2026 16:43:28 -0000</lastBuildDate>
+<lastBuildDate>Sun, 21 Jun 2026 18:02:27 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -34,6 +34,14 @@
 <category>Vulnerability Analysis</category>
 <category>Nightmare Eclipse</category>
 <category>CVE-2026-50656</category>
+</item>
+<item>
+<title>Wi-Fi Snitching: How Microsoft Teams&#x27; New Auto-Detect Feature Works (And How to Opt-Out)</title>
+<link>https://purplesec.org/blog/teams-wifi-tracking/</link>
+<description>A deep dive into Microsoft Teams&#x27; new &#x27;Workplace check-in&#x27; feature, the privacy concerns around Wi-Fi tracking, and how to opt-out of corporate surveillance.</description>
+<pubDate>Sun, 21 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/teams-wifi-tracking/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
 </item>
 <item>
 <title>An AI Agent Is an Identity — and Most Organizations Don&#x27;t Treat Them That Way</title>
