@@ -105,9 +105,6 @@ nav = [
     { "PNPT" = "certifications/pnpt/index.md" },
     { "CISSP" = "certifications/cissp/index.md" },
   ]},
-  { "Tools" = [
-    { "CVE Search" = "tools/cve-search.md" },
-  ]},
   { "About" = "about/index.md" },
   { "Contact" = "contact.md" },
 ]
@@ -120,7 +117,7 @@ nav = [
 #
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
-extra_css = ["stylesheets/extra.css", "stylesheets/resume.css", "stylesheets/cve-search.css"]
+extra_css = ["stylesheets/extra.css", "stylesheets/resume.css"]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -128,7 +125,7 @@ extra_css = ["stylesheets/extra.css", "stylesheets/resume.css", "stylesheets/cve
 # The path provided should be relative to the "docs_dir".
 #
 # Read more: https://zensical.org/docs/customization/#additional-javascript
-extra_javascript = ["javascripts/extra.js", "javascripts/cve-search.js"]
+extra_javascript = ["javascripts/extra.js"]
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
