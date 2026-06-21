@@ -260,13 +260,8 @@ link = "https://github.com/elodvk"
 name = "GitHub"
 
 [[project.extra.social]]
-icon = "fontawesome/brands/x-twitter"
-link = "https://x.com/"
-name = "X / Twitter"
-
-[[project.extra.social]]
 icon = "fontawesome/brands/linkedin"
-link = "https://linkedin.com/in/"
+link = "https://www.linkedin.com/in/bilash-j-shahi/"
 name = "LinkedIn"
 
 [[project.extra.social]]
