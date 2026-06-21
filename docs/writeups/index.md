@@ -53,6 +53,20 @@ hide:
 <span class="ps-fx-desc">Dumping NTDS.dit and forging Golden Tickets — establishing total, persistent control over the domain.</span>
 <span class="ps-fx-arrow">Own the domain →</span>
 </a>
+<a href="web_vulnerabilities/file_upload/" class="ps-fx-card">
+<span class="ps-fx-index">06 / WEB EXPLOITS</span>
+<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+<span class="ps-fx-title">Web Vulnerabilities</span>
+<span class="ps-fx-desc">Deep dives into web application attack vectors, including File Upload abuse, Filter bypasses, and Web Fuzzing with Ffuf.</span>
+<span class="ps-fx-arrow">Explore web attacks →</span>
+</a>
+<a href="methodology/practice-machines/" class="ps-fx-card">
+<span class="ps-fx-index">07 / ROADMAPS</span>
+<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></span>
+<span class="ps-fx-title">Methodology &amp; Practice</span>
+<span class="ps-fx-desc">A comprehensive list of practice machines to hone your skills for certifications and real-world engagements.</span>
+<span class="ps-fx-arrow">View the roadmap →</span>
+</a>
 </div>
 
 !!! tip "How every writeup is structured"
