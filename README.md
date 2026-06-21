@@ -22,39 +22,6 @@ The PurpleSec site is built on [Zensical](https://github.com/elodvk/zensical) (a
 *   **Interactive Hacker Aesthetic:** Features a custom minimal Material-v3 UI with sleek dark mode, dynamic glitch effects, glowing cards, and an interactive landing page terminal.
 *   **Dynamic Assets:** Automatic Mermaid.js diagram zooming, custom browser/terminal window frames, and automatic RSS feed generation.
 
-## 🛠️ Local Development Setup
-
-To run this site locally, you need Python 3 installed.
-
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/elodvk/elodvk.github.io.git
-    cd elodvk.github.io
-    ```
-
-2.  **Set up a virtual environment**
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-    ```
-
-3.  **Install dependencies**
-    ```bash
-    pip install zensical
-    # Additional requirements if modifying Python scripts:
-    pip install pycryptodome beautifulsoup4 lxml
-    ```
-
-4.  **Serve the site locally**
-    ```bash
-    zensical serve
-    ```
-    The site will be available with live-reloading at `http://127.0.0.1:8000`.
-
-5.  **Build the site**
-    ```bash
-    zensical build --clean
-    ```
 
 ## 🚀 Deployment
 
