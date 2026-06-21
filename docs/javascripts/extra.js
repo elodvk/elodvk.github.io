@@ -1321,6 +1321,75 @@ function initPurpleSecJS() {
     });
   }
 
+  /* --------------------------------------------------------------------------
+   * Text-To-Speech (TTS)
+   * Uses Web Speech API to read the article prose aloud.
+   * -------------------------------------------------------------------------- */
+  function initTextToSpeech() {
+    var ttsBtn = document.getElementById("ps-tts-btn");
+    if (!ttsBtn || !window.speechSynthesis) {
+      if (ttsBtn) ttsBtn.style.display = "none";
+      return;
+    }
+
+    var playIcon = document.getElementById("ps-tts-icon-play");
+    var stopIcon = document.getElementById("ps-tts-icon-stop");
+    var textSpan = ttsBtn.querySelector(".ps-tts-text");
+    
+    // Stop speech on page change (useful for instant navigation)
+    window.speechSynthesis.cancel();
+    
+    ttsBtn.addEventListener("click", function() {
+      if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+        window.speechSynthesis.cancel();
+        // UI reset is handled by onend
+        if (playIcon) playIcon.style.display = "block";
+        if (stopIcon) stopIcon.style.display = "none";
+        if (textSpan) textSpan.textContent = "Listen to Article";
+        ttsBtn.style.color = "var(--md-accent-fg-color)";
+        return;
+      }
+      
+      // Gather text
+      var contentArea = document.querySelector(".md-content");
+      if (!contentArea) return;
+      
+      var textBlocks = [];
+      // Select only relevant tags: paragraphs and headings
+      var els = contentArea.querySelectorAll("p, h1, h2, h3, h4, h5, h6");
+      els.forEach(function(el) {
+        // Skip elements inside windows, browser frames, code blocks, or admonitions
+        if (el.closest(".ps-browser, .ps-image, .ps-shell, .ps-editor, .ps-win-frame, .ps-browser-frame, .ps-codewin, .highlight, .admonition, .tabbed-content")) return;
+        
+        var txt = el.textContent.trim();
+        if (txt) textBlocks.push(txt);
+      });
+      
+      if (!textBlocks.length) return;
+      var fullText = textBlocks.join(". "); // Join with periods to give natural pauses
+      
+      var utterance = new SpeechSynthesisUtterance(fullText);
+      
+      utterance.onstart = function() {
+        if (playIcon) playIcon.style.display = "none";
+        if (stopIcon) stopIcon.style.display = "block";
+        if (textSpan) textSpan.textContent = "Stop Listening";
+        ttsBtn.style.color = "#ff5e5b"; // A clear stop color (red-ish)
+      };
+      
+      utterance.onend = function() {
+        if (playIcon) playIcon.style.display = "block";
+        if (stopIcon) stopIcon.style.display = "none";
+        if (textSpan) textSpan.textContent = "Listen to Article";
+        ttsBtn.style.color = "var(--md-accent-fg-color)";
+      };
+      
+      utterance.onerror = utterance.onend; // Reset UI on error too
+      
+      window.speechSynthesis.speak(utterance);
+    });
+  }
+
   // Global scripts (run on all pages including About/Resume)
   initGlitchEffect();
   initCardGlow();
@@ -1338,6 +1407,7 @@ function initPurpleSecJS() {
   setTimeout(initDiagramZoom, 2500);
   initLayoutToggles();
   initReadingSettings();
+  initTextToSpeech();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);

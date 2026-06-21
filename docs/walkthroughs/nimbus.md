@@ -2,7 +2,7 @@
 title: 'HTB Nimbus Walkthrough'
 description: 'A detailed penetration testing walkthrough for Hack The Box: Nimbus. This guide covers bypassing SSRF filters using decimal IP conversion, extracting AWS metadata credentials, and achieving remote code execution via AWS SQS queue poisoning.'
 date: 2026-06-21
-password: "9dab1cad684e637162dd61c0fe57bd7a"
+password: "193f558325db31c619ab8f1a967519e9"
 difficulty: Hard
 os: Linux
 authors:
@@ -62,8 +62,9 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 The scan identifies two services:
-- **Port 22 (SSH):** Running `OpenSSH 9.6p1`.
-- **Port 80 (HTTP):** Running `nginx 1.24.0`.
+
+ - **Port 22 (SSH):** Running `OpenSSH 9.6p1`.
+ - **Port 80 (HTTP):** Running `nginx 1.24.0`.
 
 Navigating to `http://10.129.19.103` immediately redirects us to `http://nimbus.htb/`. To resolve this domain, we must add it to our local `/etc/hosts` file.
 
