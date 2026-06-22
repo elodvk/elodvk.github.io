@@ -16,7 +16,12 @@
      and technique for the first time.
   7. Use tables to present structured data (Nmap results, credentials, etc.).
   8. Pair every major command with its output and, where possible, a screenshot.
-  9. Delete this instruction block before publishing.
+  9. CRITICAL: NEVER fabricate or generate technical data. All command outputs,
+     scan results, credentials, hashes, IP addresses, hostnames, and version
+     numbers MUST come directly from the user's actual engagement. Only use
+     data the user explicitly provides. If data is missing, leave a placeholder
+     comment and ask the user.
+  10. Delete this instruction block before publishing.
 =============================================================================
 -->
 ---
