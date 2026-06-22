@@ -20,7 +20,7 @@ description: "A highly detailed, professional walkthrough for the Hack The Box m
 
 # 🛡️ HTB Soccer Walkthrough
 
-## 1. Machine Overview
+## Machine Overview
 
 **Attack Chain Summary:** The engagement begins with discovering a Tiny File Manager instance secured by default credentials. Administrative access allows the upload of a PHP reverse shell, securing initial access as `www-data`. Enumeration reveals a hidden virtual host that proxies a WebSocket-based ticket validation service. A custom Python middleware script is utilized to bridge `sqlmap` to the WebSocket, exploiting a Blind SQL Injection vulnerability to leak the `player` user's SSH credentials. Finally, privilege escalation is achieved by exploiting a `doas` misconfiguration that permits the unprivileged user to execute `dstat` as root with a malicious custom plugin.
 
@@ -33,7 +33,7 @@ description: "A highly detailed, professional walkthrough for the Hack The Box m
 
 ---
 
-## 2. Reconnaissance & Enumeration
+## Reconnaissance & Enumeration
 
 Initial reconnaissance forms the foundation of any penetration test. The objective is to identify all exposed services, understand the underlying technology stack, and pinpoint potential entry vectors.
 
@@ -41,9 +41,11 @@ Initial reconnaissance forms the foundation of any penetration test. The objecti
 
 A comprehensive Nmap scan is executed to identify active TCP ports. The `-sC` flag runs default Nmap scripts to gather supplementary information (like HTTP titles or SSH host keys), while the `-sV` flag probes open ports to determine the exact service and version numbers. The `-T4` flag speeds up the scan by optimizing timing templates.
 
-```shell title="Executing Nmap"
+```shell title="Nmap Service Scan"
 nmap -sC -sV -T4 -oA reports/soccer_ 10.129.174.33 
 ```
+
+<!-- TODO: Missing data. Please provide the raw Nmap output here. -->
 
 The scan identifies three open ports:
 
@@ -73,7 +75,7 @@ echo "10.129.174.33  soccer.htb" | sudo tee -a /etc/hosts
 
 Navigating to `http://soccer.htb/` reveals a static landing page for a fictional "HTB Football Club." Extensive manual interaction reveals that none of the links on the page are functional, suggesting the main application may be hosted elsewhere or hidden within a subdirectory.
 
-![Soccer - Index](assets/soccer/soccer_landing_page.png "Static Landing Page at soccer.htb")
+![Soccer - Index](assets/soccer/soccer_landing_page.png "http://soccer.htb/")
 
 To systematically map the web application's structure, a directory brute-force attack is conducted using Gobuster. The `dir` mode is used with a comprehensive wordlist to discover hidden paths that are not linked from the main page.
 
@@ -87,11 +89,11 @@ gobuster dir --url http://soccer.htb/ --wordlist /usr/share/seclists/Discovery/D
 
 Accessing `http://soccer.htb/tiny/` presents a login portal for a third-party application called **Tiny File Manager**.
 
-![Tiny File Manager](assets/soccer/soccer_tiny_login.png "Tiny File Manager Login Portal")
+![Tiny File Manager](assets/soccer/soccer_tiny_login.png "http://soccer.htb/tiny/")
 
 ---
 
-## 3. Initial Foothold
+## Initial Foothold
 
 The discovery of a third-party application is a critical turning point. Third-party software often suffers from known vulnerabilities, misconfigurations, or the use of default credentials.
 
@@ -106,7 +108,7 @@ Tiny File Manager is a web-based PHP file manager designed for simple file hosti
 
 Attempting to authenticate with `admin:admin@123` is successful. The application grants full administrative access, exposing the underlying web directory structure. 
 
-![Tiny File Manage](assets/soccer/soccer_tiny_dashboard.png "Administrative File Management Dashboard")
+![Tiny File Manage](assets/soccer/soccer_tiny_dashboard.png "http://soccer.htb/tiny/")
 
 Because the application is built on PHP and explicitly designed to upload and manage files, this functionality can be abused to upload a malicious PHP script (a webshell). If the web server is configured to execute `.php` files in the upload directory, this will lead directly to Remote Code Execution (RCE).
 
@@ -122,7 +124,7 @@ A simple, robust PHP webshell is crafted. This script takes an HTTP GET paramete
 
 The `shell.php` file is uploaded to the `/tiny/uploads/` directory via the web interface.
 
-![Tiny File Manager](assets/soccer/soccer_webshell_upload.png "Successful Webshell Upload")
+![Tiny File Manager](assets/soccer/soccer_webshell_upload.png "http://soccer.htb/tiny/uploads/")
 
 Execution is verified by sending a benign system command (e.g., `id`) to the webshell via `curl`. 
 
@@ -162,7 +164,7 @@ www-data@soccer:~/html/tiny/uploads$
 
 ---
 
-## 4. Lateral Movement: WebSocket SQL Injection
+## Lateral Movement: WebSocket SQL Injection
 
 Operating as `www-data` represents a low-privileged context. The next objective is lateral movement to a user account with higher privileges.
 
@@ -282,7 +284,7 @@ cat /home/player/user.txt
 
 ---
 
-## 5. Privilege Escalation
+## Privilege Escalation
 
 The final phase of the engagement focuses on escalating privileges from the standard `player` account to the administrative `root` account.
 
@@ -365,7 +367,7 @@ cat /root/root.txt
 
 ---
 
-## 6. Conclusion & Takeaways
+## Conclusion & Takeaways
 
 ### Vulnerability Remediation
 
