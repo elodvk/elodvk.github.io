@@ -33,6 +33,9 @@ nav = [
   { "Podcasts" = "podcasts/index.md" },
   { "Knowledge Base" = [
     { "Overview" = "writeups/index.md" },
+    { "Tools & C2" = [
+      { "Ligolo-ng (Advanced Pivoting)" = "writeups/tools/ligolo-ng.md" },
+    ]},
     { "Active Directory" = [
       { "Overview" = "writeups/active_directory/index.md" },
       { "Initial Attack Vectors" = [
