@@ -16,6 +16,8 @@
      and technique for the first time.
   7. Use tables to present structured data (Nmap results, credentials, etc.).
   8. Pair every major command with its output and, where possible, a screenshot.
+     Web browser screenshots MUST include the URL in the title to be automatically framed:
+     ![Alt text](assets/<machine>/image.png "http://URL/")
   9. CRITICAL: NEVER fabricate or generate technical data. All command outputs,
      scan results, credentials, hashes, IP addresses, hostnames, and version
      numbers MUST come directly from the user's actual engagement. Only use
@@ -111,7 +113,7 @@ gobuster dir --url http://YOURBOXNAME.htb/ --wordlist /usr/share/seclists/Discov
 
 <!-- Include a screenshot of the web application's landing page or login portal. -->
 
-<!-- ![Landing Page](assets/YOURBOXNAME/YOURBOXNAME_landing_page.png "Web Application Landing Page") -->
+<!-- ![Landing Page](assets/YOURBOXNAME/YOURBOXNAME_landing_page.png "http://YOURBOXNAME.htb/") -->
 
 ---
 

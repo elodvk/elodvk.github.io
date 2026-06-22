@@ -79,7 +79,7 @@ echo "10.129.173.194  nimbus.htb aws.nimbus.htb" | sudo tee -a /etc/hosts
 
 Visiting `http://nimbus.htb` reveals an internal job scheduler dashboard named **Nimbus**. The application explicitly states that Nimbus runs scheduled background jobs across a worker fleet using YAML configuration files.
 
-![Nimbus - Internal Job Scheduler](assets/nimbus/nimbus-job-scheduler.png "http://nimbus.htb")
+![Nimbus - Internal Job Scheduler](assets/nimbus/nimbus-job-scheduler.png "http://nimbus.htb/")
 
 The application's health check API endpoint at `/api/v1/health` leaks critical architectural information.
 
