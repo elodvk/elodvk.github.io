@@ -124,6 +124,18 @@ Ligolo-ng makes double pivoting exponentially easier than chaining proxychains.
 *   **Network A:** `10.10.10.0/24` (First pivot - Agent 1)
 *   **Network B:** `10.10.20.0/24` (Target deep inside the network)
 
+```mermaid
+graph LR
+    A[Attacker Proxy<br>ligolo] -- Native TCP --> B[Agent 1<br>10.10.10.5]
+    B -- Port 11601 Relay --> C[Agent 2<br>10.10.20.5]
+    C -- Native TCP --> D[Target B<br>10.10.20.x]
+    
+    style A fill:#1a1b26,stroke:#7aa2f7,color:#fff
+    style B fill:#1a1b26,stroke:#bb9af7,color:#fff
+    style C fill:#1a1b26,stroke:#f7768e,color:#fff
+    style D fill:#1a1b26,stroke:#9ece6a,color:#fff
+```
+
 ### Execution:
 
 1. Connect **Agent 1** and start the tunnel as detailed in Section 3. Add the route for Network A.

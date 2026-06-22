@@ -18,6 +18,21 @@ Unlike Proxychains, sshuttle does **not** rely on `LD_PRELOAD`. Instead, it uses
 4. It manipulates your local IP routing tables to intercept packets destined for the target subnets you specified.
 5. These packets are sent over the SSH connection to the Python script on the target, which injects them into the internal network.
 
+```mermaid
+sequenceDiagram
+    participant Attacker as Attacker (iptables)
+    participant sshuttle as sshuttle
+    participant Target as Target (Python Agent)
+    participant Internal as Internal Network
+    
+    Attacker->>sshuttle: Local Route to 10.10.10.0/24
+    sshuttle->>Target: Multiplexed TCP over SSH
+    Target->>Internal: Native TCP Connection
+    Internal-->>Target: Response
+    Target-->>sshuttle: Multiplexed TCP over SSH
+    sshuttle-->>Attacker: Decrypted Response
+```
+
 !!! IMPORTANT
     **Requirements:** The target machine **must** have a Python interpreter (`python2` or `python3`) installed, and you must have SSH access to the target.
 
@@ -30,6 +45,18 @@ The most common way to run `sshuttle` is by providing the remote user/host and t
 ```bash
 # Route the 10.10.10.0/24 and 10.10.20.0/24 subnets through the target
 sshuttle -r user@10.10.5.5 10.10.10.0/24 10.10.20.0/24
+```
+
+**Example Output:**
+```text
+client: Connected.
+client_loop: send disconnect: Broken pipe
+client: fatal: server died with error code 255
+# (If it fails, it usually prints the above)
+
+# Successful connection:
+client: Connected.
+# (It will just hang here, meaning the tunnel is active. You can now use another terminal to access the internal subnets)
 ```
 
 ### Auto-Routing (The `0/0` Trick)

