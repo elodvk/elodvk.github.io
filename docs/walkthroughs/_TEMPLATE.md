@@ -21,12 +21,16 @@
      numbers MUST come directly from the user's actual engagement. Only use
      data the user explicitly provides. If data is missing, leave a placeholder
      comment and ask the user.
-  10. Delete this instruction block before publishing.
+  10. The 'title' and 'description' frontmatter fields MUST be optimized for
+      SEO. Include high-value keywords (machine name, OS, key techniques,
+      CVEs) naturally. The description should be 150-160 characters and read
+      as a compelling search result snippet.
+  11. Delete this instruction block before publishing.
 =============================================================================
 -->
 ---
-title: 'HTB YOURBOXNAME Walkthrough'
-description: 'A comprehensive, step-by-step walkthrough for the Hack The Box machine YOURBOXNAME.'
+title: 'HTB YOURBOXNAME Walkthrough' # SEO: Include machine name, "HTB", and "Walkthrough" in the title
+description: 'A comprehensive, step-by-step walkthrough for the Hack The Box machine YOURBOXNAME.' # SEO: 150-160 chars, include key techniques, CVEs, and OS for search visibility
 date: YYYY-MM-DD
 difficulty: DIFFICULTY
 os: YOUROS
