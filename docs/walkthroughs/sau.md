@@ -127,7 +127,7 @@ The scan reveals two active services:
 
 Powered by request-baskets | Version: 1.2.1
 
-![Request Baskets](image.png "http://10.129.229.26:55555/web")
+![Request Baskets](assets/sau/sau_request_baskets.png "http://10.129.229.26:55555/web")
 
 
 ```shell

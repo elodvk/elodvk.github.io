@@ -73,7 +73,7 @@ echo "10.129.174.33  soccer.htb" | sudo tee -a /etc/hosts
 
 Navigating to `http://soccer.htb/` reveals a static landing page for a fictional "HTB Football Club." Extensive manual interaction reveals that none of the links on the page are functional, suggesting the main application may be hosted elsewhere or hidden within a subdirectory.
 
-![Soccer - Index](image-2.png "Static Landing Page at soccer.htb")
+![Soccer - Index](assets/soccer/soccer_landing_page.png "Static Landing Page at soccer.htb")
 
 To systematically map the web application's structure, a directory brute-force attack is conducted using Gobuster. The `dir` mode is used with a comprehensive wordlist to discover hidden paths that are not linked from the main page.
 
@@ -87,7 +87,7 @@ gobuster dir --url http://soccer.htb/ --wordlist /usr/share/seclists/Discovery/D
 
 Accessing `http://soccer.htb/tiny/` presents a login portal for a third-party application called **Tiny File Manager**.
 
-![Tiny File Manager](image-5.png "Tiny File Manager Login Portal")
+![Tiny File Manager](assets/soccer/soccer_tiny_login.png "Tiny File Manager Login Portal")
 
 ---
 
@@ -106,7 +106,7 @@ Tiny File Manager is a web-based PHP file manager designed for simple file hosti
 
 Attempting to authenticate with `admin:admin@123` is successful. The application grants full administrative access, exposing the underlying web directory structure. 
 
-![Tiny File Manage](image-6.png "Administrative File Management Dashboard")
+![Tiny File Manage](assets/soccer/soccer_tiny_dashboard.png "Administrative File Management Dashboard")
 
 Because the application is built on PHP and explicitly designed to upload and manage files, this functionality can be abused to upload a malicious PHP script (a webshell). If the web server is configured to execute `.php` files in the upload directory, this will lead directly to Remote Code Execution (RCE).
 
@@ -122,7 +122,7 @@ A simple, robust PHP webshell is crafted. This script takes an HTTP GET paramete
 
 The `shell.php` file is uploaded to the `/tiny/uploads/` directory via the web interface.
 
-![Tiny File Manager](image-10.png "Successful Webshell Upload")
+![Tiny File Manager](assets/soccer/soccer_webshell_upload.png "Successful Webshell Upload")
 
 Execution is verified by sending a benign system command (e.g., `id`) to the webshell via `curl`. 
 

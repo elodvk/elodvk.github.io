@@ -15,7 +15,7 @@ tags:
   - Medium
   - Windows
   - Walkthrough
-image: assets/querier/querier.png
+image: assets/querier/querier_banner.png
 ---
 
 
