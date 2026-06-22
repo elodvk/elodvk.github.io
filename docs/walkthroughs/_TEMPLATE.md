@@ -50,7 +50,7 @@ image: assets/YOURBOXNAME/YOURBOXNAME_banner.png
 
 # 🛡️ HTB YOURBOXNAME Walkthrough
 
-## 1. Machine Overview
+## Machine Overview
 
 <!-- Write a 2-4 sentence high-level summary of the entire attack chain: how the initial foothold was obtained, how lateral movement occurred (if applicable), and how root/Administrator was achieved. This paragraph should let the reader decide at a glance whether this box covers techniques relevant to them. -->
 
@@ -63,11 +63,11 @@ image: assets/YOURBOXNAME/YOURBOXNAME_banner.png
 
 ---
 
-## 2. Reconnaissance & Enumeration
+## Reconnaissance & Enumeration
 
 <!-- Open with a brief paragraph explaining the goal of this phase: to identify all exposed services, understand the technology stack, and pinpoint potential entry vectors. -->
 
-### 2.1 Port Scanning
+### Port Scanning
 
 <!-- Explain the Nmap flags used and why (e.g., -sC for default scripts, -sV for version detection, -T4 for speed). -->
 
@@ -91,7 +91,7 @@ xx/tcp   open  http            nginx x.x
 | **xx/tcp** | Open | SSH | OpenSSH x.x | Standard secure shell access. |
 | **xx/tcp** | Open | HTTP | nginx/Apache x.x | Web server hosting the primary application. |
 
-### 2.2 Service Identification & Web Footprinting
+### Service Identification & Web Footprinting
 
 <!-- For each notable service discovered above, explain what was found upon manual interaction. If the HTTP server redirects to a hostname, document the /etc/hosts update. If SMB shares are accessible, list them. -->
 
@@ -115,15 +115,15 @@ gobuster dir --url http://YOURBOXNAME.htb/ --wordlist /usr/share/seclists/Discov
 
 ---
 
-## 3. Initial Foothold
+## Initial Foothold
 
 <!-- Open with a brief paragraph summarizing how the reconnaissance findings led to identifying the initial attack vector. Explain why this particular service or application was targeted. -->
 
-### 3.1 The Vulnerability
+### The Vulnerability
 
 <!-- Provide the name and classification of the vulnerability (e.g., CVE-YYYY-XXXXX, Default Credentials, Insecure File Upload, SQL Injection). Explain why the vulnerability exists and what makes it exploitable in this context. Link to external references or advisories where applicable. -->
 
-### 3.2 Exploitation
+### Exploitation
 
 <!-- Walk through the exact exploitation steps. Show every command, payload, or script used. Explain what each command does and why it is necessary. Use titled code blocks. -->
 
@@ -139,7 +139,7 @@ gobuster dir --url http://YOURBOXNAME.htb/ --wordlist /usr/share/seclists/Discov
 
 <!-- ![Exploitation Success](assets/YOURBOXNAME/YOURBOXNAME_exploit_success.png "Confirmed Remote Code Execution") -->
 
-### 3.3 Reverse Shell & Stabilization
+### Reverse Shell & Stabilization
 
 <!-- Document how the initial access was upgraded to a stable, interactive reverse shell. Show the listener setup, the payload, and the connection confirmation. -->
 
@@ -153,7 +153,7 @@ sudo nc -lvnp 443
 
 <!-- Recommend shell stabilization techniques (Python PTY, stty raw -echo, rlwrap) and explain why they are important for reliability. -->
 
-### 3.4 User Flag
+### User Flag
 
 <!-- Document the exact command used to retrieve the user flag. If lateral movement to a different user is required before obtaining the flag, document that process in a dedicated subsection before this one. -->
 
@@ -163,11 +163,11 @@ cat /home/USERNAME/user.txt
 
 ---
 
-## 4. Privilege Escalation
+## Privilege Escalation
 
 <!-- Open with a brief paragraph explaining the objective: escalating from the current user context to root or Administrator. -->
 
-### 4.1 Enumeration for PrivEsc
+### Enumeration for PrivEsc
 
 <!-- Document the enumeration methodology used to identify privilege escalation vectors. Mention specific tools (LinPEAS, WinPEAS, sudo -l, find / -perm -4000, etc.) and explain what each one checks for. -->
 
@@ -179,11 +179,11 @@ find / -perm -4000 -type f 2>/dev/null
 
 <!-- Summarize the key findings that point toward an exploitable misconfiguration or vulnerability. -->
 
-### 4.2 The Misconfiguration
+### The Misconfiguration
 
 <!-- Clearly identify and explain the vulnerability or misconfiguration that enables privilege escalation. Examples: writable cron jobs, SUID binaries, kernel exploits, misconfigured sudo/doas rules, token impersonation, weak service permissions. Explain WHY this is dangerous, not just that it exists. -->
 
-### 4.3 Exploitation
+### Exploitation
 
 <!-- Walk through the exact privilege escalation steps. Show every command and its output. Explain the logic behind each step. -->
 
@@ -196,7 +196,7 @@ whoami
 root
 ```
 
-### 4.4 Root Flag
+### Root Flag
 
 <!-- Document the exact command used to retrieve the root flag. -->
 
@@ -206,16 +206,16 @@ cat /root/root.txt
 
 ---
 
-## 5. Conclusion & Takeaways
+## Conclusion & Takeaways
 
-### 5.1 Vulnerability Remediation
+### Vulnerability Remediation
 
 <!-- For each vulnerability exploited during the engagement, provide a concrete, actionable remediation recommendation. Structure these as a numbered list. Explain not just what to fix, but why the fix works. -->
 
 1. **Vulnerability Name:** Explanation of how to remediate the issue and why the fix is effective.
 2. **Vulnerability Name:** Explanation of how to remediate the issue and why the fix is effective.
 
-### 5.2 Key Lessons
+### Key Lessons
 
 <!-- Summarize the most important takeaways from this engagement. Focus on transferable skills, novel techniques, or commonly overlooked attack surfaces. These should be written as concise, standalone insights. -->
 

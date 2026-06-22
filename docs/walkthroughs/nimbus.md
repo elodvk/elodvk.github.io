@@ -25,7 +25,7 @@ image: assets/nimbus/nimbus_banner.png
 
 # 🛡️ HTB Nimbus Walkthrough
 
-## 1. Machine Overview
+## Machine Overview
 
 **Attack Chain Summary:** The engagement begins with identifying a Server-Side Request Forgery (SSRF) vulnerability in an internal job scheduler's preview endpoint. By bypassing the internal IP filter using decimal integer conversion, temporary AWS STS credentials for an IAM role are extracted. These credentials allow interaction with the internal mock AWS environment, specifically an SQS queue used for job scheduling. Submitting a malicious JSON job containing a Python reverse shell payload directly to the queue results in remote code execution on the backend worker container.
 
@@ -38,11 +38,11 @@ image: assets/nimbus/nimbus_banner.png
 
 ---
 
-## 2. Reconnaissance & Enumeration
+## Reconnaissance & Enumeration
 
 The engagement starts with a standard Nmap scan to identify exposed services on the target, understand the technology stack, and pinpoint potential entry vectors.
 
-### 2.1 Port Scanning
+### Port Scanning
 
 A comprehensive Nmap scan is executed to identify active TCP ports. The `-sC` flag runs default Nmap scripts to gather supplementary information, while `-sV` probes open ports to determine exact service versions. The `-T4` flag optimizes the scan speed.
 
@@ -69,7 +69,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 | **22/tcp** | Open | SSH | OpenSSH 9.6p1 | Standard secure shell access. |
 | **80/tcp** | Open | HTTP | nginx 1.24.0 | Web server immediately redirecting to `http://nimbus.htb/`. |
 
-### 2.2 Service Identification & Web Footprinting
+### Service Identification & Web Footprinting
 
 Navigating to the web server's IP address results in a redirect to `http://nimbus.htb/`. The local DNS must be updated to resolve this hostname.
 
@@ -112,17 +112,17 @@ The response indicates that the backend relies on an internal mock AWS environme
 
 ---
 
-## 3. Initial Foothold
+## Initial Foothold
 
 The discovery of the internal job scheduler and the backend AWS dependency immediately points to Server-Side Request Forgery (SSRF) as a potential attack vector to pivot into the internal cloud environment.
 
-### 3.1 The Vulnerability
+### The Vulnerability
 
 The application features a `/jobs/preview` endpoint that accepts a `url` parameter, fetches its content, and parses the YAML. This functionality is vulnerable to SSRF. While a blacklist filter blocks standard internal IP addresses (such as the AWS metadata IP `169.254.169.254`), it fails to account for alternative IP representations, allowing an attacker to query the metadata service and leak IAM credentials.
 
 Furthermore, the backend SQS (Simple Queue Service) handler blindly trusts messages submitted to the queue. By executing jobs via `python3 -c` using unsanitized JSON data, it allows arbitrary code execution.
 
-### 3.2 Exploitation
+### Exploitation
 
 First, the outbound request behavior is verified by pointing the application to an external attacker-controlled server.
 
@@ -169,7 +169,7 @@ aws --endpoint-url http://aws.nimbus.htb sqs list-queues --output text
 QUEUEURLS	http://floci:4566/847219365028/nimbus-jobs
 ```
 
-### 3.3 Reverse Shell & Stabilization
+### Reverse Shell & Stabilization
 
 Since the application processes jobs submitted to this queue by executing the provided `script` parameter using `python3 -c`, arbitrary code execution is possible. A malicious JSON payload is submitted directly to the SQS queue, instructing the worker to spawn a reverse shell.
 
@@ -201,7 +201,7 @@ $ hostname
 23c094f7b01b
 ```
 
-### 3.4 User Flag
+### User Flag
 
 With a stable foothold in the worker container, the user flag is retrieved.
 
@@ -211,35 +211,35 @@ cat /home/worker/user.txt
 
 ---
 
-## 4. Privilege Escalation
+## Privilege Escalation
 
-### 4.1 Enumeration for PrivEsc
+### Enumeration for PrivEsc
 
 <!-- TODO: Missing data. Please provide the enumeration steps and findings that led to identifying the privilege escalation vector for Nimbus. -->
 
-### 4.2 The Misconfiguration
+### The Misconfiguration
 
 <!-- TODO: Missing data. Please explain the underlying misconfiguration or vulnerability that allows privilege escalation. -->
 
-### 4.3 Exploitation
+### Exploitation
 
 <!-- TODO: Missing data. Please provide the exact commands and output used to escalate to root. -->
 
-### 4.4 Root Flag
+### Root Flag
 
 <!-- TODO: Missing data. Please provide the command and context for capturing the root flag. -->
 
 ---
 
-## 5. Conclusion & Takeaways
+## Conclusion & Takeaways
 
-### 5.1 Vulnerability Remediation
+### Vulnerability Remediation
 
 1. **SSRF and Weak IP Filtering:** The application relies on string-based blacklisting to block internal requests. Remediation requires implementing a strict allow-list for external domains or utilizing dedicated SSRF-protection libraries that resolve the hostname and validate the target IP *before* initiating the request, actively blocking local and private IP ranges regardless of their format (decimal, octal, hex).
 2. **Overly Permissive IAM Credentials:** The AWS credentials assigned to the `nimbus-web-role` possess excessive permissions, allowing an attacker to blindly inject arbitrary messages directly into the internal queue. Apply the Principle of Least Privilege (PoLP) by restricting the role's SQS actions strictly to what the web application requires.
 3. **Insecure Deserialization / Unsandboxed Execution:** The backend worker processes SQS jobs by passing unsanitized JSON data into a direct Python `exec()` or `python3 -c` invocation. Jobs should be executed within strictly sandboxed environments, and executable code should never be accepted as raw string input from user-controllable queues.
 
-### 5.2 Key Lessons
+### Key Lessons
 
 *   **IP Obfuscation Bypasses Filters:** Security controls that rely on naive string matching can easily be bypassed. Attackers frequently convert IPs to decimal integer (`2852039166`), octal, or hex formats to bypass basic WAF and application-level filters.
 *   **Cloud Architecture Increases Attack Surface:** Modern applications increasingly rely on loosely coupled components like message queues (SQS). If an attacker can compromise a single service (like obtaining STS credentials via SSRF), they can often bypass the front-end web application entirely and directly attack the backend infrastructure via those internal APIs.
