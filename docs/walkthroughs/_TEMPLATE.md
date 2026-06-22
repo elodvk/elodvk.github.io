@@ -21,11 +21,15 @@ image: assets/[MachineName]/[MachineName]_banner.png
 # 🛡️ HTB [Machine Name] Walkthrough
 
 ## 1. Machine Overview
-*   **Machine Name:** [Name]
-*   **Operating System:** [OS]
-*   **Difficulty:** [Difficulty]
-*   **IP Address:** 10.129.x.x
-*   **Attack Chain Summary:** [1-2 sentence high-level view of how you broke in and escalated privileges.]
+
+**Attack Chain Summary:** [1-2 sentence high-level view of how you broke in and escalated privileges.]
+
+| Attribute | Details |
+| :--- | :--- |
+| **Machine Name** | [Name] |
+| **Operating System** | [OS] |
+| **Difficulty** | [Difficulty] |
+| **IP Address** | 10.129.x.x |
 
 ---
 

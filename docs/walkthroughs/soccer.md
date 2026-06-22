@@ -22,11 +22,14 @@ description: "A highly detailed, professional walkthrough for the Hack The Box m
 
 ## 1. Machine Overview
 
-*   **Machine Name:** Soccer
-*   **Operating System:** Linux
-*   **Difficulty:** Easy
-*   **IP Address:** 10.129.174.33
-*   **Attack Chain Summary:** The engagement begins with discovering a Tiny File Manager instance secured by default credentials. Administrative access allows the upload of a PHP reverse shell, securing initial access as `www-data`. Enumeration reveals a hidden virtual host that proxies a WebSocket-based ticket validation service. A custom Python middleware script is utilized to bridge `sqlmap` to the WebSocket, exploiting a Blind SQL Injection vulnerability to leak the `player` user's SSH credentials. Finally, privilege escalation is achieved by exploiting a `doas` misconfiguration that permits the unprivileged user to execute `dstat` as root with a malicious custom plugin.
+**Attack Chain Summary:** The engagement begins with discovering a Tiny File Manager instance secured by default credentials. Administrative access allows the upload of a PHP reverse shell, securing initial access as `www-data`. Enumeration reveals a hidden virtual host that proxies a WebSocket-based ticket validation service. A custom Python middleware script is utilized to bridge `sqlmap` to the WebSocket, exploiting a Blind SQL Injection vulnerability to leak the `player` user's SSH credentials. Finally, privilege escalation is achieved by exploiting a `doas` misconfiguration that permits the unprivileged user to execute `dstat` as root with a malicious custom plugin.
+
+| Attribute | Details |
+| :--- | :--- |
+| **Machine Name** | Soccer |
+| **Operating System** | Linux |
+| **Difficulty** | Easy |
+| **IP Address** | 10.129.174.33 |
 
 ---
 
