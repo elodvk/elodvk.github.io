@@ -15,7 +15,7 @@ tags:
   - Very Easy
   - Windows
   - Walkthrough
-image: assets/archetype/archetype_banner.png
+image: assets/Archetype/Archetype_banner.png
 ---
 
 # 🛡️ HTB Archetype Walkthrough
