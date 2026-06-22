@@ -66,7 +66,16 @@ image: assets/YOURBOXNAME/YOURBOXNAME_banner.png
 nmap -sC -sV -T4 -oA reports/YOURBOXNAME 10.129.x.x
 ```
 
-<!-- Present the results in a table for clarity. -->
+<!-- Paste the raw Nmap output below. Excessive content can be trimmed with ...snip... -->
+
+```text title="Nmap Output"
+PORT     STATE SERVICE         VERSION
+xx/tcp   open  ssh             OpenSSH x.x
+xx/tcp   open  http            nginx x.x
+...snip...
+```
+
+<!-- Summarize the most notable ports in a table for quick reference. -->
 
 | Port | State | Service | Version | Notes |
 | :--- | :--- | :--- | :--- | :--- |
