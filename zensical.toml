@@ -40,7 +40,8 @@ nav = [
       { "SSH Tunneling & Port Forwarding" = "writeups/tools/ssh.md" },
     ]},
     { "Footprinting" = [
-      { "Email Footprinting" = "writeups/footprinting/email.md" },
+      { "SMTP Footprinting" = "writeups/footprinting/smtp.md" },
+      { "IMAP & POP3 Footprinting" = "writeups/footprinting/imap-pop3.md" },
     ]},
     { "Active Directory" = [
       { "Overview" = "writeups/active_directory/index.md" },
