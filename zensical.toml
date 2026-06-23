@@ -38,6 +38,7 @@ nav = [
       { "Proxychains" = "writeups/tools/proxychains.md" },
       { "sshuttle" = "writeups/tools/sshuttle.md" },
       { "SSH Tunneling & Port Forwarding" = "writeups/tools/ssh.md" },
+      { "smtp-user-enum" = "writeups/tools/smtp-user-enum.md" },
     ]},
     { "Active Directory" = [
       { "Overview" = "writeups/active_directory/index.md" },
