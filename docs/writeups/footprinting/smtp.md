@@ -60,20 +60,85 @@ Once connected, you can manually issue SMTP commands to verify if a user exists.
 Instead of manually typing commands, penetration testers rely on automated tools to scan massive wordlists against the target.
 
 ### smtp-user-enum
-`smtp-user-enum` is a classic, dedicated script for discovering valid accounts by iterating through a wordlist using the aforementioned commands.
+`smtp-user-enum` is a classic command-line tool used by penetration testers and red teamers to identify valid OS-level user accounts on target mail servers. It operates by interacting with the SMTP service (typically port 25) and analyzing the server's responses to specific SMTP commands.
 
-**Basic Syntax:**
-```bash
-smtp-user-enum -M <METHOD> -U <wordlist> -t <target>
+If a server is misconfigured or lacks proper hardening, an attacker can use this tool to rapidly build a list of valid usernames, which can then be used in subsequent password spraying or brute-force attacks.
+
+#### How It Works
+
+The tool connects to the SMTP port and systematically feeds a list of potential usernames to the server using one of three SMTP commands: `VRFY`, `EXPN`, or `RCPT TO`.
+
+Depending on the server's configuration, it will return different status codes (e.g., `250 OK`, `252 Cannot VRFY user`, or `550 User unknown`). `smtp-user-enum` parses these responses to determine if the username exists.
+
+```mermaid
+graph LR
+    A[Attacker<br>smtp-user-enum] -- VRFY root --> B[Target SMTP Server]
+    B -- 250 2.1.5 root@localhost --> A
+    
+    A -- VRFY fakeuser --> B
+    B -- 550 5.1.1 User unknown --> A
+    
+    style A fill:#1a1b26,stroke:#7aa2f7,color:#fff
+    style B fill:#1a1b26,stroke:#f7768e,color:#fff
 ```
 
-**Practical Example (Using RCPT TO):**
+#### Basic Usage & Syntax
+
+The basic syntax requires specifying a method, a username (or list of usernames), and a target host.
+
 ```bash
-smtp-user-enum -M RCPT -U /usr/share/wordlists/seclists/Usernames/top-usernames-shortlist.txt -t 10.10.10.25 -m 10
+smtp-user-enum [options] (-u username | -U file-of-usernames) (-t host | -T file-of-targets)
 ```
-- `-M RCPT`: Uses the `RCPT TO` method (bypasses disabled `VRFY`).
-- `-U`: Specifies the wordlist.
-- `-m 10`: Runs 10 concurrent threads for speed.
+
+**Key Options**
+
+| Flag | Description | Example |
+| :--- | :--- | :--- |
+| `-M` | Method to use (`VRFY`, `EXPN`, `RCPT`) | `-M RCPT` |
+| `-u` | Single username to test | `-u admin` |
+| `-U` | File containing a list of usernames | `-U users.txt` |
+| `-t` | Single target IP or hostname | `-t 10.10.10.25` |
+| `-T` | File containing a list of target IPs | `-T targets.txt` |
+| `-m` | Maximum concurrent processes (Default: 5) | `-m 15` |
+| `-D` | Append a domain to usernames (e.g., user@domain) | `-D example.com` |
+| `-p` | Specify a custom port (Default: 25) | `-p 2525` |
+| `-w` | Wait time in seconds per query | `-w 2` |
+
+#### Practical Examples
+
+**Example 1: Verifying a Single User (VRFY)**
+If you just want to check if a default account like `root` or `admin` exists:
+
+```bash
+smtp-user-enum -M VRFY -u root -t 10.10.10.50
+```
+
+**Expected Output:**
+```text
+Starting smtp-user-enum v1.2 ( http://pentestmonkey.net/tools/smtp-user-enum )
+
+ ----------------------------------------------------------
+|                   Scan Information                       |
+ ----------------------------------------------------------
+...
+10.10.10.50: root exists
+...
+```
+
+**Example 2: Bulk Enumeration with a Wordlist (RCPT TO)**
+This is the most common real-world scenario. You have a wordlist (`names.txt`) and want to test it against a target, bypassing disabled `VRFY` commands by using `RCPT TO`. We also increase the threads to `10` for speed.
+
+```bash
+smtp-user-enum -M RCPT -U names.txt -t 10.10.10.50 -m 10
+```
+
+**Example 3: Guessing Full Email Addresses**
+Sometimes a server requires the full email address format rather than just the OS username. Use the `-D` flag to automatically append the domain.
+
+```bash
+smtp-user-enum -M VRFY -U names.txt -t 10.10.10.50 -D megacorp.local
+```
+*(This will test `admin@megacorp.local`, `root@megacorp.local`, etc.)*
 
 ### Nmap Scripting Engine (NSE)
 Nmap provides excellent built-in scripts for both version detection and enumeration.
