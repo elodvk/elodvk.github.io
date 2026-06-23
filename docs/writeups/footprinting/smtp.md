@@ -104,6 +104,9 @@ smtp-user-enum [options] (-u username | -U file-of-usernames) (-t host | -T file
 | `-p` | Specify a custom port (Default: 25) | `-p 2525` |
 | `-w` | Wait time in seconds per query | `-w 2` |
 
+> [!TIP]
+> **Why the `-w` flag is critical:** Many modern SMTP servers employ rate limiting or tarpitting (deliberately slowing down responses) to thwart brute-force attacks. If you don't use the `-w` flag to introduce a wait time between queries, the server may drop your connection, permanently ban your IP address (via Fail2Ban), or simply drop your requests. A value like `-w 2` (wait 2 seconds) is highly recommended for stable and stealthy enumeration.
+
 #### Practical Examples
 
 **Example 1: Verifying a Single User (VRFY)**
