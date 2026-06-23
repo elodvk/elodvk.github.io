@@ -42,6 +42,7 @@ nav = [
     { "Footprinting" = [
       { "SMTP Footprinting" = "writeups/footprinting/smtp.md" },
       { "IMAP & POP3 Footprinting" = "writeups/footprinting/imap-pop3.md" },
+      { "SNMP Footprinting" = "writeups/footprinting/snmp.md" },
     ]},
     { "Active Directory" = [
       { "Overview" = "writeups/active_directory/index.md" },
