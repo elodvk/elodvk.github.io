@@ -65,6 +65,25 @@ openssl s_client -connect 10.10.10.25:995 -crlf
 ```
 *Once connected via `openssl`, you can issue the exact same `CAPA` or `a1 CAPABILITY` commands as you would in plaintext.*
 
+### Manual Login
+
+Once connected to the service (whether via `nc` or `openssl`), you can attempt to log in manually if you have credentials or want to test a default password.
+
+**POP3 Login Sequence:**
+```text
+USER admin
++OK
+PASS P@ssw0rd!
++OK Logged in.
+```
+
+**IMAP Login Sequence:**
+```text
+a1 LOGIN admin P@ssw0rd!
+a1 OK Logged in.
+```
+*(Note: In IMAP, every command must be prefixed with a unique alphanumeric tag, usually `a1`, `a2`, etc. The server responds using the same tag.)*
+
 ---
 
 ## 2. Automated Discovery (Nmap)
