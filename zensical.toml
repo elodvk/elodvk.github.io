@@ -82,6 +82,7 @@ nav = [
       { "SQL Injection" = [
         { "Theory & Exploitation" = [
           { "Overview" = "knowledge-base/web-attacks/sql-injection/index.md" },
+          { "Subverting Logic & Comments" = "knowledge-base/web-attacks/sql-injection/subverting-logic.md" },
           { "Identifying Vulnerabilities" = "knowledge-base/web-attacks/sql-injection/identifying-vulnerabilities.md" },
           { "In-Band SQLi" = "knowledge-base/web-attacks/sql-injection/in-band.md" },
           { "Blind SQLi" = "knowledge-base/web-attacks/sql-injection/blind.md" },
