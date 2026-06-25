@@ -80,7 +80,16 @@ nav = [
         { "Practice" = "knowledge-base/web-attacks/file-upload-attacks/practice.md" },
       ]},
       { "SQL Injection" = [
-        { "The Complete Guide" = "knowledge-base/web-attacks/sql-injection/index.md" },
+        { "Theory & Exploitation" = [
+          { "Overview" = "knowledge-base/web-attacks/sql-injection/index.md" },
+          { "Identifying Vulnerabilities" = "knowledge-base/web-attacks/sql-injection/identifying-vulnerabilities.md" },
+          { "In-Band SQLi" = "knowledge-base/web-attacks/sql-injection/in-band.md" },
+          { "Blind SQLi" = "knowledge-base/web-attacks/sql-injection/blind.md" },
+          { "Out-of-Band SQLi" = "knowledge-base/web-attacks/sql-injection/out-of-band.md" },
+          { "Advanced Exploitation" = "knowledge-base/web-attacks/sql-injection/advanced-exploitation.md" },
+          { "WAF Bypassing" = "knowledge-base/web-attacks/sql-injection/waf-bypassing.md" },
+          { "Database Cheatsheet" = "knowledge-base/web-attacks/sql-injection/cheatsheet.md" },
+        ]},
         { "SQLMap" = [
           { "Overview" = "knowledge-base/web-attacks/sql-injection/sqlmap/index.md" },
           { "Getting Started" = "knowledge-base/web-attacks/sql-injection/sqlmap/getting-started.md" },
