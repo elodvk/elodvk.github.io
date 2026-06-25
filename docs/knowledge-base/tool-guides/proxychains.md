@@ -1,7 +1,10 @@
 ---
 title: 'Proxychains'
 description: 'A deep dive into Proxychains, its configuration modes, and tunneling usage.'
-tags: ['pivoting', 'proxychains', 'tunneling']
+tags:
+  - pivoting
+  - proxychains
+  - tunneling
 ---
 
 # ⛓️ Proxychains: The Classic Proxifier

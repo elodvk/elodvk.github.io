@@ -178,17 +178,22 @@ cat /etc/nginx/sites-enabled/soc-player.htb
 
 ```text title="soc-player.htb config"
 server {
-    listen 80;
-    server_name soc-player.soccer.htb;
+	listen 80;
+	listen [::]:80;
 
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
+	server_name soc-player.soccer.htb;
+
+	root /root/app/views;
+
+	location / {
+		proxy_pass http://localhost:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
+
 }
 ```
 
@@ -201,6 +206,8 @@ echo "10.129.174.33  soc-player.soccer.htb" | sudo tee -a /etc/hosts
 ```
 
 Navigating to `http://soc-player.soccer.htb/` reveals a sophisticated ticket validation system requiring user registration. After registering a test account and authenticating, the application provides a feature to input and check ticket IDs.
+
+![Soccer - Check](image.png "http://soc-player.soccer.htb/check")
 
 ### The Vulnerability: WebSocket Blind SQL Injection
 
@@ -323,6 +330,7 @@ drwxrwxr-x 2 root player 4096 Jun 22 10:00 /usr/local/share/dstat/
 While the directory is owned by `root`, the `player` group has been explicitly granted write access (`drwxrwxr-x`). 
 
 This represents a fatal logical flaw:
+
 1. The `player` user can write arbitrary Python files to the plugin directory.
 2. The `player` user can force `dstat` to load and execute those Python files.
 3. Because `dstat` is being executed via `doas`, the binary—and therefore the malicious Python plugin—is executed entirely within the context of the `root` user.

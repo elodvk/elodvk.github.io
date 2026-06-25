@@ -1,7 +1,11 @@
 ---
 title: 'Ligolo-ng (Advanced Pivoting)'
 description: 'A comprehensive guide to Ligolo-ng for advanced network pivoting, double pivoting, and reverse shell relays.'
-tags: ['pivoting', 'ligolo-ng', 'networking', 'tradecraft']
+tags:
+  - pivoting
+  - ligolo-ng
+  - networking
+  - tradecraft
 ---
 
 # 🕸️ Ligolo-ng: Advanced Network Pivoting

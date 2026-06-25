@@ -1,7 +1,13 @@
 ---
-title: 'SMTP Footprinting & Enumeration'
+title: 'SMTP Mail Servers'
 description: 'A comprehensive guide on SMTP footprinting, banner grabbing, and user enumeration using tools like netcat, nmap, metasploit, swaks, and smtp-user-enum.'
-tags: ['enumeration', 'smtp', 'footprinting', 'reconnaissance', 'nmap', 'swaks']
+tags:
+  - enumeration
+  - smtp
+  - footprinting
+  - reconnaissance
+  - nmap
+  - swaks
 ---
 
 # 📧 SMTP Footprinting & Enumeration
@@ -104,8 +110,8 @@ smtp-user-enum [options] (-u username | -U file-of-usernames) (-t host | -T file
 | `-p` | Specify a custom port (Default: 25) | `-p 2525` |
 | `-w` | Wait time in seconds per query | `-w 2` |
 
-> [!TIP]
-> **Why the `-w` flag is critical:** Many modern SMTP servers employ rate limiting or tarpitting (deliberately slowing down responses) to thwart brute-force attacks. If you don't use the `-w` flag to introduce a wait time between queries, the server may drop your connection, permanently ban your IP address (via Fail2Ban), or simply drop your requests. A value like `-w 2` (wait 2 seconds) is highly recommended for stable and stealthy enumeration.
+!!! tip
+      Many modern SMTP servers employ rate limiting or tarpitting (deliberately slowing down responses) to thwart brute-force attacks. If you don't use the `-w` flag to introduce a wait time between queries, the server may drop your connection, permanently ban your IP address (via Fail2Ban), or simply drop your requests. A value like `-w 2` (wait 2 seconds) is highly recommended for stable and stealthy enumeration.
 
 #### Practical Examples
 
@@ -208,7 +214,9 @@ Swaks allows you to script complex mail delivery scenarios and can be configured
 3. **NDR Bouncing:** Modern Exchange environments may return a generic `250 OK` for all `RCPT TO` requests during the initial transaction, only to drop or bounce the email later (Non-Delivery Report), defeating real-time enumeration.
 
 ### Defensive Mitigations
+
 If you are defending a network, implement the following:
+
 - **Disable VRFY and EXPN:** In Postfix, ensure `disable_vrfy_command = yes` is set in `main.cf`.
 - **Implement Rate Limiting:** Prevent rapid, sequential connections from a single IP.
 - **Tarpitting:** Introduce intentional delays for excessive requests or invalid recipients to ruin the feasibility of brute-force enumeration.

@@ -1,7 +1,11 @@
 ---
 title: 'sshuttle'
 description: 'A poor man''s VPN using sshuttle for transparent proxying.'
-tags: ['pivoting', 'sshuttle', 'vpn', 'tunneling']
+tags:
+  - pivoting
+  - sshuttle
+  - vpn
+  - tunneling
 ---
 
 # 🚀 sshuttle: The Poor Man's VPN

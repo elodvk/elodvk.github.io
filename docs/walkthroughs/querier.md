@@ -120,6 +120,7 @@ conn.Open
 ```
 
 The script leaks the following credentials:
+
 * **Username:** `reporting`
 * **Password:** `PcwTWTHRwryjc$c6`
 

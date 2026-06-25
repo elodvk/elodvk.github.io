@@ -1,7 +1,14 @@
 ---
-title: 'IMAP & POP3 Footprinting'
+title: 'IMAP & POP3 Mail Retrieval'
 description: 'A comprehensive guide on footprinting and enumerating IMAP and POP3 email services using tools like netcat, nmap, metasploit, openssl, and hydra.'
-tags: ['enumeration', 'imap', 'pop3', 'footprinting', 'reconnaissance', 'nmap', 'hydra']
+tags:
+  - enumeration
+  - imap
+  - pop3
+  - footprinting
+  - reconnaissance
+  - nmap
+  - hydra
 ---
 
 # 📧 IMAP & POP3 Footprinting
@@ -101,6 +108,7 @@ Once logged in, you can interact with the server using standard protocol command
 | `1 SELECT INBOX` | Selects a mailbox so that messages in the mailbox can be accessed. |
 | `1 UNSELECT INBOX` | Exits the selected mailbox. |
 | `1 FETCH <ID> all` | Retrieves data associated with a message in the mailbox. |
+| `1 FETCH <ID> BODY[TEXT]` | Retrieves only the plain text body of the message. |
 | `1 CLOSE` | Removes all messages with the Deleted flag set. |
 | `1 LOGOUT` | Closes the connection with the IMAP server. |
 
@@ -117,6 +125,9 @@ Once logged in, you can interact with the server using standard protocol command
 | `CAPA` | Requests the server to display the server capabilities. |
 | `RSET` | Requests the server to reset the transmitted information. |
 | `QUIT` | Closes the connection with the POP3 server. |
+
+!!! note
+    **Note for POP3:** `RETR id` returns the full email (headers + body). POP3 does not have a dedicated command to fetch only the body, but you can use `TOP id <n>` to retrieve the headers and the first `<n>` lines of the body.
 
 ---
 
@@ -179,11 +190,14 @@ run
 ## 4. Limitations & Defensive Countermeasures
 
 ### Attacker Limitations
+
 1. **Rate Limiting / Fail2Ban:** Aggressive scanning or brute-forcing will almost certainly trigger intrusion prevention systems or account lockouts, resulting in an IP ban or a denial of service for the legitimate user.
 2. **Multi-Factor Authentication (MFA):** Even if valid credentials are discovered via brute-force, modern enterprise environments typically enforce MFA, rendering the credentials useless for IMAP/POP3 access unless legacy authentication is explicitly allowed.
 
 ### Defensive Mitigations
+
 If you are defending a network, implement the following:
+
 - **Disable Legacy Protocols:** If possible, disable IMAP and POP3 entirely in favor of modern API-based access (e.g., Microsoft Graph API) that natively supports MFA and conditional access.
 - **Implement Rate Limiting & Account Lockouts:** Prevent rapid, sequential login attempts from a single IP to defeat brute-forcing.
 - **Require Strong Authentication & Encryption:** Enforce IMAPS (993) and POP3S (995). Disable plaintext authentication mechanisms (`AUTH PLAIN`) over non-TLS connections to prevent credential sniffing.

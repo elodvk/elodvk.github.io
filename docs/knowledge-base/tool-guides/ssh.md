@@ -1,7 +1,11 @@
 ---
 title: 'SSH Tunneling & Port Forwarding'
 description: 'Mastering Local, Remote, and Dynamic Port Forwarding using native SSH.'
-tags: ['pivoting', 'ssh', 'tunneling', 'port-forwarding']
+tags:
+  - pivoting
+  - ssh
+  - tunneling
+  - port-forwarding
 ---
 
 # 🔐 SSH Tunneling & Port Forwarding

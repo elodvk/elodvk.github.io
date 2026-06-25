@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Mon, 22 Jun 2026 18:19:13 -0000</lastBuildDate>
+<lastBuildDate>Thu, 25 Jun 2026 07:20:07 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>Windows 11 26H2: Everything You Need to Know — Features, AI Integration, Security, and the Great Architecture Split</title>
+<link>https://purplesec.org/blog/windows-11-26h2-complete-guide/</link>
+<description>A massively detailed guide to Windows 11 version 26H2 — the fall 2026 annual update. Covers the enablement package delivery model, AI-powered features like Copilot Vision and Click to Do, the 26H1 vs 26H2 architecture split, security hardening with hotpatching, Smart App Control, and Pluton, enterprise migration strategies from Windows 10, and what it all means for IT professionals.</description>
+<pubDate>Tue, 23 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/windows-11-26h2-complete-guide/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Windows 11</category>
+<category>Microsoft</category>
+<category>26H2</category>
+<category>Copilot</category>
+<category>AI</category>
+</item>
 <item>
 <title>The Anatomy of a Botnet: History, Architecture, and the Botnet Economy</title>
 <link>https://purplesec.org/blog/botnets-history-and-mechanics/</link>

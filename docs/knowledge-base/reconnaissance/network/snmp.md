@@ -1,7 +1,14 @@
 ---
-title: 'SNMP Footprinting & Enumeration'
+title: 'SNMP Probing'
 description: 'A comprehensive guide on fingerprinting Simple Network Management Protocol (SNMP) services, discovering device information, and enumerating OIDs using tools like snmpwalk, nmap, snmpcheck, and Metasploit.'
-tags: ['snmp', 'footprinting', 'enumeration', 'reconnaissance', 'nmap', 'metasploit', 'snmpwalk']
+tags:
+  - snmp
+  - footprinting
+  - enumeration
+  - reconnaissance
+  - nmap
+  - metasploit
+  - snmpwalk
 ---
 
 # 📡 SNMP Footprinting & Enumeration
@@ -48,11 +55,90 @@ nmap -sU -p161 --script snmp-netstat,snmp-interfaces,snmp-processes <target>
 ```
 
 **Common NSE Scripts**:
+
 - `snmp-info` – identifies SNMP version and device type.
 - `snmp-brute` – tries a list of community strings.
 - `snmp-interfaces` – pulls interface details.
 - `snmp-netstat` – shows routing tables.
 - `snmp-processes` – attempts to list running processes (requires read‑write access).
+
+### snmpwalk
+
+`snmpwalk` is a classic Net‑SNMP utility that iteratively queries the SNMP agent for each OID under a given root. It is useful for dumping the entire MIB tree (or a subtree) to discover what information the device exposes.
+
+**Basic syntax**
+
+```bash
+snmpwalk -v2c -c public <target> .1
+```
+
+- `-v2c` – use SNMPv2c (most devices still accept it).
+- `-c public` – community string (replace with your own).
+- `<target>` – IP or hostname.
+- `.1` – start OID (root). You can limit to a specific branch, e.g. `.1.3.6.1.2.1.1` for system info.
+
+**Example output (truncated)**
+
+```
+iso.3.6.1.2.1.1.1.0 = STRING: "Linux myrouter 4.19.0 ..."
+iso.3.6.1.2.1.1.5.0 = STRING: "myrouter"
+iso.3.6.1.2.1.2.2.1.2.1 = STRING: "GigabitEthernet0/0"
+```
+
+You can pipe the output to `grep` to find interesting OIDs, e.g. `snmpwalk -v2c -c public 10.10.10.25 .1.3.6.1.2.1.1 | grep sysDescr`.
+
+---
+
+### onesixtyone
+
+`onesixtyone` is a fast UDP scanner optimized for SNMP community‑string brute‑forcing. It sends a minimal SNMP request to each target and checks the response.
+
+**Typical usage**
+
+```bash
+onesixtyone -c communities.txt -i hosts.txt
+```
+
+- `-c communities.txt` – file with a list of community strings (one per line).
+- `-i hosts.txt` – file with target IPs or CIDR ranges.
+
+**Example output**
+
+```
+10.10.10.25 public
+10.10.10.30 private
+```
+
+The tool reports only successful community matches, making it easy to feed results into later enumeration tools like `snmpwalk`.
+
+---
+
+### braa
+
+`braa` (BRute snmp Attack) is a newer SNMP brute‑force and enumeration tool written in Go. It not only tries community strings but can also enumerate OIDs once a valid community is found.
+
+**Usage**
+
+```bash
+braa -c communities.txt -t 10.10.10.25
+```
+
+- `-c` – community list.
+- `-t` – single target (you can also use `-i` for a file).
+
+**What it does**
+
+1. Attempts each community; on success it prints the community.
+2. Optionally runs an OID walk (`-w`) to dump the MIB tree.
+3. Supports SNMPv1/v2c and can output JSON for further processing.
+
+**Example**
+
+```
+[+] 10.10.10.25 : public (valid)
+[+] OID 1.3.6.1.2.1.1.5.0 = STRING: "router01"
+[+] OID 1.3.6.1.2.1.2.2.1.2.1 = STRING: "eth0"
+```
 
 ---
 
@@ -69,6 +155,7 @@ run
 ```
 
 Other useful modules:
+
 - `auxiliary/scanner/snmp/snmp_login` – brute‑forces community strings.
 - `auxiliary/scanner/snmp/snmp_enum` – gathers extensive system information.
 
