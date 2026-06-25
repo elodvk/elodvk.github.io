@@ -7,6 +7,7 @@ tags:
   - File Upload
   - Defense
   - Blue Team
+icon: material/file-upload
 ---
 
 # Prevention & Hardening

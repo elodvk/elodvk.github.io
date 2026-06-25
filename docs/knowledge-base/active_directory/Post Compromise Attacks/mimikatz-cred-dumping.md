@@ -2,6 +2,7 @@
 title: 'Credential Dumping with Mimikatz'
 sidebar_position: 6
 description: 'In the world of penetration testing, some tools are useful, some are powerful, and a select few are true legends. **Mimikatz** is in a league of it...'
+icon: material/file-document-outline
 ---
 In the world of penetration testing, some tools are useful, some are powerful, and a select few are true legends. **Mimikatz** is in a league of its own. For years, it has been the single most feared and effective tool for post-exploitation on Windows systems. Its primary purpose? To pull passwords, hashes, and tickets directly from your computer's memory.
 

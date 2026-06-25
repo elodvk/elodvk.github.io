@@ -5,6 +5,7 @@ tags:
     - ntds
     - dump
 description: 'Youve done it. After hours of careful enumeration, privilege escalation, and lateral movement, youve finally compromised a Domain Admin account. Yo...'
+icon: material/file-document-outline
 ---
 You've done it. After hours of careful enumeration, privilege escalation, and lateral movement, you've finally compromised a Domain Admin account. You have the run of the entire Active Directory domain. The war is won, right? Almost. Now it's time to secure the ultimate prize, the digital crown jewels of the kingdom: the **NTDS.dit** file.
 

@@ -8,6 +8,7 @@ tags:
   - hashdump
   - secretsdump
   - mimikatz
+icon: material/key
 ---
 
 # 📂 Attacking SAM, SYSTEM, and SECURITY

@@ -8,6 +8,7 @@ tags:
   - wireshark
   - responder
   - pcredz
+icon: material/key
 ---
 
 # 📡 Credential Hunting in Network Traffic

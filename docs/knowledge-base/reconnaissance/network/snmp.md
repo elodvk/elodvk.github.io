@@ -9,6 +9,7 @@ tags:
   - nmap
   - metasploit
   - snmpwalk
+icon: material/server-network
 ---
 
 # 📡 SNMP Footprinting & Enumeration

@@ -6,6 +6,7 @@ tags:
   - ligolo-ng
   - networking
   - tradecraft
+icon: material/network-outline
 ---
 
 # 🕸️ Ligolo-ng: Advanced Network Pivoting

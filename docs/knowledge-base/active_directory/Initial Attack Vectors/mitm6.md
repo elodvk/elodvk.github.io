@@ -2,6 +2,7 @@
 title: 'IPv6 DNS Takeover via mitm6'
 sidebar_position: 4
 description: 'Youve poisoned local name resolution with Responder and relayed credentials with `ntlmrelayx`. You feel like a true network ninja. But what if I to...'
+icon: material/file-document-outline
 ---
 You've poisoned local name resolution with Responder and relayed credentials with `ntlmrelayx`. You feel like a true network ninja. But what if I told you there's a way to force clients to talk to you without waiting for a user to make a typo? What if you could become the network's DNS server just by asking nicely?
 

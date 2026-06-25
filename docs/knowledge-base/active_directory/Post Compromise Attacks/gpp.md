@@ -2,6 +2,7 @@
 title: 'GPP & cPassword'
 sidebar_position: 5
 description: 'Imagine a king who wanted to set the same password for the guards at every barracks in the kingdom. Instead of telling each guard individually, he ...'
+icon: material/file-document-outline
 ---
 Imagine a king who wanted to set the same password for the guards at every barracks in the kingdom. Instead of telling each guard individually, he wrote the password on a notice, locked it in a "secure" box using a key that everyone in the kingdom knew how to make, and then posted that notice in the public square for every guard to see. Sounds insane, right?
 

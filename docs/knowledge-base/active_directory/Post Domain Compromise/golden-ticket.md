@@ -2,6 +2,7 @@
 title: 'Golden Ticket'
 sidebar_position: 2
 description: 'Youve dumped the `krbtgt` account credentials from a Domain Controller. You have its NTLM hash, but in a modern, secure Active Directory environmen...'
+icon: material/file-document-outline
 ---
 You've dumped the `krbtgt` account credentials from a Domain Controller. You have its NTLM hash, but in a modern, secure Active Directory environment, that's only half the story. The true power lies in the stronger cryptographic keys derived from that password: the **AES keys**.
 

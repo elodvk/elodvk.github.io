@@ -6,6 +6,7 @@ tags:
   - sshuttle
   - vpn
   - tunneling
+icon: material/tools
 ---
 
 # 🚀 sshuttle: The Poor Man's VPN

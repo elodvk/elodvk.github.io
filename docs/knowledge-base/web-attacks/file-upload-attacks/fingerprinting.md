@@ -6,6 +6,7 @@ tags:
   - Web
   - File Upload
   - Recon
+icon: material/file-upload
 ---
 
 # Fingerprinting the Web Stack

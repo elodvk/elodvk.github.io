@@ -9,6 +9,7 @@ tags:
   - reconnaissance
   - nmap
   - hydra
+icon: material/server-network
 ---
 
 # 📧 IMAP & POP3 Footprinting

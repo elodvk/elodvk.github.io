@@ -2,6 +2,7 @@
 title: 'Domain Enumeration with Bloodhound'
 sidebar_position: 2
 description: 'Youve landed your initial foothold and have a set of domain credentials. Its time to trade in your paper map for a GPS. **BloodHound** is that GPS....'
+icon: material/file-document-outline
 ---
 You've landed your initial foothold and have a set of domain credentials. It's time to trade in your paper map for a GPS. **BloodHound** is that GPS. It doesn't just list domain objects; it maps the complex web of relationships between them, showing you the hidden paths and secret passages that lead directly to Domain Admin.
 

@@ -8,6 +8,7 @@ tags:
   - procdump
   - credentials
   - memory-dump
+icon: material/key
 ---
 
 # 🧠 Attacking LSASS

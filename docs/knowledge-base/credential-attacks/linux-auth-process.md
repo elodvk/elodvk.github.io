@@ -7,6 +7,7 @@ tags:
   - authentication
   - shadow
   - pam
+icon: material/key
 ---
 
 # 🐧 Linux Authentication Process

@@ -1,6 +1,7 @@
 ---
 title: 'ESC2: Misconfigured Certificate Templates II'
 description: 'ESC2: Misconfigured Certificate Templates II.'
+icon: material/file-document-outline
 ---
 # ESC2: Misconfigured Certificate Templates II
 

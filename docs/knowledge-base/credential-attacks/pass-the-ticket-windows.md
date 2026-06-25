@@ -8,6 +8,7 @@ tags:
   - ptt
   - kerberos
   - mimikatz
+icon: material/key
 ---
 
 # 🎟️ Pass the Ticket (PtT) from Windows

@@ -1,6 +1,7 @@
 ---
 title: 'Active Directory Certificate Services (ADCS) Attacks'
 description: 'Active Directory Certificate Services (ADCS) Attacks.'
+icon: material/file-document-outline
 ---
 # Active Directory Certificate Services (ADCS) Attacks
 

@@ -7,6 +7,7 @@ tags:
   - passive-recon
   - search-engine
   - information-gathering
+icon: material/web-search
 ---
 
 # 🔍 Search Engine Discovery

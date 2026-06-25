@@ -7,6 +7,7 @@ tags:
   - File Upload
   - Web Shell
   - Reverse Shell
+icon: material/file-upload
 ---
 
 # Weaponization — Web & Reverse Shells

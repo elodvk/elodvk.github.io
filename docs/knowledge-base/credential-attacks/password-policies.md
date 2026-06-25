@@ -6,6 +6,7 @@ tags:
   - defense
   - password-policy
   - nist
+icon: material/policy
 ---
 
 # 🛡️ Password Policies

@@ -8,6 +8,7 @@ tags:
   - cewl
   - hashcat
   - john
+icon: material/key
 ---
 
 # 📝 Writing Custom Wordlists and Rules

@@ -1,6 +1,7 @@
 ---
 title: 'ESC6: The Sure, Be Whoever You Want Registry Key'
 description: 'ESC6: The "Sure, Be Whoever You Want" Registry Key.'
+icon: material/file-document-outline
 ---
 # ESC6: The "Sure, Be Whoever You Want" Registry Key
 

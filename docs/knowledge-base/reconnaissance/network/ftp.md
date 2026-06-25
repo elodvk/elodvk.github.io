@@ -8,6 +8,7 @@ tags:
   - reconnaissance
   - nmap
   - anonymous access
+icon: material/folder-network
 ---
 
 # 📥 FTP Footprinting

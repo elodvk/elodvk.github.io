@@ -7,6 +7,7 @@ tags:
   - recon-ng
   - reconftw
   - information-gathering
+icon: material/web-search
 ---
 
 # ⚙️ Automating Recon

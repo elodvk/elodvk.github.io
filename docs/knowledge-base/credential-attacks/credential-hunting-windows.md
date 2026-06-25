@@ -7,6 +7,7 @@ tags:
   - windows
   - registry
   - powershell
+icon: material/key
 ---
 
 # 🔎 Credential Hunting in Windows

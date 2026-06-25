@@ -2,6 +2,7 @@
 title: 'Token Impersonation'
 sidebar_position: 3
 description: 'Youve compromised a server. You have a shell, but youre running as a low-privilege service account like `NT AUTHORITY\NETWORK SERVICE`. You run `wh...'
+icon: material/file-document-outline
 ---
 You've compromised a server. You have a shell, but you're running as a low-privilege service account like `NT AUTHORITY\NETWORK SERVICE`. You run `whoami /groups` and see that you have a very interesting privilege: `SeImpersonatePrivilege`. Suddenly, your day just got a lot better.
 

@@ -6,6 +6,7 @@ tags:
   - john-the-ripper
   - jtr
   - hashes
+icon: material/skull
 ---
 
 # 🕵️ Introduction to John The Ripper

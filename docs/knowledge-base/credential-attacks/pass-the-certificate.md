@@ -9,6 +9,7 @@ tags:
   - pki
   - certipy
   - rubeus
+icon: material/key
 ---
 
 # 📜 Pass the Certificate

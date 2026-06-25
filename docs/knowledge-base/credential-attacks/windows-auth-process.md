@@ -8,6 +8,7 @@ tags:
   - kerberos
   - sam
   - lsass
+icon: material/key
 ---
 
 # 🖥️ Windows Authentication Process

@@ -1,6 +1,7 @@
 ---
 title: 'LLMNR & NBT-NS Poisioning'
 description: 'LLMNR & NBT-NS Poisioning.'
+icon: material/file-document-outline
 ---
 So, you're a pentester. You've landed on a client's internal network, your Kali terminal is glowing, and you're wondering, "What's the quickest way to get some credentials around here?" Before you start firing off complex exploits, let's talk about listening. Specifically, listening for the desperate, misguided cries of Windows machines that have lost their way.
 

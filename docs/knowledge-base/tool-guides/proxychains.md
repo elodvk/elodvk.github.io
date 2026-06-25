@@ -5,6 +5,7 @@ tags:
   - pivoting
   - proxychains
   - tunneling
+icon: material/link-variant
 ---
 
 # ⛓️ Proxychains: The Classic Proxifier

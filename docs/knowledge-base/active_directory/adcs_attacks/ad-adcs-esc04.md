@@ -1,6 +1,7 @@
 ---
 title: 'ESC4: Build-A-Bear (But For Vulnerabilities)'
 description: 'ESC4: Build-A-Bear (But For Vulnerabilities).'
+icon: material/file-document-outline
 ---
 # ESC4: Build-A-Bear (But For Vulnerabilities)
 

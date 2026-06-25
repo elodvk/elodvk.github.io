@@ -7,6 +7,7 @@ tags:
   - password-manager
   - keepass
   - lastpass
+icon: material/safe
 ---
 
 # 🔐 Password Managers

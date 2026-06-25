@@ -7,6 +7,7 @@ tags:
   - zone-transfer
   - information-gathering
   - active-recon
+icon: material/web-search
 ---
 
 # 📋 DNS Zone Transfers

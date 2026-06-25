@@ -2,6 +2,7 @@
 title: 'Domain Enumeration with PingCastle'
 sidebar_position: 4
 description: 'Youve mapped the attack paths with BloodHound and read the kingdoms laws with Plumhound. But what if you could get an instant, high-level security ...'
+icon: material/file-document-outline
 ---
 You've mapped the attack paths with BloodHound and read the kingdom's laws with Plumhound. But what if you could get an instant, high-level "security score" for the entire domain? What if a tool could automatically check for dozens of common misconfigurations and vulnerabilities and present them in a clean, prioritized report?
 

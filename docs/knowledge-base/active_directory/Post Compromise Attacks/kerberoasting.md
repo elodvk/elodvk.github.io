@@ -2,6 +2,7 @@
 title: 'Kerberoasting 🔥'
 sidebar_position: 2
 description: 'So youve landed in a target network, and you have a single, low-privilege domain user account. You cant dump hashes from the Domain Controller, and...'
+icon: material/file-document-outline
 ---
 So you've landed in a target network, and you have a single, low-privilege domain user account. You can't dump hashes from the Domain Controller, and you don't have local admin anywhere. What do you do? Do you pack up and go home? No. You fire up the grill, because it's time for a **Kerberoasting**.
 

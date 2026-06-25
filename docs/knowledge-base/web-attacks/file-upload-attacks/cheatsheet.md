@@ -6,6 +6,7 @@ tags:
   - Web
   - File Upload
   - Cheatsheet
+icon: material/file-upload
 ---
 
 # File Upload — Cheatsheet

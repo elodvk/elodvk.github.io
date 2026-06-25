@@ -2,6 +2,7 @@
 title: 'Domain Enumeration with ldapdomaindump'
 sidebar_position: 1
 description: 'So, youve landed your initial foothold. Youve cracked a password from a Responder hash, or maybe you found some credentials on an internal web app....'
+icon: material/file-document-outline
 ---
 So, you've landed your initial foothold. You've cracked a password from a Responder hash, or maybe you found some credentials on an internal web app. You now have a valid set of domain credentials—username and password. What's next? Before you fire up BloodHound or start trying to Kerberoast, you need a quick, comprehensive lay of the land. You need a "phone book" of the entire domain.
 

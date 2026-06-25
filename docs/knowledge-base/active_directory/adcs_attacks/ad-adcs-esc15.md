@@ -1,6 +1,7 @@
 ---
 title: 'ESC15: EKUwu Application Policies (CVE-2024-49019)'
 description: 'ESC15: EKUwu Application Policies (CVE-2024-49019).'
+icon: material/file-document-outline
 ---
 # ESC15: EKUwu Application Policies (CVE-2024-49019)
 

@@ -1,6 +1,7 @@
 ---
 title: 'ESC3: The Enrollment Agent Loophole'
 description: 'ESC3: The "Enrollment Agent" Loophole.'
+icon: material/file-document-outline
 ---
 # ESC3: The "Enrollment Agent" Loophole
 

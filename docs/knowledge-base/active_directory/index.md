@@ -1,6 +1,7 @@
 ---
 title: 'Active Directory Pentesting — Getting Started'
 description: 'An introduction to Active Directory penetration testing: fundamentals, lab setup, core tooling, and the attack lifecycle from reconnaissance to domain dominance.'
+icon: material/file-document-outline
 ---
 <div class="ps-blog-masthead ps-reveal-scale">
 <h1 class="ps-blog-masthead-title">Active Directory</h1>

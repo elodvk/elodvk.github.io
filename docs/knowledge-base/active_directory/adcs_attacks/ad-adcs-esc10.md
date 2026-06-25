@@ -1,6 +1,7 @@
 ---
 title: 'ESC10: Weak Certificate Mapping'
 description: 'ESC10: Weak Certificate Mapping.'
+icon: material/file-document-outline
 ---
 # ESC10: Weak Certificate Mapping
 

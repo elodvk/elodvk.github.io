@@ -1,6 +1,7 @@
 ---
 title: 'ESC13: The Issuance Policy Overlap'
 description: 'ESC13: The Issuance Policy Overlap.'
+icon: material/file-document-outline
 ---
 # ESC13: The Issuance Policy Overlap
 
