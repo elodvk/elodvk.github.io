@@ -81,7 +81,19 @@ nav = [
       ]},
       { "SQL Injection" = [
         { "The Complete Guide" = "knowledge-base/web-attacks/sql-injection/index.md" },
-        { "SQLMap Cheatsheet" = "knowledge-base/web-attacks/sql-injection/sqlmap.md" },
+        { "SQLMap" = [
+          { "Overview" = "knowledge-base/web-attacks/sql-injection/sqlmap/index.md" },
+          { "Getting Started" = "knowledge-base/web-attacks/sql-injection/sqlmap/getting-started.md" },
+          { "Output Description" = "knowledge-base/web-attacks/sql-injection/sqlmap/output-description.md" },
+          { "Running on HTTP Requests" = "knowledge-base/web-attacks/sql-injection/sqlmap/http-requests.md" },
+          { "Handling Errors" = "knowledge-base/web-attacks/sql-injection/sqlmap/handling-errors.md" },
+          { "Attack Tuning" = "knowledge-base/web-attacks/sql-injection/sqlmap/attack-tuning.md" },
+          { "Database Enumeration" = "knowledge-base/web-attacks/sql-injection/sqlmap/database-enumeration.md" },
+          { "Advanced Enumeration" = "knowledge-base/web-attacks/sql-injection/sqlmap/advanced-enumeration.md" },
+          { "Advanced Usage" = "knowledge-base/web-attacks/sql-injection/sqlmap/advanced-usage.md" },
+          { "Bypassing Protections" = "knowledge-base/web-attacks/sql-injection/sqlmap/bypassing-protections.md" },
+          { "OS Exploitation" = "knowledge-base/web-attacks/sql-injection/sqlmap/os-exploitation.md" },
+        ]},
       ]},
     ]},
     { "Credential Attacks" = [
