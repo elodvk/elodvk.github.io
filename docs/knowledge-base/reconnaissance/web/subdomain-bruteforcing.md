@@ -8,7 +8,7 @@ tags:
   - ffuf
   - subfinder
   - information-gathering
-icon: material/web-search
+icon: material/web
 ---
 
 # 🔨 Subdomain Bruteforcing

@@ -8,7 +8,7 @@ tags:
   - host
   - information-gathering
   - active-recon
-icon: material/web-search
+icon: material/web
 ---
 
 # 🔎 Digging DNS

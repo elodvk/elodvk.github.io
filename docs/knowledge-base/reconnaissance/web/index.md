@@ -7,7 +7,7 @@ tags:
   - recon
   - osint
   - enumeration
-icon: material/web-search
+icon: material/web
 ---
 
 # 🌍 Information Gathering - Web Edition
