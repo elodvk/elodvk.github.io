@@ -79,6 +79,10 @@ nav = [
         { "Cheatsheet" = "knowledge-base/web-attacks/file-upload-attacks/cheatsheet.md" },
         { "Practice" = "knowledge-base/web-attacks/file-upload-attacks/practice.md" },
       ]},
+      { "SQL Injection" = [
+        { "The Complete Guide" = "knowledge-base/web-attacks/sql-injection/index.md" },
+        { "SQLMap Cheatsheet" = "knowledge-base/web-attacks/sql-injection/sqlmap.md" },
+      ]},
     ]},
     { "Credential Attacks" = [
       { "Overview" = "knowledge-base/credential-attacks/index.md" },

@@ -18,4 +18,12 @@ hide:
 <span class="ps-fx-desc">Bypass client-side, blacklist, and whitelist filters to achieve remote code execution via malicious uploads.</span>
 <span class="ps-fx-arrow">Bypass the filters →</span>
 </a>
+
+<a href="sql-injection/index.md" class="ps-fx-card">
+<span class="ps-fx-index">02 / INJECTION</span>
+<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>
+<span class="ps-fx-title">SQL Injection</span>
+<span class="ps-fx-desc">From UNION-based to blind exploitation, with automated attacks using SQLMap and WAF bypass techniques.</span>
+<span class="ps-fx-arrow">Inject the queries →</span>
+</a>
 </div>
