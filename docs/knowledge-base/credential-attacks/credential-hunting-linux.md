@@ -7,7 +7,7 @@ tags:
   - linux
   - ssh
   - bash_history
-icon: material/key
+icon: material/linux
 ---
 
 # 🕵️ Credential Hunting in Linux

@@ -6,7 +6,7 @@ tags:
   - Web
   - File Upload
   - Bypass
-icon: material/file-upload
+icon: material/file-compare
 ---
 
 # Content-Type, MIME & Magic Byte Filters

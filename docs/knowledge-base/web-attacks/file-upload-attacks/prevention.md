@@ -7,7 +7,7 @@ tags:
   - File Upload
   - Defense
   - Blue Team
-icon: material/file-upload
+icon: material/shield-lock
 ---
 
 # Prevention & Hardening

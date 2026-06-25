@@ -9,7 +9,7 @@ tags:
   - archives
   - john-the-ripper
   - hashcat
-icon: material/key
+icon: material/folder-zip
 ---
 
 # 🗜️ Cracking Protected Archives

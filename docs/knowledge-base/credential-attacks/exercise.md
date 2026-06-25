@@ -3,7 +3,7 @@ title: "Skills Assessment - Password Attacks"
 description: ""
 tags:
   - password-attacks
-icon: material/key
+icon: material/dumbbell
 ---
 
 

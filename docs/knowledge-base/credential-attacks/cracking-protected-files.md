@@ -8,7 +8,7 @@ tags:
   - keepass
   - john-the-ripper
   - hashcat
-icon: material/key
+icon: material/file-hidden
 ---
 
 # 📄 Cracking Protected Files

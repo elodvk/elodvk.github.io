@@ -7,7 +7,7 @@ tags:
   - File Upload
   - XSS
   - XXE
-icon: material/file-upload
+icon: material/file-cancel
 ---
 
 # Limited & Other File Upload Attacks

@@ -8,7 +8,7 @@ tags:
   - reconnaissance
   - nmap
   - sqlmap
-icon: material/database
+icon: material/database-outline
 ---
 
 # 🐬 MySQL Footprinting

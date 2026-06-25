@@ -8,7 +8,7 @@ tags:
   - pth
   - ntlm
   - mimikatz
-icon: material/key
+icon: material/pound-box
 ---
 
 # 🔁 Pass the Hash (PtH)

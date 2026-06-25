@@ -9,7 +9,7 @@ tags:
   - kerberos
   - impacket
   - linux
-icon: material/key
+icon: material/ticket
 ---
 
 # 🐧 Pass the Ticket (PtT) from Linux

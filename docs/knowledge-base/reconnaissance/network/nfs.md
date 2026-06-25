@@ -8,7 +8,7 @@ tags:
   - reconnaissance
   - showmount
   - rpcinfo
-icon: material/server-network
+icon: material/folder-network
 ---
 
 # 📁 NFS Footprinting

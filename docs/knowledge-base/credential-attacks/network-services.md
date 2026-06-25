@@ -9,7 +9,7 @@ tags:
   - ssh
   - smb
   - rdp
-icon: material/key
+icon: material/server-network
 ---
 
 # 🌐 Remote Password Attacks: Network Services

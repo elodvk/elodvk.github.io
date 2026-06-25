@@ -6,7 +6,7 @@ tags:
   - Web
   - File Upload
   - Bypass
-icon: material/file-upload
+icon: material/check-decagram
 ---
 
 # Bypassing Whitelist Filters

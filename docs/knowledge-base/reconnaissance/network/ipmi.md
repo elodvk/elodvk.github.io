@@ -10,7 +10,7 @@ tags:
   - redfish
   - nmap
   - ipmitool
-icon: material/server-network
+icon: material/server-security
 ---
 
 # 📡 IPMI Footprinting

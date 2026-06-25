@@ -8,7 +8,7 @@ tags:
   - smb
   - nfs
   - snaffler
-icon: material/key
+icon: material/folder-network
 ---
 
 # 📁 Credential Hunting in Network Shares

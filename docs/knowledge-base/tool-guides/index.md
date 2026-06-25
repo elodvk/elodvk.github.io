@@ -1,5 +1,5 @@
 ---
-icon: material/tools
+icon: material/toolbox
 title: 'Tool Guides'
 description: 'Deep dives and cheatsheets for essential penetration testing tools.'
 hide:

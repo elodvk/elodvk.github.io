@@ -7,7 +7,7 @@ tags:
   - osint
   - passive-recon
   - information-gathering
-icon: material/web
+icon: material/archive-search
 ---
 
 # 🕰️ Web Archives

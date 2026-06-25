@@ -1,5 +1,5 @@
 ---
-icon: material/shield-key
+icon: material/key
 title: 'Credential Attacks'
 description: 'Methodologies for extracting, dumping, and cracking credentials and hashes.'
 hide:

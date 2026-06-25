@@ -9,7 +9,7 @@ tags:
   - nmap
   - sqlmap
   - osql
-icon: material/database
+icon: material/microsoft
 ---
 
 # 🟦 MSSQL Footprinting

@@ -8,7 +8,7 @@ tags:
   - hashdump
   - secretsdump
   - mimikatz
-icon: material/key
+icon: material/file-lock
 ---
 
 # 📂 Attacking SAM, SYSTEM, and SECURITY

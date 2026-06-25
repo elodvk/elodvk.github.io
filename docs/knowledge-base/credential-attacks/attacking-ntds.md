@@ -7,7 +7,7 @@ tags:
   - active-directory
   - domain-controller
   - dcsync
-icon: material/key
+icon: material/database-lock
 ---
 
 # 🏛️ Attacking Active Directory and NTDS.dit

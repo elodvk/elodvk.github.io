@@ -1,5 +1,5 @@
 ---
-icon: material/radar
+icon: material/magnify
 title: 'Reconnaissance'
 description: 'Information gathering methodologies for both network infrastructure and web applications.'
 hide:
