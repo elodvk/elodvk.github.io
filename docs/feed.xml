@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Tue, 30 Jun 2026 15:43:29 -0000</lastBuildDate>
+<lastBuildDate>Tue, 30 Jun 2026 17:40:56 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -21,6 +21,19 @@
 <category>Malware</category>
 <category>Supply Chain</category>
 <category>Autonomous Agents</category>
+</item>
+<item>
+<title>The Phishing Epidemic of 2026: How Generative AI Reshaped Social Engineering</title>
+<link>https://purplesec.org/blog/ai-phishing-epidemic-2026/</link>
+<description>A deep dive into how Generative AI, deepfake voice cloning, and LLMs have weaponized phishing and Business Email Compromise (BEC) in 2026, and how identity-centric defenses are fighting back.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/ai-phishing-epidemic-2026/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Phishing</category>
+<category>AI Security</category>
+<category>Deepfakes</category>
+<category>Social Engineering</category>
+<category>Threat Intel</category>
 </item>
 <item>
 <title>GuardFall: Why Modern AI Agents Are Falling for Decades-Old Shell Tricks</title>
