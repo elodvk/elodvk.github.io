@@ -40,6 +40,7 @@ The most visible and widespread cyber threat facing the 2026 World Cup is target
 Because demand for tickets vastly exceeds supply, cybercriminals have successfully weaponized urgency and scarcity. Analysts have tracked the registration of thousands of fraudulent, FIFA-themed domains. These threat actors employ **typosquatting** (e.g., registering domains like `fifa-world-cup2026-tickets.com` instead of the official URLs) to create pixel-perfect replicas of legitimate portals.
 
 These fraudulent sites are designed to:
+
 - **Harvest PII and Credentials:** Stealing personal data and payment information.
 - **Sell Fake Assets:** Offering nonexistent tickets, VIP hospitality packages, and counterfeit merchandise.
 - **Distribute Malware:** Often pushing fake mobile applications (like spoofed travel or sports betting apps) that act as infostealers once installed on a victim's device.
@@ -80,11 +81,13 @@ A successful intrusion into a stadium's operational technology (OT) network coul
 Securing an event of this magnitude requires unprecedented cross-border and cross-sector coordination. Here is how agencies and organizations are defending the tournament:
 
 ### For Organizations and Host Cities:
+
 - **Zero-Trust and Segmentation:** Ensuring that IT networks (like ticketing and Wi-Fi) are strictly segmented from OT networks (like stadium lighting and access control).
 - **Supply Chain Auditing:** Mandating strict MFA and DMARC enforcement for all official partners and third-party vendors.
 - **Continuous Monitoring and Takedowns:** Partnering with brand protection services to actively monitor and execute rapid takedowns of typosquatted domains and fraudulent social media profiles.
 
 ### For Attendees and Fans:
+
 - **Use Only Official Channels:** Never purchase tickets, hospitality packages, or merchandise from links received via email, SMS, or social media ads. Always navigate directly to `fifa.com`.
 - **Beware of Urgency:** If an offer claims tickets are "selling out in minutes" or requires payment via cryptocurrency or wire transfer, it is a scam.
 - **Guard Your Credentials:** Do not post pictures of your event tickets or VIP badges on social media; attackers use these images to clone barcodes and forge credentials.

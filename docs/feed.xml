@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Tue, 30 Jun 2026 17:40:56 -0000</lastBuildDate>
+<lastBuildDate>Tue, 30 Jun 2026 17:50:15 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -34,6 +34,19 @@
 <category>Deepfakes</category>
 <category>Social Engineering</category>
 <category>Threat Intel</category>
+</item>
+<item>
+<title>FIFA World Cup 2026: The Largest Cyber Attack Surface in Sporting History</title>
+<link>https://purplesec.org/blog/fifa-2026-cyber-risks/</link>
+<description>A deep dive into the unprecedented cybersecurity risks facing the 2026 FIFA World Cup across North America, from massive ticketing fraud campaigns to critical infrastructure targeting by nation-states.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/fifa-2026-cyber-risks/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Threat Intel</category>
+<category>Critical Infrastructure</category>
+<category>FIFA 2026</category>
+<category>Fraud</category>
+<category>Nation-State Threats</category>
 </item>
 <item>
 <title>GuardFall: Why Modern AI Agents Are Falling for Decades-Old Shell Tricks</title>
