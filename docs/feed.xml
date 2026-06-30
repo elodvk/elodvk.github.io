@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Tue, 30 Jun 2026 14:58:41 -0000</lastBuildDate>
+<lastBuildDate>Tue, 30 Jun 2026 15:43:29 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -21,6 +21,31 @@
 <category>Malware</category>
 <category>Supply Chain</category>
 <category>Autonomous Agents</category>
+</item>
+<item>
+<title>GuardFall: Why Modern AI Agents Are Falling for Decades-Old Shell Tricks</title>
+<link>https://purplesec.org/blog/guardfall-ai-shell-injection/</link>
+<description>A deep dive into the GuardFall vulnerability disclosed by Adversa AI, explaining how attackers use simple shell obfuscation to bypass plain-text security filters in 10 out of 11 popular open-source coding agents.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/guardfall-ai-shell-injection/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Vulnerability Analysis</category>
+<category>Shell Injection</category>
+<category>GuardFall</category>
+</item>
+<item>
+<title>WhatsApp Is Finally Getting Usernames — And It&#x27;s a Bigger Deal Than You Think</title>
+<link>https://purplesec.org/blog/whatsapp-usernames-privacy/</link>
+<description>A deep dive into WhatsApp&#x27;s new username feature — how it works, how to set it up, why hiding your phone number matters from a cybersecurity perspective, and the privacy gaps that still remain.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/whatsapp-usernames-privacy/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Privacy</category>
+<category>WhatsApp</category>
+<category>Mobile Security</category>
+<category>SIM Swap</category>
+<category>Identity</category>
 </item>
 <item>
 <title>Windows 11 26H2: Everything You Need to Know — Features, AI Integration, Security, and the Great Architecture Split</title>
