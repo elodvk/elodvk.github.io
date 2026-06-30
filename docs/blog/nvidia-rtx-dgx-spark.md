@@ -16,7 +16,7 @@ tags:
   - Hardware
   - Grace Blackwell
 description: 'An in-depth look at NVIDIA RTX Spark and DGX Spark — the new personal AI supercomputers powered by Grace Blackwell silicon. From the 128GB unified memory architecture to running 200B-parameter models locally, we explore what these machines mean for developers, researchers, and the local LLM community.'
-image: assets/images/blog/dgx_spark_hero.png
+image: blog/assets/dgx_spark_hero.png
 ---
 
 For years, running large language models locally has been a game of creative compromises. You buy the most GPU VRAM you can afford, quantize models down to 4-bit or lower until they barely resemble their original quality, stack multiple consumer GPUs with hacky multi-GPU setups, and still hit walls with anything beyond 70B parameters. The cloud was always the fallback — and the cloud always meant giving up privacy, paying per-token, and trusting someone else's infrastructure with your data.
@@ -29,7 +29,7 @@ Both deliver **1 petaflop of FP4 AI performance** and **128GB of unified memory*
 
 Let's break down everything.
 
-![NVIDIA DGX Spark - Personal AI Supercomputer](../assets/images/blog/dgx_spark_hero.png)
+![NVIDIA DGX Spark - Personal AI Supercomputer](assets/dgx_spark_hero.png)
 
 ---
 
@@ -106,7 +106,7 @@ While DGX Spark is a specialized Linux appliance for AI developers, **RTX Spark*
 
 Unveiled jointly by NVIDIA and Microsoft at Computex on May 31, 2026, RTX Spark represents a new category: **personal AI PCs** that can run frontier models locally while also functioning as everyday creative and gaming workstations.
 
-![RTX Spark partner devices from major manufacturers](../assets/images/blog/rtx_spark_devices.png)
+![RTX Spark partner devices from major manufacturers](assets/rtx_spark_devices.png)
 
 ### RTX Spark Superchip Specifications
 
@@ -186,7 +186,7 @@ With **748GB of memory** and **20 petaFLOPS**, the DGX Station for Windows can r
 
 This is the section that matters most. If you're someone who runs Ollama, llama.cpp, or vLLM on your home setup — if you've spent hours optimizing GGUF quantization parameters, debating Q4_K_M vs. Q5_K_S, or cobbling together multi-GPU rigs — these products represent a tectonic shift in what's possible.
 
-![The future of local AI development](../assets/images/blog/local_llm_future.png)
+![The future of local AI development](assets/local_llm_future.png)
 
 ### 1. The End of the VRAM Wall
 

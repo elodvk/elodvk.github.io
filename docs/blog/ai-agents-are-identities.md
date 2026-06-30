@@ -17,7 +17,7 @@ tags:
   - MCP
   - OAuth
 description: "A deep, practical examination of why autonomous AI agents are full-fledged identities — not glorified service accounts — and why human-centric IAM is failing to govern them. Covers the non-human identity explosion (the 144:1 ratio), the confused deputy and lethal trifecta problems, the Salesloft Drift OAuth breach, the OWASP NHI and LLM Top 10s, the identity implications of local LLMs vs Claude/Gemini/OpenAI SaaS models, Microsoft Entra Agent ID and Google Agent Identity, and a concrete framework for treating agents as first-class governed identities."
-image: assets/images/blog/ai_agent_identity_hero.png
+image: blog/assets/ai_agent_identity_hero.png
 ---
 
 There is a quiet assumption baked into nearly every enterprise identity program: that an *identity* is a person, or — if not a person — a predictable, narrowly-scoped machine doing one repetitive job. That assumption held for thirty years. It is now wrong, and the gap between that assumption and reality is becoming one of the most exploitable surfaces in modern security.
@@ -26,7 +26,7 @@ An **AI agent** — a system that reasons, plans, calls tools, reads untrusted d
 
 This post makes a single argument in depth: **an AI agent is an identity, it is a *new kind* of identity, and the IAM stack you already own was not built to govern it.** We'll work through the data, the failure modes, a real breach, the standards emerging to fix this, and how the identity problem changes depending on whether you run a local LLM or call out to Claude, Gemini, or OpenAI.
 
-![A humanoid AI agent silhouette composed of identity tokens, keys, and access badges, standing among a crowd of human identities — symbolizing non-human identities outnumbering humans](../assets/images/blog/ai_agent_identity_hero.png)
+![A humanoid AI agent silhouette composed of identity tokens, keys, and access badges, standing among a crowd of human identities — symbolizing non-human identities outnumbering humans](assets/ai_agent_identity_hero.png)
 
 ---
 

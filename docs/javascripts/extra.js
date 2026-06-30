@@ -1078,7 +1078,7 @@ function initPurpleSecJS() {
     tocBtn.setAttribute("aria-label", "Toggle table of contents");
 
     // Show a toggle only when its sidebar actually exists on this page
-    var hasNav = !!document.querySelector(".md-sidebar--primary .md-nav__list");
+    var hasNav = !!document.querySelector(".md-sidebar--primary .md-nav");
     var tocEl = document.querySelector(".md-sidebar--secondary .md-nav--secondary .md-nav__link");
     var hasToc = !!tocEl;
 

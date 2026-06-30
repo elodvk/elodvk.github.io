@@ -51,12 +51,12 @@ hide:
 <span class="ps-fx-arrow">Load the modules →</span>
 </a>
 
-<a href="tool-guides/" class="ps-fx-card">
-<span class="ps-fx-index">06 / TOOLS</span>
-<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-<span class="ps-fx-title">Tool Guides</span>
-<span class="ps-fx-desc">Deep dives into pivoting, tunneling, and utility tools like Ligolo-ng, Proxychains, and SSH forwarding.</span>
-<span class="ps-fx-arrow">Master the tools →</span>
+<a href="pivoting-tunneling/" class="ps-fx-card">
+<span class="ps-fx-index">06 / PIVOTING</span>
+<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12h5"/><path d="M17 12h5"/><circle cx="12" cy="12" r="3"/><path d="M12 2v5"/><path d="M12 17v5"/><path d="m4.93 4.93 3.54 3.54"/><path d="m15.54 15.54 3.53 3.53"/><path d="m15.54 8.46 3.53-3.53"/><path d="m4.93 19.07 3.54-3.54"/></svg></span>
+<span class="ps-fx-title">Pivoting & Tunneling</span>
+<span class="ps-fx-desc">SSH tunneling, SOCKS proxies, Socat relays, Chisel, DNS/ICMP tunneling, double pivots, and detection evasion.</span>
+<span class="ps-fx-arrow">Navigate the network →</span>
 </a>
 </div>
 

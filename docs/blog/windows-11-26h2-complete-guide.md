@@ -16,7 +16,7 @@ tags:
   - Enterprise
   - Operating Systems
 description: 'A massively detailed guide to Windows 11 version 26H2 — the fall 2026 annual update. Covers the enablement package delivery model, AI-powered features like Copilot Vision and Click to Do, the 26H1 vs 26H2 architecture split, security hardening with hotpatching, Smart App Control, and Pluton, enterprise migration strategies from Windows 10, and what it all means for IT professionals.'
-image: assets/windows11_26h2_hero.png
+image: blog/assets/windows11_26h2_hero.png
 ---
 
 Windows 11, version 26H2 is officially confirmed as Microsoft's next annual feature update, slated for general availability in the **fall of 2026**. But calling it a "feature update" understates what's actually happening beneath the surface — and dramatically overstates the size of the installation package.

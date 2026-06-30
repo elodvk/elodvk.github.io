@@ -4,11 +4,24 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Thu, 25 Jun 2026 16:13:04 -0000</lastBuildDate>
+<lastBuildDate>Tue, 30 Jun 2026 14:58:41 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>The Invisible Hook: How Clean GitHub Repos Are Tricking AI Agents into Running Malware</title>
+<link>https://purplesec.org/blog/0din-ai-agent-malware/</link>
+<description>A deep dive into the recent proof-of-concept attack demonstrated by Mozilla’s 0DIN, showing how AI coding agents like Claude Code can be tricked into executing malware from entirely clean GitHub repositories.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/0din-ai-agent-malware/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Threat Intel</category>
+<category>Malware</category>
+<category>Supply Chain</category>
+<category>Autonomous Agents</category>
+</item>
 <item>
 <title>Windows 11 26H2: Everything You Need to Know — Features, AI Integration, Security, and the Great Architecture Split</title>
 <link>https://purplesec.org/blog/windows-11-26h2-complete-guide/</link>

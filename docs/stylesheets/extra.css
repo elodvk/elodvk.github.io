@@ -4111,3 +4111,20 @@ html {
   --md-code-hl-string-color: var(--ps-neon-green);
   --md-code-hl-comment-color: var(--md-default-fg-color--light);
 }
+
+/* --------------------------------------------------------------------------
+ * Header Border Fix (Remove Double Line)
+ * -------------------------------------------------------------------------- */
+.md-header {
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Light Mode Fixes (Blog Image Fading)
+ * -------------------------------------------------------------------------- */
+/* Remove the fading overlay completely in light mode for a crisp, clean look */
+[data-md-color-scheme="default"] .ps-spotlight-media::after,
+[data-md-color-scheme="default"] .ps-blog-card-media::after {
+  display: none !important;
+}

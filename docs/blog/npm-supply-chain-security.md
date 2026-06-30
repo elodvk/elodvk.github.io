@@ -14,7 +14,7 @@ tags:
   - DevSecOps
   - Node.js
 description: 'A deep dive into the npm v12 security overhaul arriving July 2026, the supply chain attacks that forced it, and a practical guide to preparing your projects — covering lifecycle script lockdown, Trusted Publishing, provenance attestations, and lessons from event-stream, colors.js, Shai-Hulud, and the chalk/debug compromise.'
-image: assets/images/blog/npm_supply_chain.png
+image: blog/assets/npm_supply_chain.png
 ---
 
 You run `npm install`. Thousands of packages cascade into your `node_modules`. You don't think about it — why would you? The ecosystem has been doing this for over a decade. Install, import, ship.
@@ -23,7 +23,7 @@ Except somewhere in that dependency tree, a `postinstall` script just exfiltrate
 
 This is not hypothetical. This has been happening, repeatedly, at scale, throughout 2024 and 2025. And GitHub has finally decided to **break the model** that made it all possible.
 
-![npm supply chain attack spreading through a dependency network](../assets/images/blog/npm_supply_chain.png)
+![npm supply chain attack spreading through a dependency network](assets/npm_supply_chain.png)
 
 ## The Problem: npm's "Automatic Trust" Model
 
@@ -121,7 +121,7 @@ Arriving in **July 2026**, npm v12 represents the most significant architectural
 > **From:** "Everything runs automatically unless you explicitly block it."  
 > **To:** "Nothing runs automatically unless you explicitly approve it."
 
-![npm shield defense protecting packages](../assets/images/blog/npm_shield_defense.png)
+![npm shield defense protecting packages](assets/npm_shield_defense.png)
 
 ### What Changes in npm v12
 

@@ -1,0 +1,4 @@
+zensical
+pycryptodome
+beautifulsoup4
+pyyaml

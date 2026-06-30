@@ -14,7 +14,7 @@ tags:
   - TLS
   - NIST
 description: "A comprehensive deep dive into how quantum computing threatens to dismantle Public Key Infrastructure (PKI), the backbone of internet security. Covers Shor's and Grover's algorithms, the Harvest Now Decrypt Later threat, NIST's post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), real-world hybrid TLS deployments by Google and Cloudflare, Quantum Key Distribution vs PQC, cryptographic agility, and a practical enterprise migration checklist."
-image: assets/images/blog/quantum_pki_hero.png
+image: blog/assets/quantum_pki_hero.png
 ---
 
 Every time you see that padlock icon in your browser, visit your bank, send an email, or sign a document digitally — you are relying on **Public Key Infrastructure (PKI)**. It is the invisible backbone of digital trust. It authenticates servers, encrypts data in transit, verifies software signatures, and secures everything from government communications to cryptocurrency wallets.
@@ -25,7 +25,7 @@ Not *might*. Not *could*. **Will** — given sufficient time and engineering. Th
 
 The question is not *if* this will happen. The question is **when** — and whether you'll be ready.
 
-![A quantum computer shattering the golden padlock of classical PKI encryption](../assets/images/blog/quantum_pki_hero.png)
+![A quantum computer shattering the golden padlock of classical PKI encryption](assets/quantum_pki_hero.png)
 
 ---
 
@@ -192,7 +192,7 @@ Grover's algorithm provides a **quadratic** (not exponential) speedup for search
 
 Here's why the quantum threat is **not a future problem** — it's a **present danger**.
 
-![The split between today's security and tomorrow's quantum threat](../assets/images/blog/quantum_threat_timeline.png)
+![The split between today's security and tomorrow's quantum threat](assets/quantum_threat_timeline.png)
 
 ### The Attack Pattern
 

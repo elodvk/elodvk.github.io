@@ -15,14 +15,14 @@ tags:
   - Vulnerability Management
   - Zero-Day
 description: 'A deep-dive into June 2026 Patch Tuesday — the largest in Microsoft history, patching 206 CVEs including 3 zero-days, a wormable Windows Kernel RCE (CVSS 9.8), an actively exploited Defender EoP, and two separate BitLocker bypasses (YellowKey & Bitskrieg).'
-image: assets/images/blog/patch_tuesday_hero.png
+image: blog/assets/patch_tuesday_hero.png
 ---
 
 June 9, 2026. Microsoft drops what will be remembered as the **most consequential Patch Tuesday in the program's history** — a staggering **206 CVEs** patched in a single release, shattering all previous monthly records. If that number doesn't raise the hairs on your arms, the contents will: three publicly known zero-days, a near-perfect CVSS 9.8 wormable Windows Kernel vulnerability, an actively exploited Microsoft Defender escalation of privilege, and not one but *two* distinct BitLocker bypass techniques courtesy of a very agitated security researcher.
 
 Let's break it all down, vulnerability by vulnerability.
 
-![June 2026 Patch Tuesday Security Dashboard](../assets/images/blog/patch_tuesday_hero.png)
+![June 2026 Patch Tuesday Security Dashboard](assets/patch_tuesday_hero.png)
 
 ## By The Numbers: A Historic Month
 
@@ -79,7 +79,7 @@ You need version **`1.1.26040.8` or later**. If you're seeing `1.1.26030.3008` o
 
 "YellowKey" was born from controversy. A researcher operating as **"Nightmare-Eclipse"** publicly released a fully working proof-of-concept exploit in May 2026, bypassing the standard coordinated disclosure process — a move Microsoft officially criticized. By the time the June patch dropped, the PoC had been widely circulated.
 
-![BitLocker Bypass Visualization](../assets/images/blog/bitlocker_breach.png)
+![BitLocker Bypass Visualization](assets/bitlocker_breach.png)
 
 **What it targets:** Windows Recovery Environment (WinRE), specifically a utility called `autofstx.exe`, which processes NTFS transaction logs during recovery operations.
 
@@ -120,7 +120,7 @@ The three zero-days grab headlines, but some of the most dangerous vulnerabiliti
 
 This is as bad as it gets on paper. A **Use-After-Free (UAF)** vulnerability in the Windows Kernel, reachable via the network TCP/IP stack, allows an **unauthenticated, remote attacker** to execute arbitrary code with **SYSTEM-level privileges** — no credentials, no user interaction, no physical proximity needed.
 
-![Windows Kernel Remote Code Execution](../assets/images/blog/windows_kernel_rce.png)
+![Windows Kernel Remote Code Execution](assets/windows_kernel_rce.png)
 
 **Why CVSS 9.8 matters:** A score of 9.8 is assigned when an attack is:
 - **Network-reachable** (no local access required)
