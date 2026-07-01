@@ -4387,23 +4387,23 @@ body {
   font-size: 1.8rem;
   font-weight: 800;
   margin: 0 0 1rem;
-  color: #fff;
+  color: var(--md-default-fg-color);
   line-height: 1.2;
 }
 
 .ps-podcast-desc {
   font-size: 1rem;
-  color: var(--ps-dark-text);
+  color: var(--md-default-fg-color--light);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
 .ps-podcast-player-wrapper {
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--md-default-bg-color);
   border-radius: 12px;
   padding: 1rem;
-  border: 1px solid rgba(187, 134, 252, 0.15);
+  border: 1px solid var(--md-default-fg-color--light);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -4417,12 +4417,11 @@ body {
 }
 
 .ps-podcast-player-wrapper audio::-webkit-media-controls-panel {
-  background-color: var(--ps-dark-surface);
+  background-color: var(--md-default-bg-color);
 }
 
 .ps-podcast-player-wrapper audio::-webkit-media-controls-play-button,
 .ps-podcast-player-wrapper audio::-webkit-media-controls-mute-button {
-  filter: invert(1);
 }
 
 /* --------------------------------------------------------------------------
@@ -4486,7 +4485,7 @@ body {
 }
 .ps-spotify-author {
   font-weight: 700;
-  color: #fff;
+  color: var(--md-default-fg-color);
 }
 .ps-spotify-count {
   color: var(--md-default-fg-color--light);
@@ -4527,7 +4526,7 @@ body {
   display: grid;
   grid-template-columns: 50px minmax(0, 1fr) 150px 80px;
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(128,128,128,0.2);
   color: var(--md-default-fg-color--light);
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -4548,7 +4547,7 @@ body {
 }
 
 .md-typeset .ps-spotify-track:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(128,128,128,0.1);
   text-decoration: none !important;
   color: var(--md-default-fg-color--light) !important;
 }
@@ -4564,7 +4563,7 @@ body {
 }
 
 .ps-track-name {
-  color: #fff;
+  color: var(--md-default-fg-color);
   font-size: 1rem;
   font-weight: 500;
   white-space: nowrap;
@@ -4583,7 +4582,7 @@ body {
   display: none;
   width: 16px;
   height: 16px;
-  color: #fff;
+  color: var(--md-default-fg-color);
   position: absolute;
   top: 50%;
   left: 50%;
