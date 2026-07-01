@@ -1636,14 +1636,94 @@ function cleanupMermaidArtifact(id) {
   if (stale) stale.remove();
 }
 
+/* --------------------------------------------------------------------------
+ * Dual-Mode Blog (Read vs Listen)
+ * Handles the logic for switching a blog post into an immersive podcast mode.
+ * -------------------------------------------------------------------------- */
+function initDualModeBlog() {
+  var audioData = document.querySelector('.ps-blog-audio');
+  if (!audioData) return;
+  
+  // If we already added the toggle on this page, don't duplicate
+  if (document.getElementById('ps-dual-mode-toggle')) return;
+
+  var audioSrc = audioData.getAttribute('data-audio');
+  var audioCover = audioData.getAttribute('data-cover');
+  var audioTitle = audioData.getAttribute('data-title');
+
+  // Build Floating Toggle
+  var toggleContainer = document.createElement('div');
+  toggleContainer.id = 'ps-dual-mode-toggle';
+  toggleContainer.className = 'ps-dual-mode-toggle';
+  toggleContainer.innerHTML = `
+    <button class="ps-mode-btn active" id="btn-read-mode">📖 Read</button>
+    <button class="ps-mode-btn" id="btn-listen-mode">🎧 Listen</button>
+  `;
+  document.body.appendChild(toggleContainer);
+
+  // Build Player UI Overlay (hidden by default)
+  var playerOverlay = document.createElement('div');
+  playerOverlay.id = 'ps-podcast-overlay';
+  playerOverlay.className = 'ps-podcast-overlay';
+  playerOverlay.innerHTML = `
+    <div class="ps-podcast-player-ui">
+      <div class="ps-podcast-player-cover" style="background-image: url('${audioCover}')"></div>
+      <div class="ps-podcast-player-details">
+        <div class="ps-podcast-player-badge">Now Playing</div>
+        <div class="ps-podcast-player-title">${audioTitle}</div>
+      </div>
+      <div class="ps-podcast-player-controls">
+        <audio id="ps-podcast-audio" controls>
+          <source src="${audioSrc}" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="ps-podcast-player-share">
+        <span class="ps-share-label">Share:</span>
+        <button class="ps-share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=${encodeURIComponent(audioTitle)}&url='+encodeURIComponent(window.location.href))">Twitter</button>
+        <button class="ps-share-btn" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent(window.location.href)+'&title=${encodeURIComponent(audioTitle)}')">LinkedIn</button>
+        <button class="ps-share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')">Copy Link</button>
+      </div>
+      <button class="ps-podcast-close-btn" id="btn-close-listen">✖ Close Listen Mode</button>
+    </div>
+  `;
+  document.body.appendChild(playerOverlay);
+
+  var btnRead = document.getElementById('btn-read-mode');
+  var btnListen = document.getElementById('btn-listen-mode');
+  var btnClose = document.getElementById('btn-close-listen');
+  var mainContent = document.querySelector('.md-main');
+  var audioElement = document.getElementById('ps-podcast-audio');
+
+  function enableListenMode() {
+    document.body.classList.add('ps-listening-mode');
+    btnRead.classList.remove('active');
+    btnListen.classList.add('active');
+  }
+
+  function enableReadMode() {
+    document.body.classList.remove('ps-listening-mode');
+    btnListen.classList.remove('active');
+    btnRead.classList.add('active');
+  }
+
+  btnListen.addEventListener('click', enableListenMode);
+  btnRead.addEventListener('click', enableReadMode);
+  btnClose.addEventListener('click', enableReadMode);
+}
+
+
+
 if (typeof document$ !== "undefined") {
   document$.subscribe(function() {
     saveMermaidSources(); // Also capture for instant-nav page transitions
     startMermaidObserver(); // Start watching BEFORE init so we catch Material's replacements
     initPurpleSecJS();
+    initDualModeBlog();
   });
 } else {
   document.addEventListener("DOMContentLoaded", function () {
     initPurpleSecJS();
+    initDualModeBlog();
   });
 }

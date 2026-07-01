@@ -27,6 +27,8 @@ image: blog/assets/nightmare_eclipse.png
 ---
 ![Banner image](assets/nightmare_eclipse.png)
 
+<div class="ps-blog-audio" data-audio="/podcasts/Microsoft_Insider_Weaponized_Eight_Zero_Days.m4a" data-cover="/assets/images/podcast_cover.png" data-title="Microsoft Insider Weaponized Eight Zero Days"></div>
+
 In the spring and summer of 2026, the cybersecurity world watched in real-time as a single disgruntled security researcher waged what can only be described as a systematic, retaliatory campaign against Microsoft—dropping fully weaponized zero-day exploit after zero-day exploit targeting the Windows kernel, Microsoft Defender, and BitLocker encryption. The exploits were not theoretical. They were functional, field-tested, and in several cases, actively exploited by threat actors within hours of public release.
 
 The researcher, operating under the aliases **Nightmare Eclipse**, **Chaotic Eclipse**, and later **MSNightmare**, is a former Microsoft security employee whose grievances with the company's vulnerability handling processes metastasized into one of the most consequential uncoordinated disclosure campaigns in modern history.

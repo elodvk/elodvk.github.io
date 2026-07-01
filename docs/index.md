@@ -21,11 +21,11 @@ hide:
     <span class="ps-mh-card-desc">Full-chain adversary emulation — recon to privilege escalation, modeled on real-world TTPs.</span>
     <span class="ps-mh-card-link">Browse pwns →</span>
   </a>
-  <a href="writeups/active_directory/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8"/></svg></span>
-    <span class="ps-mh-card-title">Active Directory</span>
-    <span class="ps-mh-card-desc">Kerberoasting, NTLM relay, ADCS abuse, delegation, and DCSync — the domain-compromise paths that matter.</span>
-    <span class="ps-mh-card-link">Explore techniques →</span>
+  <a href="knowledge-base/" class="ps-mh-card">
+    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span>
+    <span class="ps-mh-card-title">Knowledge Base</span>
+    <span class="ps-mh-card-desc">Extensive documentation on AD exploitation, credential attacks, web vulnerabilities, and reconnaissance.</span>
+    <span class="ps-mh-card-link">Explore knowledge →</span>
   </a>
   <a href="blog/" class="ps-mh-card">
     <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
@@ -33,11 +33,11 @@ hide:
     <span class="ps-mh-card-desc">Attacker tradecraft turned into detections, hardening baselines, and SIEM logic for blue teams.</span>
     <span class="ps-mh-card-link">Read the blog →</span>
   </a>
-  <a href="certifications/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
-    <span class="ps-mh-card-title">Certifications</span>
-    <span class="ps-mh-card-desc">Honest exam debriefs and study notes for PNPT, OSCP, CPTS, and CISSP — what actually shows up.</span>
-    <span class="ps-mh-card-link">View credentials →</span>
+  <a href="podcasts/" class="ps-mh-card">
+    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/><line x1="8" x2="16" y1="22" y2="22"/></svg></span>
+    <span class="ps-mh-card-title">Podcasts</span>
+    <span class="ps-mh-card-desc">Audio deep-dives into zero-days, advanced defense strategies, and threat intelligence.</span>
+    <span class="ps-mh-card-link">Listen now →</span>
   </a>
 </div>
 
@@ -86,6 +86,27 @@ hide:
   </div>
 </a>
 {% endif %}
+
+<!-- ===== FEATURED PODCAST ===== -->
+<div class="ps-mh-head ps-reveal">
+  <span class="ps-mh-head-eyebrow">Audio Intelligence</span>
+  <h2>Featured Podcast</h2>
+  <p>Deep dives into zero-days and enterprise defense strategies.</p>
+</div>
+<a href="podcasts/" class="ps-mh-feat ps-reveal-scale" style="margin-bottom: 4rem; border-color: rgba(187,134,252,0.3);">
+  <div class="ps-mh-feat-media" style="background-image: url('/assets/images/podcast_cover.png'); background-position: center; border-right: 1px solid var(--ps-card-border);"></div>
+  <div class="ps-mh-feat-body">
+    <span class="ps-mh-feat-badge" style="color: var(--ps-accent); border-color: rgba(187,134,252,0.2); background: rgba(187,134,252,0.08);">Latest Episode</span>
+    <div class="ps-mh-feat-title">Microsoft Insider Weaponized Eight Zero Days</div>
+    <div class="ps-mh-feat-meta">
+      <span>Audio Analysis</span>
+      <span>45 min listen</span>
+      <span>#zeroday</span>
+    </div>
+    <div class="ps-mh-feat-summary">An in-depth audio analysis of the "Nightmare Eclipse" campaign and how zero-days were leveraged by an insider threat to compromise enterprise networks.</div>
+    <span class="ps-mh-feat-link" style="color: var(--ps-accent);">Listen to episode →</span>
+  </div>
+</a>
 
 <!-- ===== RECENT POSTS ===== -->
 {% if posts %}
