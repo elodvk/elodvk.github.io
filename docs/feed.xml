@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Wed, 01 Jul 2026 07:21:53 -0000</lastBuildDate>
+<lastBuildDate>Wed, 01 Jul 2026 08:52:33 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -21,6 +21,19 @@
 <category>Export Control</category>
 <category>Cybersecurity</category>
 <category>Policy</category>
+</item>
+<item>
+<title>The Samy Worm: Dissecting the Fastest-Spreading XSS Worm in History</title>
+<link>https://purplesec.org/blog/samy-worm-case-study/</link>
+<description>A comprehensive case study of the Samy worm — the MySpace XSS worm that infected over one million profiles in under 20 hours in 2005, pioneered browser-based self-propagation, and forever changed how we think about web application security.</description>
+<pubDate>Wed, 01 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/samy-worm-case-study/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>XSS</category>
+<category>Worms</category>
+<category>Case Study</category>
+<category>Web Security</category>
+<category>Deep Dive</category>
 </item>
 <item>
 <title>The Invisible Hook: How Clean GitHub Repos Are Tricking AI Agents into Running Malware</title>
