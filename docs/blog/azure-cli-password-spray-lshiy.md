@@ -20,6 +20,12 @@ image: blog/assets/ai_phishing_defense.png
 
 ![Banner image](assets/ai_phishing_defense.png)
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/Azure_CLI_Password_Spray.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 On June 30, 2026, cybersecurity firm **Huntress** published findings on one of the largest automated credential attacks ever observed against Microsoft 365 environments. Between **June 12 and June 26**, a threat actor generated over **81 million login attempts** against Huntress customer accounts, successfully compromising **78 Microsoft accounts across 64 organizations**.
 
 The attack didn't use a novel zero-day. It didn't exploit a memory corruption bug. It abused a **deprecated OAuth flow** that Microsoft has warned against for years but never fully disabled — and it walked straight through MFA because most organizations had misconfigured their Conditional Access Policies.

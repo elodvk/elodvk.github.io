@@ -44,3 +44,6 @@ voice_profiles/*.mp3
 voice_profiles/*.flac
 voice_profiles/*.m4a
 voice_profiles/profiles.json
+
+# Transcripts (generated locally, not needed in repo)
+transcripts/

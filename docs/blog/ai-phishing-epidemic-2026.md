@@ -20,6 +20,12 @@ image: blog/assets/ai_phishing_hero.png
 
 ![AI-powered phishing concept illustration](assets/ai_phishing_hero.png)
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/AI_Phishing_Epidemic_2026.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 If you haven't updated your mental model of a phishing attack since 2023, you are already compromised. 
 
 Gone are the days of poorly translated emails asking for iTunes gift cards or Nigerian prince scams riddled with grammatical errors. As of mid-2026, the cyber threat landscape has been fundamentally reshaped by generative AI. We have transitioned from high-volume, low-sophistication spam to hyper-personalized, automated, and highly deceptive social engineering attacks that consistently bypass traditional defenses.

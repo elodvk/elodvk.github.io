@@ -20,6 +20,12 @@ description: "A deep, practical examination of why autonomous AI agents are full
 image: blog/assets/ai_agent_identity_hero.png
 ---
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/AI_Agents_Are_Identities.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 There is a quiet assumption baked into nearly every enterprise identity program: that an *identity* is a person, or — if not a person — a predictable, narrowly-scoped machine doing one repetitive job. That assumption held for thirty years. It is now wrong, and the gap between that assumption and reality is becoming one of the most exploitable surfaces in modern security.
 
 An **AI agent** — a system that reasons, plans, calls tools, reads untrusted data, and acts on your behalf across multiple systems — is an identity in the fullest sense of the word. It authenticates. It holds credentials. It is granted authorization. It performs privileged actions. It can be impersonated, hijacked, over-permissioned, and abandoned. And yet most organizations provision agents the way they provision a cron job: a long-lived token, a broad role, and no owner.
