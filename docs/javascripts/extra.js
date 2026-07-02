@@ -1321,98 +1321,6 @@ function initPurpleSecJS() {
     });
   }
 
-  /* --------------------------------------------------------------------------
-   * Text-To-Speech (TTS)
-   * Uses Web Speech API to read the article prose aloud.
-   * -------------------------------------------------------------------------- */
-  function initTextToSpeech() {
-    var ttsBtn = document.getElementById("ps-tts-btn");
-    if (!ttsBtn || !window.speechSynthesis) {
-      if (ttsBtn) ttsBtn.style.display = "none";
-      return;
-    }
-
-    var playIcon = document.getElementById("ps-tts-icon-play");
-    var stopIcon = document.getElementById("ps-tts-icon-stop");
-    var textSpan = ttsBtn.querySelector(".ps-tts-text");
-    
-    // Stop speech on page change (useful for instant navigation)
-    window.speechSynthesis.cancel();
-    
-    ttsBtn.addEventListener("click", function() {
-      if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
-        window.speechSynthesis.cancel();
-        // UI reset is handled by onend
-        if (playIcon) playIcon.style.display = "block";
-        if (stopIcon) stopIcon.style.display = "none";
-        if (textSpan) textSpan.textContent = "Listen to Article";
-        ttsBtn.style.color = "var(--md-accent-fg-color)";
-        return;
-      }
-      
-      // Gather text
-      var contentArea = document.querySelector(".md-content");
-      if (!contentArea) return;
-      
-      var textBlocks = [];
-      // Select only relevant tags: paragraphs and headings
-      var els = contentArea.querySelectorAll("p, h1, h2, h3, h4, h5, h6");
-      els.forEach(function(el) {
-        // Skip elements inside windows, browser frames, code blocks, or admonitions
-        if (el.closest(".ps-browser, .ps-image, .ps-shell, .ps-editor, .ps-win-frame, .ps-browser-frame, .ps-codewin, .highlight, .admonition, .tabbed-content")) return;
-        
-        var txt = el.textContent.trim();
-        if (txt) textBlocks.push(txt);
-      });
-      
-      if (!textBlocks.length) return;
-      var fullText = textBlocks.join(". "); // Join with periods to give natural pauses
-      
-      var utterance = new SpeechSynthesisUtterance(fullText);
-      
-      // Try to select a more natural sounding voice
-      var voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        var preferredVoice = voices.find(function(v) {
-          return v.lang.indexOf('en') === 0 && (
-            v.name.indexOf('Premium') !== -1 || 
-            v.name.indexOf('Natural') !== -1 || 
-            v.name.indexOf('Online') !== -1 || 
-            v.name.indexOf('Google') !== -1
-          );
-        });
-        if (!preferredVoice) {
-          preferredVoice = voices.find(function(v) { return v.lang.indexOf('en') === 0; });
-        }
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
-        }
-      }
-      
-      // Tweak rate and pitch for a more natural cadence
-      utterance.rate = 0.95;
-      utterance.pitch = 1.0;
-      
-      utterance.onstart = function() {
-        if (playIcon) playIcon.style.display = "none";
-        if (stopIcon) stopIcon.style.display = "block";
-        if (textSpan) textSpan.textContent = "Stop Listening";
-        ttsBtn.style.color = "#ff5e5b"; // A clear stop color (red-ish)
-      };
-      
-      utterance.onend = function() {
-        if (playIcon) playIcon.style.display = "block";
-        if (stopIcon) stopIcon.style.display = "none";
-        if (textSpan) textSpan.textContent = "Listen to Article";
-        ttsBtn.style.color = "var(--md-accent-fg-color)";
-      };
-      
-      utterance.onerror = utterance.onend; // Reset UI on error too
-      
-      window.speechSynthesis.speak(utterance);
-    });
-  }
-
   // Global scripts (run on all pages including About/Resume)
   initGlitchEffect();
   initCardGlow();
@@ -1430,7 +1338,6 @@ function initPurpleSecJS() {
   setTimeout(initDiagramZoom, 2500);
   initLayoutToggles();
   initReadingSettings();
-  initTextToSpeech();
 
   // Delay scroll reveal slightly so initial view state is set
   setTimeout(initScrollReveal, 100);
@@ -1636,82 +1543,6 @@ function cleanupMermaidArtifact(id) {
   if (stale) stale.remove();
 }
 
-/* --------------------------------------------------------------------------
- * Dual-Mode Blog (Read vs Listen)
- * Handles the logic for switching a blog post into an immersive podcast mode.
- * -------------------------------------------------------------------------- */
-function initDualModeBlog() {
-  var audioData = document.querySelector('.ps-blog-audio');
-  if (!audioData) return;
-  
-  // If we already added the toggle on this page, don't duplicate
-  if (document.getElementById('ps-dual-mode-toggle')) return;
-
-  var audioSrc = audioData.getAttribute('data-audio');
-  var audioCover = audioData.getAttribute('data-cover');
-  var audioTitle = audioData.getAttribute('data-title');
-
-  // Build Floating Toggle
-  var toggleContainer = document.createElement('div');
-  toggleContainer.id = 'ps-dual-mode-toggle';
-  toggleContainer.className = 'ps-dual-mode-toggle';
-  toggleContainer.innerHTML = `
-    <button class="ps-mode-btn active" id="btn-read-mode">📖 Read</button>
-    <button class="ps-mode-btn" id="btn-listen-mode">🎧 Listen</button>
-  `;
-  document.body.appendChild(toggleContainer);
-
-  // Build Player UI Overlay (hidden by default)
-  var playerOverlay = document.createElement('div');
-  playerOverlay.id = 'ps-podcast-overlay';
-  playerOverlay.className = 'ps-podcast-overlay';
-  playerOverlay.innerHTML = `
-    <div class="ps-podcast-player-ui">
-      <div class="ps-podcast-player-cover" style="background-image: url('${audioCover}')"></div>
-      <div class="ps-podcast-player-details">
-        <div class="ps-podcast-player-badge">Now Playing</div>
-        <div class="ps-podcast-player-title">${audioTitle}</div>
-      </div>
-      <div class="ps-podcast-player-controls">
-        <audio id="ps-podcast-audio" controls>
-          <source src="${audioSrc}" type="audio/mp4">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-      <div class="ps-podcast-player-share">
-        <span class="ps-share-label">Share:</span>
-        <button class="ps-share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=${encodeURIComponent(audioTitle)}&url='+encodeURIComponent(window.location.href))">Twitter</button>
-        <button class="ps-share-btn" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent(window.location.href)+'&title=${encodeURIComponent(audioTitle)}')">LinkedIn</button>
-        <button class="ps-share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')">Copy Link</button>
-      </div>
-      <button class="ps-podcast-close-btn" id="btn-close-listen">✖ Close Listen Mode</button>
-    </div>
-  `;
-  document.body.appendChild(playerOverlay);
-
-  var btnRead = document.getElementById('btn-read-mode');
-  var btnListen = document.getElementById('btn-listen-mode');
-  var btnClose = document.getElementById('btn-close-listen');
-  var mainContent = document.querySelector('.md-main');
-  var audioElement = document.getElementById('ps-podcast-audio');
-
-  function enableListenMode() {
-    document.body.classList.add('ps-listening-mode');
-    btnRead.classList.remove('active');
-    btnListen.classList.add('active');
-  }
-
-  function enableReadMode() {
-    document.body.classList.remove('ps-listening-mode');
-    btnListen.classList.remove('active');
-    btnRead.classList.add('active');
-  }
-
-  btnListen.addEventListener('click', enableListenMode);
-  btnRead.addEventListener('click', enableReadMode);
-  btnClose.addEventListener('click', enableReadMode);
-}
-
 
 
 if (typeof document$ !== "undefined") {
@@ -1719,11 +1550,9 @@ if (typeof document$ !== "undefined") {
     saveMermaidSources(); // Also capture for instant-nav page transitions
     startMermaidObserver(); // Start watching BEFORE init so we catch Material's replacements
     initPurpleSecJS();
-    initDualModeBlog();
   });
 } else {
   document.addEventListener("DOMContentLoaded", function () {
     initPurpleSecJS();
-    initDualModeBlog();
   });
 }

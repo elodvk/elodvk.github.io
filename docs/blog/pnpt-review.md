@@ -18,6 +18,12 @@ On **September 3, 2025**, I finally tamed the beast known as the Practical Netwo
 
 ![Practical Network Penetration Tester](https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/159871898)
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/Pnpt_Review.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 ## My Prep: Overconfidence Meets Lazy Town
 
 Picture this: I’m an Active Directory (AD) wizard with over eight years as a sysadmin under my belt. I’ve wrangled forests and domains so complex they’d make your head spin. I’ve performed full forest recoveries, hardened systems with CIS benchmarks (spoiler: one wrong Group Policy setting can ruin your day), and debugged AD issues like it’s just another Tuesday. So, when I heard the PNPT was AD-heavy, I thought, “Pfft, I’ve got this in the bag.”

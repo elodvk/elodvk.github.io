@@ -141,11 +141,33 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span class="ps-read-time">Calculating...</span>
               </li>
-              <li id="ps-tts-btn" style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; color: var(--md-accent-fg-color); margin-top: 0.4rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-                <svg id="ps-tts-icon-play" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <svg id="ps-tts-icon-stop" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-                <span class="ps-tts-text">Listen to Article</span>
+              <li id="ps-audio-player-container" style="display: none; margin-top: 0.6rem; width: 100%;">
+                <div class="ps-audio-wrapper">
+                  <div class="ps-audio-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                    <span>Listen to Article</span>
+                  </div>
+                  <audio id="ps-audio-player" controls preload="metadata"></audio>
+                </div>
               </li>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  // Detect audio element in blog content and move src to sidebar player
+                  var contentAudio = document.querySelector('.md-content audio source');
+                  if (contentAudio) {
+                    var sidebarPlayer = document.getElementById('ps-audio-player');
+                    var container = document.getElementById('ps-audio-player-container');
+                    if (sidebarPlayer && container) {
+                      sidebarPlayer.src = contentAudio.getAttribute('src');
+                      sidebarPlayer.type = contentAudio.getAttribute('type') || 'audio/mp4';
+                      container.style.display = 'block';
+                      // Hide the inline audio element in content
+                      var inlineAudio = contentAudio.closest('audio');
+                      if (inlineAudio) inlineAudio.style.display = 'none';
+                    }
+                  }
+                })
+              </script>
               <script>
                 document.addEventListener("DOMContentLoaded", function() {
                   // Format Date

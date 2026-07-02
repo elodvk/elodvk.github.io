@@ -18,6 +18,12 @@ image: blog/assets/samy_worm_hero.png
 
 ![Samy Worm Banner](assets/samy_worm_hero.png)
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/The_Samy_Worm.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 On the evening of **October 4, 2005**, a 19-year-old developer from Los Angeles named **Samy Kamkar** launched what would become the fastest-spreading virus of all time — not through email attachments, buffer overflows, or zero-day kernel exploits, but through a few dozen lines of clever JavaScript embedded in a MySpace profile page.
 
 In less than **20 hours**, the **Samy worm** (also known as **JS.Spacehero**) had infected over **one million MySpace user profiles**, adding Samy Kamkar as a friend and appending the phrase **"but most of all, samy is my hero"** to every victim's profile. MySpace — the largest social network on the planet at the time, with over 100 million users — was forced to take its entire platform offline to contain the damage.

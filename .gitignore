@@ -1,38 +1,46 @@
-# Ignore built site directory
+# Built site
 site/
 
-# Ignore python cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
 
-# Ignore virtual environments
+# Virtual environments
 .venv/
+.venv-podcast/
 venv/
 env/
 
-# Ignore cache directories
+# Cache
 .cache/
 
-# Ignore OS files
+# OS files
 .DS_Store
 Thumbs.db
 
-# Ignore drafts
+# Drafts
 drafts/
 
-# Ignore logs
+# Logs
 *.log
 
-# Ignore environment variables
+# Environment variables
 .env
 
-# Ignore node modules
+# Node
 node_modules/
 
-# Ignore IDE and editor files
+# IDE / editor
 .vscode/
 .idea/
 *.swp
 *.bak
 *~
 
+# Podcast pipeline — voice profiles (personal audio samples)
+voice_profiles/*.wav
+voice_profiles/*.mp3
+voice_profiles/*.flac
+voice_profiles/*.m4a
+voice_profiles/profiles.json

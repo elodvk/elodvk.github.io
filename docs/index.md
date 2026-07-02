@@ -33,12 +33,6 @@ hide:
     <span class="ps-mh-card-desc">Attacker tradecraft turned into detections, hardening baselines, and SIEM logic for blue teams.</span>
     <span class="ps-mh-card-link">Read the blog →</span>
   </a>
-  <a href="podcasts/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/><line x1="8" x2="16" y1="22" y2="22"/></svg></span>
-    <span class="ps-mh-card-title">Podcasts</span>
-    <span class="ps-mh-card-desc">Audio deep-dives into zero-days, advanced defense strategies, and threat intelligence.</span>
-    <span class="ps-mh-card-link">Listen now →</span>
-  </a>
 </div>
 
 <!-- ===== STATS ===== -->
@@ -86,27 +80,6 @@ hide:
   </div>
 </a>
 {% endif %}
-
-<!-- ===== FEATURED PODCAST ===== -->
-<div class="ps-mh-head ps-reveal">
-  <span class="ps-mh-head-eyebrow">Audio Intelligence</span>
-  <h2>Featured Podcast</h2>
-  <p>Deep dives into zero-days and enterprise defense strategies.</p>
-</div>
-<a href="podcasts/" class="ps-mh-feat ps-reveal-scale" style="margin-bottom: 4rem; border-color: rgba(187,134,252,0.3);">
-  <div class="ps-mh-feat-media" style="background-image: url('/assets/images/podcast_cover.png'); background-position: center; border-right: 1px solid var(--ps-card-border);"></div>
-  <div class="ps-mh-feat-body">
-    <span class="ps-mh-feat-badge" style="color: var(--ps-accent); border-color: rgba(187,134,252,0.2); background: rgba(187,134,252,0.08);">Latest Episode</span>
-    <div class="ps-mh-feat-title">Microsoft Insider Weaponized Eight Zero Days</div>
-    <div class="ps-mh-feat-meta">
-      <span>Audio Analysis</span>
-      <span>45 min listen</span>
-      <span>#zeroday</span>
-    </div>
-    <div class="ps-mh-feat-summary">An in-depth audio analysis of the "Nightmare Eclipse" campaign and how zero-days were leveraged by an insider threat to compromise enterprise networks.</div>
-    <span class="ps-mh-feat-link" style="color: var(--ps-accent);">Listen to episode →</span>
-  </div>
-</a>
 
 <!-- ===== RECENT POSTS ===== -->
 {% if posts %}

@@ -1,0 +1,41 @@
+# Podcast Pipeline Configuration
+# ================================
+# Default settings for the PurpleSec local podcast generation pipeline.
+# CLI arguments override any value set here.
+# See PODCAST_PIPELINE.md for full documentation.
+
+# TTS engine to use for synthesis.
+# Supported values: chatterbox | f5tts | orpheus
+engine: f5tts
+
+# Voice profile name (corresponds to a file in voice_profiles/).
+# Use "default" to load voice_profiles/default.wav automatically.
+voice: default
+
+# Output directory for generated audio files (.m4a).
+# Audio is placed here; the player is embedded into the source blog post.
+# Relative to the project root.
+output_dir: docs/blog/assets
+
+# Audio processing
+# -----------------
+
+# Crossfade duration (milliseconds) applied between consecutive audio chunks
+# to eliminate audible seams. Range: 0–200 ms.
+crossfade_ms: 75
+
+# Target integrated loudness in LUFS (Loudness Units Full Scale).
+# Podcast standard is -16 LUFS; final output will be within ±1 LUFS.
+target_lufs: -16
+
+# M4A (AAC) export bitrate. Common values: 96k, 128k, 192k, 256k.
+bitrate: 128k
+
+# Author metadata
+# ----------------
+# Used to populate the `authors` field in episode frontmatter.
+
+author_name: Bilash J. Shahi
+author_title: Cybersecurity Professional
+author_picture: https://purplesec.org/assets/images/logo.png
+author_url: https://purplesec.org/about/

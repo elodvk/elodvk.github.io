@@ -1,0 +1,12 @@
+# Podcast Generation Pipeline — Python dependencies
+# Install with: pip install -r requirements-podcast.txt
+# NOTE: FFmpeg must be installed separately as a system dependency (https://ffmpeg.org/download.html)
+
+torch>=2.0.0
+torchaudio>=2.0.0
+chatterbox-tts
+pydub>=0.25.1
+pyloudnorm>=0.1.1
+numpy>=1.24.0
+pyyaml>=6.0
+ffmpeg-python>=0.2.0

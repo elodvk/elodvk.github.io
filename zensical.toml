@@ -30,7 +30,6 @@ Copyright &copy; 2025 – 2026 Bilash J. Shahi | PurpleSec
 nav = [
   { "Home" = "index.md" },
   { "Blog" = "blog/index.md" },
-  { "Podcasts" = "podcasts/index.md" },
   { "Knowledge Base" = [
     { "Overview" = "knowledge-base/index.md" },
     { "Reconnaissance" = [
