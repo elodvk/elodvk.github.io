@@ -355,7 +355,7 @@ logo = "assets/images/logo.svg"
 # a monospaced font used in code blocks.
 # ----------------------------------------------------------------------------
 [project.theme.font]
-text = "Inter"
+text = "IBM Plex Mono"
 code = "JetBrains Mono"
 
 # ----------------------------------------------------------------------------
