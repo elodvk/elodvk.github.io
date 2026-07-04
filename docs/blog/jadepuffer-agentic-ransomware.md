@@ -20,6 +20,12 @@ image: blog/assets/ai_malware_hero.png
 
 ![JADEPUFFER Banner](assets/ai_malware_hero.png)
 
+<audio controls preload="metadata" style="width: 100%; margin: 1rem 0;">
+  <source src="assets/JADEPUFFER_Agentic_Ransomware.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+
 On **July 1, 2026**, Sysdig's Threat Research Team published what the cybersecurity industry has been dreading for years: the first publicly documented ransomware operation conducted **entirely by an autonomous AI agent**. No human at the keyboard. No manual exploitation. No lateral movement guided by a person. A large language model handled the **complete intrusion lifecycle** — from initial access to credential harvesting, lateral movement, database encryption, data destruction, and ransom note delivery.
 
 The operation is tracked as **JADEPUFFER**. It is a watershed moment. The skill barrier to running a ransomware operation has effectively dropped to zero.
