@@ -165,6 +165,8 @@ nav = [
         { "Token Impersonation" = "knowledge-base/active_directory/Post Compromise Attacks/token-impersonation.md" },
         { "Mimikatz Credential Dumping" = "knowledge-base/active_directory/Post Compromise Attacks/mimikatz-cred-dumping.md" },
         { "LNK File Attacks" = "knowledge-base/active_directory/Post Compromise Attacks/lnk-file-attacks.md" },
+        { "SeBackup & SeRestore Abuse" = "knowledge-base/active_directory/Post Compromise Attacks/sebackup-serestore-privilege-abuse.md" },
+        { "SeTcbPrivilege Abuse" = "knowledge-base/active_directory/Post Compromise Attacks/setcbprivilege-abuse.md" },
       ]},
       { "Post Domain Compromise" = [
         { "Dumping NTDS.dit" = "knowledge-base/active_directory/Post Domain Compromise/dump-ntds.dit.md" },
