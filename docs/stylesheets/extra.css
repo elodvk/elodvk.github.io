@@ -3666,8 +3666,13 @@ html {
 :root.ps-font-sans  { --md-text-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 :root.ps-font-serif { --md-text-font: Georgia, Cambria, "Times New Roman", Times, serif; }
 
-/* Reading size — scales the article copy (headings are em-based, so they follow) */
-.md-content .md-typeset { font-size: calc(0.8rem * var(--ps-reading-scale, 1)); }
+/* Reading size — scales the article copy (headings are em-based, so they follow).
+ * Base lowered from 0.8rem → 0.72rem: IBM Plex Mono renders wide, so the smaller
+ * base reads comfortably for long articles. The S/M/L/XL toggle scales on top. */
+.md-content .md-typeset {
+  font-size: calc(0.72rem * var(--ps-reading-scale, 1));
+  line-height: 1.7;
+}
 
 /* Floating "Aa" button */
 .ps-reading-fab {
