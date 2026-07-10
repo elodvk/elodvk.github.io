@@ -145,6 +145,17 @@ nav = [
         { "Password Policies" = "knowledge-base/credential-attacks/password-policies.md" },
         { "Password Managers" = "knowledge-base/credential-attacks/password-managers.md" },
       ]},
+      { "NTLMv2 Hash Coercion" = [
+        { "Overview" = "knowledge-base/credential-attacks/ntlm-coercion/index.md" },
+        { "File-Based Coercion" = "knowledge-base/credential-attacks/ntlm-coercion/file-based-coercion.md" },
+        { "RPC-Based Coercion" = "knowledge-base/credential-attacks/ntlm-coercion/rpc-based-coercion.md" },
+      ]},
+      { "NTLMv2 Hash Theft" = [
+        { "Overview" = "knowledge-base/credential-attacks/ntlm-hash-theft/index.md" },
+        { "File-Based Coercion" = "knowledge-base/credential-attacks/ntlm-hash-theft/file-based-coercion.md" },
+        { "Protocol-Based Coercion & Relay" = "knowledge-base/credential-attacks/ntlm-hash-theft/protocol-coercion.md" },
+        { "Capture & Relay Tools" = "knowledge-base/credential-attacks/ntlm-hash-theft/capture-and-relay-tools.md" },
+      ]},
     ]},
     { "Active Directory" = [
       { "Overview" = "knowledge-base/active_directory/index.md" },

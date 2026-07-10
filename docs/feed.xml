@@ -4,11 +4,50 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Thu, 02 Jul 2026 08:13:42 -0000</lastBuildDate>
+<lastBuildDate>Fri, 10 Jul 2026 23:20:55 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>Your Passkey Is Now Theirs: How Hackers Are Hijacking Microsoft Entra Passkey Enrollment to Own Microsoft 365 Accounts</title>
+<link>https://purplesec.org/blog/entra-passkey-hijack-o-unc-066/</link>
+<description>A deep technical analysis of the O-UNC-066 (Pink) campaign — how threat actors use vishing, operator-controlled phishing kits, and fake passkey enrollment flows to register their own FIDO2 passkeys on victim accounts, achieving persistent Microsoft 365 access that survives password resets and MFA.</description>
+<pubDate>Sat, 11 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/entra-passkey-hijack-o-unc-066/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Microsoft Entra</category>
+<category>Microsoft 365</category>
+<category>Passkeys</category>
+<category>FIDO2</category>
+<category>Phishing</category>
+</item>
+<item>
+<title>JADEPUFFER: The First Fully Autonomous AI-Agent Ransomware — A Complete Technical Analysis</title>
+<link>https://purplesec.org/blog/jadepuffer-agentic-ransomware/</link>
+<description>A definitive deep dive into JADEPUFFER — the first documented ransomware operation run end-to-end by an LLM agent. Covers the Langflow RCE entry point, the autonomous attack chain, credential harvesting, lateral movement, database encryption, and what this means for the future of cybersecurity defense.</description>
+<pubDate>Sat, 04 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/jadepuffer-agentic-ransomware/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI</category>
+<category>Ransomware</category>
+<category>Agentic AI</category>
+<category>Langflow</category>
+<category>Deep Dive</category>
+</item>
+<item>
+<title>81 Million Login Attempts in 14 Days: Inside the Massive Azure CLI Password Spray Campaign</title>
+<link>https://purplesec.org/blog/azure-cli-password-spray-lshiy/</link>
+<description>A deep technical analysis of the LSHIY password spray campaign that hit 64 organizations via Azure CLI&#x27;s ROPC flow — how it bypassed MFA, why Conditional Access policies failed, and how to lock down your Microsoft 365 tenant.</description>
+<pubDate>Thu, 02 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/azure-cli-password-spray-lshiy/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Azure</category>
+<category>Microsoft 365</category>
+<category>Password Spray</category>
+<category>MFA Bypass</category>
+<category>Conditional Access</category>
+</item>
 <item>
 <title>Claude Fable 5 Is Back: Inside Anthropic&#x27;s 19-Day Exile and the New Safety Architecture That Ended It</title>
 <link>https://purplesec.org/blog/anthropic-fable-5-restored/</link>
