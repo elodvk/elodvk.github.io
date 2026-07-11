@@ -13,48 +13,6 @@ hide:
 
 <div class="ps-content-wrap">
 
-<!-- ===== QUICK NAV CARDS ===== -->
-<div class="ps-mh-grid ps-mh-grid--4 ps-mh-hero-cards ps-reveal">
-  <a href="walkthroughs/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg></span>
-    <span class="ps-mh-card-title">Offensive Ops</span>
-    <span class="ps-mh-card-desc">Full-chain adversary emulation — recon to privilege escalation, modeled on real-world TTPs.</span>
-    <span class="ps-mh-card-link">Browse pwns →</span>
-  </a>
-  <a href="knowledge-base/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span>
-    <span class="ps-mh-card-title">Knowledge Base</span>
-    <span class="ps-mh-card-desc">Extensive documentation on AD exploitation, credential attacks, web vulnerabilities, and reconnaissance.</span>
-    <span class="ps-mh-card-link">Explore knowledge →</span>
-  </a>
-  <a href="blog/" class="ps-mh-card">
-    <span class="ps-mh-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
-    <span class="ps-mh-card-title">Defense & Research</span>
-    <span class="ps-mh-card-desc">Attacker tradecraft turned into detections, hardening baselines, and SIEM logic for blue teams.</span>
-    <span class="ps-mh-card-link">Read the blog →</span>
-  </a>
-</div>
-
-<!-- ===== STATS ===== -->
-<div class="ps-mh-stats ps-reveal" id="ps-stats-section">
-  <div class="ps-mh-stat">
-    <div class="ps-mh-stat-num"><span data-count="15">0</span>+</div>
-    <div class="ps-mh-stat-label">HTB Machines Pwned</div>
-  </div>
-  <div class="ps-mh-stat">
-    <div class="ps-mh-stat-num"><span data-count="25">0</span>+</div>
-    <div class="ps-mh-stat-label">AD Attack Techniques</div>
-  </div>
-  <div class="ps-mh-stat">
-    <div class="ps-mh-stat-num"><span data-count="15">0</span>+</div>
-    <div class="ps-mh-stat-label">Research Articles</div>
-  </div>
-  <div class="ps-mh-stat">
-    <div class="ps-mh-stat-num"><span data-count="10">0</span>+</div>
-    <div class="ps-mh-stat-label">Years In The Field</div>
-  </div>
-</div>
-
 <!-- ===== FEATURED ===== -->
 {% if posts %}
 {% set feat = posts[0] %}
@@ -93,51 +51,6 @@ hide:
   <div class="ps-mh-recent-foot"><a href="blog/">View all posts →</a></div>
 </div>
 {% endif %}
-
-<!-- ===== CERTIFICATIONS ===== -->
-<div class="ps-mh-head ps-reveal">
-  <span class="ps-mh-head-eyebrow">Credentials</span>
-  <h2>Certifications</h2>
-  <p>Validation that the methodology holds up under pressure.</p>
-</div>
-<div class="ps-mh-grid ps-mh-certs ps-reveal">
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/tcmsecurity.png" alt="TCM Security"></div>
-    <div class="ps-mh-cert-name">PNPT</div>
-    <div class="ps-mh-cert-full">Practical Network Penetration Tester</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--ok">Certified</div>
-  </div>
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/anthropic.svg" alt="Anthropic"></div>
-    <div class="ps-mh-cert-name">Anthropic</div>
-    <div class="ps-mh-cert-full">Claude Code in Action</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--ok">Certified</div>
-  </div>
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/securiti.svg" alt="Securiti"></div>
-    <div class="ps-mh-cert-name">Securiti</div>
-    <div class="ps-mh-cert-full">AI Security & Governance</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--ok">Certified</div>
-  </div>
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/microsoft.png" alt="Microsoft"></div>
-    <div class="ps-mh-cert-name">AZ-104</div>
-    <div class="ps-mh-cert-full">Azure Administrator Associate</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--ok">Certified</div>
-  </div>
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/microsoft.png" alt="Microsoft"></div>
-    <div class="ps-mh-cert-name">SC-300</div>
-    <div class="ps-mh-cert-full">Identity and Access Administrator</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--ok">Certified</div>
-  </div>
-  <div class="ps-mh-cert">
-    <div class="ps-mh-cert-logo"><img src="/assets/images/certs/offsec.svg" alt="OffSec"></div>
-    <div class="ps-mh-cert-name">OSCP</div>
-    <div class="ps-mh-cert-full">Offensive Security Certified Professional</div>
-    <div class="ps-mh-cert-status ps-mh-cert-status--wip">In Progress</div>
-  </div>
-</div>
 
 <!-- ===== QUOTE ===== -->
 <div class="ps-mh-head ps-reveal">
