@@ -1,5 +1,5 @@
 /* ============================================================================
- * PurpleSec — Custom Styles
+ * PurpleSec ï¿½ Custom Styles
  * Premium cybersecurity-themed design system
  * Inspired by hacker.house terminal aesthetic
  * ============================================================================ */
@@ -1639,7 +1639,7 @@ html {
   backdrop-filter: blur(4px);
 }
 
-/* Difficulty color coding (machines) — applies on chips, spotlight meta, filter pills */
+/* Difficulty color coding (machines) ï¿½ applies on chips, spotlight meta, filter pills */
 .ps-diff--easy { color: var(--ps-neon-green) !important; }
 .ps-diff--medium { color: #ffbd2e !important; }
 .ps-diff--hard { color: #ff5f57 !important; }
@@ -2097,7 +2097,7 @@ html {
 }
 
 /* ============================================================================
- * NEW HOME (v2) — Immersive hero, live ticker, focus cards
+ * NEW HOME (v2) ï¿½ Immersive hero, live ticker, focus cards
  * ============================================================================ */
 
 /* Keep all home content above the fixed matrix canvas */
@@ -2458,7 +2458,7 @@ html {
   .ps-nh-hero .ps-scroll-indicator { display: none; }
 }
 
-/* Respect users who prefer reduced motion — disable ambient/decorative animation */
+/* Respect users who prefer reduced motion ï¿½ disable ambient/decorative animation */
 @media (prefers-reduced-motion: reduce) {
   #ps-matrix-canvas { display: none; }
   .ps-nh-title,
@@ -2479,7 +2479,7 @@ html {
 }
 
 /* ============================================================================
- * Consistency layer — shared landing-page components
+ * Consistency layer ï¿½ shared landing-page components
  * ============================================================================ */
 
 /* Hide the auto-injected page-title H1 on template pages that already
@@ -2500,7 +2500,7 @@ html {
 .ps-masthead .ps-blog-masthead-title { margin-top: 0; }
 
 /* --------------------------------------------------------------------------
- * Contact form — terminal-themed, consistent with site aesthetic
+ * Contact form ï¿½ terminal-themed, consistent with site aesthetic
  * -------------------------------------------------------------------------- */
 .ps-contact-terminal {
   max-width: 640px;
@@ -2704,7 +2704,7 @@ html {
 .ps-browser-dots i:nth-child(3) { background: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25) inset; }
 .ps-browser-frame:hover .ps-browser-dots i { filter: brightness(1.05); }
 
-/* Active tab — merges into the toolbar below */
+/* Active tab ï¿½ merges into the toolbar below */
 .ps-browser-tab {
   display: flex;
   align-items: center;
@@ -2938,7 +2938,7 @@ html {
 
 
 /* ============================================================================
- * Window Frames — Image viewer / Shell / Editor
+ * Window Frames ï¿½ Image viewer / Shell / Editor
  * Built at runtime by initWindowFrames(). Same authoring as .ps-browser:
  *   <div class="ps-image"  data-title="login.png"        markdown>![alt](shot.png)</div>
  *   <div class="ps-shell"  data-title="kali@kali: ~"     markdown>![alt](shot.png)</div>
@@ -3224,11 +3224,11 @@ html {
 }
 
 /* ============================================================================
- * LIGHT THEME  (v2 — unified, layered palette)
+ * LIGHT THEME  (v2 ï¿½ unified, layered palette)
  * Design language: a soft tinted page, crisp white cards that lift with gentle
  * neutral shadows, soft lavender-grey borders, and readable purple/green
- * accents. Every section — including the hero, the "terminal" feed, the quote,
- * and the interactive terminal — adapts to a cohesive light surface.
+ * accents. Every section ï¿½ including the hero, the "terminal" feed, the quote,
+ * and the interactive terminal ï¿½ adapts to a cohesive light surface.
  *
  * Palette
  *   page        #f4f5fa      surface     #ffffff      surface-alt #f1f2f8
@@ -3237,7 +3237,7 @@ html {
  *   purple      #6d28d9 (text/icon)      green       #0a8f3c
  * ============================================================================ */
 [data-md-color-scheme="default"] {
-  /* Material core — pure white page background */
+  /* Material core ï¿½ pure white page background */
   --md-default-bg-color: #ffffff;
   --md-typeset-a-color: #6d28d9;
 
@@ -3266,7 +3266,7 @@ html {
   --ps-glow-green-md: 0 4px 20px rgba(10, 143, 60, 0.16);
 }
 
-/* Matrix rain only reads on a dark canvas — hide it in light mode */
+/* Matrix rain only reads on a dark canvas ï¿½ hide it in light mode */
 [data-md-color-scheme="default"] #ps-matrix-canvas { display: none !important; }
 
 /* ---------------------------------------------------------------------------
@@ -3310,7 +3310,7 @@ html {
 [data-md-color-scheme="default"] .ps-contact-bar-title { color: rgba(109, 40, 217, 0.7); }
 
 /* ---------------------------------------------------------------------------
- * Hero — light treatment (no longer a dark band)
+ * Hero ï¿½ light treatment (no longer a dark band)
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-nh-hero {
   background: linear-gradient(160deg, #faf8ff 0%, #f4f5fa 55%, #f1fbf5 100%);
@@ -3333,7 +3333,7 @@ html {
 }
 
 /* ---------------------------------------------------------------------------
- * Dashboard "terminal" feed — light surface, readable text
+ * Dashboard "terminal" feed ï¿½ light surface, readable text
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-dashboard-terminal {
   background: #ffffff;
@@ -3346,7 +3346,7 @@ html {
 [data-md-color-scheme="default"] .ps-term-feed::-webkit-scrollbar-thumb { background: rgba(109, 40, 217, 0.3); }
 
 /* ---------------------------------------------------------------------------
- * Quote band / quote-in-terminal — light surface, readable text
+ * Quote band / quote-in-terminal ï¿½ light surface, readable text
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-quote {
   background: transparent !important;
@@ -3356,7 +3356,7 @@ html {
 [data-md-color-scheme="default"] .ps-quote-terminal .ps-quote blockquote { color: #0a8f3c; }
 
 /* ---------------------------------------------------------------------------
- * Interactive terminal (About) + legacy hero terminal — light surface
+ * Interactive terminal (About) + legacy hero terminal ï¿½ light surface
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] #interactive-terminal,
 [data-md-color-scheme="default"] .ps-hero-terminal,
@@ -3403,13 +3403,13 @@ html {
 [data-md-color-scheme="default"] #ps-load-more-btn { background: rgba(109, 40, 217, 0.07); }
 [data-md-color-scheme="default"] #ps-load-more-btn:hover { background: rgba(109, 40, 217, 0.14); }
 
-/* Cert status chips — readable tints on white */
+/* Cert status chips ï¿½ readable tints on white */
 [data-md-color-scheme="default"] .ps-cert-status--certified { background: rgba(10, 143, 60, 0.10); border-color: rgba(10, 143, 60, 0.30); }
 [data-md-color-scheme="default"] .ps-cert-status--progress { background: rgba(109, 40, 217, 0.10); border-color: rgba(109, 40, 217, 0.30); }
 [data-md-color-scheme="default"] .ps-cert-status--preparing { color: #b06a00; background: rgba(176, 106, 0, 0.10); border-color: rgba(176, 106, 0, 0.30); }
 
 /* ---------------------------------------------------------------------------
- * Contact form — lighten inputs, fix chips
+ * Contact form ï¿½ lighten inputs, fix chips
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-contact-field input,
 [data-md-color-scheme="default"] .ps-contact-field textarea {
@@ -3428,7 +3428,7 @@ html {
 }
 
 /* ---------------------------------------------------------------------------
- * Code & window frames — align borders/bars to the light palette
+ * Code & window frames ï¿½ align borders/bars to the light palette
  * ------------------------------------------------------------------------- */
 [data-md-color-scheme="default"] .ps-codewin,
 [data-md-color-scheme="default"] .ps-browser-frame,
@@ -3442,7 +3442,7 @@ html {
 }
 
 /* ============================================================================
- * Chrome — Header, Tabs & Footer (minimal Material)
+ * Chrome ï¿½ Header, Tabs & Footer (minimal Material)
  * The default surface chrome is already clean; we only add a crisp hairline,
  * a restrained brand-accent on the active/hovered tab, a theme-aware footer,
  * and quiet hovers. No glass, gradients, glow, or motion.
@@ -3481,7 +3481,7 @@ html {
 [data-md-color-scheme="default"] .md-footer__link:hover { background: rgba(109, 40, 217, 0.05); }
 
 /* ============================================================================
- * Image Zoom (lightbox)  — initImageZoom()
+ * Image Zoom (lightbox)  ï¿½ initImageZoom()
  * ============================================================================ */
 .ps-zoomable { cursor: zoom-in; }
 .ps-lightbox {
@@ -3524,14 +3524,14 @@ html {
   border-radius: 8px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
 }
-/* Cloned window frame shown at full size — drop margins, kill hover motion */
+/* Cloned window frame shown at full size ï¿½ drop margins, kill hover motion */
 .ps-lightbox-frame {
   width: 100%;
   margin: 0 !important;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6) !important;
 }
 .ps-lightbox-frame:hover { transform: none !important; }
-/* Mermaid diagram shown enlarged — padded surface so it reads on the dim overlay */
+/* Mermaid diagram shown enlarged ï¿½ padded surface so it reads on the dim overlay */
 .ps-lightbox-stage--diagram {
   background: var(--md-default-bg-color, #fff);
   border: 1px solid var(--ps-card-border, rgba(255, 255, 255, 0.12));
@@ -3615,7 +3615,7 @@ html {
 }
 
 /* ============================================================================
- * Layout Toggles — collapse nav / TOC  (initLayoutToggles())
+ * Layout Toggles ï¿½ collapse nav / TOC  (initLayoutToggles())
  * Slim arrow tabs on the page edges; state persists in localStorage.
  * ============================================================================ */
 .ps-layout-toggle {
@@ -3645,7 +3645,7 @@ html {
 .ps-nav-collapsed .ps-layout-toggle--nav svg { transform: rotate(180deg); }
 .ps-toc-collapsed .ps-layout-toggle--toc svg { transform: rotate(180deg); }
 
-/* Collapse the sidebars — flex lets the content reclaim the space */
+/* Collapse the sidebars ï¿½ flex lets the content reclaim the space */
 .ps-nav-collapsed .md-sidebar--primary { display: none; }
 .ps-toc-collapsed .md-sidebar--secondary { display: none; }
 
@@ -3658,14 +3658,14 @@ html {
 }
 
 /* ============================================================================
- * Reading Settings — user-selectable body font + text size
+ * Reading Settings ï¿½ user-selectable body font + text size
  * Font is swapped via Material's text-font variable so CODE stays monospace.
  * Size scales the article body via --ps-reading-scale.
  * ============================================================================ */
 :root.ps-font-mono  { --md-text-font: "IBM Plex Mono"; }
 :root.ps-font-sans  { --md-text-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 :root.ps-font-serif { --md-text-font: Georgia, Cambria, "Times New Roman", Times, serif; }
-/* "News" — Indian Express body serif (PT Serif webfont, loaded in main.html). */
+/* "News" ï¿½ Indian Express body serif (PT Serif webfont, loaded in main.html). */
 :root.ps-font-news  { --md-text-font: "PT Serif", Georgia, "Times New Roman", serif; }
 /* PT Serif reads a bit smaller: give it a touch more size + leading for that print-news feel. */
 :root.ps-font-news .md-content .md-typeset {
@@ -3673,7 +3673,7 @@ html {
   line-height: 1.75;
 }
 
-/* Reading size — scales the article copy (headings are em-based, so they follow).
+/* Reading size ï¿½ scales the article copy (headings are em-based, so they follow).
  * Base lowered from 0.8rem ? 0.72rem: IBM Plex Mono renders wide, so the smaller
  * base reads comfortably for long articles. The S/M/L/XL toggle scales on top. */
 .md-content .md-typeset {
@@ -3744,7 +3744,7 @@ html {
   margin-bottom: 0.45rem;
 }
 .ps-reading-chips { display: flex; gap: 0.35rem; flex-wrap: wrap; }
-/* Font row has 4 wider labels — lay them out 2×2 so nothing gets clipped. */
+/* Font row has 4 wider labels ï¿½ lay them out 2ï¿½2 so nothing gets clipped. */
 .ps-reading-chips--grid { display: grid; grid-template-columns: repeat(2, 1fr); }
 .ps-reading-chip {
   flex: 1;
@@ -3787,7 +3787,7 @@ html {
 }
 
 /* ============================================================================
- * MINIMAL HOME (v3) — clean, card-based, Material
+ * MINIMAL HOME (v3) ï¿½ clean, card-based, Material
  * Self-contained .ps-mh-* classes (none of the old flashy hero/terminal CSS).
  * ============================================================================ */
 .ps-mh-hero {
@@ -4055,7 +4055,7 @@ html {
 .ps-mh-cta-actions .md-button { margin: 0; }
 
 /* ============================================================================
- * MINIMAL ABOUT — reuses .ps-mh-* plus a few about-specific pieces
+ * MINIMAL ABOUT ï¿½ reuses .ps-mh-* plus a few about-specific pieces
  * ============================================================================ */
 .ps-mh-grid--2 { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 760px) { .ps-mh-grid--2 { grid-template-columns: 1fr; } }
@@ -4099,12 +4099,12 @@ html {
 .ps-mh-htb a:hover { transform: translateY(-3px); }
 
 /* ============================================================================
- * Code highlighting — calm terminal/output blocks
+ * Code highlighting ï¿½ calm terminal/output blocks
  * Highlighting command OUTPUT (nmap, etc.) turns every IP/port/word into a
  * noisy rainbow (esp. the red number color). For terminal-session languages
  * we neutralize the token colors to the base code color so output reads like
- * a real terminal — strings stay green and comments muted for a subtle vibe.
- * Real languages (php/python/js/…) keep full Material highlighting.
+ * a real terminal ï¿½ strings stay green and comments muted for a subtle vibe.
+ * Real languages (php/python/js/ï¿½) keep full Material highlighting.
  * ============================================================================ */
 .md-typeset .language-shell,
 .md-typeset .language-console,
@@ -4145,9 +4145,9 @@ html {
 }
 
 /* ============================================================================
- * Audio Player — sidebar "Listen to Article" player
+ * Audio Player ï¿½ sidebar "Listen to Article" player
  * ========================================================================== */
- * Audio Player — sidebar "Listen to Article" player
+ * Audio Player ï¿½ sidebar "Listen to Article" player
  * ========================================================================== */
 
 .ps-audio-wrapper {
@@ -4200,4 +4200,68 @@ html {
 
 [data-md-color-scheme="default"] .ps-audio-label svg {
   color: #6d28d9;
+}
+
+/* ============================================================================
+ * MOBILE POLISH â€” small-screen readability & overflow hardening
+ * Everything here is gated behind max-width media queries, so the desktop
+ * layout is completely unaffected. Ordered widest â†’ narrowest.
+ * ============================================================================ */
+
+/* ---- Tablets & phones (<= 768px) --------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Kill sideways page scroll from decorative/full-bleed sections.
+     `clip` (not `hidden`) so the sticky header keeps working. */
+  .md-main { overflow-x: clip; }
+
+  /* Long inline strings (URLs, tokens) shouldn't force the page wider */
+  .md-content .md-typeset { overflow-wrap: break-word; word-wrap: break-word; }
+
+  /* Give reference tables their own horizontal scroll instead of the page */
+  .md-typeset .md-typeset__table,
+  .md-typeset > table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tighten the home content gutter a touch */
+  .ps-home .ps-content-wrap { padding-left: 1.1rem; padding-right: 1.1rem; }
+}
+
+/* ---- Phones (<= 600px) ------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  /* Denser, more legible tables on small screens */
+  .md-typeset table:not([class]) th,
+  .md-typeset table:not([class]) td {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  /* Section heading scale so long titles don't wrap awkwardly */
+  .ps-mh-head h2,
+  .ps-mh-hero .ps-mh-title { line-height: 1.15; }
+  .ps-mh-hero { padding-top: 3rem; padding-bottom: 1.5rem; }
+
+  /* Reading-settings button: move to the left so it never sits on top of
+     Material's "back to top" button (bottom-right) on mobile */
+  .ps-reading-fab { right: auto; left: 1rem; bottom: 1rem; width: 42px; height: 42px; }
+  .ps-reading-panel { right: auto; left: 1rem; bottom: 4rem; width: min(240px, calc(100vw - 2rem)); }
+
+  /* Blockquotes / callouts shouldn't hug the edges */
+  .md-typeset .admonition, .md-typeset details { margin-left: 0; margin-right: 0; }
+}
+
+/* ---- Small phones (<= 420px) ------------------------------------------- */
+@media screen and (max-width: 420px) {
+  /* Slightly smaller code so fewer lines wrap/scroll horizontally */
+  .md-typeset pre > code { font-size: 0.72rem; }
+
+  /* Article H1 stays punchy but fits narrow viewports */
+  .md-content .md-typeset h1 { font-size: 1.5rem; line-height: 1.2; }
+
+  /* Stack any remaining button rows full-width for easy tapping */
+  .ps-mh-cta-actions .md-button,
+  .ps-mh-actions .md-button { width: 100%; text-align: center; }
 }
