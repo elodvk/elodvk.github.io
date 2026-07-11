@@ -3237,8 +3237,8 @@ html {
  *   purple      #6d28d9 (text/icon)      green       #0a8f3c
  * ============================================================================ */
 [data-md-color-scheme="default"] {
-  /* Material core — tint the page so white cards gain depth */
-  --md-default-bg-color: #f4f5fa;
+  /* Material core — pure white page background */
+  --md-default-bg-color: #ffffff;
   --md-typeset-a-color: #6d28d9;
 
   /* Brand accents (tuned for contrast on white) */
@@ -3665,6 +3665,13 @@ html {
 :root.ps-font-mono  { --md-text-font: "IBM Plex Mono"; }
 :root.ps-font-sans  { --md-text-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 :root.ps-font-serif { --md-text-font: Georgia, Cambria, "Times New Roman", Times, serif; }
+/* "News" — Indian Express body serif (PT Serif webfont, loaded in main.html). */
+:root.ps-font-news  { --md-text-font: "PT Serif", Georgia, "Times New Roman", serif; }
+/* PT Serif reads a bit smaller: give it a touch more size + leading for that print-news feel. */
+:root.ps-font-news .md-content .md-typeset {
+  font-size: calc(0.8rem * var(--ps-reading-scale, 1));
+  line-height: 1.75;
+}
 
 /* Reading size — scales the article copy (headings are em-based, so they follow).
  * Base lowered from 0.8rem → 0.72rem: IBM Plex Mono renders wide, so the smaller
@@ -3737,10 +3744,13 @@ html {
   margin-bottom: 0.45rem;
 }
 .ps-reading-chips { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+/* Font row has 4 wider labels — lay them out 2×2 so nothing gets clipped. */
+.ps-reading-chips--grid { display: grid; grid-template-columns: repeat(2, 1fr); }
 .ps-reading-chip {
   flex: 1;
   min-width: 38px;
   padding: 0.42rem 0.5rem;
+  text-align: center;
   border-radius: 7px;
   border: 1px solid var(--ps-card-border);
   background: transparent;

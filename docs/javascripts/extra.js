@@ -1099,7 +1099,7 @@ function initPurpleSecJS() {
     var curSize = localStorage.getItem("ps-size") || "md";
 
     function applyFont(key) {
-      root.classList.remove("ps-font-mono", "ps-font-sans", "ps-font-serif");
+      root.classList.remove("ps-font-mono", "ps-font-sans", "ps-font-serif", "ps-font-news");
       root.classList.add("ps-font-" + key);
     }
     function applySize(key) {
@@ -1127,10 +1127,11 @@ function initPurpleSecJS() {
       '<div class="ps-reading-title">Reading</div>' +
       '<div class="ps-reading-group">' +
         '<div class="ps-reading-label">Font</div>' +
-        '<div class="ps-reading-chips">' +
+        '<div class="ps-reading-chips ps-reading-chips--grid">' +
           '<button type="button" class="ps-reading-chip" data-font="mono">Mono</button>' +
           '<button type="button" class="ps-reading-chip" data-font="sans">Sans</button>' +
           '<button type="button" class="ps-reading-chip" data-font="serif">Serif</button>' +
+          '<button type="button" class="ps-reading-chip" data-font="news">News</button>' +
         '</div>' +
       '</div>' +
       '<div class="ps-reading-group">' +

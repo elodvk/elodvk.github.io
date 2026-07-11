@@ -2,6 +2,10 @@
 
 {% block extrahead %}
   {{ super() }}
+  <!-- PT Serif — powers the "News" reading-settings font (Indian Express body serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   {% set og_title = page.title if page and page.title else config.site_name %}
   {% set og_desc = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
   {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
