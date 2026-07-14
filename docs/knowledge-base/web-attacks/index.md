@@ -26,4 +26,12 @@ hide:
 <span class="ps-fx-desc">From UNION-based to blind exploitation, with automated attacks using SQLMap and WAF bypass techniques.</span>
 <span class="ps-fx-arrow">Inject the queries →</span>
 </a>
+
+<a href="ffuf/index.md" class="ps-fx-card">
+<span class="ps-fx-index">03 / FUZZING</span>
+<span class="ps-fx-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></svg></span>
+<span class="ps-fx-title">Attacking with Ffuf</span>
+<span class="ps-fx-desc">Directory, extension, page, recursive, subdomain, vhost, parameter, and value fuzzing — the complete methodology.</span>
+<span class="ps-fx-arrow">Fuzz the target →</span>
+</a>
 </div>
