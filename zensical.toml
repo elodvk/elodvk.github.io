@@ -118,6 +118,10 @@ nav = [
         { "Cheatsheet" = "knowledge-base/web-attacks/ffuf/cheatsheet.md" },
       ]},
     ]},
+    { "Attacking Common Applications" = [
+      { "Application Discovery & Enumeration" = "knowledge-base/attacking-common-applications/application-discovery-enumeration.md" },
+      { "Attacking WordPress" = "knowledge-base/attacking-common-applications/wordpress.md" },
+    ]},
     { "Credential Attacks" = [
       { "Overview" = "knowledge-base/credential-attacks/index.md" },
       { "Password Cracking Techniques" = [
