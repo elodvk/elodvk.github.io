@@ -257,16 +257,6 @@ nav = [
     ]},
   ]},
   { "Pwned" = "walkthroughs/index.md" },
-  { "Certifications" = [
-    { "Overview" = "certifications/index.md" },
-    { "OSCP" = "certifications/oscp/index.md" },
-    { "CPTS" = [
-      { "Overview" = "certifications/cpts/index.md" },
-      { "Practice Machines & Exam Prep" = "certifications/cpts/practice-machines.md" },
-    ]},
-    { "PNPT" = "certifications/pnpt/index.md" },
-    { "CISSP" = "certifications/cissp/index.md" },
-  ]},
   { "About" = "about/index.md" },
   { "Contact" = "contact.md" },
 ]
