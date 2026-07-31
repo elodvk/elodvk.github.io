@@ -15,8 +15,8 @@ tags:
   - KOSPI
   - Samsung
   - SK Hynix
-description: "A comprehensive deep-dive into the South Korean AI bubble burst of July 2026 — from the KOSPI's parabolic 180% rise to its catastrophic 40% collapse, the leveraged ETF catastrophe, the $2 trillion in erased market value, the China CXMT competitive threat, the Finance Minister's public apology, and the eerie historical parallels with Japan's 1989 Lost Decade and the Dot-Com crash.
-image: blog/assets/sk_ai_bubble_hero.png"
+description: "A comprehensive deep-dive into the South Korean AI bubble burst of July 2026 — from the KOSPI's parabolic 180% rise to its catastrophic 40% collapse, the leveraged ETF catastrophe, the $2 trillion in erased market value, the China CXMT competitive threat, the Finance Minister's public apology, and the eerie historical parallels with Japan's 1989 Lost Decade and the Dot-Com crash."
+image: blog/assets/sk_ai_bubble_hero.png
 ---
 ![Banner image](assets/sk_ai_bubble_hero.png)
 
