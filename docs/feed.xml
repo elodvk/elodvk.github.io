@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Tue, 11 Aug 2026 17:27:06 -0000</lastBuildDate>
+<lastBuildDate>Tue, 11 Aug 2026 17:49:16 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -88,19 +88,6 @@
 <category>Conditional Access</category>
 </item>
 <item>
-<title>Claude Fable 5 Is Back: Inside Anthropic&#x27;s 19-Day Exile and the New Safety Architecture That Ended It</title>
-<link>https://purplesec.org/blog/anthropic-fable-5-restored/</link>
-<description>A comprehensive analysis of Anthropic&#x27;s restoration of Claude Fable 5 access on July 1, 2026 — from the Amazon jailbreak discovery and the unprecedented export control ban, to the new safety classifiers, API refusal architecture, Project Glasswing, and what it all means for the future of frontier AI governance.</description>
-<pubDate>Wed, 01 Jul 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/anthropic-fable-5-restored/</guid>
-<author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>AI</category>
-<category>Anthropic</category>
-<category>Export Control</category>
-<category>Cybersecurity</category>
-<category>Policy</category>
-</item>
-<item>
 <title>The Samy Worm: Dissecting the Fastest-Spreading XSS Worm in History</title>
 <link>https://purplesec.org/blog/samy-worm-case-study/</link>
 <description>A comprehensive case study of the Samy worm — the MySpace XSS worm that infected over one million profiles in under 20 hours in 2005, pioneered browser-based self-propagation, and forever changed how we think about web application security.</description>
@@ -114,55 +101,17 @@
 <category>Deep Dive</category>
 </item>
 <item>
-<title>The Invisible Hook: How Clean GitHub Repos Are Tricking AI Agents into Running Malware</title>
-<link>https://purplesec.org/blog/0din-ai-agent-malware/</link>
-<description>A deep dive into the recent proof-of-concept attack demonstrated by Mozilla’s 0DIN, showing how AI coding agents like Claude Code can be tricked into executing malware from entirely clean GitHub repositories.</description>
-<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/0din-ai-agent-malware/</guid>
+<title>Claude Fable 5 Is Back: Inside Anthropic&#x27;s 19-Day Exile and the New Safety Architecture That Ended It</title>
+<link>https://purplesec.org/blog/anthropic-fable-5-restored/</link>
+<description>A comprehensive analysis of Anthropic&#x27;s restoration of Claude Fable 5 access on July 1, 2026 — from the Amazon jailbreak discovery and the unprecedented export control ban, to the new safety classifiers, API refusal architecture, Project Glasswing, and what it all means for the future of frontier AI governance.</description>
+<pubDate>Wed, 01 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/anthropic-fable-5-restored/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>AI Security</category>
-<category>Threat Intel</category>
-<category>Malware</category>
-<category>Supply Chain</category>
-<category>Autonomous Agents</category>
-</item>
-<item>
-<title>The Phishing Epidemic of 2026: How Generative AI Reshaped Social Engineering</title>
-<link>https://purplesec.org/blog/ai-phishing-epidemic-2026/</link>
-<description>A deep dive into how Generative AI, deepfake voice cloning, and LLMs have weaponized phishing and Business Email Compromise (BEC) in 2026, and how identity-centric defenses are fighting back.</description>
-<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/ai-phishing-epidemic-2026/</guid>
-<author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Phishing</category>
-<category>AI Security</category>
-<category>Deepfakes</category>
-<category>Social Engineering</category>
-<category>Threat Intel</category>
-</item>
-<item>
-<title>FIFA World Cup 2026: The Largest Cyber Attack Surface in Sporting History</title>
-<link>https://purplesec.org/blog/fifa-2026-cyber-risks/</link>
-<description>A deep dive into the unprecedented cybersecurity risks facing the 2026 FIFA World Cup across North America, from massive ticketing fraud campaigns to critical infrastructure targeting by nation-states.</description>
-<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/fifa-2026-cyber-risks/</guid>
-<author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Threat Intel</category>
-<category>Critical Infrastructure</category>
-<category>FIFA 2026</category>
-<category>Fraud</category>
-<category>Nation-State Threats</category>
-</item>
-<item>
-<title>GuardFall: Why Modern AI Agents Are Falling for Decades-Old Shell Tricks</title>
-<link>https://purplesec.org/blog/guardfall-ai-shell-injection/</link>
-<description>A deep dive into the GuardFall vulnerability disclosed by Adversa AI, explaining how attackers use simple shell obfuscation to bypass plain-text security filters in 10 out of 11 popular open-source coding agents.</description>
-<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/guardfall-ai-shell-injection/</guid>
-<author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>AI Security</category>
-<category>Vulnerability Analysis</category>
-<category>Shell Injection</category>
-<category>GuardFall</category>
+<category>AI</category>
+<category>Anthropic</category>
+<category>Export Control</category>
+<category>Cybersecurity</category>
+<category>Policy</category>
 </item>
 <item>
 <title>WhatsApp Is Finally Getting Usernames — And It&#x27;s a Bigger Deal Than You Think</title>
@@ -178,6 +127,57 @@
 <category>Identity</category>
 </item>
 <item>
+<title>GuardFall: Why Modern AI Agents Are Falling for Decades-Old Shell Tricks</title>
+<link>https://purplesec.org/blog/guardfall-ai-shell-injection/</link>
+<description>A deep dive into the GuardFall vulnerability disclosed by Adversa AI, explaining how attackers use simple shell obfuscation to bypass plain-text security filters in 10 out of 11 popular open-source coding agents.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/guardfall-ai-shell-injection/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Vulnerability Analysis</category>
+<category>Shell Injection</category>
+<category>GuardFall</category>
+</item>
+<item>
+<title>The Phishing Epidemic of 2026: How Generative AI Reshaped Social Engineering</title>
+<link>https://purplesec.org/blog/ai-phishing-epidemic-2026/</link>
+<description>A deep dive into how Generative AI, deepfake voice cloning, and LLMs have weaponized phishing and Business Email Compromise (BEC) in 2026, and how identity-centric defenses are fighting back.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/ai-phishing-epidemic-2026/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Phishing</category>
+<category>AI Security</category>
+<category>Deepfakes</category>
+<category>Social Engineering</category>
+<category>Threat Intel</category>
+</item>
+<item>
+<title>The Invisible Hook: How Clean GitHub Repos Are Tricking AI Agents into Running Malware</title>
+<link>https://purplesec.org/blog/0din-ai-agent-malware/</link>
+<description>A deep dive into the recent proof-of-concept attack demonstrated by Mozilla’s 0DIN, showing how AI coding agents like Claude Code can be tricked into executing malware from entirely clean GitHub repositories.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/0din-ai-agent-malware/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Threat Intel</category>
+<category>Malware</category>
+<category>Supply Chain</category>
+<category>Autonomous Agents</category>
+</item>
+<item>
+<title>FIFA World Cup 2026: The Largest Cyber Attack Surface in Sporting History</title>
+<link>https://purplesec.org/blog/fifa-2026-cyber-risks/</link>
+<description>A deep dive into the unprecedented cybersecurity risks facing the 2026 FIFA World Cup across North America, from massive ticketing fraud campaigns to critical infrastructure targeting by nation-states.</description>
+<pubDate>Tue, 30 Jun 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/fifa-2026-cyber-risks/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Threat Intel</category>
+<category>Critical Infrastructure</category>
+<category>FIFA 2026</category>
+<category>Fraud</category>
+<category>Nation-State Threats</category>
+</item>
+<item>
 <title>Windows 11 26H2: Everything You Need to Know — Features, AI Integration, Security, and the Great Architecture Split</title>
 <link>https://purplesec.org/blog/windows-11-26h2-complete-guide/</link>
 <description>A massively detailed guide to Windows 11 version 26H2 — the fall 2026 annual update. Covers the enablement package delivery model, AI-powered features like Copilot Vision and Click to Do, the 26H1 vs 26H2 architecture split, security hardening with hotpatching, Smart App Control, and Pluton, enterprise migration strategies from Windows 10, and what it all means for IT professionals.</description>
@@ -191,17 +191,17 @@
 <category>AI</category>
 </item>
 <item>
-<title>The Anatomy of a Botnet: History, Architecture, and the Botnet Economy</title>
-<link>https://purplesec.org/blog/botnets-history-and-mechanics/</link>
-<description>A massively detailed deep dive into the evolution of botnets, from benign 1980s IRC automation to the modern, sophisticated global networks fueling Botnet-as-a-Service (BaaS).</description>
+<title>Wi-Fi Snitching: How Microsoft Teams&#x27; New Auto-Detect Feature Works (And How to Opt-Out)</title>
+<link>https://purplesec.org/blog/teams-wifi-tracking/</link>
+<description>A deep dive into Microsoft Teams&#x27; new &#x27;Workplace check-in&#x27; feature, the privacy concerns around Wi-Fi tracking, and how to opt-out of corporate surveillance.</description>
 <pubDate>Sun, 21 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/botnets-history-and-mechanics/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/teams-wifi-tracking/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Botnets</category>
-<category>Architecture</category>
-<category>Mirai</category>
-<category>Emotet</category>
-<category>Deep Dive</category>
+<category>Microsoft Teams</category>
+<category>Privacy</category>
+<category>Surveillance</category>
+<category>Enterprise Security</category>
+<category>Cybersecurity</category>
 </item>
 <item>
 <title>RoguePlanet: Deep Dive into the Microsoft Defender TOCTOU Zero-Day (CVE-2026-50656)</title>
@@ -217,17 +217,17 @@
 <category>CVE-2026-50656</category>
 </item>
 <item>
-<title>Wi-Fi Snitching: How Microsoft Teams&#x27; New Auto-Detect Feature Works (And How to Opt-Out)</title>
-<link>https://purplesec.org/blog/teams-wifi-tracking/</link>
-<description>A deep dive into Microsoft Teams&#x27; new &#x27;Workplace check-in&#x27; feature, the privacy concerns around Wi-Fi tracking, and how to opt-out of corporate surveillance.</description>
+<title>The Anatomy of a Botnet: History, Architecture, and the Botnet Economy</title>
+<link>https://purplesec.org/blog/botnets-history-and-mechanics/</link>
+<description>A massively detailed deep dive into the evolution of botnets, from benign 1980s IRC automation to the modern, sophisticated global networks fueling Botnet-as-a-Service (BaaS).</description>
 <pubDate>Sun, 21 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/teams-wifi-tracking/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/botnets-history-and-mechanics/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Microsoft Teams</category>
-<category>Privacy</category>
-<category>Surveillance</category>
-<category>Enterprise Security</category>
-<category>Cybersecurity</category>
+<category>Botnets</category>
+<category>Architecture</category>
+<category>Mirai</category>
+<category>Emotet</category>
+<category>Deep Dive</category>
 </item>
 <item>
 <title>An AI Agent Is an Identity — and Most Organizations Don&#x27;t Treat Them That Way</title>
@@ -306,17 +306,17 @@
 <category>TLS</category>
 </item>
 <item>
-<title>June 2026 Patch Tuesday: A Record-Breaking 206 CVEs, Three Zero-Days &amp; Two BitLocker Bypasses</title>
-<link>https://purplesec.org/blog/june-2026-patch-tuesday/</link>
-<description>A deep-dive into June 2026 Patch Tuesday — the largest in Microsoft history, patching 206 CVEs including 3 zero-days, a wormable Windows Kernel RCE (CVSS 9.8), an actively exploited Defender EoP, and two separate BitLocker bypasses (YellowKey &amp; Bitskrieg).</description>
+<title>NVIDIA RTX Spark &amp; DGX Spark: The Dawn of Personal AI Supercomputers and What It Means for Local LLM Enthusiasts</title>
+<link>https://purplesec.org/blog/nvidia-rtx-dgx-spark/</link>
+<description>An in-depth look at NVIDIA RTX Spark and DGX Spark — the new personal AI supercomputers powered by Grace Blackwell silicon. From the 128GB unified memory architecture to running 200B-parameter models locally, we explore what these machines mean for developers, researchers, and the local LLM community.</description>
 <pubDate>Thu, 11 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/june-2026-patch-tuesday/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/nvidia-rtx-dgx-spark/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Patch Tuesday</category>
-<category>Microsoft</category>
-<category>CVE</category>
-<category>Windows</category>
-<category>BitLocker</category>
+<category>NVIDIA</category>
+<category>AI</category>
+<category>LLM</category>
+<category>DGX Spark</category>
+<category>RTX Spark</category>
 </item>
 <item>
 <title>How GitHub and npm Are Fighting Back Against Supply Chain Attacks — And What You Need to Do Before July 2026</title>
@@ -332,17 +332,17 @@
 <category>DevSecOps</category>
 </item>
 <item>
-<title>NVIDIA RTX Spark &amp; DGX Spark: The Dawn of Personal AI Supercomputers and What It Means for Local LLM Enthusiasts</title>
-<link>https://purplesec.org/blog/nvidia-rtx-dgx-spark/</link>
-<description>An in-depth look at NVIDIA RTX Spark and DGX Spark — the new personal AI supercomputers powered by Grace Blackwell silicon. From the 128GB unified memory architecture to running 200B-parameter models locally, we explore what these machines mean for developers, researchers, and the local LLM community.</description>
+<title>June 2026 Patch Tuesday: A Record-Breaking 206 CVEs, Three Zero-Days &amp; Two BitLocker Bypasses</title>
+<link>https://purplesec.org/blog/june-2026-patch-tuesday/</link>
+<description>A deep-dive into June 2026 Patch Tuesday — the largest in Microsoft history, patching 206 CVEs including 3 zero-days, a wormable Windows Kernel RCE (CVSS 9.8), an actively exploited Defender EoP, and two separate BitLocker bypasses (YellowKey &amp; Bitskrieg).</description>
 <pubDate>Thu, 11 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/nvidia-rtx-dgx-spark/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/june-2026-patch-tuesday/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>NVIDIA</category>
-<category>AI</category>
-<category>LLM</category>
-<category>DGX Spark</category>
-<category>RTX Spark</category>
+<category>Patch Tuesday</category>
+<category>Microsoft</category>
+<category>CVE</category>
+<category>Windows</category>
+<category>BitLocker</category>
 </item>
 <item>
 <title>The Nightmare Eclipse Zero-Day Campaign: A Complete Technical Analysis of the 2026 Microsoft Vendetta</title>
@@ -371,17 +371,16 @@
 <category>Cybersecurity</category>
 </item>
 <item>
-<title>A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local Deployment</title>
-<link>https://purplesec.org/blog/comprehensive_ai_guide/</link>
-<description>A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks.</description>
+<title>The Anatomy of the Meta AI Support Hack: Why AI Should Never Reset Passwords</title>
+<link>https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</link>
+<description>A deep dive into the 2026 Meta AI support hack, exploring how attackers socially engineered an AI chatbot to bypass IAM and reset Instagram passwords.</description>
 <pubDate>Tue, 09 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/comprehensive_ai_guide/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Meta</category>
 <category>AI</category>
-<category>Machine Learning</category>
-<category>Large Language Models</category>
-<category>RAG</category>
-<category>Local AI</category>
+<category>Security</category>
+<category>Social Engineering</category>
 </item>
 <item>
 <title>The Golden Skeleton Key: A Deep Dive into CVE-2026-45585 (YellowKey) BitLocker Bypass</title>
@@ -397,16 +396,17 @@
 <category>Physical Security</category>
 </item>
 <item>
-<title>The Anatomy of the Meta AI Support Hack: Why AI Should Never Reset Passwords</title>
-<link>https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</link>
-<description>A deep dive into the 2026 Meta AI support hack, exploring how attackers socially engineered an AI chatbot to bypass IAM and reset Instagram passwords.</description>
+<title>A Comprehensive Guide to Modern AI: Concepts, Architecture, and Local Deployment</title>
+<link>https://purplesec.org/blog/comprehensive_ai_guide/</link>
+<description>A comprehensive guide to modern AI, explaining core concepts like LLMs, RAG, embeddings, local deployment, and practical cybersecurity risks.</description>
 <pubDate>Tue, 09 Jun 2026 00:00:00 -0000</pubDate>
-<guid isPermaLink="true">https://purplesec.org/blog/Meta_AI_Support_Hack_Blog/</guid>
+<guid isPermaLink="true">https://purplesec.org/blog/comprehensive_ai_guide/</guid>
 <author>elodvk@proton.me (Bilash J. Shahi)</author>
-<category>Meta</category>
 <category>AI</category>
-<category>Security</category>
-<category>Social Engineering</category>
+<category>Machine Learning</category>
+<category>Large Language Models</category>
+<category>RAG</category>
+<category>Local AI</category>
 </item>
 <item>
 <title>How I Conquered the PNPT: A Wild Ride Through Cyber Shenanigans</title>
