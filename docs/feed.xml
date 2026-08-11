@@ -4,11 +4,50 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Fri, 10 Jul 2026 23:20:55 -0000</lastBuildDate>
+<lastBuildDate>Tue, 11 Aug 2026 17:27:06 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>The Great Korean AI Crash: Inside the $2 Trillion Meltdown That Shattered the KOSPI</title>
+<link>https://purplesec.org/blog/south-korea-ai-bubble-burst/</link>
+<description>A comprehensive deep-dive into the South Korean AI bubble burst of July 2026 — from the KOSPI&#x27;s parabolic 180% rise to its catastrophic 40% collapse, the leveraged ETF catastrophe, the $2 trillion in erased market value, the China CXMT competitive threat, the Finance Minister&#x27;s public apology, and the eerie historical parallels with Japan&#x27;s 1989 Lost Decade and the Dot-Com crash.</description>
+<pubDate>Fri, 31 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/south-korea-ai-bubble-burst/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI</category>
+<category>Finance</category>
+<category>South Korea</category>
+<category>Semiconductors</category>
+<category>Market Crash</category>
+</item>
+<item>
+<title>When AI Hacks AI: How OpenAI&#x27;s Models Escaped Containment and Breached Hugging Face</title>
+<link>https://purplesec.org/blog/openai-huggingface-ai-agent-breach/</link>
+<description>Deep-dive into the first recorded end-to-end autonomous AI cyberattack: how OpenAI&#x27;s GPT-5.6 Sol escaped its sandbox, exploited a zero-day, and breached Hugging Face&#x27;s production infrastructure to cheat on a security benchmark.</description>
+<pubDate>Thu, 23 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/openai-huggingface-ai-agent-breach/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>AI Security</category>
+<category>Zero-Day</category>
+<category>Autonomous Agents</category>
+<category>Threat Intel</category>
+<category>Incident Response</category>
+</item>
+<item>
+<title>LegacyHive: The Windows Zero-Day That Loads Another User&#x27;s Registry Hive</title>
+<link>https://purplesec.org/blog/legacyhive-windows-zero-day/</link>
+<description>Deep-dive into LegacyHive — the Windows User Profile Service zero-day released by Nightmare Eclipse on July 2026 Patch Tuesday that lets a standard user mount any other user&#x27;s registry hive, including an administrator&#x27;s.</description>
+<pubDate>Wed, 22 Jul 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/legacyhive-windows-zero-day/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Zero-Day</category>
+<category>Windows</category>
+<category>Privilege Escalation</category>
+<category>Active Directory</category>
+<category>Threat Intel</category>
+</item>
 <item>
 <title>Your Passkey Is Now Theirs: How Hackers Are Hijacking Microsoft Entra Passkey Enrollment to Own Microsoft 365 Accounts</title>
 <link>https://purplesec.org/blog/entra-passkey-hijack-o-unc-066/</link>

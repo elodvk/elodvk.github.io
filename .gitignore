@@ -8,7 +8,6 @@ __pycache__/
 
 # Virtual environments
 .venv/
-.venv-podcast/
 venv/
 env/
 
@@ -37,13 +36,3 @@ node_modules/
 *.swp
 *.bak
 *~
-
-# Podcast pipeline — voice profiles (personal audio samples)
-voice_profiles/*.wav
-voice_profiles/*.mp3
-voice_profiles/*.flac
-voice_profiles/*.m4a
-voice_profiles/profiles.json
-
-# Transcripts (generated locally, not needed in repo)
-transcripts/
