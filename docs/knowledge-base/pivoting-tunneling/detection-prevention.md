@@ -7,7 +7,6 @@ tags:
   - blue-team
   - monitoring
   - hardening
-icon: material/shield-check
 ---
 
 # 🛡️ Detection & Prevention

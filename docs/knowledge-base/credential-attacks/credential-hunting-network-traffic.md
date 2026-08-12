@@ -8,7 +8,6 @@ tags:
   - wireshark
   - responder
   - pcredz
-icon: material/lan-disconnect
 ---
 
 # 📡 Credential Hunting in Network Traffic

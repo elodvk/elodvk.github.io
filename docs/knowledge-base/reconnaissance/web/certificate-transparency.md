@@ -8,7 +8,6 @@ tags:
   - subdomain
   - osint
   - passive-recon
-icon: material/certificate-outline
 ---
 
 # 📜 Certificate Transparency Logs

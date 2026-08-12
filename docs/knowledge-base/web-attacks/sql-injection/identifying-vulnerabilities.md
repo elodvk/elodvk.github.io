@@ -1,7 +1,6 @@
 ---
 title: 'Identifying SQL Injection Vulnerabilities'
 description: 'How to systematically test for SQL injection manually, where to look, basic payloads for detection, and database fingerprinting.'
-icon: material/magnify-scan
 tags:
   - sql-injection
   - identification

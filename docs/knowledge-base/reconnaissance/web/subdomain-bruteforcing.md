@@ -8,7 +8,6 @@ tags:
   - ffuf
   - subfinder
   - information-gathering
-icon: material/hammer-wrench
 ---
 
 # 🔨 Subdomain Bruteforcing

@@ -7,7 +7,6 @@ tags:
   - zone-transfer
   - information-gathering
   - active-recon
-icon: material/bank-transfer
 ---
 
 # 📋 DNS Zone Transfers

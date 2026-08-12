@@ -2,8 +2,6 @@
 title: 'Custom Wordlists'
 description: ''
 tags:
-
-icon:
 ---
 
 While pre-made wordlists like rockyou or SecLists provide an extensive repository of potential passwords and usernames, they operate on a broad spectrum, casting a wide net in the hopes of catching the right combination. While effective in some scenarios, this approach can be inefficient and time-consuming, especially when targeting specific individuals or organizations with unique password or username patterns.

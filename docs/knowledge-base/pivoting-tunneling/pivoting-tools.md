@@ -8,7 +8,6 @@ tags:
   - netsh
   - sshuttle
   - windows
-icon: material/toolbox-outline
 ---
 
 # 🛠️ Pivoting Tools

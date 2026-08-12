@@ -1,7 +1,6 @@
 ---
 title: 'Handling SQLMap Errors'
 description: 'Troubleshoot every common SQLMap error and failure scenario. Learn why scans fail and how to fix them systematically.'
-icon: material/bug
 tags:
   - sqlmap
   - troubleshooting

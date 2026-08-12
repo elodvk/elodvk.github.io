@@ -1,7 +1,6 @@
 ---
 title: 'Active Directory - Golden Certificate'
 description: 'Active Directory - Golden Certificate.'
-icon: material/file-document-outline
 ---
 # Active Directory - Golden Certificate
 

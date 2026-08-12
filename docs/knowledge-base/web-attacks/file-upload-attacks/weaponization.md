@@ -7,7 +7,6 @@ tags:
   - File Upload
   - Web Shell
   - Reverse Shell
-icon: material/sword
 ---
 
 # Weaponization — Web & Reverse Shells

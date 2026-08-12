@@ -1,7 +1,6 @@
 ---
 title: 'ESC5: The Keys to the Kingdom Control'
 description: 'ESC5: The "Keys to the Kingdom" Control.'
-icon: material/file-document-outline
 ---
 # ESC5: The "Keys to the Kingdom" Control
 

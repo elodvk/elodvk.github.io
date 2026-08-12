@@ -8,7 +8,6 @@ tags:
   - kerberos
   - sam
   - lsass
-icon: material/shield-account-outline
 ---
 
 # 🖥️ Windows Authentication Process

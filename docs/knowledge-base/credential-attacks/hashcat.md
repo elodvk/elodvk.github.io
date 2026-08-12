@@ -7,7 +7,6 @@ tags:
   - gpu
   - hashes
   - brute-force
-icon: material/pound
 ---
 
 # 🚀 Introduction to Hashcat

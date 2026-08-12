@@ -1,7 +1,6 @@
 ---
 title: 'SQLMap Overview'
 description: 'What SQLMap is, how it works under the hood, what makes it the gold standard for automated SQL injection, and when you should (and should not) use it.'
-icon: material/console
 tags:
   - sqlmap
   - sql-injection

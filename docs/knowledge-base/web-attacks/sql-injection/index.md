@@ -1,7 +1,6 @@
 ---
 title: 'SQL Injection — Overview'
 description: 'Understand the root cause of SQL injection, the core concepts of mixing code with data, attack flow, and the taxonomy of SQLi types.'
-icon: material/database-alert
 tags:
   - sql-injection
   - web-attacks

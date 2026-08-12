@@ -7,7 +7,6 @@ tags:
   - socksoverrdp
   - rdp
   - multi-hop
-icon: material/ray-start-arrow
 ---
 
 # 🔀 Double Pivots

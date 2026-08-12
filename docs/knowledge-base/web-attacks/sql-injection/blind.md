@@ -1,7 +1,6 @@
 ---
 title: 'Blind SQL Injection'
 description: 'Deep dive into Boolean-based and Time-based blind SQL injection, including binary search concepts and a sample Python script for automated extraction.'
-icon: material/eye-off
 tags:
   - sql-injection
   - blind

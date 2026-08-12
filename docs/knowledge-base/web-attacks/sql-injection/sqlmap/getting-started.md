@@ -1,7 +1,6 @@
 ---
 title: 'Getting Started with SQLMap'
 description: 'Install SQLMap, run your first scan, understand the interactive prompts, and learn the essential flags every operator needs to know.'
-icon: material/rocket-launch
 tags:
   - sqlmap
   - sql-injection

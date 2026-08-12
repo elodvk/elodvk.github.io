@@ -1,7 +1,6 @@
 ---
 title: 'ESC9: The No Security Extension Spoof'
 description: 'ESC9: The "No Security Extension" Spoof.'
-icon: material/file-document-outline
 ---
 # ESC9: The "No Security Extension" Spoof
 

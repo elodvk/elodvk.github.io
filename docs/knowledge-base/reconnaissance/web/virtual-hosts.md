@@ -7,7 +7,6 @@ tags:
   - ffuf
   - gobuster
   - information-gathering
-icon: material/server-network
 ---
 
 # 🏠 Virtual Hosts

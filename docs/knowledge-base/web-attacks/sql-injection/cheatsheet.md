@@ -1,7 +1,6 @@
 ---
 title: 'SQL Injection Cheatsheet'
 description: 'Quick reference tables for MySQL, MSSQL, PostgreSQL, and Oracle.'
-icon: material/file-document-outline
 tags:
   - sql-injection
   - cheatsheet

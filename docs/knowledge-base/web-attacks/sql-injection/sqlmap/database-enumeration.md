@@ -1,7 +1,6 @@
 ---
 title: 'Database Enumeration'
 description: 'Extract database names, tables, columns, and data using SQLMap. Learn the systematic enumeration workflow from discovery to full data dump.'
-icon: material/database-search
 tags:
   - sqlmap
   - enumeration

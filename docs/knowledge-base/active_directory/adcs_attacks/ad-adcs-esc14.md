@@ -1,7 +1,6 @@
 ---
 title: 'ESC14: altSecurityIdentities'
 description: 'ESC14: altSecurityIdentities.'
-icon: material/file-document-outline
 ---
 # ESC14: altSecurityIdentities
 

@@ -1,7 +1,6 @@
 ---
 title: 'In-Band SQL Injection'
 description: 'Deep dive into Union-based and Error-based SQL injection, including step-by-step column counting, visible column identification, and data extraction.'
-icon: material/transfer
 tags:
   - sql-injection
   - in-band

@@ -7,7 +7,6 @@ tags:
   - vault
   - mimikatz
   - windows
-icon: material/card-account-details
 ---
 
 # 🗃️ Attacking Windows Credential Manager

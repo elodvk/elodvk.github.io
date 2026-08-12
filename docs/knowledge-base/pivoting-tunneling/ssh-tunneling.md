@@ -8,7 +8,6 @@ tags:
   - tunneling
   - socks
   - port-forwarding
-icon: material/console-network
 ---
 
 # 🔑 SSH & Meterpreter Tunneling

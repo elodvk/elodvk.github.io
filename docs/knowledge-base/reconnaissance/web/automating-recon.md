@@ -7,7 +7,6 @@ tags:
   - recon-ng
   - reconftw
   - information-gathering
-icon: material/robot-outline
 ---
 
 # ⚙️ Automating Recon

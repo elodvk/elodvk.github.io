@@ -9,7 +9,6 @@ tags:
   - dig
   - nslookup
   - zone transfer
-icon: material/dns
 ---
 
 # 🌐 DNS Footprinting

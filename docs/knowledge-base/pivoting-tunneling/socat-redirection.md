@@ -7,7 +7,6 @@ tags:
   - redirection
   - reverse-shell
   - bind-shell
-icon: material/swap-horizontal-bold
 ---
 
 # 🏓 Socat Redirection

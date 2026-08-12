@@ -7,7 +7,6 @@ tags:
   - whatweb
   - nmap
   - information-gathering
-icon: material/fingerprint
 ---
 
 # 🖐️ Fingerprinting

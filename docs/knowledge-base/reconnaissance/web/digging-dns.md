@@ -8,7 +8,6 @@ tags:
   - host
   - information-gathering
   - active-recon
-icon: material/magnify-scan
 ---
 
 # 🔎 Digging DNS

@@ -8,7 +8,6 @@ tags:
   - cewl
   - hashcat
   - john
-icon: material/format-list-bulleted
 ---
 
 # 📝 Writing Custom Wordlists and Rules

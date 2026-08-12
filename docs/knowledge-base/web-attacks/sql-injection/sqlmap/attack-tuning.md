@@ -1,7 +1,6 @@
 ---
 title: 'Attack Tuning'
 description: 'Fine-tune SQLMap scans with level, risk, technique selection, prefix/suffix customization, UNION column configuration, and second-order injection.'
-icon: material/tune-vertical
 tags:
   - sqlmap
   - attack-tuning

@@ -1,7 +1,6 @@
 ---
 title: 'Bypassing Web Application Protections'
 description: 'Evade WAFs, IDS/IPS, and application-level filters using tamper scripts, encoding techniques, chunked transfer, and custom evasion strategies.'
-icon: material/shield-off
 tags:
   - sqlmap
   - waf-bypass

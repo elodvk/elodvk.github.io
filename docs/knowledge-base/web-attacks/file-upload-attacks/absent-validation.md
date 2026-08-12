@@ -6,7 +6,6 @@ tags:
   - Web
   - File Upload
   - RCE
-icon: material/alert-circle-outline
 ---
 
 # Absent Validation

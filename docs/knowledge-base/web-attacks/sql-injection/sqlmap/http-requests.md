@@ -1,7 +1,6 @@
 ---
 title: 'Running SQLMap on HTTP Requests'
 description: 'The professional way to use SQLMap: capturing requests from Burp Suite, handling POST data, cookies, custom headers, JSON bodies, and multi-part forms.'
-icon: material/web
 tags:
   - sqlmap
   - burp-suite

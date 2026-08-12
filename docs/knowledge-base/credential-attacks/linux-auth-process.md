@@ -7,7 +7,6 @@ tags:
   - authentication
   - shadow
   - pam
-icon: material/shield-account
 ---
 
 # 🐧 Linux Authentication Process

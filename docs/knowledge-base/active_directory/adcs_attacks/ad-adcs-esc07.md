@@ -1,7 +1,6 @@
 ---
 title: 'ESC7: Vulnerable CA Access Control'
 description: 'ESC7: Vulnerable CA Access Control.'
-icon: material/file-document-outline
 ---
 # ESC7: Vulnerable CA Access Control
 

@@ -8,7 +8,6 @@ tags:
   - well-known
   - scrapy
   - information-gathering
-icon: material/spider
 ---
 
 # 🕷️ Crawling

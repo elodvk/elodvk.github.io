@@ -8,7 +8,6 @@ tags:
   - reconnaissance
   - nmap
   - swaks
-icon: material/email
 ---
 
 # 📧 SMTP Footprinting & Enumeration

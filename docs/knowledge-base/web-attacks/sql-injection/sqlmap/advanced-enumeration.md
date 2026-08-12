@@ -1,7 +1,6 @@
 ---
 title: 'Advanced Database Enumeration'
 description: 'Schema dumps, conditional extraction, search functions, pivot tables, and advanced SQLMap enumeration techniques for complex engagements.'
-icon: material/database-cog
 tags:
   - sqlmap
   - advanced-enumeration

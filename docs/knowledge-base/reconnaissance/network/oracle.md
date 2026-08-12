@@ -10,7 +10,6 @@ tags:
   - nmap
   - sqlplus
   - oracledbclient
-icon: material/database
 ---
 
 # 🟠 Oracle TNS Footprinting

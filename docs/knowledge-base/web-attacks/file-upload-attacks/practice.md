@@ -7,7 +7,6 @@ tags:
   - File Upload
   - XSS
   - XXE
-icon: material/dumbbell
 ---
 
 ## Scenario

@@ -1,7 +1,6 @@
 ---
 title: 'Out-of-Band SQL Injection (OOB)'
 description: 'DNS exfiltration, when to use it, and practical examples for MySQL and MSSQL out-of-band SQL injection.'
-icon: material/satellite-uplink
 tags:
   - sql-injection
   - out-of-band

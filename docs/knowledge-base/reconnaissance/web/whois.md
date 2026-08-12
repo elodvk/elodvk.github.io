@@ -7,7 +7,6 @@ tags:
   - passive-recon
   - domain
   - information-gathering
-icon: material/card-account-details-outline
 ---
 
 # 🔍 WHOIS

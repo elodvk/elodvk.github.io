@@ -8,7 +8,6 @@ tags:
   - default-passwords
   - netexec
   - hydra
-icon: material/spray
 ---
 
 # 🚿 Spraying, Stuffing, and Defaults

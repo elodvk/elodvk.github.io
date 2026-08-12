@@ -6,7 +6,6 @@ tags:
   - Web
   - File Upload
   - Bypass
-icon: material/cancel
 ---
 
 # Bypassing Blacklist Filters

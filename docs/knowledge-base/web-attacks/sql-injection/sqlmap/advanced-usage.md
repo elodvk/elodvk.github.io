@@ -1,7 +1,6 @@
 ---
 title: 'Advanced SQLMap Usage'
 description: 'Second-order injection, CSRF token handling, custom injection markers, eval scripts, randomizing parameters, and other advanced SQLMap techniques.'
-icon: material/cog-play
 tags:
   - sqlmap
   - advanced

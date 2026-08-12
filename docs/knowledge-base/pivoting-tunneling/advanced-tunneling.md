@@ -8,7 +8,6 @@ tags:
   - icmp
   - ptunnel
   - dns
-icon: material/tunnel-outline
 ---
 
 # 🌐 Advanced Tunneling

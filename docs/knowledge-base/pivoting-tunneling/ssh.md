@@ -6,7 +6,6 @@ tags:
   - ssh
   - tunneling
   - port-forwarding
-icon: material/console-network
 ---
 
 # 🔐 SSH Tunneling & Port Forwarding

@@ -9,7 +9,6 @@ tags:
   - reconnaissance
   - nmap
   - hydra
-icon: material/email-newsletter
 ---
 
 # 📧 IMAP & POP3 Footprinting

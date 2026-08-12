@@ -1,7 +1,6 @@
 ---
 title: 'ESC11: ICPR NTLM Relaying'
 description: 'ESC11: ICPR NTLM Relaying.'
-icon: material/file-document-outline
 ---
 # ESC11: ICPR NTLM Relaying
 

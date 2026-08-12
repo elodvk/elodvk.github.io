@@ -10,7 +10,6 @@ tags:
   - enum4linux
   - crackmapexec
   - netexec
-icon: material/folder-account
 ---
 
 # 📂 SMB Footprinting

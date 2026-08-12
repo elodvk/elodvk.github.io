@@ -1,7 +1,6 @@
 ---
 title: 'ESC12: ADCS on YubiHSM'
 description: 'ESC12: ADCS on YubiHSM.'
-icon: material/file-document-outline
 ---
 # ESC12: ADCS on YubiHSM
 

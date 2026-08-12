@@ -1,7 +1,6 @@
 ---
 title: "Application Discovery & Enumeration"
 description: ""
-icon: material/card-account-details
 ---
 
 

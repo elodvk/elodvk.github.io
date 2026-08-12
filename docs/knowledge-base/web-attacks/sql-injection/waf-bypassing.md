@@ -1,7 +1,6 @@
 ---
 title: 'WAF Bypassing for SQL Injection'
 description: 'Manual evasion techniques such as case manipulation, using comments as whitespace, double URL encoding, and string concatenation.'
-icon: material/shield-half-full
 tags:
   - sql-injection
   - waf-bypass

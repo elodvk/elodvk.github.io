@@ -1,7 +1,6 @@
 ---
 title: 'Subverting Query Logic & Using Comments'
 description: 'How to fundamentally alter database queries using logical operators and comments to bypass authentication and alter data flow.'
-icon: material/source-branch
 tags:
   - sql-injection
   - logic-subversion

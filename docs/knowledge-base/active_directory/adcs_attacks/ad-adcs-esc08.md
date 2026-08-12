@@ -1,7 +1,6 @@
 ---
 title: 'ESC8: Web Enrollment NTLM Relay'
 description: 'ESC8: Web Enrollment NTLM Relay.'
-icon: material/file-document-outline
 ---
 # ESC8: Web Enrollment NTLM Relay
 

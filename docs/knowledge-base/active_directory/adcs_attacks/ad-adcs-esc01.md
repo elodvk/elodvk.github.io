@@ -1,7 +1,6 @@
 ---
 title: 'ESC1: The You Can Be Anyone Template'
 description: 'ESC1: The "You Can Be Anyone" Template.'
-icon: material/file-document-outline
 ---
 # ESC1: The "You Can Be Anyone" Template
 

@@ -1,7 +1,6 @@
 ---
 title: 'SQLMap Output Description'
 description: 'How to read, interpret, and act on SQLMap output. Understand every message type, log level, result format, and stored file so you know exactly what SQLMap is telling you.'
-icon: material/text-box-search
 tags:
   - sqlmap
   - sql-injection
