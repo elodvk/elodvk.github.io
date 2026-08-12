@@ -13,7 +13,7 @@ hide:
 <div class="ps-kb-controls ps-reveal">
   <div class="ps-kb-controls-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-    <span>Knowledge Base Categories (7 Categories)</span>
+    <span>Knowledge Base Categories (8 Categories)</span>
   </div>
   <div class="ps-kb-btn-group">
     <button class="ps-kb-btn" onclick="document.querySelectorAll('.ps-kb-accordion').forEach(el => el.setAttribute('open', 'true'))">
@@ -387,6 +387,61 @@ hide:
             <a href="pivoting-tunneling/proxychains/" class="ps-kb-link-pill">Proxychains</a>
             <a href="pivoting-tunneling/ssh/" class="ps-kb-link-pill">SSH Tunneling</a>
             <a href="pivoting-tunneling/sshuttle/" class="ps-kb-link-pill">sshuttle</a>
+          </div>
+        </div>
+  <!-- 08 / WINDOWS PRIVILEGE ESCALATION -->
+  <details class="ps-kb-accordion">
+    <summary class="ps-kb-summary">
+      <div class="ps-kb-summary-left">
+        <span class="ps-kb-index">08 / WIN PRIVESC</span>
+        <div class="ps-kb-title-wrap">
+          <h2 class="ps-kb-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Windows Privilege Escalation & Access Control
+          </h2>
+          <p class="ps-kb-desc">Windows access control architecture, tokens, SIDs, integrity levels, privilege mechanics, service hardening, and credential security.</p>
+        </div>
+      </div>
+      <div class="ps-kb-summary-right">
+        <span class="ps-kb-badge">14 Modules</span>
+        <svg class="ps-kb-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </summary>
+    <div class="ps-kb-body">
+      <div style="margin-bottom: 0.8rem;">
+        <a href="windows-privilege-escalation/" class="ps-kb-link-pill overview-pill">Category Overview →</a>
+      </div>
+      <div class="ps-kb-subgrid">
+        <div class="ps-kb-subcard">
+          <h3 class="ps-kb-subheading">Privileges & Groups</h3>
+          <div class="ps-kb-links">
+            <a href="windows-privilege-escalation/user-and-group-privileges/" class="ps-kb-link-pill">Quick Decision Guide</a>
+            <a href="windows-privilege-escalation/seimpersonate-potato-attacks/" class="ps-kb-link-pill">SeImpersonate (Potato Attacks)</a>
+            <a href="windows-privilege-escalation/sedebug-privilege/" class="ps-kb-link-pill">SeDebug (LSASS Dumping)</a>
+            <a href="windows-privilege-escalation/sebackup-serestore/" class="ps-kb-link-pill">SeBackup & SeRestore</a>
+            <a href="windows-privilege-escalation/setakeownership-seloaddriver/" class="ps-kb-link-pill">SeTakeOwnership & SeLoadDriver</a>
+            <a href="windows-privilege-escalation/windows-group-privileges/" class="ps-kb-link-pill">Group Privileges (DnsAdmins, Server Ops)</a>
+          </div>
+        </div>
+        <div class="ps-kb-subcard">
+          <h3 class="ps-kb-subheading">OS & Services</h3>
+          <div class="ps-kb-links">
+            <a href="windows-privilege-escalation/os-and-service-hardening/" class="ps-kb-link-pill">Quick Decision Guide</a>
+            <a href="windows-privilege-escalation/unquoted-service-paths/" class="ps-kb-link-pill">Unquoted Service Paths</a>
+            <a href="windows-privilege-escalation/weak-service-permissions/" class="ps-kb-link-pill">Weak Service Permissions</a>
+            <a href="windows-privilege-escalation/dll-hijacking/" class="ps-kb-link-pill">DLL Hijacking</a>
+            <a href="windows-privilege-escalation/always-install-elevated-scheduled-tasks/" class="ps-kb-link-pill">AlwaysInstallElevated & Tasks</a>
+            <a href="windows-privilege-escalation/uac-bypass/" class="ps-kb-link-pill">UAC Bypass</a>
+            <a href="windows-privilege-escalation/kernel-exploits/" class="ps-kb-link-pill">Kernel Exploits</a>
+          </div>
+        </div>
+        <div class="ps-kb-subcard">
+          <h3 class="ps-kb-subheading">Credentials & Environment</h3>
+          <div class="ps-kb-links">
+            <a href="windows-privilege-escalation/credentials-and-environment-security/" class="ps-kb-link-pill">Quick Decision Guide</a>
+            <a href="windows-privilege-escalation/credential-hunting/" class="ps-kb-link-pill">Credential Hunting</a>
+            <a href="windows-privilege-escalation/restricted-environment-breakouts/" class="ps-kb-link-pill">Environment Breakouts</a>
+            <a href="windows-privilege-escalation/tools-and-enumeration/" class="ps-kb-link-pill">Tools & Enumeration</a>
           </div>
         </div>
       </div>
