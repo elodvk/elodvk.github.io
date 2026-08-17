@@ -4540,3 +4540,12 @@ html {
   }
 }
 
+
+/* ============================================================================
+ * Content Width — use more screen real estate
+ * Default Material grid is 61rem (976px). We push it to 68rem (~1088px) so the
+ * content area stretches wider on large monitors while sidebars stay the same.
+ * ============================================================================ */
+.md-grid {
+  max-width: 68rem;
+}
