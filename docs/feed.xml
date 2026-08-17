@@ -4,11 +4,245 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Wed, 12 Aug 2026 04:26:16 -0000</lastBuildDate>
+<lastBuildDate>Mon, 17 Aug 2026 15:53:17 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
 <managingEditor>elodvk@proton.me (Bilash J. Shahi)</managingEditor>
+<item>
+<title>CVE-2026-18577: Critical N-able N-central Authentication Bypass Actively Exploited</title>
+<link>https://purplesec.org/blog/n-able-n-central-auth-bypass-cve-2026-18577/</link>
+<description>A critical authentication bypass vulnerability (CVE-2026-18577) in N-able N-central is being actively exploited in the wild, allowing unauthenticated attackers to gain administrative access and compromise managed endpoints.</description>
+<pubDate>Mon, 17 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/n-able-n-central-auth-bypass-cve-2026-18577/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>N-able N-central</category>
+<category>Authentication Bypass</category>
+<category>CVE-2026-18577</category>
+<category>Actively Exploited</category>
+<category>RMM</category>
+</item>
+<item>
+<title>CVE-2026-58138: Critical OrkesConductor Unauthenticated RCE</title>
+<link>https://purplesec.org/blog/orkesconductor-unauth-rce-cve-2026-58138/</link>
+<description>A critical unauthenticated remote code execution vulnerability (CVE-2026-58138) in OrkesConductor allows attackers to execute arbitrary OS commands via malicious JavaScript tasks, leading to full system compromise.</description>
+<pubDate>Mon, 17 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/orkesconductor-unauth-rce-cve-2026-58138/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>OrkesConductor</category>
+<category>RCE</category>
+<category>Unauthenticated</category>
+<category>Code Injection</category>
+<category>CVE-2026-58138</category>
+</item>
+<item>
+<title>CVE-2026-58480: Blocksy Companion RCE via Unauthenticated File Upload</title>
+<link>https://purplesec.org/blog/blocksy-companion-rce-cve-2026-58480/</link>
+<description>A critical unauthenticated remote code execution vulnerability (CVE-2026-58480) exists in the Blocksy Companion WordPress plugin, allowing attackers to upload arbitrary files and execute code on the server.</description>
+<pubDate>Mon, 17 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/blocksy-companion-rce-cve-2026-58480/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Blocksy Companion</category>
+<category>WordPress</category>
+<category>RCE</category>
+<category>Unauthenticated</category>
+<category>File Upload</category>
+</item>
+<item>
+<title>Pre-Authenticated Root RCE in macOS Screen Sharing (CVE-2026-65400) Actively Exploited</title>
+<link>https://purplesec.org/blog/macos-screen-sharing-rce-cve-2026-65400/</link>
+<description>This post details CVE-2026-65400, a critical pre-authenticated Remote Code Execution vulnerability in Apple macOS Screen Sharing with active exploitation in the wild. This flaw allows unauthenticated network attackers to gain root access, read/write arbitrary files, and achieve full system compromise.</description>
+<pubDate>Sun, 16 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/macos-screen-sharing-rce-cve-2026-65400/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>macOS</category>
+<category>Screen Sharing</category>
+<category>RCE</category>
+<category>Pre-Authentication</category>
+<category>Zero-Day</category>
+</item>
+<item>
+<title>Critical SAP Commerce Cloud RCE (CVE-2026-58231) Actively Exploited Post-Patch</title>
+<link>https://purplesec.org/blog/sap-commerce-cloud-rce-cve-2026-58231/</link>
+<description>This post details CVE-2026-58231, a critical unauthenticated Remote Code Execution vulnerability in SAP Commerce Cloud (Data Hub Adapter) with a CVSS score of 10.0. Actively exploited post-patch, this flaw allows attackers to compromise internal components, leading to full system compromise.</description>
+<pubDate>Sun, 16 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/sap-commerce-cloud-rce-cve-2026-58231/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>SAP</category>
+<category>Commerce Cloud</category>
+<category>RCE</category>
+<category>Code Injection</category>
+<category>CVE-2026-58231</category>
+</item>
+<item>
+<title>PHPSpreadsheet RCE Patch Bypass (CVE-2026-45034) via Phar Deserialization</title>
+<link>https://purplesec.org/blog/phpspreadsheet-rce-patch-bypass-cve-2026-45034/</link>
+<description>This post delves into CVE-2026-45034, a critical patch bypass vulnerability in PHPSpreadsheet that leads to Remote Code Execution via Phar deserialization. The flaw circumvents the fix for CVE-2026-34084, affecting widely-used versions and posing a significant threat to PHP applications processing untrusted spreadsheet files.</description>
+<pubDate>Sun, 16 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/phpspreadsheet-rce-patch-bypass-cve-2026-45034/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>PHPSpreadsheet</category>
+<category>RCE</category>
+<category>Patch Bypass</category>
+<category>Deserialization</category>
+<category>Phar</category>
+</item>
+<item>
+<title>Critical Microsoft SharePoint JWT Token Authentication Bypass (CVE-2026-55040) Actively Exploited</title>
+<link>https://purplesec.org/blog/microsoft-sharepoint-jwt-bypass-cve-2026-55040/</link>
+<description>In-depth analysis of CVE-2026-55040, a critical authentication bypass in Microsoft SharePoint utilizing JWT token validation flaws, actively exploited in the wild and potentially leading to RCE when chained.</description>
+<pubDate>Sat, 15 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/microsoft-sharepoint-jwt-bypass-cve-2026-55040/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>SharePoint</category>
+<category>Microsoft</category>
+<category>Authentication Bypass</category>
+<category>JWT</category>
+<category>Zero-Day</category>
+</item>
+<item>
+<title>Cisco ASA &amp; FTD Remote Access SSL VPN Denial of Service Zero-Day (CVE-2026-20349) Actively Exploited in the Wild</title>
+<link>https://purplesec.org/blog/cisco-asa-ftd-vpn-dos-cve-2026-20349/</link>
+<description>In-depth analysis of CVE-2026-20349, a critical denial-of-service zero-day in Cisco ASA and FTD Remote Access SSL VPN services, actively exploited in the wild. Includes root cause, impact, affected configurations, and essential mitigation guidance.</description>
+<pubDate>Fri, 14 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/cisco-asa-ftd-vpn-dos-cve-2026-20349/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Security Research</category>
+<category>Zero-Day</category>
+<category>Cisco</category>
+<category>ASA</category>
+<category>FTD</category>
+</item>
+<item>
+<title>Critical Check Point SmartConsole Authentication Bypass (CVE-2026-16232) Zero-Day Exploited in the Wild</title>
+<link>https://purplesec.org/blog/check-point-smartconsole-auth-bypass-cve-2026-16232/</link>
+<description>In-depth analysis of CVE-2026-16232, a critical authentication bypass zero-day affecting Check Point Security Management and Multi-Domain Management products, actively exploited in the wild. Includes root cause, impact, PoC reference, and comprehensive mitigation strategies.</description>
+<pubDate>Fri, 14 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/check-point-smartconsole-auth-bypass-cve-2026-16232/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Security Research</category>
+<category>Zero-Day</category>
+<category>Check Point</category>
+<category>Authentication Bypass</category>
+<category>SmartConsole</category>
+</item>
+<item>
+<title>Microsoft Windows AFD.sys Use-After-Free Zero-Day (CVE-2026-68820) Exploited by Lazarus Group for SYSTEM Privilege Escalation</title>
+<link>https://purplesec.org/blog/microsoft-afd-sys-uaf-cve-2026-68820-lazarus/</link>
+<description>In-depth analysis of CVE-2026-68820, a critical use-after-free zero-day in Windows AFD.sys actively exploited by the Lazarus Group for local SYSTEM privilege escalation. Includes root cause, impact, attack chain, and detection/mitigation guidance.</description>
+<pubDate>Fri, 14 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/microsoft-afd-sys-uaf-cve-2026-68820-lazarus/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Security Research</category>
+<category>Zero-Day</category>
+<category>Microsoft</category>
+<category>Windows</category>
+<category>Privilege Escalation</category>
+</item>
+<item>
+<title>Critical VMware vCenter RCE (CVE-2026-59310) Actively Exploited in the Wild</title>
+<link>https://purplesec.org/blog/critical-vmware-vcenter-rce-cve-2026-59310/</link>
+<description>In-depth analysis of CVE-2026-59310, a critical directory traversal vulnerability in VMware vCenter leading to remote code execution, now actively exploited by APT actors using reverse_ssh for persistence.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/critical-vmware-vcenter-rce-cve-2026-59310/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>VMware</category>
+<category>vCenter</category>
+<category>RCE</category>
+<category>Critical Vulnerability</category>
+<category>Active Exploitation</category>
+</item>
+<item>
+<title>Adobe Commerce Privilege Escalation (CVE-2026-71362) Actively Exploited Post-Disclosure</title>
+<link>https://purplesec.org/blog/adobe-commerce-privilege-escalation-cve-2026-71362/</link>
+<description>Detailed analysis of CVE-2026-71362, a critical incorrect authorization vulnerability in Adobe Commerce and Magento Open Source, enabling unauthenticated privilege escalation and account takeover, with active exploitation reported immediately after disclosure.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/adobe-commerce-privilege-escalation-cve-2026-71362/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Adobe Commerce</category>
+<category>Magento</category>
+<category>Privilege Escalation</category>
+<category>Active Exploitation</category>
+<category>E-commerce Security</category>
+</item>
+<item>
+<title>Gunra Ransomware Exploits Fortinet Flaws and Bypasses MFA</title>
+<link>https://purplesec.org/blog/gunra-ransomware-fortinet-mfa-bypass/</link>
+<description>The Gunra ransomware gang is actively exploiting known Fortinet vulnerabilities (CVE-2024-55591, CVE-2025-24472) to gain initial access and bypass multi-factor authentication in attacks targeting critical infrastructure and government organizations.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/gunra-ransomware-fortinet-mfa-bypass/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Security Research</category>
+<category>Ransomware</category>
+<category>Fortinet</category>
+<category>MFA Bypass</category>
+<category>Threat Intel</category>
+</item>
+<item>
+<title>Lazarus Group Exploits New Windows Zero-Day (CVE-2026-68820) in Operation Dream Job</title>
+<link>https://purplesec.org/blog/lazarus-group-windows-zero-day-cve-2026-68820/</link>
+<description>In-depth analysis of CVE-2026-68820, a new Windows zero-day exploited by the North Korean Lazarus Group in their ongoing Operation Dream Job campaign, targeting defense and aerospace sectors.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/lazarus-group-windows-zero-day-cve-2026-68820/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Zero-Day</category>
+<category>North Korea</category>
+<category>Lazarus Group</category>
+<category>APT</category>
+<category>Windows</category>
+</item>
+<item>
+<title>ShieldBreak: Nightmare Eclipse Bypasses Microsoft Defender Patch for RoguePlanet (CVE-2026-50656 Redux)</title>
+<link>https://purplesec.org/blog/shieldbreak-nightmare-eclipse-defender-bypass/</link>
+<description>In-depth analysis of ShieldBreak, the latest exploit by Nightmare Eclipse that bypasses Microsoft Defender’s patch for RoguePlanet (CVE-2026-50656), enabling SYSTEM privilege escalation on Windows.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/shieldbreak-nightmare-eclipse-defender-bypass/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Zero-Day</category>
+<category>Microsoft Defender</category>
+<category>Privilege Escalation</category>
+<category>Patch Bypass</category>
+<category>Nightmare Eclipse</category>
+</item>
+<item>
+<title>CVE-2025-21042 Deep Dive: Samsung Zero-Click Zero-Day Exploited by LANDFALL Spyware</title>
+<link>https://purplesec.org/blog/samsung-zero-day-landfall-cve-2025-21042/</link>
+<description>An in-depth analysis of CVE-2025-21042, a critical zero-click zero-day in Samsung devices exploited by LANDFALL spyware, detailing the attack chain and impact.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/samsung-zero-day-landfall-cve-2025-21042/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Android</category>
+<category>Samsung</category>
+<category>Zero-Day</category>
+<category>CVE-2025-21042</category>
+<category>Spyware</category>
+</item>
+<item>
+<title>CVE-2026-72898 Deep Dive: Unauthenticated SQL Injection in Metabase Leading to Admin Takeover</title>
+<link>https://purplesec.org/blog/metabase-sqli-cve-2026-72898/</link>
+<description>An in-depth analysis of CVE-2026-72898, a critical unauthenticated SQL injection in Metabase that allows remote admin access, with technical details and PoC.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/metabase-sqli-cve-2026-72898/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>SQL Injection</category>
+<category>Metabase</category>
+<category>CVE-2026-72898</category>
+<category>Zero-Day</category>
+<category>Critical Vulnerability</category>
+</item>
+<item>
+<title>Cisco ASA &amp; FTD Zero-Days: ArcaneDoor Campaign Deep Dive (CVE-2025-20333, CVE-2025-20362)</title>
+<link>https://purplesec.org/blog/cisco-asa-zero-day-arcanedoor/</link>
+<description>In-depth analysis of actively exploited zero-day vulnerabilities in Cisco ASA and FTD devices (CVE-2025-20333, CVE-2025-20362) used by UAT4356/Storm-1849 in the ArcaneDoor campaign, including technical breakdown, PoC information, and critical mitigation strategies.</description>
+<pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/cisco-asa-zero-day-arcanedoor/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>Security Research</category>
+<category>Zero-Day</category>
+<category>Cisco</category>
+<category>ASA</category>
+<category>FTD</category>
+</item>
 <item>
 <title>The Great Korean AI Crash: Inside the $2 Trillion Meltdown That Shattered the KOSPI</title>
 <link>https://purplesec.org/blog/south-korea-ai-bubble-burst/</link>
