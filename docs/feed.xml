@@ -4,7 +4,7 @@
 <title>PurpleSec</title>
 <link>https://purplesec.org/</link>
 <description>Offensive and defensive cybersecurity writeups, vulnerability research, and security blog by Bilash J. Shahi.</description>
-<lastBuildDate>Mon, 17 Aug 2026 16:18:25 -0000</lastBuildDate>
+<lastBuildDate>Tue, 18 Aug 2026 04:46:24 -0000</lastBuildDate>
 <atom:link href="https://purplesec.org/feed.xml" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <generator>PurpleSec Custom RSS</generator>
@@ -21,6 +21,19 @@
 <category>Lazarus Group</category>
 <category>APT</category>
 <category>Windows</category>
+</item>
+<item>
+<title>CVE-2026-19478: Critical GitLab GraphQL Flaw Lets Unauthenticated Attackers Delete Public Projects</title>
+<link>https://purplesec.org/blog/gitlab-graphql-critical-cve-2026-19478/</link>
+<description>A comprehensive analysis of CVE-2026-19478 — GitLab&#x27;s critical GraphQL directive vulnerability that allows unauthenticated remote attackers to modify or delete public projects and user data. Covers the technical root cause, attack surface, impact, history of GitLab GraphQL security issues, and remediation guidance.</description>
+<pubDate>Mon, 17 Aug 2026 00:00:00 -0000</pubDate>
+<guid isPermaLink="true">https://purplesec.org/blog/gitlab-graphql-critical-cve-2026-19478/</guid>
+<author>elodvk@proton.me (Bilash J. Shahi)</author>
+<category>CVE-2026-19478</category>
+<category>GitLab</category>
+<category>GraphQL</category>
+<category>Critical Vulnerability</category>
+<category>Authorization Bypass</category>
 </item>
 <item>
 <title>The Great Korean AI Crash: Inside the $2 Trillion Meltdown That Shattered the KOSPI</title>
